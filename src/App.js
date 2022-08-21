@@ -1,10 +1,12 @@
+import SchemaTable from './SchemaTable';
 import { GlobalStyle } from './styled-globals';
 
 function App() {
-  return (
-    <div className="App">
+  return ( 
+    <>
       <GlobalStyle />
-    </div>
+      <SchemaTable />
+    </>
   );
 }
 
