@@ -1,11 +1,15 @@
 import SchemaTable from './SchemaTable';
 import { GlobalStyle } from './styled-globals';
+import { getHolidayTable } from './mockTable';
 
 function App() {
-  return ( 
+  return (
     <>
       <GlobalStyle />
-      <SchemaTable />
+      <SchemaTable
+        data={getHolidayTable().data}
+        headingList={getHolidayTable().headings}
+      />
     </>
   );
 }
