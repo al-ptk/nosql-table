@@ -6,3 +6,8 @@ I also realized that the pre-planning I did before was very useful as a tasks-to
 Lastly, I'm glad to be back coding. Life has been a bit crazy lately.
 
 # Day 2
+
+As I feared, it all goes back to a dauting spaghetti web. It is very easy to lose track of what to do and how to proceed. Plus, there is the constant concern of "not doing things right."  
+I feel like this project must be an experiment: Allow myself to just be bad and see how it goes. Not doing so blocks me up and I become unproductive.  
+I should not be afraid of the dumb solution. If I must rewrite, I shall rewrite. If I must change the structure later, I shall do so. I must stupidly and bravely move foward so I do not get bog down by analysis paralysis.  
+There will be tons of books later teaching me to become better, but I need some experience being a bad coder and just moving on.

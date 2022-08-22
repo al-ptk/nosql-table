@@ -1,18 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import TableHeadings from './TableHeadings';
+import TableBody from './TableBody';
 
-/**
- * ToDo:
- *
- *  Add a subcomponent just for headings
- *  Add a subcomponent template for rows
- *
- */
-
-export function SchemaTable({ data, headingList }) {
+export function SchemaTable({ data, headings }) {
   const [tableData, setTableData] = useState(data);
-  const [headings, setHeadings] = useState(headingList);
+  const [headingList, setHeadingList] = useState(headings);
 
   function updateTableData(event, heading, rowID) {
     const newtableData = [...tableData];
@@ -22,35 +16,19 @@ export function SchemaTable({ data, headingList }) {
 
   return (
     <StyledTable>
-      {/* Add a Headings component */}
-      <tr>
-        {headings.map((heading, index) => (
-          <th key={index}>
-            <input type="text" value={heading} />
-          </th>
-        ))}
-      </tr>
-
-      {/* Add a Row component */}
-      {tableData.map((instance, index) => (
-        <tr key={index}>
-          {headings.map((heading, subIndex) => (
-            <td key={subIndex}>
-              <input
-                type="text"
-                value={instance[heading]}
-                onInput={(event) => updateTableData(event, heading, index)}
-              />
-            </td>
-          ))}
-        </tr>
-      ))}
+      <TableHeadings
+        headingList={headingList}
+        setHeadingList={setHeadingList}
+      />
+      <TableBody
+        tableData={tableData}
+        updateTableData={updateTableData}
+        headingList={headingList}
+      />
     </StyledTable>
   );
 }
 
 const StyledTable = styled.table`
   margin: 10vh auto;
-  width: 600px;
-  height: 400px;
 `;

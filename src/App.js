@@ -8,7 +8,7 @@ function App() {
       <GlobalStyle />
       <SchemaTable
         data={getHolidayTable().data}
-        headingList={getHolidayTable().headings}
+        headings={getHolidayTable().headings}
       />
     </>
   );
