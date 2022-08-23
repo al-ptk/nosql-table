@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import styled from 'styled-components';
+import { StyledTable } from './SchemaTable.styled';
 import TableHeadings from './TableHeadings';
 import TableBody from './TableBody';
 
@@ -28,7 +28,3 @@ export function SchemaTable({ data, headings }) {
     </StyledTable>
   );
 }
-
-const StyledTable = styled.table`
-  margin: 10vh auto;
-`;
