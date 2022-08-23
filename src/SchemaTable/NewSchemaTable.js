@@ -6,25 +6,34 @@ export function SchemaTable(props) {
   const [headings, setHeadings] = useState(mockHeadings);
   const [rows, setRows] = useState(mockRows);
 
+  function addHeading() {
+    setHeadings(headings.concat(''));
+  }
+
   return (
     <StyledTable>
       <tbody>
         <tr>
           {headings.map((heading) => (
-            <th>{heading}</th>
+            <th>
+              <input value={heading} onChange={() => {}} />
+            </th>
           ))}
-          <button>+</button>
+          <button onClick={addHeading}>New Heading</button>
         </tr>
         {rows.map((row) => {
           return (
             <tr>
               {row.map((cell) => {
-                return <td>{cell}</td>;
+                return (
+                  <td>
+                    <input value={cell} onChange={() => {}} />
+                  </td>
+                );
               })}
             </tr>
           );
         })}
-        <button>+</button>
       </tbody>
     </StyledTable>
   );
@@ -36,7 +45,7 @@ export function SchemaTable(props) {
  * Each heading points to a list.
  */
 
-const mockHeadings = ['Test'];
+const mockHeadings = ['Test', 'Test2'];
 const mockRows = [
   ['Ann', 23],
   ['Joe', 37],
