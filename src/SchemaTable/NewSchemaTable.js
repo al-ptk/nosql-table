@@ -7,6 +7,7 @@ export function SchemaTable(props) {
   const [headings, setHeadings] = useState([]);
   const [rows, setRows] = useState([]);
 
+  // Component Did Mount
   useEffect(() => {
     const mockTable = getMockTable();
     const headingsList = getAllKeys(mockTable);
@@ -27,6 +28,23 @@ export function SchemaTable(props) {
     setRows(newRows);
   }
 
+  function addHeading(event) {
+    setHeadings(headings.concat(''));
+    /**
+     * The code below shouldn't work.
+     * It does work, but it shouldn't.
+     * I do not know why it works. O.o
+     */
+    const newRows = [...rows];
+    newRows.forEach((row) => row.push(''));
+  }
+
+  function addRow(event) {
+    const newRows = [...rows];
+    newRows.push(Array(headings.length).fill(''));
+    setRows(newRows);
+  }
+
   return (
     <table>
       <tbody>
@@ -38,6 +56,9 @@ export function SchemaTable(props) {
               updateHeading={(event) => updateHeading(event, index)}
             />
           ))}
+          <th>
+            <button onClick={addHeading}>Add Heading</button>
+          </th>
         </tr>
         {rows.map((row, rowIndex) => (
           <TableRow
@@ -47,6 +68,11 @@ export function SchemaTable(props) {
             updateCell={updateCell}
           />
         ))}
+        <tr>
+          <td>
+            <button onClick={addRow}>Add Row</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   );
@@ -63,7 +89,7 @@ const ColumnHeading = ({ text, updateHeading }) => {
 const TableCell = ({ text, updateCell }) => {
   return (
     <td>
-      <input type={'text'} value={text} onInput={updateCell} />
+      <input type={'text'} value={text || ''} onInput={updateCell} />
     </td>
   );
 };
@@ -74,7 +100,7 @@ const TableRow = ({ rowIndex, rowData, updateCell }) => {
       {rowData.map((cell, cellIndex) => (
         <TableCell
           key={cellIndex}
-          text={cell}
+          text={cell || ''}
           updateCell={(event) => updateCell(event, cellIndex, rowIndex)}
         />
       ))}
