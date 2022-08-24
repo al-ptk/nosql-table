@@ -1,19 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import HeadingRow from './HeadingRow';
 import TableData, { AddRowButton } from './TableData';
 import { StyledTable } from './SchemaTable.styled';
 
-export function SchemaTable({ headingsList, rowsList }) {
-  const [headings, setHeadings] = useState([]);
-  const [rows, setRows] = useState([]);
-
-  // Component Did Mount
-  useEffect(() => {
-    setHeadings(headingsList);
-    setRows(rowsList);
-  }, [headingsList, rowsList]);
-
+export function SchemaTable({ headings, setHeadings, rows, setRows }) {
   function updateHeading(event, index) {
     const newHeading = [...headings];
     newHeading[index] = event.target.value;
