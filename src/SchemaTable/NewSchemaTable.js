@@ -15,20 +15,58 @@ export function SchemaTable(props) {
     setRows(rowsList);
   }, []);
 
+  function updateHeading(event, index) {
+    const newHeading = [...headings];
+    newHeading[index] = event.target.value;
+    setHeadings(newHeading);
+  }
+
+  function updateCell(event, cellIndex, rowIndex) {
+    const newRows = [...rows];
+    newRows[rowIndex][cellIndex] = event.target.value;
+    setRows(newRows);
+  }
+
   return (
     <table>
-      <tr>
-        {headings.map((heading) => (
-          <th>{heading}</th>
-        ))}
-      </tr>
-      {rows.map((row) => (
+      <tbody>
         <tr>
-          {row.map((cell) => (
-            <td>{cell}</td>
+          {headings.map((heading, index) => (
+            <ColumnHeading
+              key={index}
+              text={heading}
+              updateHeading={(event) => updateHeading(event, index)}
+            />
           ))}
         </tr>
-      ))}
+        {rows.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <TableCell
+                key={cellIndex}
+                text={cell}
+                updateCell={(event) => updateCell(event, cellIndex, rowIndex)}
+              />
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
+
+const ColumnHeading = ({ text, updateHeading }) => {
+  return (
+    <th>
+      <input value={text} onInput={updateHeading} />
+    </th>
+  );
+};
+
+const TableCell = ({ text, updateCell }) => {
+  return (
+    <td>
+      <input value={text} onInput={updateCell} />
+    </td>
+  );
+};
