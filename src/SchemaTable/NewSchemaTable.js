@@ -12,7 +12,7 @@ export function SchemaTable({ headingsList, rowsList }) {
   useEffect(() => {
     setHeadings(headingsList);
     setRows(rowsList);
-  }, []);
+  }, [headingsList, rowsList]);
 
   function updateHeading(event, index) {
     const newHeading = [...headings];
