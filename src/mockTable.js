@@ -18,13 +18,10 @@ const holidays = [
   },
   {
     date: 'Feb 17',
-    mood: 'summer samba!'
-  }
+    mood: 'summer samba!',
+  },
 ];
 
-export function getHolidayTable() {
-  return {
-    headings: ['title', 'date', 'mood', 'food', 'mythology'],
-    data: [...holidays],
-  };
+export function getMockTable() {
+  return holidays;
 }

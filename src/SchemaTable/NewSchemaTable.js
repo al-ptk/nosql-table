@@ -1,52 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
-import { StyledTable } from './SchemaTable.styled';
+import { useState, useEffect } from 'react';
+import { getMockTable } from '../mockTable';
+import { getAllKeys, vectorizeInOrder } from '../helperFunctions';
 
 export function SchemaTable(props) {
-  const [headings, setHeadings] = useState(mockHeadings);
-  const [rows, setRows] = useState(mockRows);
+  const [headings, setHeadings] = useState([]);
+  const [rows, setRows] = useState([]);
 
-  function addHeading() {
-    setHeadings(headings.concat(''));
-  }
+  useEffect(() => {
+    const mockTable = getMockTable();
+    const headingsList = getAllKeys(mockTable);
+    const rowsList = vectorizeInOrder(mockTable, headingsList);
+    setHeadings(headingsList);
+    setRows(rowsList);
+  }, []);
 
   return (
-    <StyledTable>
-      <tbody>
+    <table>
+      <tr>
+        {headings.map((heading) => (
+          <th>{heading}</th>
+        ))}
+      </tr>
+      {rows.map((row) => (
         <tr>
-          {headings.map((heading) => (
-            <th>
-              <input value={heading} onChange={() => {}} />
-            </th>
+          {row.map((cell) => (
+            <td>{cell}</td>
           ))}
-          <button onClick={addHeading}>New Heading</button>
         </tr>
-        {rows.map((row) => {
-          return (
-            <tr>
-              {row.map((cell) => {
-                return (
-                  <td>
-                    <input value={cell} onChange={() => {}} />
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </StyledTable>
+      ))}
+    </table>
   );
 }
-
-/**
- * Make an object where each heading is a property.
- * Ignore order for now.
- * Each heading points to a list.
- */
-
-const mockHeadings = ['Test', 'Test2'];
-const mockRows = [
-  ['Ann', 23],
-  ['Joe', 37],
-];

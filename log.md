@@ -18,3 +18,5 @@ I thought of a new way of solving the issue. This wouldn't have happened if I di
 Regardless, this experience proves a point: I need more experience in general, and need to change my mind around certain ideas I have about coding. Perhaps it is perfectly fine to just do stuff until you have a better way of solving the issue, then spending more time to rewrite code. Modular code seems like a pretty good approach — in webdesign terms, decoupling the style from the functionality is automatically done because of the separate languages, CSS and JS.
 
 I realize now: I never tried to solve the problem on paper, before attempting to implement it. I mentioned pseudocode before — I should've just done that... right? Maybe. I did not have in mind before that html creates tables by rows, not columns. I could create my own custom table, but using the default one seem better...
+
+I have relearned my lesson. Coding is hard. There is a reason why copying from stack overflow is such a popular meme, and that is because "cheating" can be quite the temptation when facing a confusing problem.
