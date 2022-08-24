@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import HeadingRow from './HeadingRow';
 import TableData, { AddRowButton } from './TableData';
+import { StyledTable } from './SchemaTable.styled';
 
 export function SchemaTable({ headingsList, rowsList }) {
   const [headings, setHeadings] = useState([]);
@@ -36,7 +37,7 @@ export function SchemaTable({ headingsList, rowsList }) {
   }
 
   return (
-    <table>
+    <StyledTable>
       <tbody>
         <HeadingRow
           headings={headings}
@@ -53,6 +54,6 @@ export function SchemaTable({ headingsList, rowsList }) {
 
         <AddRowButton addRow={addRow} />
       </tbody>
-    </table>
+    </StyledTable>
   );
 }
