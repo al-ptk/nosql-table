@@ -40,15 +40,12 @@ export function SchemaTable(props) {
           ))}
         </tr>
         {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <TableCell
-                key={cellIndex}
-                text={cell}
-                updateCell={(event) => updateCell(event, cellIndex, rowIndex)}
-              />
-            ))}
-          </tr>
+          <TableRow
+            key={rowIndex}
+            rowIndex={rowIndex}
+            rowData={row}
+            updateCell={updateCell}
+          />
         ))}
       </tbody>
     </table>
@@ -58,7 +55,7 @@ export function SchemaTable(props) {
 const ColumnHeading = ({ text, updateHeading }) => {
   return (
     <th>
-      <input value={text} onInput={updateHeading} />
+      <input type={'text'} value={text} onInput={updateHeading} />
     </th>
   );
 };
@@ -66,7 +63,21 @@ const ColumnHeading = ({ text, updateHeading }) => {
 const TableCell = ({ text, updateCell }) => {
   return (
     <td>
-      <input value={text} onInput={updateCell} />
+      <input type={'text'} value={text} onInput={updateCell} />
     </td>
+  );
+};
+
+const TableRow = ({ rowIndex, rowData, updateCell }) => {
+  return (
+    <tr key={rowIndex}>
+      {rowData.map((cell, cellIndex) => (
+        <TableCell
+          key={cellIndex}
+          text={cell}
+          updateCell={(event) => updateCell(event, cellIndex, rowIndex)}
+        />
+      ))}
+    </tr>
   );
 };

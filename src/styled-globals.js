@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -11,4 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     background-color: lightgray;
   }
-`
+  
+  input[type='text'] {
+    width: 100px;
+  }
+`;
