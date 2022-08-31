@@ -2,8 +2,15 @@ import React from 'react';
 import HeadingRow from './HeadingRow';
 import TableData, { AddRowButton } from './TableData';
 import { StyledTable } from './SchemaTable.styled';
+import { useEffect } from 'react';
 
 export function SchemaTable({ headings, setHeadings, rows, setRows }) {
+  useEffect(() => {
+    if (!headings.length && rows.length === 1) {
+      addColumn();
+    }
+  }, []);
+
   function updateHeading(event, index) {
     const newHeading = [...headings];
     newHeading[index] = event.target.value;

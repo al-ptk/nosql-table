@@ -2,10 +2,10 @@ import SchemaTable from './SchemaTable';
 import { GlobalStyle } from './styled-globals';
 import { getAllKeys } from './helperFunctions';
 import { useState } from 'react';
-// import { getMockTable } from './mockTable';
 
+// import { getMockTable } from './mockTable';
 // const currentTable = getMockTable();
-const currentTable = [{ 'property 0': '' }];
+const currentTable = [{}];
 
 function App() {
   const [headings, setHeadings] = useState(getAllKeys(currentTable));
