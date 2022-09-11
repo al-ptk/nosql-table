@@ -20,3 +20,13 @@ Regardless, this experience proves a point: I need more experience in general, a
 I realize now: I never tried to solve the problem on paper, before attempting to implement it. I mentioned pseudocode before — I should've just done that... right? Maybe. I did not have in mind before that html creates tables by rows, not columns. I could create my own custom table, but using the default one seem better...
 
 I have relearned my lesson. Coding is hard. There is a reason why copying from stack overflow is such a popular meme, and that is because "cheating" can be quite the temptation when facing a confusing problem.
+
+## Day 4
+
+Current status of the project:
+
+- I do not like how I manage the state of the table.
+- The whole table rendering revolves around the modelling of the data, which complicates things further.
+- The html table is counter intuitive to what I am trying to do.
+
+This is a hard problem, one that is requiring many iterations, and that frustrastes me. The temptation is just to scrap it all and start anew, but I do not like this impulse. Nevertheless, I will scrape it all and try again from a clean slate.
