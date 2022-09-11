@@ -12,9 +12,24 @@ export function SchemaTable({ headings, setHeadings, rows, setRows }) {
   }, []);
 
   function updateHeading(event, index) {
-    const newHeading = [...headings];
-    newHeading[index] = event.target.value;
-    setHeadings(newHeading);
+    /**
+     * newValue refers to the new column heading
+     * oldValue refers to the column heading being replaced
+     */
+    const newValue = event.target.value;
+    const oldValue = headings[index];
+    
+    // Update headings list
+    const newHeadings = [...headings];
+    newHeadings[index] = newValue;
+    setHeadings(newHeadings);
+
+    // Update all objects on the rows list
+    const newRows = [...rows];
+    newRows.forEach((row) => {
+      const {newValue: oldValue, ...newObj} = row;
+      row = {newValue, ...newObj}
+    });
   }
 
   function updateCell(event, cellIndex, rowIndex) {
