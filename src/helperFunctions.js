@@ -7,31 +7,15 @@ export function getAllKeys(objList) {
   let result = [];
 
   for (const obj of objList) {
-    //for each object
-
-    //get the keys list of obj
+    // get the keys list of current obj
     const keys = Object.keys(obj);
 
-    // filters out all keys already included in the result
-    const nonIncluded = keys.filter((key) => !result.includes(key));
+    // Make array of unregistered keys
+    const notInResult = keys.filter((key) => !result.includes(key));
 
-    // add non-included keys to array
-    result.push(...nonIncluded);
+    // add not-repeated keys to result array
+    result.push(...notInResult);
   }
 
-  return result;
-}
-
-/**
- * Returns an array of serialized values, according to a given order.
- * @param {Array} objList
- * @param {Array} propertyOrder
- * @return {Array}
- */
-export function vectorizeInOrder(objList, propertyOrder) {
-  const result = [];
-  for (const object of objList) {
-    result.push(propertyOrder.map((key) => object[key]));
-  }
   return result;
 }
