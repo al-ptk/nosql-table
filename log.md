@@ -30,3 +30,15 @@ Current status of the project:
 - The html table is counter intuitive to what I am trying to do.
 
 This is a hard problem, one that is requiring many iterations, and that frustrastes me. The temptation is just to scrap it all and start anew, but I do not like this impulse. Nevertheless, I will scrape it all and try again from a clean slate.
+
+## Day 5
+
+How do I solve that issue without react?  
+Updating the data seems like the most problematic part of designing this app. If I remove react from the equation, would I be able to find some inspiration for a solution?
+
+Plus, some basic functionality description:
+
+- rearrange properties
+- delete instances
+- delete properties
+- set type and macro for properties
