@@ -19,3 +19,20 @@ export function getAllKeys(objList) {
 
   return result;
 }
+
+/**
+ *
+ */
+export function vectorizeObjectArray(objList) {
+  const properties = getAllKeys(objList);
+  const vectors = {};
+
+  for (const property of properties) {
+    vectors[property] = [];
+    for (const obj of objList) {
+      vectors[property].push(obj[property] || '');
+    }
+  }
+
+  return vectors;
+}
