@@ -36,9 +36,8 @@ This is a hard problem, one that is requiring many iterations, and that frustras
 How do I solve that issue without react?  
 Updating the data seems like the most problematic part of designing this app. If I remove react from the equation, would I be able to find some inspiration for a solution?
 
-Plus, some basic functionality description:
+--- time skip ---
 
-- rearrange properties
-- delete instances
-- delete properties
-- set type and macro for properties
+Turns out, after trying to do thing without react, I can see that react was the main culprit of my confusion. If I do not try to keep the whole table's state under one variable, things get simpler.
+
+The main lesson is that **sometimes, when trying to reduce the problem to better solve it, the obstacle to be (temporarily, at lest) removed is the tool itself.** The tools you choose to solve a problem become part of the problem. 
