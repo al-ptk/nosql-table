@@ -41,3 +41,7 @@ Updating the data seems like the most problematic part of designing this app. If
 Turns out, after trying to do thing without react, I can see that react was the main culprit of my confusion. If I do not try to keep the whole table's state under one variable, things get simpler.
 
 The main lesson is that **sometimes, when trying to reduce the problem to better solve it, the obstacle to be (temporarily, at lest) removed is the tool itself.** The tools you choose to solve a problem become part of the problem. 
+
+--- time skip ---
+
+Instead of blaming the tool, I may blame myself for not understanding the tool. I wasn't thinking from a react perspective at all!
