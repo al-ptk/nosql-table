@@ -16,6 +16,7 @@ export function SchemaTable() {
 
   const headingUpdateFactory = (index) => {
     return (newValue) => {
+      if (headingOrder[index] === newValue) return;
       const newOrder = [...headingOrder];
       newOrder[index] = newValue;
       setHeadingOrder(newOrder);
@@ -32,33 +33,51 @@ export function SchemaTable() {
   };
 
   return (
-    <StyledTable>
-      <thead>
-        <tr>
-          {headingOrder.map((heading, headingIndex) => (
-            <HeadingCell
-              text={heading}
-              updateValue={headingUpdateFactory(headingIndex)}
-              key={headingIndex}
-            />
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {range(rowNumber).map((rowIndex) => (
-          <tr key={rowIndex}>
-            {headingOrder.map((heading, cellIndex) => (
-              <DataCell
-                text={tableData[heading][rowIndex]}
-                updateValue={dataUpdateFactory(rowIndex, heading)}
-                key={cellIndex}
+    <div>
+      <StyledTable>
+        <thead>
+          <tr>
+            {headingOrder.map((heading, headingIndex) => (
+              <HeadingCell
+                text={heading}
+                updateValue={headingUpdateFactory(headingIndex)}
+                key={headingIndex}
               />
             ))}
           </tr>
-        ))}
-      </tbody>
-    </StyledTable>
+        </thead>
+        <tbody>
+          {range(rowNumber).map((rowIndex) => (
+            <tr key={rowIndex}>
+              {headingOrder.map((heading, cellIndex) => {
+                return (
+                  <DataCell
+                    text={tableData[heading][rowIndex]}
+                    updateValue={dataUpdateFactory(rowIndex, heading)}
+                    key={cellIndex}
+                  />
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </StyledTable>
+      <p>{`${JSON.stringify(objectify(tableData, rowNumber))}`}</p>
+    </div>
   );
+}
+
+function objectify(vectorObj, objAmount) {
+  let result = [];
+  for (let index = 0; index < objAmount; index++) {
+    const obj = {};
+    for (const property of Object.keys(vectorObj)) {
+      if (vectorObj[property][index])
+        obj[property] = vectorObj[property][index];
+    }
+    result.push(obj);
+  }
+  return result;
 }
 
 const DataCell = ({ text, updateValue }) => {
