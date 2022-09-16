@@ -23,7 +23,7 @@ export function getAllKeys(objList) {
 /**
  *
  */
-export function vectorizeObjectArray(objList) {
+export function columnfy(objList) {
   const properties = getAllKeys(objList);
   const vectors = {};
 
@@ -35,4 +35,21 @@ export function vectorizeObjectArray(objList) {
   }
 
   return vectors;
+}
+
+/**
+ *
+ */
+export function swapPropertyName(obj, oldProperty, newProperty) {
+  const newObj = { ...obj };
+  newObj[newProperty] = newObj[oldProperty];
+  delete newObj[oldProperty];
+  return newObj;
+}
+
+/**
+ *
+ */
+export function range(length, start = 0, step = 1) {
+  return Object.keys(Array(length).fill(null));
 }

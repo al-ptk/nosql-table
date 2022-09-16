@@ -2,36 +2,80 @@ import React from 'react';
 import { useState } from 'react';
 import { StyledTable } from './SchemaTable.styled';
 import currentTable from '../mockTable.json';
-import { vectorizeObjectArray } from '../helperFunctions';
+import {
+  getAllKeys,
+  swapPropertyName,
+  columnfy,
+  range,
+} from '../helperFunctions';
 
-const vectors = vectorizeObjectArray([...currentTable]);
-const tableHeadings = Object.keys(vectors);
+export function SchemaTable() {
+  const [tableData, setTableData] = useState(columnfy(currentTable));
+  const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
+  const [rowNumber, setRowNumber] = useState(currentTable.length);
 
-export function SchemaTable({ table, setTable }) {
+  const headingUpdateFactory = (index) => {
+    return (newValue) => {
+      const newOrder = [...headingOrder];
+      newOrder[index] = newValue;
+      setHeadingOrder(newOrder);
+      setTableData(swapPropertyName(tableData, headingOrder[index], newValue));
+    };
+  };
+
+  const dataUpdateFactory = (index, property) => {
+    return (newValue) => {
+      const newTable = { ...tableData };
+      newTable[property][index] = newValue;
+      setTableData(newTable);
+    };
+  };
+
   return (
     <StyledTable>
       <thead>
         <tr>
-          {tableHeadings.map((heading, index) => (
-            <HeadingCell text={heading} key={index}/>
+          {headingOrder.map((heading, headingIndex) => (
+            <HeadingCell
+              text={heading}
+              updateValue={headingUpdateFactory(headingIndex)}
+              key={headingIndex}
+            />
           ))}
         </tr>
       </thead>
+      <tbody>
+        {range(rowNumber).map((rowIndex) => (
+          <tr key={rowIndex}>
+            {headingOrder.map((heading, cellIndex) => (
+              <DataCell
+                text={tableData[heading][rowIndex]}
+                updateValue={dataUpdateFactory(rowIndex, heading)}
+                key={cellIndex}
+              />
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </StyledTable>
   );
 }
 
-const Cell = (props) => {
-  const { text } = props;
+const DataCell = ({ text, updateValue }) => {
   const [active, setActive] = useState(false);
+  const [data, setData] = useState(text);
 
   if (active)
     return (
       <td>
         <input
           type={'text'}
-          value={text}
-          onBlur={() => setActive(false)}
+          value={data || ''}
+          onInput={(e) => setData(e.target.value)}
+          onBlur={() => {
+            updateValue(data);
+            setActive(false);
+          }}
           autoFocus={true}
         />
       </td>
@@ -40,17 +84,21 @@ const Cell = (props) => {
   return <td onClick={() => setActive(true)}>{text}</td>;
 };
 
-const HeadingCell = (props) => {
-  const { text } = props;
+const HeadingCell = ({ text, updateValue }) => {
   const [active, setActive] = useState(false);
+  const [data, setData] = useState(text);
 
   if (active)
     return (
       <th>
         <input
           type={'text'}
-          value={text}
-          onBlur={() => setActive(false)}
+          value={data}
+          onInput={(e) => setData(e.target.value)}
+          onBlur={() => {
+            updateValue(data);
+            setActive(false);
+          }}
           autoFocus={true}
         />
       </th>
