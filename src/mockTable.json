@@ -1,0 +1,27 @@
+[
+  {
+    "Title": "Christmas",
+    "Food": "French Toast",
+    "Date": "Dec 25",
+    "Mood": "cozy"
+  },
+  {
+    "Title": "Hallowen",
+    "Food": "Pumpkin Pie",
+    "Date": "Oct 31",
+    "Mood": "spooky"
+  },
+  {
+    "Title": "São João",
+    "Food": "Peanut Candy",
+    "Mythology": "Baptist guy",
+    "Date": "Jun 24",
+    "Mood": "baloon-eske"
+  },
+  {
+    "Title": "Carnaval",
+    "Food": "Tropical Drink",
+    "Date": "Feb 17",
+    "Mood": "summer samba!"
+  }
+]

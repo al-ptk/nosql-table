@@ -7,31 +7,49 @@ export function getAllKeys(objList) {
   let result = [];
 
   for (const obj of objList) {
-    //for each object
-
-    //get the keys list of obj
+    // get the keys list of current obj
     const keys = Object.keys(obj);
 
-    // filters out all keys already included in the result
-    const nonIncluded = keys.filter((key) => !result.includes(key));
+    // Make array of unregistered keys
+    const notInResult = keys.filter((key) => !result.includes(key));
 
-    // add non-included keys to array
-    result.push(...nonIncluded);
+    // add not-repeated keys to result array
+    result.push(...notInResult);
   }
 
   return result;
 }
 
 /**
- * Returns an array of serialized values, according to a given order.
- * @param {Array} objList
- * @param {Array} propertyOrder
- * @return {Array}
+ *
  */
-export function vectorizeInOrder(objList, propertyOrder) {
-  const result = [];
-  for (const object of objList) {
-    result.push(propertyOrder.map((key) => object[key]));
+export function columnfy(objList) {
+  const properties = getAllKeys(objList);
+  const vectors = {};
+
+  for (const property of properties) {
+    vectors[property] = [];
+    for (const obj of objList) {
+      vectors[property].push(obj[property] || '');
+    }
   }
-  return result;
+
+  return vectors;
+}
+
+/**
+ *
+ */
+export function swapPropertyName(obj, oldProperty, newProperty) {
+  const newObj = { ...obj };
+  newObj[newProperty] = newObj[oldProperty];
+  delete newObj[oldProperty];
+  return newObj;
+}
+
+/**
+ *
+ */
+export function range(length, start = 0, step = 1) {
+  return Object.keys(Array(length).fill(null));
 }

@@ -20,3 +20,35 @@ Regardless, this experience proves a point: I need more experience in general, a
 I realize now: I never tried to solve the problem on paper, before attempting to implement it. I mentioned pseudocode before — I should've just done that... right? Maybe. I did not have in mind before that html creates tables by rows, not columns. I could create my own custom table, but using the default one seem better...
 
 I have relearned my lesson. Coding is hard. There is a reason why copying from stack overflow is such a popular meme, and that is because "cheating" can be quite the temptation when facing a confusing problem.
+
+## Day 4
+
+Current status of the project:
+
+- I do not like how I manage the state of the table.
+- The whole table rendering revolves around the modelling of the data, which complicates things further.
+- The html table is counter intuitive to what I am trying to do.
+
+This is a hard problem, one that is requiring many iterations, and that frustrastes me. The temptation is just to scrap it all and start anew, but I do not like this impulse. Nevertheless, I will scrape it all and try again from a clean slate.
+
+## Day 5
+
+How do I solve that issue without react?  
+Updating the data seems like the most problematic part of designing this app. If I remove react from the equation, would I be able to find some inspiration for a solution?
+
+--- time skip ---
+
+Turns out, after trying to do thing without react, I can see that react was the main culprit of my confusion. If I do not try to keep the whole table's state under one variable, things get simpler.
+
+The main lesson is that **sometimes, when trying to reduce the problem to better solve it, the obstacle to be (temporarily, at lest) removed is the tool itself.** The tools you choose to solve a problem become part of the problem.
+
+--- time skip ---
+
+Instead of blaming the tool, I may blame myself for not understanding the tool. I wasn't thinking from a react perspective at all!
+
+--- time skip ---
+
+Flaundering may be instructional, but it isn't productive. Cheating off the internet is productive. Using libraries is productive.
+
+For the sake of productivity, cheat using the internet first, then figure out by yourself, when you have less pressure on you. Being a "good programmer" is less urgent than being a "productive programmer."  
+Googling is part of being a legit programmer. Do not feel bad for not having all answers and needing to get them from someone who already solved it. Copying is okay. No need for guilt.
