@@ -62,16 +62,16 @@ export function SchemaTable() {
           ))}
         </tbody>
       </StyledTable>
-      <p>{`${JSON.stringify(objectify(tableData, rowNumber))}`}</p>
+      <p>{`${JSON.stringify(objectify(tableData, rowNumber, headingOrder))}`}</p>
     </div>
   );
 }
 
-function objectify(vectorObj, objAmount) {
+function objectify(vectorObj, objAmount, propertyOrder) {
   let result = [];
   for (let index = 0; index < objAmount; index++) {
     const obj = {};
-    for (const property of Object.keys(vectorObj)) {
+    for (const property of propertyOrder) {
       if (vectorObj[property][index])
         obj[property] = vectorObj[property][index];
     }
