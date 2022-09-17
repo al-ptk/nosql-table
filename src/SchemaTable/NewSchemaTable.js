@@ -8,6 +8,7 @@ import {
   columnfy,
   range,
 } from '../helperFunctions';
+import JsonFormatter from 'react-json-formatter';
 
 export function SchemaTable() {
   const [tableData, setTableData] = useState(columnfy(currentTable));
@@ -62,7 +63,19 @@ export function SchemaTable() {
           ))}
         </tbody>
       </StyledTable>
-      <p>{`${JSON.stringify(objectify(tableData, rowNumber, headingOrder))}`}</p>
+      <p
+        style={{
+          backgroundColor: 'white',
+          width: 400,
+          margin: '0 auto',
+          padding: 10,
+        }}
+      >
+        <JsonFormatter
+          json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
+          tabWith={4}
+        />
+      </p>
     </div>
   );
 }
