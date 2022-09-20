@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { columnfy, getAllKeys, objectify } from '../helperFunctions';
 
 export function ActionBar({
   tableData,
@@ -27,10 +28,7 @@ export function ActionBar({
 
   const addRow = () => {
     const newTableData = Object.fromEntries(
-      Object.entries(tableData).map((entry) => [
-        entry[0],
-        entry[1].concat(''),
-      ])
+      Object.entries(tableData).map((entry) => [entry[0], entry[1].concat('')])
     );
     setRowNumber(rowNumber + 1);
     setTableData(newTableData);
@@ -40,9 +38,70 @@ export function ActionBar({
     <div>
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
-      <button>Import Data</button>
-      <button>Export Data</button>
+      <ImportDataButton {...{ setTableData, setHeadingOrder, setRowNumber }} />
+      <ExportDataButton {...{ tableData, setHeadingOrder, setRowNumber }} />
       <button onClick={togglePreview}>Show Preview</button>
     </div>
+  );
+}
+
+function ImportDataButton({ setTableData, setHeadingOrder, setRowNumber }) {
+  const fileInput = useRef();
+
+  const selectFile = () => {
+    fileInput.current.click();
+  };
+
+  const setupTable = () => {
+    const reader = new FileReader();
+    reader.readAsText(fileInput.current.files[0]);
+    reader.onload = function () {
+      const newTable = JSON.parse(reader.result);
+      setHeadingOrder(getAllKeys(newTable));
+      setTableData(columnfy(newTable));
+      setRowNumber(newTable.length);
+    };
+  };
+
+  return (
+    <span>
+      <input
+        type="file"
+        accept="application/json"
+        style={{ display: 'none' }}
+        ref={fileInput}
+        onChange={setupTable}
+      />
+      <button onClick={selectFile} className="btn btn-primary">
+        Import Data
+      </button>
+    </span>
+  );
+}
+
+function ExportDataButton({ tableData, rowNumber, headingOrder }) {
+  // const fileInput = useRef();
+
+  // const selectFile = () => {
+  //   fileInput.current.click();
+  // };
+
+  const downloadTable = () => {
+    console.log(objectify(tableData, rowNumber, headingOrder));
+  };
+
+  return (
+    <span>
+      {/* <input
+        type="file"
+        accept="application/json"
+        style={{ display: 'none' }}
+        ref={fileInput}
+        onChange={downloadTable}
+      /> */}
+      <button onClick={downloadTable} className="btn btn-primary">
+        Export Data
+      </button>
+    </span>
   );
 }

@@ -53,3 +53,24 @@ export function swapPropertyName(obj, oldProperty, newProperty) {
 export function range(length, start = 0, step = 1) {
   return Object.keys(Array(length).fill(null));
 }
+
+/**
+ *
+ * @param {*} vectorObj
+ * @param {*} objAmount
+ * @param {*} propertyOrder
+ * @returns
+ */
+export function objectify(vectorObj, objAmount, propertyOrder) {
+  let result = [];
+  for (let index = 0; index < objAmount; index++) {
+    const obj = {};
+    for (const property of propertyOrder) {
+      if (vectorObj[property][index])
+        obj[property] = vectorObj[property][index];
+    }
+    console.log(obj);
+    result.push(obj);
+  }
+  return result;
+}

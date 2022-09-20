@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyledTable } from './SchemaTable.styled';
-import { swapPropertyName, range } from '../helperFunctions';
+import { swapPropertyName, range, objectify } from '../helperFunctions';
 import JsonFormatter from 'react-json-formatter';
 
 export function SchemaTable({
@@ -10,9 +10,7 @@ export function SchemaTable({
   headingOrder,
   setHeadingOrder,
   rowNumber,
-  setRowNumber,
   showPreview,
-  setShowPreview,
 }) {
   const headingUpdateFactory = (index) => {
     return (newValue) => {
@@ -24,12 +22,20 @@ export function SchemaTable({
     };
   };
 
+  const headingReadFactory = (index) => {
+    return () => headingOrder[index];
+  };
+
   const dataUpdateFactory = (index, property) => {
     return (newValue) => {
       const newTable = { ...tableData };
       newTable[property][index] = newValue;
       setTableData(newTable);
     };
+  };
+
+  const dataReadFactory = (index, property) => {
+    return () => tableData[property][index];
   };
 
   return (
@@ -39,7 +45,7 @@ export function SchemaTable({
           <tr>
             {headingOrder.map((heading, headingIndex) => (
               <HeadingCell
-                text={heading}
+                readValue={headingReadFactory(headingIndex)}
                 updateValue={headingUpdateFactory(headingIndex)}
                 key={headingIndex}
               />
@@ -52,7 +58,7 @@ export function SchemaTable({
               {headingOrder.map((heading, cellIndex) => {
                 return (
                   <DataCell
-                    text={tableData[heading][rowIndex]}
+                    readValue={dataReadFactory(rowIndex, heading)}
                     updateValue={dataUpdateFactory(rowIndex, heading)}
                     key={cellIndex}
                   />
@@ -81,32 +87,17 @@ export function SchemaTable({
   );
 }
 
-function objectify(vectorObj, objAmount, propertyOrder) {
-  let result = [];
-  for (let index = 0; index < objAmount; index++) {
-    const obj = {};
-    for (const property of propertyOrder) {
-      if (vectorObj[property][index])
-        obj[property] = vectorObj[property][index];
-    }
-    result.push(obj);
-  }
-  return result;
-}
-
-const DataCell = ({ text, updateValue }) => {
+const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState(text);
 
   if (active)
     return (
       <td>
         <input
           type={'text'}
-          value={data || ''}
-          onInput={(e) => setData(e.target.value)}
+          value={readValue() || ''}
+          onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {
-            updateValue(data);
             setActive(false);
           }}
           autoFocus={true}
@@ -116,24 +107,22 @@ const DataCell = ({ text, updateValue }) => {
 
   return (
     <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {text}
+      {readValue()}
     </td>
   );
 };
 
-const HeadingCell = ({ text, updateValue }) => {
+const HeadingCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState(text);
 
   if (active)
     return (
       <th>
         <input
           type={'text'}
-          value={data}
-          onInput={(e) => setData(e.target.value)}
+          value={readValue()}
+          onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {
-            updateValue(data);
             setActive(false);
           }}
           autoFocus={true}
@@ -143,7 +132,7 @@ const HeadingCell = ({ text, updateValue }) => {
 
   return (
     <th style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {text}
+      {readValue()}
     </th>
   );
 };
