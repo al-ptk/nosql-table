@@ -24,8 +24,9 @@ export function ActionBar({
   };
 
   const addColumn = () => {
-    setTableData({ ...tableData, '': Array(rowNumber).fill('') });
-    setHeadingOrder(headingOrder.concat(''));
+    const newProp = `property ${headingOrder.length}`;
+    setTableData({ ...tableData, [newProp]: Array(rowNumber).fill('') });
+    setHeadingOrder(headingOrder.concat(newProp));
   };
 
   const addRow = () => {
