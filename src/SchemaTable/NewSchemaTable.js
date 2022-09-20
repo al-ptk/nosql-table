@@ -1,20 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyledTable } from './SchemaTable.styled';
-import currentTable from '../mockTable.json';
 import {
-  getAllKeys,
   swapPropertyName,
-  columnfy,
   range,
 } from '../helperFunctions';
 import JsonFormatter from 'react-json-formatter';
 
-export function SchemaTable() {
-  const [tableData, setTableData] = useState(columnfy(currentTable));
-  const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
-  const [rowNumber, setRowNumber] = useState(currentTable.length);
-
+export function SchemaTable({
+  tableData,
+  setTableData,
+  headingOrder,
+  setHeadingOrder,
+  rowNumber,
+  setRowNumber,
+}) {
   const headingUpdateFactory = (index) => {
     return (newValue) => {
       if (headingOrder[index] === newValue) return;
