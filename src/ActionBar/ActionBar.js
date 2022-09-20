@@ -39,7 +39,7 @@ export function ActionBar({
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
       <ImportDataButton {...{ setTableData, setHeadingOrder, setRowNumber }} />
-      <ExportDataButton {...{ tableData, setHeadingOrder, setRowNumber }} />
+      <ExportDataButton {...{ tableData, headingOrder, rowNumber }} />
       <button onClick={togglePreview}>Show Preview</button>
     </div>
   );
@@ -80,25 +80,27 @@ function ImportDataButton({ setTableData, setHeadingOrder, setRowNumber }) {
 }
 
 function ExportDataButton({ tableData, rowNumber, headingOrder }) {
-  // const fileInput = useRef();
-
-  // const selectFile = () => {
-  //   fileInput.current.click();
-  // };
+  const linkRef = useRef(null);
 
   const downloadTable = () => {
-    console.log(objectify(tableData, rowNumber, headingOrder));
+    const json = JSON.stringify(objectify(tableData, rowNumber, headingOrder));
+    const file = new File([json], 'table.json', { type: 'application/json' });
+    linkRef.current.href = URL.createObjectURL(file);
+    linkRef.current.click();
   };
 
   return (
     <span>
-      {/* <input
-        type="file"
-        accept="application/json"
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <a
+        href="#"
+        target={'_blank'}
+        ref={linkRef}
         style={{ display: 'none' }}
-        ref={fileInput}
-        onChange={downloadTable}
-      /> */}
+        download
+      >
+        &nbsp;
+      </a>
       <button onClick={downloadTable} className="btn btn-primary">
         Export Data
       </button>

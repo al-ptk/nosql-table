@@ -69,7 +69,6 @@ export function objectify(vectorObj, objAmount, propertyOrder) {
       if (vectorObj[property][index])
         obj[property] = vectorObj[property][index];
     }
-    console.log(obj);
     result.push(obj);
   }
   return result;
