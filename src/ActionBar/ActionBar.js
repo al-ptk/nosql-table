@@ -10,6 +10,8 @@ export function ActionBar({
   setRowNumber,
   showPreview,
   setShowPreview,
+  title,
+  setTitle,
 }) {
   const togglePreview = (e) => {
     if (!showPreview) {
@@ -36,10 +38,11 @@ export function ActionBar({
 
   return (
     <div>
+      <input value={title} onInput={(e) => setTitle(e.target.value)} />
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
       <ImportDataButton {...{ setTableData, setHeadingOrder, setRowNumber }} />
-      <ExportDataButton {...{ tableData, headingOrder, rowNumber }} />
+      <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
       <button onClick={togglePreview}>Show Preview</button>
     </div>
   );
@@ -79,12 +82,16 @@ function ImportDataButton({ setTableData, setHeadingOrder, setRowNumber }) {
   );
 }
 
-function ExportDataButton({ tableData, rowNumber, headingOrder }) {
+function ExportDataButton({ tableData, rowNumber, headingOrder, title }) {
   const linkRef = useRef(null);
 
   const downloadTable = () => {
-    const json = JSON.stringify(objectify(tableData, rowNumber, headingOrder));
-    const file = new File([json], 'table.json', { type: 'application/json' });
+    const json = JSON.stringify(
+      objectify(tableData, rowNumber, headingOrder, title)
+    );
+    const file = new File([json], `${title}.json`, {
+      type: 'application/json',
+    });
     linkRef.current.href = URL.createObjectURL(file);
     linkRef.current.click();
   };
@@ -97,7 +104,7 @@ function ExportDataButton({ tableData, rowNumber, headingOrder }) {
         target={'_blank'}
         ref={linkRef}
         style={{ display: 'none' }}
-        download
+        download={`${title}.json`}
       >
         &nbsp;
       </a>
