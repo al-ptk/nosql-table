@@ -1,10 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyledTable } from './SchemaTable.styled';
-import {
-  swapPropertyName,
-  range,
-} from '../helperFunctions';
+import { swapPropertyName, range } from '../helperFunctions';
 import JsonFormatter from 'react-json-formatter';
 
 export function SchemaTable({
@@ -14,6 +11,8 @@ export function SchemaTable({
   setHeadingOrder,
   rowNumber,
   setRowNumber,
+  showPreview,
+  setShowPreview,
 }) {
   const headingUpdateFactory = (index) => {
     return (newValue) => {
@@ -63,19 +62,21 @@ export function SchemaTable({
           ))}
         </tbody>
       </StyledTable>
-      <p
-        style={{
-          backgroundColor: 'white',
-          width: 400,
-          margin: '0 auto',
-          padding: 10,
-        }}
-      >
-        <JsonFormatter
-          json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
-          tabWith={4}
-        />
-      </p>
+      {showPreview && (
+        <p
+          style={{
+            backgroundColor: 'white',
+            width: 400,
+            margin: '0 auto',
+            padding: 10,
+          }}
+        >
+          <JsonFormatter
+            json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
+            tabWith={4}
+          />
+        </p>
+      )}
     </div>
   );
 }
@@ -113,7 +114,11 @@ const DataCell = ({ text, updateValue }) => {
       </td>
     );
 
-  return <td onClick={() => setActive(true)}>{text}</td>;
+  return (
+    <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+      {text}
+    </td>
+  );
 };
 
 const HeadingCell = ({ text, updateValue }) => {
@@ -136,5 +141,9 @@ const HeadingCell = ({ text, updateValue }) => {
       </th>
     );
 
-  return <th onClick={() => setActive(true)}>{text}</th>;
+  return (
+    <th style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+      {text}
+    </th>
+  );
 };
