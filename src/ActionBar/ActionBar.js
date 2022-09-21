@@ -44,7 +44,12 @@ export function ActionBar({
         {...{ setTableData, setHeadingOrder, setRowNumber, setTitle }}
       />
       <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
-      <input value={title} onInput={(e) => setTitle(e.target.value)} />
+      <input
+        type={'text'}
+        value={title}
+        onInput={(e) => setTitle(e.target.value)}
+        className="title"
+      />
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
       <button onClick={togglePreview}>Show Preview</button>
@@ -72,7 +77,7 @@ function ImportDataButton({
       setHeadingOrder(getAllKeys(newTable));
       setTableData(columnfy(newTable));
       setRowNumber(newTable.length);
-      setTitle(fileInput.current.files[0].name.slice(0, -".json".length));
+      setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
     };
   };
 

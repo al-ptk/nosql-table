@@ -25,4 +25,18 @@ export const StyledActionBar = styled.header`
     color: white;
     font-weight: bold;
   }
+
+  input[type='text'].title {
+    width: 200px;
+
+    padding: 0 10px;
+
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid;
+
+    font-size: 18px;
+  }
 `;
