@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body, html {
     min-height: 100%;
-    background-color: lightgray;
+    background-color: hsl(195, 45%, 75%);
   }
   
   input[type='text'] {
