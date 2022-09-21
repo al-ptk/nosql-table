@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyledTable } from './SchemaTable.styled';
+import { StyledMain, StyledTable, StyledJsonFormatter } from './SchemaTable.styled';
 import { swapPropertyName, range, objectify } from '../helperFunctions';
-import JsonFormatter from 'react-json-formatter';
 
 export function SchemaTable({
   tableData,
@@ -39,7 +38,7 @@ export function SchemaTable({
   };
 
   return (
-    <div>
+    <StyledMain>
       <StyledTable>
         <thead>
           <tr>
@@ -77,13 +76,13 @@ export function SchemaTable({
             padding: 10,
           }}
         >
-          <JsonFormatter
+          <StyledJsonFormatter
             json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
             tabWith={4}
           />
         </p>
       )}
-    </div>
+    </StyledMain>
   );
 }
 
