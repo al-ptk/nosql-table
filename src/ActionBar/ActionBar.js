@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { columnfy, getAllKeys, objectify } from '../helperFunctions';
+import { StyledActionBar } from './ActioBar.styled';
 
 export function ActionBar({
   tableData,
@@ -38,7 +39,7 @@ export function ActionBar({
   };
 
   return (
-    <div>
+    <StyledActionBar>
       <input value={title} onInput={(e) => setTitle(e.target.value)} />
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
@@ -47,7 +48,7 @@ export function ActionBar({
       />
       <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
       <button onClick={togglePreview}>Show Preview</button>
-    </div>
+    </StyledActionBar>
   );
 }
 
