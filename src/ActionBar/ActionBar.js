@@ -40,13 +40,13 @@ export function ActionBar({
 
   return (
     <StyledActionBar>
-      <input value={title} onInput={(e) => setTitle(e.target.value)} />
-      <button onClick={addColumn}>Add Column</button>
-      <button onClick={addRow}>Add Row</button>
       <ImportDataButton
         {...{ setTableData, setHeadingOrder, setRowNumber, setTitle }}
       />
       <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
+      <input value={title} onInput={(e) => setTitle(e.target.value)} />
+      <button onClick={addColumn}>Add Column</button>
+      <button onClick={addRow}>Add Row</button>
       <button onClick={togglePreview}>Show Preview</button>
     </StyledActionBar>
   );
