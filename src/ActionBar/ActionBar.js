@@ -42,14 +42,21 @@ export function ActionBar({
       <input value={title} onInput={(e) => setTitle(e.target.value)} />
       <button onClick={addColumn}>Add Column</button>
       <button onClick={addRow}>Add Row</button>
-      <ImportDataButton {...{ setTableData, setHeadingOrder, setRowNumber }} />
+      <ImportDataButton
+        {...{ setTableData, setHeadingOrder, setRowNumber, setTitle }}
+      />
       <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
       <button onClick={togglePreview}>Show Preview</button>
     </div>
   );
 }
 
-function ImportDataButton({ setTableData, setHeadingOrder, setRowNumber }) {
+function ImportDataButton({
+  setTableData,
+  setHeadingOrder,
+  setRowNumber,
+  setTitle,
+}) {
   const fileInput = useRef();
 
   const selectFile = () => {
@@ -64,6 +71,7 @@ function ImportDataButton({ setTableData, setHeadingOrder, setRowNumber }) {
       setHeadingOrder(getAllKeys(newTable));
       setTableData(columnfy(newTable));
       setRowNumber(newTable.length);
+      setTitle(fileInput.current.files[0].name.slice(0, -".json".length));
     };
   };
 
