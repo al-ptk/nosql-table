@@ -1,20 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyledTable } from './SchemaTable.styled';
-import currentTable from '../mockTable.json';
-import {
-  getAllKeys,
-  swapPropertyName,
-  columnfy,
-  range,
-} from '../helperFunctions';
+import { swapPropertyName, range, objectify } from '../helperFunctions';
 import JsonFormatter from 'react-json-formatter';
 
-export function SchemaTable() {
-  const [tableData, setTableData] = useState(columnfy(currentTable));
-  const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
-  const [rowNumber, setRowNumber] = useState(currentTable.length);
-
+export function SchemaTable({
+  tableData,
+  setTableData,
+  headingOrder,
+  setHeadingOrder,
+  rowNumber,
+  showPreview,
+}) {
   const headingUpdateFactory = (index) => {
     return (newValue) => {
       if (headingOrder[index] === newValue) return;
@@ -25,12 +22,20 @@ export function SchemaTable() {
     };
   };
 
+  const headingReadFactory = (index) => {
+    return () => headingOrder[index];
+  };
+
   const dataUpdateFactory = (index, property) => {
     return (newValue) => {
       const newTable = { ...tableData };
       newTable[property][index] = newValue;
       setTableData(newTable);
     };
+  };
+
+  const dataReadFactory = (index, property) => {
+    return () => tableData[property][index];
   };
 
   return (
@@ -40,7 +45,7 @@ export function SchemaTable() {
           <tr>
             {headingOrder.map((heading, headingIndex) => (
               <HeadingCell
-                text={heading}
+                readValue={headingReadFactory(headingIndex)}
                 updateValue={headingUpdateFactory(headingIndex)}
                 key={headingIndex}
               />
@@ -53,7 +58,7 @@ export function SchemaTable() {
               {headingOrder.map((heading, cellIndex) => {
                 return (
                   <DataCell
-                    text={tableData[heading][rowIndex]}
+                    readValue={dataReadFactory(rowIndex, heading)}
                     updateValue={dataUpdateFactory(rowIndex, heading)}
                     key={cellIndex}
                   />
@@ -63,49 +68,36 @@ export function SchemaTable() {
           ))}
         </tbody>
       </StyledTable>
-      <p
-        style={{
-          backgroundColor: 'white',
-          width: 400,
-          margin: '0 auto',
-          padding: 10,
-        }}
-      >
-        <JsonFormatter
-          json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
-          tabWith={4}
-        />
-      </p>
+      {showPreview && (
+        <p
+          style={{
+            backgroundColor: 'white',
+            width: 400,
+            margin: '0 auto',
+            padding: 10,
+          }}
+        >
+          <JsonFormatter
+            json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
+            tabWith={4}
+          />
+        </p>
+      )}
     </div>
   );
 }
 
-function objectify(vectorObj, objAmount, propertyOrder) {
-  let result = [];
-  for (let index = 0; index < objAmount; index++) {
-    const obj = {};
-    for (const property of propertyOrder) {
-      if (vectorObj[property][index])
-        obj[property] = vectorObj[property][index];
-    }
-    result.push(obj);
-  }
-  return result;
-}
-
-const DataCell = ({ text, updateValue }) => {
+const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState(text);
 
   if (active)
     return (
       <td>
         <input
           type={'text'}
-          value={data || ''}
-          onInput={(e) => setData(e.target.value)}
+          value={readValue() || ''}
+          onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {
-            updateValue(data);
             setActive(false);
           }}
           autoFocus={true}
@@ -113,22 +105,24 @@ const DataCell = ({ text, updateValue }) => {
       </td>
     );
 
-  return <td onClick={() => setActive(true)}>{text}</td>;
+  return (
+    <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+      {readValue()}
+    </td>
+  );
 };
 
-const HeadingCell = ({ text, updateValue }) => {
+const HeadingCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState(text);
 
   if (active)
     return (
       <th>
         <input
           type={'text'}
-          value={data}
-          onInput={(e) => setData(e.target.value)}
+          value={readValue()}
+          onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {
-            updateValue(data);
             setActive(false);
           }}
           autoFocus={true}
@@ -136,5 +130,9 @@ const HeadingCell = ({ text, updateValue }) => {
       </th>
     );
 
-  return <th onClick={() => setActive(true)}>{text}</th>;
+  return (
+    <th style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+      {readValue()}
+    </th>
+  );
 };
