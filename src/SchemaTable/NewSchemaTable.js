@@ -94,7 +94,7 @@ const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
 
   let cellValue = Array.isArray(readValue())
-    ? JSON.stringify(readValue())
+    ? `[${readValue()}]`
     : readValue();
 
   if (active)
@@ -102,7 +102,7 @@ const DataCell = ({ readValue, updateValue }) => {
       <td>
         <input
           type={'textarea'}
-          style={{ width: 200, height: 200 }}
+          style={{ width: 150, height: 50 }}
           value={cellValue || ''}
           onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {

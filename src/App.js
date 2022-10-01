@@ -8,8 +8,8 @@ import { StyledFooter } from './StyledFooter';
 
 const currentTable =
   [
-    { 'property 0': 'a', 'property 1': 'b' },
-    { 'property 0': 'c', 'property 1': 'd' },
+    { 'property 0': '', 'property 1': '' },
+    { 'property 0': '', 'property 1': '' },
   ] || mockTable;
 
 function App() {
