@@ -1,6 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyledMain, StyledTable, StyledJsonFormatter } from './SchemaTable.styled';
+import {
+  StyledMain,
+  StyledTable,
+  StyledJsonFormatter,
+} from './SchemaTable.styled';
 import { swapPropertyName, range, objectify } from '../helperFunctions';
 
 export function SchemaTable({
@@ -89,12 +93,17 @@ export function SchemaTable({
 const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
 
+  let cellValue = Array.isArray(readValue())
+    ? JSON.stringify(readValue())
+    : readValue();
+
   if (active)
     return (
       <td>
         <input
-          type={'text'}
-          value={readValue() || ''}
+          type={'textarea'}
+          style={{ width: 200, height: 200 }}
+          value={cellValue || ''}
           onInput={(e) => updateValue(e.target.value)}
           onBlur={() => {
             setActive(false);
@@ -106,7 +115,7 @@ const DataCell = ({ readValue, updateValue }) => {
 
   return (
     <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {readValue()}
+      {cellValue}
     </td>
   );
 };
