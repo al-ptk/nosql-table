@@ -44,7 +44,7 @@ export function SchemaTable({
   return (
     <StyledMain>
       <StyledTable>
-        <thead>
+        <thead style={{ position: 'sticky', top: 50 }}>
           <tr>
             {headingOrder.map((heading, headingIndex) => (
               <HeadingCell
@@ -93,15 +93,31 @@ export function SchemaTable({
 const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
 
-  let cellValue = Array.isArray(readValue())
-    ? `[${readValue()}]`
-    : readValue();
+  let cellValue = Array.isArray(readValue()) ? `[${readValue()}]` : readValue();
+
+  // Add the textarea element, like below:
+  //
+  // return (
+  //   <td>
+  //     <textarea
+  //       autoFocus={true}
+  //       onBlur={() => {
+  //         setActive(false);
+  //       }}
+  //       onInput={(e) => updateValue(e.target.value)}
+  //     >
+  //       {readValue()}
+  //     </textarea>
+  //   </td>
+  // );
+  //
+  // It is much better, and does not need the flip-flop done in the old version.
 
   if (active)
     return (
       <td>
         <input
-          type={'textarea'}
+          type={'text'}
           style={{ width: 150, height: 50 }}
           value={cellValue || ''}
           onInput={(e) => updateValue(e.target.value)}

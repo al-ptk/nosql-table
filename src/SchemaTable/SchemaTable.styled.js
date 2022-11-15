@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import JsonFormatter from 'react-json-formatter';
 
 export const StyledMain = styled.main`
-  width: fit-content;
   margin: 10vh auto;
+  padding: 100px;
 
   display: flex;
   flex-direction: column;
@@ -11,8 +11,10 @@ export const StyledMain = styled.main`
 `;
 
 export const StyledTable = styled.table`
-  background-color: white;
+  width: 80%;
+  margin: 0 auto;
 
+  background-color: white;
   border-collapse: collapse;
 
   td,
