@@ -97,43 +97,44 @@ const DataCell = ({ readValue, updateValue }) => {
 
   // Add the textarea element, like below:
   //
-  // return (
-  //   <td>
-  //     <textarea
-  //       autoFocus={true}
-  //       onBlur={() => {
-  //         setActive(false);
-  //       }}
-  //       onInput={(e) => updateValue(e.target.value)}
-  //     >
-  //       {readValue()}
-  //     </textarea>
-  //   </td>
-  // );
+  return (
+    <td>
+      <textarea
+        autoFocus={true}
+        value={cellValue || ''}
+        onBlur={() => {
+          setActive(false);
+        }}
+        onInput={(e) => updateValue(e.target.value)}
+      >
+        {readValue()}
+      </textarea>
+    </td>
+  );
   //
   // It is much better, and does not need the flip-flop done in the old version.
 
-  if (active)
-    return (
-      <td>
-        <input
-          type={'text'}
-          style={{ width: 150, height: 50 }}
-          value={cellValue || ''}
-          onInput={(e) => updateValue(e.target.value)}
-          onBlur={() => {
-            setActive(false);
-          }}
-          autoFocus={true}
-        />
-      </td>
-    );
+  // if (active)
+  //   return (
+  //     <td>
+  //       <input
+  //         type={'text'}
+  //         style={{ width: 150, height: 50 }}
+  //         value={cellValue || ''}
+  //         onInput={(e) => updateValue(e.target.value)}
+  //         onBlur={() => {
+  //           setActive(false);
+  //         }}
+  //         autoFocus={true}
+  //       />
+  //     </td>
+  //   );
 
-  return (
-    <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {cellValue}
-    </td>
-  );
+  // return (
+  //   <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+  //     {cellValue}
+  //   </td>
+  // );
 };
 
 const HeadingCell = ({ readValue, updateValue }) => {
