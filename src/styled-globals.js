@@ -7,9 +7,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, html {
-    min-height: 100%;
-    background-color: lightgray;
+  body {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: hsl(195, 45%, 75%);
   }
   
   input[type='text'] {

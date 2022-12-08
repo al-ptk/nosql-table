@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyledTable } from './SchemaTable.styled';
+import {
+  StyledMain,
+  StyledTable,
+  StyledJsonFormatter,
+} from './SchemaTable.styled';
 import { swapPropertyName, range, objectify } from '../helperFunctions';
-import JsonFormatter from 'react-json-formatter';
 
 export function SchemaTable({
   tableData,
@@ -39,9 +42,9 @@ export function SchemaTable({
   };
 
   return (
-    <div>
+    <StyledMain>
       <StyledTable>
-        <thead>
+        <thead style={{ position: 'sticky', top: 50 }}>
           <tr>
             {headingOrder.map((heading, headingIndex) => (
               <HeadingCell
@@ -77,39 +80,61 @@ export function SchemaTable({
             padding: 10,
           }}
         >
-          <JsonFormatter
+          <StyledJsonFormatter
             json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
             tabWith={4}
           />
         </p>
       )}
-    </div>
+    </StyledMain>
   );
 }
 
 const DataCell = ({ readValue, updateValue }) => {
   const [active, setActive] = useState(false);
 
-  if (active)
-    return (
-      <td>
-        <input
-          type={'text'}
-          value={readValue() || ''}
-          onInput={(e) => updateValue(e.target.value)}
-          onBlur={() => {
-            setActive(false);
-          }}
-          autoFocus={true}
-        />
-      </td>
-    );
+  let cellValue = Array.isArray(readValue()) ? `[${readValue()}]` : readValue();
 
+  // Add the textarea element, like below:
+  //
   return (
-    <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {readValue()}
+    <td>
+      <textarea
+        autoFocus={true}
+        value={cellValue || ''}
+        onBlur={() => {
+          setActive(false);
+        }}
+        onInput={(e) => updateValue(e.target.value)}
+      >
+        {readValue()}
+      </textarea>
     </td>
   );
+  //
+  // It is much better, and does not need the flip-flop done in the old version.
+
+  // if (active)
+  //   return (
+  //     <td>
+  //       <input
+  //         type={'text'}
+  //         style={{ width: 150, height: 50 }}
+  //         value={cellValue || ''}
+  //         onInput={(e) => updateValue(e.target.value)}
+  //         onBlur={() => {
+  //           setActive(false);
+  //         }}
+  //         autoFocus={true}
+  //       />
+  //     </td>
+  //   );
+
+  // return (
+  //   <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
+  //     {cellValue}
+  //   </td>
+  // );
 };
 
 const HeadingCell = ({ readValue, updateValue }) => {

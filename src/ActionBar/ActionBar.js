@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { columnfy, getAllKeys, objectify } from '../helperFunctions';
+import { StyledActionBar } from './ActioBar.styled';
 
 export function ActionBar({
   tableData,
@@ -38,16 +39,21 @@ export function ActionBar({
   };
 
   return (
-    <div>
-      <input value={title} onInput={(e) => setTitle(e.target.value)} />
-      <button onClick={addColumn}>Add Column</button>
-      <button onClick={addRow}>Add Row</button>
+    <StyledActionBar>
       <ImportDataButton
         {...{ setTableData, setHeadingOrder, setRowNumber, setTitle }}
       />
       <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
+      <input
+        type={'text'}
+        value={title}
+        onInput={(e) => setTitle(e.target.value)}
+        className="title"
+      />
+      <button onClick={addColumn}>Add Column</button>
+      <button onClick={addRow}>Add Row</button>
       <button onClick={togglePreview}>Show Preview</button>
-    </div>
+    </StyledActionBar>
   );
 }
 
@@ -71,7 +77,7 @@ function ImportDataButton({
       setHeadingOrder(getAllKeys(newTable));
       setTableData(columnfy(newTable));
       setRowNumber(newTable.length);
-      setTitle(fileInput.current.files[0].name.slice(0, -".json".length));
+      setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
     };
   };
 

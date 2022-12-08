@@ -66,10 +66,40 @@ export function objectify(vectorObj, objAmount, propertyOrder) {
   for (let index = 0; index < objAmount; index++) {
     const obj = {};
     for (const property of propertyOrder) {
-      if (vectorObj[property][index])
-        obj[property] = vectorObj[property][index];
+      let value = vectorObj[property][index];
+      if (value) {
+        let newValue = isStringifiedArray(value)
+          ? destringifyArray(value)
+          : value;
+        obj[property] = newValue;
+      }
     }
     result.push(obj);
   }
+  return result;
+}
+
+function isStringifiedArray(string) {
+  return string[0] === '[' && string[string.length - 1] === ']';
+}
+
+function destringifyArray(string) {
+  let result = string
+    .slice(1, string.length - 1)
+    .split(',')
+    .map((elem) => {
+      let newElem = elem.trim();
+      // if newElem is string
+      if (newElem[0] === "'" && newElem[newElem.length - 1] === "'") {
+        return newElem.slice(1, -1);
+      }
+      // if newElem is a number
+      if (!isNaN(parseFloat(newElem))) {
+        return parseFloat(newElem);
+      }
+      // else
+      return newElem;
+    });
+
   return result;
 }
