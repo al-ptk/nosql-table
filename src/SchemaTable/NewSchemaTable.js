@@ -1,16 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
 import {
   StyledMain,
   StyledTable,
   StyledJsonFormatter,
 } from './SchemaTable.styled';
 import { swapPropertyName, range, objectify } from '../helperFunctions';
+import { HeadingCell } from './HeadingCell';
+import { DataCell } from './DataCell';
 
 /**
- * This component is meant to hold two other pieces:
- * - The table headers
- * - The table data
+ * This component is meant to hold two other pieces: The table headers; The table data.
  *
  * I have to create different functions (maybe two different components?) for
  * different rendering of the same data. (I want to transpose the table.)
@@ -99,43 +98,3 @@ export function SchemaTable({
     </StyledMain>
   );
 }
-
-const DataCell = ({ readValue, updateValue }) => {
-  let cellValue = Array.isArray(readValue()) ? `[${readValue()}]` : readValue();
-
-  return (
-    <td>
-      <textarea
-        value={cellValue || ''}
-        onInput={(e) => updateValue(e.target.value)}
-      >
-        {readValue()}
-      </textarea>
-    </td>
-  );
-};
-
-const HeadingCell = ({ readValue, updateValue }) => {
-  const [active, setActive] = useState(false);
-
-  if (active)
-    return (
-      <th>
-        <input
-          type={'text'}
-          value={readValue()}
-          onInput={(e) => updateValue(e.target.value)}
-          onBlur={() => {
-            setActive(false);
-          }}
-          autoFocus={true}
-        />
-      </th>
-    );
-
-  return (
-    <th style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-      {readValue()}
-    </th>
-  );
-};
