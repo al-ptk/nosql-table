@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { objectify } from '../helperFunctions';
+import { objectify } from '../utils/helperFunctions';
 
 export function ExportDataButton({
   tableData,

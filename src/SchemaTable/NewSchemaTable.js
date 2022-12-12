@@ -4,7 +4,7 @@ import {
   StyledTable,
   StyledJsonFormatter,
 } from './SchemaTable.styled';
-import { swapPropertyName, range, objectify } from '../helperFunctions';
+import { swapPropertyName, range, objectify } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 

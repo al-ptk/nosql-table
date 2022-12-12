@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { columnfy, getAllKeys } from '../helperFunctions';
+import { columnfy, getAllKeys } from '../utils/helperFunctions';
 
 export function ImportDataButton({
   setTableData,
