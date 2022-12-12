@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
-import { columnfy, getAllKeys, objectify } from '../helperFunctions';
+import React from 'react';
 import { StyledActionBar } from './ActioBar.styled';
+import { ExportDataButton } from './ExportDataButton';
+import { ImportDataButton } from './ImportDataButton';
 
 export function ActionBar({
   tableData,
@@ -54,78 +55,5 @@ export function ActionBar({
       <button onClick={addRow}>Add Row</button>
       <button onClick={togglePreview}>Show Preview</button>
     </StyledActionBar>
-  );
-}
-
-function ImportDataButton({
-  setTableData,
-  setHeadingOrder,
-  setRowNumber,
-  setTitle,
-}) {
-  const fileInput = useRef();
-
-  const selectFile = () => {
-    fileInput.current.click();
-  };
-
-  const setupTable = () => {
-    const reader = new FileReader();
-    reader.readAsText(fileInput.current.files[0]);
-    reader.onload = function () {
-      const newTable = JSON.parse(reader.result);
-      setHeadingOrder(getAllKeys(newTable));
-      setTableData(columnfy(newTable));
-      setRowNumber(newTable.length);
-      setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
-    };
-  };
-
-  return (
-    <span>
-      <input
-        type="file"
-        accept="application/json"
-        style={{ display: 'none' }}
-        ref={fileInput}
-        onChange={setupTable}
-      />
-      <button onClick={selectFile} className="btn btn-primary">
-        Import Data
-      </button>
-    </span>
-  );
-}
-
-function ExportDataButton({ tableData, rowNumber, headingOrder, title }) {
-  const linkRef = useRef(null);
-
-  const downloadTable = () => {
-    const json = JSON.stringify(
-      objectify(tableData, rowNumber, headingOrder, title)
-    );
-    const file = new File([json], `${title}.json`, {
-      type: 'application/json',
-    });
-    linkRef.current.href = URL.createObjectURL(file);
-    linkRef.current.click();
-  };
-
-  return (
-    <span>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a
-        href="#"
-        target={'_blank'}
-        ref={linkRef}
-        style={{ display: 'none' }}
-        download={`${title}.json`}
-      >
-        &nbsp;
-      </a>
-      <button onClick={downloadTable} className="btn btn-primary">
-        Export Data
-      </button>
-    </span>
   );
 }
