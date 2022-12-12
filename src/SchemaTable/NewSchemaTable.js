@@ -7,6 +7,16 @@ import {
 } from './SchemaTable.styled';
 import { swapPropertyName, range, objectify } from '../helperFunctions';
 
+/**
+ * This component is meant to hold two other pieces:
+ * - The table headers
+ * - The table data
+ *
+ * I have to create different functions (maybe two different components?) for
+ * different rendering of the same data. (I want to transpose the table.)
+ *
+ */
+
 export function SchemaTable({
   tableData,
   setTableData,
@@ -91,50 +101,18 @@ export function SchemaTable({
 }
 
 const DataCell = ({ readValue, updateValue }) => {
-  const [active, setActive] = useState(false);
-
   let cellValue = Array.isArray(readValue()) ? `[${readValue()}]` : readValue();
 
-  // Add the textarea element, like below:
-  //
   return (
     <td>
       <textarea
-        autoFocus={true}
         value={cellValue || ''}
-        onBlur={() => {
-          setActive(false);
-        }}
         onInput={(e) => updateValue(e.target.value)}
       >
         {readValue()}
       </textarea>
     </td>
   );
-  //
-  // It is much better, and does not need the flip-flop done in the old version.
-
-  // if (active)
-  //   return (
-  //     <td>
-  //       <input
-  //         type={'text'}
-  //         style={{ width: 150, height: 50 }}
-  //         value={cellValue || ''}
-  //         onInput={(e) => updateValue(e.target.value)}
-  //         onBlur={() => {
-  //           setActive(false);
-  //         }}
-  //         autoFocus={true}
-  //       />
-  //     </td>
-  //   );
-
-  // return (
-  //   <td style={{ minWidth: 80, height: 18 }} onClick={() => setActive(true)}>
-  //     {cellValue}
-  //   </td>
-  // );
 };
 
 const HeadingCell = ({ readValue, updateValue }) => {
