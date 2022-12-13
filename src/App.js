@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './StyledFooter';
 import { createContext } from 'react';
+import useTableRows from './hooks/useTable';
 
 export const AppStateContext = createContext();
 /**
@@ -21,7 +22,7 @@ const currentTable =
   ] || mockTable;
 
 function App() {
-  const [tableRows, setTableRows] = useState(currentTable);
+  const { tableRows, setTableRows } = useTableRows(currentTable);
   // @todo create schema file using the heading order and heading type
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
   const [rowNumber, setRowNumber] = useState(currentTable.length);
