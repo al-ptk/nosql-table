@@ -1,7 +1,7 @@
 import SchemaTable from './SchemaTable';
 import { GlobalStyle } from './utils/styled-globals';
 import mockTable from './mockTable.json';
-import { getAllKeys, columnfy } from './utils/helperFunctions';
+import { getAllKeys } from './utils/helperFunctions';
 import { useState } from 'react';
 import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './StyledFooter';

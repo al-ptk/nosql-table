@@ -4,7 +4,7 @@ import {
   StyledTable,
   StyledJsonFormatter,
 } from './SchemaTable.styled';
-import { swapPropertyName, range, objectify } from '../utils/helperFunctions';
+import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 
@@ -108,22 +108,17 @@ function TableBody({
   );
 }
 
-function JSONPreview({ showPreview, tableData, rowNumber, headingOrder }) {
-  return (
-    showPreview && (
-      <p
-        style={{
-          backgroundColor: 'white',
-          width: 400,
-          margin: '0 auto',
-          padding: 10,
-        }}
-      >
-        <StyledJsonFormatter
-          json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
-          tabWith={4}
-        />
-      </p>
-    )
-  );
+function JSONPreview({ showPreview, tableData }) {
+  return showPreview ? (
+    <p
+      style={{
+        backgroundColor: 'white',
+        width: 400,
+        margin: '0 auto',
+        padding: 10,
+      }}
+    >
+      <StyledJsonFormatter json={JSON.stringify(tableData)} tabWith={4} />
+    </p>
+  ) : null;
 }
