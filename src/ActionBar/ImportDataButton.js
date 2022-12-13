@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import AppStateContext from '../App';
+import { AppStateContext } from '../App';
 
 export function ImportDataButton() {
   const { importTable } = useContext(AppStateContext);

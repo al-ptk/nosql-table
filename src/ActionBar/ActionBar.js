@@ -5,8 +5,15 @@ import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
 export function ActionBar() {
-  const { addRow, addColumn, title, setTitle, showPreview, setShowPreview } =
-    useContext(AppStateContext);
+  const {
+    addRow,
+    addColumn,
+    title,
+    setTitle,
+    showPreview,
+    setShowPreview,
+    newTable,
+  } = useContext(AppStateContext);
 
   const togglePreview = (e) => {
     if (!showPreview) {
@@ -20,6 +27,7 @@ export function ActionBar() {
 
   return (
     <StyledActionBar>
+      <button onClick={() => newTable()}>New Table</button>
       <ImportDataButton />
       <ExportDataButton />
       <input

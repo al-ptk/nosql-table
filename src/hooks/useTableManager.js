@@ -6,7 +6,7 @@ const emptyTable = [
   { 'property 0': '', 'property 1': '' },
 ];
 
-export default function useTableManager(tableStream = emptyTable) {
+export default function useTableManager(tableStream = emptyTable.slice()) {
   const [tableRows, setTableRows] = useState(tableStream);
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(tableStream));
   const [rowNumber, setRowNumber] = useState(tableStream.length);
@@ -71,6 +71,13 @@ export default function useTableManager(tableStream = emptyTable) {
     setRowNumber(rowNumber + 1);
   };
 
+  const newTable = () => {
+    setTableRows(emptyTable.slice());
+    setHeadingOrder(getAllKeys(emptyTable));
+    setRowNumber(emptyTable.length);
+    setTitle('New Table');
+  };
+
   const importTable = (fileInput) => {
     const reader = new FileReader();
     reader.readAsText(fileInput.current.files[0]);
@@ -108,5 +115,6 @@ export default function useTableManager(tableStream = emptyTable) {
     addColumn,
     importTable,
     exportTable,
+    newTable,
   };
 }
