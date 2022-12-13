@@ -25,7 +25,7 @@ function App() {
   // @todo create schema file using the heading order and heading type
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
   const [rowNumber, setRowNumber] = useState(currentTable.length);
-  const [showPreview, setShowPreview] = useState(true);
+  const [showPreview, setShowPreview] = useState(false);
   const [title, setTitle] = useState('JSON table');
 
   const AppState = {
