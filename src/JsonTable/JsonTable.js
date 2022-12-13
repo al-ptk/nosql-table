@@ -3,12 +3,12 @@ import {
   StyledMain,
   StyledTable,
   StyledJsonFormatter,
-} from './SchemaTable.styled';
+} from './JsonTable.styled';
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 
-export function SchemaTable({
+export function JsonTable({
   tableRows,
   setTableRows,
   headingOrder,

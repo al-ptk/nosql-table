@@ -1,4 +1,4 @@
-import SchemaTable from './SchemaTable';
+import JsonTable from './JsonTable';
 import { GlobalStyle } from './utils/styled-globals';
 import mockTable from './mockTable.json';
 import { getAllKeys } from './utils/helperFunctions';
@@ -15,7 +15,7 @@ export const AppStateContext = createContext();
 // Put a ! in front of empty list for enabling mockTable.
 // @todo add a better system for empty tables
 const currentTable =
-  [
+  ![
     { 'property 0': '', 'property 1': '' },
     { 'property 0': '', 'property 1': '' },
   ] || mockTable;
@@ -25,7 +25,7 @@ function App() {
   // @todo create schema file using the heading order and heading type
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
   const [rowNumber, setRowNumber] = useState(currentTable.length);
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
   const [title, setTitle] = useState('JSON table');
 
   const AppState = {
@@ -45,7 +45,7 @@ function App() {
     <>
       <GlobalStyle />
       <ActionBar {...AppState} />
-      <SchemaTable {...AppState} />
+      <JsonTable {...AppState} />
       <StyledFooter>
         Made by{' '}
         <a
