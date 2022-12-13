@@ -19,7 +19,7 @@ export function ImportDataButton({
     reader.onload = function () {
       const newTable = JSON.parse(reader.result);
       setHeadingOrder(getAllKeys(newTable));
-      setTableData(columnfy(newTable));
+      setTableData(newTable);
       setRowNumber(newTable.length);
       setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
     };

@@ -10,9 +10,7 @@ export function ExportDataButton({
   const linkRef = useRef(null);
 
   const downloadTable = () => {
-    const json = JSON.stringify(
-      objectify(tableData, rowNumber, headingOrder, title)
-    );
+    const json = JSON.stringify(tableData);
     const file = new File([json], `${title}.json`, {
       type: 'application/json',
     });
