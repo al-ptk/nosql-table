@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 export function ExportDataButton({
-  tableData,
+  tableRows,
   rowNumber,
   headingOrder,
   title,
@@ -9,7 +9,7 @@ export function ExportDataButton({
   const linkRef = useRef(null);
 
   const downloadTable = () => {
-    const json = JSON.stringify(tableData);
+    const json = JSON.stringify(tableRows);
     const file = new File([json], `${title}.json`, {
       type: 'application/json',
     });

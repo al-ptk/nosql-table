@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { getAllKeys } from '../utils/helperFunctions';
 
 export function ImportDataButton({
-  setTableData,
+  setTableRows,
   setHeadingOrder,
   setRowNumber,
   setTitle,
@@ -19,7 +19,7 @@ export function ImportDataButton({
     reader.onload = function () {
       const newTable = JSON.parse(reader.result);
       setHeadingOrder(getAllKeys(newTable));
-      setTableData(newTable);
+      setTableRows(newTable);
       setRowNumber(newTable.length);
       setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
     };

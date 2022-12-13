@@ -9,13 +9,17 @@ import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 
 export function SchemaTable({
-  tableData,
-  setTableData,
+  tableRows,
+  setTableRows,
   headingOrder,
   setHeadingOrder,
   rowNumber,
   showPreview,
 }) {
+  /*
+    The factories for headings and data cells 
+   */
+
   const headingUpdateFactory = (index) => {
     return (newHeading) => {
       let oldHeading = headingOrder[index];
@@ -26,13 +30,13 @@ export function SchemaTable({
       newOrder[index] = newHeading;
       setHeadingOrder(newOrder);
 
-      // updates ALL tableData entries
-      const newTableData = tableData.map((object) => {
+      // updates ALL tableRows entries
+      const newtableRows = tableRows.map((object) => {
         object[newHeading] = object[oldHeading];
         delete object[oldHeading];
         return object;
       });
-      setTableData(newTableData);
+      setTableRows(newtableRows);
     };
   };
 
@@ -42,14 +46,14 @@ export function SchemaTable({
 
   const dataUpdateFactory = (index, property) => {
     return (newValue) => {
-      const newTable = tableData.slice(); // creates shallow copy
+      const newTable = tableRows.slice(); // creates shallow copy
       newTable[index][property] = newValue;
-      setTableData(newTable);
+      setTableRows(newTable);
     };
   };
 
   const dataReadFactory = (index, property) => {
-    return () => tableData[index][property];
+    return () => tableRows[index][property];
   };
 
   return (
@@ -62,7 +66,7 @@ export function SchemaTable({
           {...{ rowNumber, headingOrder, dataReadFactory, dataUpdateFactory }}
         />
       </StyledTable>
-      <JSONPreview {...{ showPreview, tableData, rowNumber, headingOrder }} />
+      <JSONPreview {...{ showPreview, tableRows, rowNumber, headingOrder }} />
     </StyledMain>
   );
 }
@@ -108,7 +112,7 @@ function TableBody({
   );
 }
 
-function JSONPreview({ showPreview, tableData }) {
+function JSONPreview({ showPreview, tableRows }) {
   return showPreview ? (
     <p
       style={{
@@ -118,7 +122,7 @@ function JSONPreview({ showPreview, tableData }) {
         padding: 10,
       }}
     >
-      <StyledJsonFormatter json={JSON.stringify(tableData)} tabWith={4} />
+      <StyledJsonFormatter json={JSON.stringify(tableRows)} tabWith={4} />
     </p>
   ) : null;
 }

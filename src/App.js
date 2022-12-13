@@ -5,7 +5,9 @@ import { getAllKeys } from './utils/helperFunctions';
 import { useState } from 'react';
 import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './StyledFooter';
+import { createContext } from 'react';
 
+export const AppStateContext = createContext();
 /**
  * This component is meant to be a application-wide state manager.
  */
@@ -19,7 +21,7 @@ const currentTable =
   ] || mockTable;
 
 function App() {
-  const [tableData, setTableData] = useState(currentTable);
+  const [tableRows, setTableRows] = useState(currentTable);
   // @todo create schema file using the heading order and heading type
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
   const [rowNumber, setRowNumber] = useState(currentTable.length);
@@ -27,8 +29,8 @@ function App() {
   const [title, setTitle] = useState('JSON table');
 
   const AppState = {
-    tableData,
-    setTableData,
+    tableRows,
+    setTableRows,
     headingOrder,
     setHeadingOrder,
     rowNumber,

@@ -4,8 +4,8 @@ import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
 export function ActionBar({
-  tableData,
-  setTableData,
+  tableRows,
+  setTableRows,
   headingOrder,
   setHeadingOrder,
   rowNumber,
@@ -32,8 +32,8 @@ export function ActionBar({
     setHeadingOrder(headingOrder.concat(newProp));
 
     // Update Rows
-    setTableData(
-      tableData.map((row) => {
+    setTableRows(
+      tableRows.map((row) => {
         row[newProp] = '';
         return row;
       })
@@ -44,16 +44,16 @@ export function ActionBar({
     const newRow = Object.fromEntries(
       headingOrder.map((heading) => [heading, ''])
     );
-    setTableData(tableData.concat(newRow));
+    setTableRows(tableRows.concat(newRow));
     setRowNumber(rowNumber + 1);
   };
 
   return (
     <StyledActionBar>
       <ImportDataButton
-        {...{ setTableData, setHeadingOrder, setRowNumber, setTitle }}
+        {...{ setTableRows, setHeadingOrder, setRowNumber, setTitle }}
       />
-      <ExportDataButton {...{ tableData, headingOrder, rowNumber, title }} />
+      <ExportDataButton {...{ tableRows, headingOrder, rowNumber, title }} />
       <input
         type={'text'}
         value={title}
