@@ -8,8 +8,6 @@ import { StyledFooter } from './StyledFooter';
 
 /**
  * This component is meant to be a application-wide state manager.
- * It may not be the best solution, but I do not know what a better solution would be.
- * Stack overflow?
  */
 
 // Put a ! in front of empty list for enabling mockTable.
