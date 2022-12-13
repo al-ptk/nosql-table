@@ -22,6 +22,18 @@ export function JsonTable() {
   );
 }
 
+const elictPickedColumn = (headingIndex) => {
+  const columnGroup = document.querySelectorAll(
+    `[data-column="${headingIndex}"]`
+  );
+  columnGroup.forEach(
+    (elem) => (elem.style.backgroundColor = 'rgba(255,0,0,.3)')
+  );
+  setTimeout(() => {
+    columnGroup.forEach((elem) => (elem.style.backgroundColor = 'transparent'));
+  }, 1000);
+};
+
 function TableHead() {
   const {
     headingOrder,
@@ -39,6 +51,7 @@ function TableHead() {
             readValue={headingReadFactory(headingIndex)}
             updateValue={headingUpdateFactory(headingIndex)}
             deleteSelf={() => deleteColumn(headingIndex)}
+            onClick={() => elictPickedColumn(headingIndex)}
             key={headingIndex}
           />
         ))}
@@ -50,6 +63,18 @@ function TableHead() {
   );
 }
 
+const elictPickedRow = (e) => {
+  // Stopping bubble up
+  e.stopPropagation();
+  // Capturing the "lowest" element that register the even
+  const chosenRow = e.currentTarget.parentElement;
+  chosenRow.style.backgroundColor = 'rgba(255,0,0,.3)';
+  const setBorderBack = () => {
+    chosenRow.style.backgroundColor = 'white';
+  };
+  setTimeout(setBorderBack, 1000);
+};
+
 function TableBody() {
   const {
     headingOrder,
@@ -60,19 +85,20 @@ function TableBody() {
     deleteRow,
   } = useContext(AppStateContext);
   return (
-    <tbody>
+    <tbody style={{ position: 'relative' }}>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
-          <th scope="row">
+          <th scope="row" onClick={elictPickedRow}>
             {rowIndex}
             <button onClick={() => deleteRow(rowIndex)}>X</button>
           </th>
-          {headingOrder.map((heading, cellIndex) => {
+          {headingOrder.map((heading, headingIndex) => {
             return (
               <DataCell
                 readValue={dataReadFactory(rowIndex, heading)}
                 updateValue={dataUpdateFactory(rowIndex, heading)}
-                key={cellIndex}
+                key={headingIndex}
+                coords={[rowIndex, headingIndex]}
               />
             );
           })}

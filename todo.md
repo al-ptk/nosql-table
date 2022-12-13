@@ -2,6 +2,8 @@
 - [x] The instance number
 - [x] Delete rows and columns
 - [ ] Rearrange rows and columns
+  - [x] Make rows and columns selectable
+  - [ ] Make rows and columns draggable
 - [ ] Copy, cut and paste rows
 - [ ] The file and edit buttons
 - [ ] A repeat (macro) function

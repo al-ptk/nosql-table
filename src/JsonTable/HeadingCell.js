@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const HeadingCell = ({ readValue, updateValue, deleteSelf }) => {
+export const HeadingCell = ({
+  readValue,
+  updateValue,
+  deleteSelf,
+  ...props
+}) => {
   const handleInput = (e) => {
     e.preventDefault();
     // Disable new lines
@@ -10,7 +15,7 @@ export const HeadingCell = ({ readValue, updateValue, deleteSelf }) => {
   };
 
   return (
-    <StyledHeading>
+    <StyledHeading onClick={props.onClick}>
       <textarea
         value={readValue() || ''}
         onInput={handleInput}
