@@ -6,6 +6,16 @@ const emptyTable = [
   { 'property 0': '', 'property 1': '' },
 ];
 
+// @remove ???
+function* propertyNumberGenerator(initialValue = 0) {
+  let i = initialValue;
+  while (true) {
+    yield i;
+    i++;
+  }
+}
+const propNumGen = propertyNumberGenerator(emptyTable.length);
+
 export default function useTableManager(tableStream = emptyTable.slice()) {
   const [tableRows, setTableRows] = useState(tableStream);
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(tableStream));
@@ -58,7 +68,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   };
 
   const addColumn = () => {
-    const newProp = `property ${headingOrder.length}`;
+    const newProp = `property ${propNumGen.next().value}`;
 
     // Update Headings
     setHeadingOrder(headingOrder.concat(newProp));
