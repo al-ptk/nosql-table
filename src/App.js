@@ -21,7 +21,7 @@ const currentTable =
   ] || mockTable;
 
 function App() {
-  const [tableData, setTableData] = useState(columnfy(currentTable));
+  const [tableData, setTableData] = useState(currentTable);
   // @todo create schema file using the heading order and heading type
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(currentTable));
   const [rowNumber, setRowNumber] = useState(currentTable.length);

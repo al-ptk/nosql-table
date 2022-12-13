@@ -8,14 +8,6 @@ import { swapPropertyName, range, objectify } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 
-/**
- * This component is meant to hold two other pieces: The table headers; The table data.
- *
- * I have to create different functions (maybe two different components?) for
- * different rendering of the same data. (I want to transpose the table.)
- *
- */
-
 export function SchemaTable({
   tableData,
   setTableData,
@@ -25,12 +17,22 @@ export function SchemaTable({
   showPreview,
 }) {
   const headingUpdateFactory = (index) => {
-    return (newValue) => {
-      if (headingOrder[index] === newValue) return;
-      const newOrder = [...headingOrder];
-      newOrder[index] = newValue;
+    return (newHeading) => {
+      let oldHeading = headingOrder[index];
+      if (oldHeading === newHeading) return;
+
+      // updates the headingOrder
+      const newOrder = headingOrder.slice(); // creates shallow copy
+      newOrder[index] = newHeading;
       setHeadingOrder(newOrder);
-      setTableData(swapPropertyName(tableData, headingOrder[index], newValue));
+
+      // updates ALL tableData entries
+      const newTableData = tableData.map((object) => {
+        object[newHeading] = object[oldHeading];
+        delete object[oldHeading];
+        return object;
+      });
+      setTableData(newTableData);
     };
   };
 
@@ -40,61 +42,88 @@ export function SchemaTable({
 
   const dataUpdateFactory = (index, property) => {
     return (newValue) => {
-      const newTable = { ...tableData };
-      newTable[property][index] = newValue;
+      const newTable = tableData.slice(); // creates shallow copy
+      newTable[index][property] = newValue;
       setTableData(newTable);
     };
   };
 
   const dataReadFactory = (index, property) => {
-    return () => tableData[property][index];
+    return () => tableData[index][property];
   };
 
   return (
     <StyledMain>
       <StyledTable>
-        <thead style={{ position: 'sticky', top: 50 }}>
-          <tr>
-            {headingOrder.map((heading, headingIndex) => (
-              <HeadingCell
-                readValue={headingReadFactory(headingIndex)}
-                updateValue={headingUpdateFactory(headingIndex)}
-                key={headingIndex}
-              />
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {range(rowNumber).map((rowIndex) => (
-            <tr key={rowIndex}>
-              {headingOrder.map((heading, cellIndex) => {
-                return (
-                  <DataCell
-                    readValue={dataReadFactory(rowIndex, heading)}
-                    updateValue={dataUpdateFactory(rowIndex, heading)}
-                    key={cellIndex}
-                  />
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
+        <TableHead
+          {...{ headingOrder, headingReadFactory, headingUpdateFactory }}
+        />
+        <TableBody
+          {...{ rowNumber, headingOrder, dataReadFactory, dataUpdateFactory }}
+        />
       </StyledTable>
-      {showPreview && (
-        <p
-          style={{
-            backgroundColor: 'white',
-            width: 400,
-            margin: '0 auto',
-            padding: 10,
-          }}
-        >
-          <StyledJsonFormatter
-            json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
-            tabWith={4}
-          />
-        </p>
-      )}
+      <JSONPreview {...{ showPreview, tableData, rowNumber, headingOrder }} />
     </StyledMain>
+  );
+}
+
+function TableHead({ headingOrder, headingReadFactory, headingUpdateFactory }) {
+  return (
+    <thead style={{ position: 'sticky', top: 50 }}>
+      <tr>
+        {headingOrder.map((heading, headingIndex) => (
+          <HeadingCell
+            readValue={headingReadFactory(headingIndex)}
+            updateValue={headingUpdateFactory(headingIndex)}
+            key={headingIndex}
+          />
+        ))}
+      </tr>
+    </thead>
+  );
+}
+
+function TableBody({
+  rowNumber,
+  headingOrder,
+  dataReadFactory,
+  dataUpdateFactory,
+}) {
+  return (
+    <tbody>
+      {range(rowNumber).map((rowIndex) => (
+        <tr key={rowIndex}>
+          {headingOrder.map((heading, cellIndex) => {
+            return (
+              <DataCell
+                readValue={dataReadFactory(rowIndex, heading)}
+                updateValue={dataUpdateFactory(rowIndex, heading)}
+                key={cellIndex}
+              />
+            );
+          })}
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+
+function JSONPreview({ showPreview, tableData, rowNumber, headingOrder }) {
+  return (
+    showPreview && (
+      <p
+        style={{
+          backgroundColor: 'white',
+          width: 400,
+          margin: '0 auto',
+          padding: 10,
+        }}
+      >
+        <StyledJsonFormatter
+          json={JSON.stringify(objectify(tableData, rowNumber, headingOrder))}
+          tabWith={4}
+        />
+      </p>
+    )
   );
 }
