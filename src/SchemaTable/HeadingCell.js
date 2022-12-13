@@ -18,7 +18,6 @@ export const HeadingCell = ({ readValue, updateValue }) => {
         cols="20"
         maxLength="20"
       >
-        {readValue()}
       </textarea>
     </StyledHeading>
   );
