@@ -33,7 +33,7 @@ function TableHead() {
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
       <tr>
-        <td>Index</td>
+        <th scope="col">Index</th>
         {headingOrder.map((heading, headingIndex) => (
           <HeadingCell
             readValue={headingReadFactory(headingIndex)}
@@ -63,10 +63,10 @@ function TableBody() {
     <tbody>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
-          <td>
+          <th scope="row">
             {rowIndex}
             <button onClick={() => deleteRow(rowIndex)}>X</button>
-          </td>
+          </th>
           {headingOrder.map((heading, cellIndex) => {
             return (
               <DataCell

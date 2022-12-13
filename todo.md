@@ -1,10 +1,10 @@
 - [x] The new table button
 - [x] The instance number
 - [x] Delete rows and columns
-- [ ] Copy, cut and paste roes
+- [ ] Rearrange rows and columns
+- [ ] Copy, cut and paste rows
 - [ ] The file and edit buttons
 - [ ] A repeat (macro) function
-- [ ] Rearrange rows and columns
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Tab and enter movements
 - [ ] Transposition
