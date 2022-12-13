@@ -27,16 +27,25 @@ export function ActionBar({
 
   const addColumn = () => {
     const newProp = `property ${headingOrder.length}`;
-    setTableData({ ...tableData, [newProp]: Array(rowNumber).fill('') });
+
+    // Update Headings
     setHeadingOrder(headingOrder.concat(newProp));
+
+    // Update Rows
+    setTableData(
+      tableData.map((row) => {
+        row[newProp] = '';
+        return row;
+      })
+    );
   };
 
   const addRow = () => {
-    const newTableData = Object.fromEntries(
-      Object.entries(tableData).map((entry) => [entry[0], entry[1].concat('')])
+    const newRow = Object.fromEntries(
+      headingOrder.map((heading) => [heading, ''])
     );
+    setTableData(tableData.concat(newRow));
     setRowNumber(rowNumber + 1);
-    setTableData(newTableData);
   };
 
   return (
