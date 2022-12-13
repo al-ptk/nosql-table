@@ -7,54 +7,20 @@ import {
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
+import { useContext } from 'react';
+import { AppStateContext } from '../App';
 
-export function JsonTable({
-  tableRows,
-  setTableRows,
-  headingOrder,
-  setHeadingOrder,
-  rowNumber,
-  showPreview,
-}) {
-  /*
-    The factories for headings and data cells 
-   */
-
-  const headingUpdateFactory = (index) => {
-    return (newHeading) => {
-      let oldHeading = headingOrder[index];
-      if (oldHeading === newHeading) return;
-
-      // updates the headingOrder
-      const newOrder = headingOrder.slice(); // creates shallow copy
-      newOrder[index] = newHeading;
-      setHeadingOrder(newOrder);
-
-      // updates ALL tableRows entries
-      const newtableRows = tableRows.map((object) => {
-        object[newHeading] = object[oldHeading];
-        delete object[oldHeading];
-        return object;
-      });
-      setTableRows(newtableRows);
-    };
-  };
-
-  const headingReadFactory = (index) => {
-    return () => headingOrder[index];
-  };
-
-  const dataUpdateFactory = (index, property) => {
-    return (newValue) => {
-      const newTable = tableRows.slice(); // creates shallow copy
-      newTable[index][property] = newValue;
-      setTableRows(newTable);
-    };
-  };
-
-  const dataReadFactory = (index, property) => {
-    return () => tableRows[index][property];
-  };
+export function JsonTable() {
+  const {
+    tableRows,
+    headingOrder,
+    rowNumber,
+    showPreview,
+    headingReadFactory,
+    headingUpdateFactory,
+    dataReadFactory,
+    dataUpdateFactory,
+  } = useContext(AppStateContext);
 
   return (
     <StyledMain>

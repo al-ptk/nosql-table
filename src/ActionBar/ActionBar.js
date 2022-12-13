@@ -1,20 +1,23 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppStateContext } from '../App';
 import { StyledActionBar } from './ActioBar.styled';
 import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
-export function ActionBar({
-  tableRows,
-  setTableRows,
-  headingOrder,
-  setHeadingOrder,
-  rowNumber,
-  setRowNumber,
-  showPreview,
-  setShowPreview,
-  title,
-  setTitle,
-}) {
+export function ActionBar() {
+  const {
+    tableRows,
+    setTableRows,
+    headingOrder,
+    setHeadingOrder,
+    rowNumber,
+    setRowNumber,
+    showPreview,
+    setShowPreview,
+    title,
+    setTitle,
+  } = useContext(AppStateContext);
+
   const togglePreview = (e) => {
     if (!showPreview) {
       setShowPreview(true);
