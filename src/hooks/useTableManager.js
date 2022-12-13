@@ -12,6 +12,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   const [rowNumber, setRowNumber] = useState(tableStream.length);
   const [title, setTitle] = useState('JSON table');
 
+  //  ---------------------------- Cell Manipulation ---------------------------
   const headingUpdateFactory = (index) => {
     return (newHeading) => {
       let oldHeading = headingOrder[index];
@@ -48,6 +49,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     return () => tableRows[index][property];
   };
 
+  //  ---------------------------- Table Manipulation --------------------------
   const addColumn = () => {
     const newProp = `property ${headingOrder.length}`;
 
@@ -72,12 +74,13 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   };
 
   const newTable = () => {
-    setTableRows(emptyTable.slice());
+    setTableRows(emptyTable.slice()); // create shallow copy
     setHeadingOrder(getAllKeys(emptyTable));
     setRowNumber(emptyTable.length);
     setTitle('New Table');
   };
 
+  //  ---------------------------- File Manipulation ---------------------------
   const importTable = (fileInput) => {
     const reader = new FileReader();
     reader.readAsText(fileInput.current.files[0]);
@@ -98,6 +101,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     return file;
   };
 
+  //  --------------------------------------------------------------------------
   return {
     tableRows,
     setTableRows,
