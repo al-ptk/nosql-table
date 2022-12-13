@@ -15,7 +15,7 @@ import { StyledFooter } from './StyledFooter';
 // Put a ! in front of empty list for enabling mockTable.
 // @todo add a better system for empty tables
 const currentTable =
-  ![
+  [
     { 'property 0': '', 'property 1': '' },
     { 'property 0': '', 'property 1': '' },
   ] || mockTable;

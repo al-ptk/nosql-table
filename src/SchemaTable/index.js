@@ -1,1 +1,1 @@
-export { SchemaTable as default } from './NewSchemaTable.js';
+export { SchemaTable as default } from './SchemaTable.js';
