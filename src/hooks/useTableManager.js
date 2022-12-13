@@ -48,6 +48,49 @@ export default function useTableManager(tableStream = emptyTable) {
     return () => tableRows[index][property];
   };
 
+  const addColumn = () => {
+    const newProp = `property ${headingOrder.length}`;
+
+    // Update Headings
+    setHeadingOrder(headingOrder.concat(newProp));
+
+    // Update Rows
+    setTableRows(
+      tableRows.map((row) => {
+        row[newProp] = '';
+        return row;
+      })
+    );
+  };
+
+  const addRow = () => {
+    const newRow = Object.fromEntries(
+      headingOrder.map((heading) => [heading, ''])
+    );
+    setTableRows(tableRows.concat(newRow));
+    setRowNumber(rowNumber + 1);
+  };
+
+  const importTable = (fileInput) => {
+    const reader = new FileReader();
+    reader.readAsText(fileInput.current.files[0]);
+    reader.onload = function () {
+      const newTable = JSON.parse(reader.result);
+      setHeadingOrder(getAllKeys(newTable));
+      setTableRows(newTable);
+      setRowNumber(newTable.length);
+      setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
+    };
+  };
+
+  const exportTable = () => {
+    const json = JSON.stringify(tableRows);
+    const file = new File([json], `${title}.json`, {
+      type: 'application/json',
+    });
+    return file;
+  };
+
   return {
     tableRows,
     setTableRows,
@@ -61,5 +104,9 @@ export default function useTableManager(tableStream = emptyTable) {
     headingUpdateFactory,
     dataReadFactory,
     dataUpdateFactory,
+    addRow,
+    addColumn,
+    importTable,
+    exportTable,
   };
 }

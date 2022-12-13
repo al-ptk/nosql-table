@@ -1,28 +1,13 @@
-import React, { useRef } from 'react';
-import { getAllKeys } from '../utils/helperFunctions';
+import React, { useContext, useRef } from 'react';
+import AppStateContext from '../App';
 
-export function ImportDataButton({
-  setTableRows,
-  setHeadingOrder,
-  setRowNumber,
-  setTitle,
-}) {
+export function ImportDataButton() {
+  const { importTable } = useContext(AppStateContext);
+
   const fileInput = useRef();
 
   const selectFile = () => {
     fileInput.current.click();
-  };
-
-  const setupTable = () => {
-    const reader = new FileReader();
-    reader.readAsText(fileInput.current.files[0]);
-    reader.onload = function () {
-      const newTable = JSON.parse(reader.result);
-      setHeadingOrder(getAllKeys(newTable));
-      setTableRows(newTable);
-      setRowNumber(newTable.length);
-      setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
-    };
   };
 
   return (
@@ -32,7 +17,9 @@ export function ImportDataButton({
         accept="application/json"
         style={{ display: 'none' }}
         ref={fileInput}
-        onChange={setupTable}
+        onChange={() => {
+          importTable(fileInput);
+        }}
       />
       <button onClick={selectFile} className="btn btn-primary">
         Import Data

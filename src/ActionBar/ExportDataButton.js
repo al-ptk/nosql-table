@@ -1,19 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
+import AppStateContext from '../App';
 
-export function ExportDataButton({
-  tableRows,
-  rowNumber,
-  headingOrder,
-  title,
-}) {
+export function ExportDataButton() {
+  const { title, exportTable } = useContext(AppStateContext);
   const linkRef = useRef(null);
 
   const downloadTable = () => {
-    const json = JSON.stringify(tableRows);
-    const file = new File([json], `${title}.json`, {
-      type: 'application/json',
-    });
-    linkRef.current.href = URL.createObjectURL(file);
+    const tableFile = exportTable();
+    linkRef.current.href = URL.createObjectURL(tableFile);
     linkRef.current.click();
   };
 
@@ -21,6 +15,7 @@ export function ExportDataButton({
     <span>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
+        aria-hidden
         href="#"
         target={'_blank'}
         ref={linkRef}

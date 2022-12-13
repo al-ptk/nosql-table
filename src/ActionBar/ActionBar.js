@@ -5,18 +5,8 @@ import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
 export function ActionBar() {
-  const {
-    tableRows,
-    setTableRows,
-    headingOrder,
-    setHeadingOrder,
-    rowNumber,
-    setRowNumber,
-    showPreview,
-    setShowPreview,
-    title,
-    setTitle,
-  } = useContext(AppStateContext);
+  const { addRow, addColumn, title, setTitle, showPreview, setShowPreview } =
+    useContext(AppStateContext);
 
   const togglePreview = (e) => {
     if (!showPreview) {
@@ -28,35 +18,10 @@ export function ActionBar() {
     }
   };
 
-  const addColumn = () => {
-    const newProp = `property ${headingOrder.length}`;
-
-    // Update Headings
-    setHeadingOrder(headingOrder.concat(newProp));
-
-    // Update Rows
-    setTableRows(
-      tableRows.map((row) => {
-        row[newProp] = '';
-        return row;
-      })
-    );
-  };
-
-  const addRow = () => {
-    const newRow = Object.fromEntries(
-      headingOrder.map((heading) => [heading, ''])
-    );
-    setTableRows(tableRows.concat(newRow));
-    setRowNumber(rowNumber + 1);
-  };
-
   return (
     <StyledActionBar>
-      <ImportDataButton
-        {...{ setTableRows, setHeadingOrder, setRowNumber, setTitle }}
-      />
-      <ExportDataButton {...{ tableRows, headingOrder, rowNumber, title }} />
+      <ImportDataButton />
+      <ExportDataButton />
       <input
         type={'text'}
         value={title}
