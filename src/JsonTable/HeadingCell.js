@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const HeadingCell = ({ readValue, updateValue }) => {
+export const HeadingCell = ({ readValue, updateValue, deleteSelf }) => {
   const handleInput = (e) => {
     e.preventDefault();
-    // Disable new lines 
+    // Disable new lines
     if (e.nativeEvent.inputType === 'insertLineBreak') return;
     updateValue(e.target.value);
   };
@@ -17,8 +17,8 @@ export const HeadingCell = ({ readValue, updateValue }) => {
         rows="1"
         cols="20"
         maxLength="20"
-      >
-      </textarea>
+      ></textarea>
+      <button onClick={deleteSelf}>X</button>
     </StyledHeading>
   );
 };

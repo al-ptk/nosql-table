@@ -1,6 +1,6 @@
 - [x] The new table button
 - [x] The instance number
-- [ ] Delete rows and columns
+- [x] Delete rows and columns
 - [ ] Copy, cut and paste roes
 - [ ] The file and edit buttons
 - [ ] A repeat (macro) function

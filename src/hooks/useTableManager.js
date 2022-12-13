@@ -50,6 +50,13 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   };
 
   //  ---------------------------- Table Manipulation --------------------------
+  const newTable = () => {
+    setTableRows(emptyTable.slice()); // create shallow copy
+    setHeadingOrder(getAllKeys(emptyTable));
+    setRowNumber(emptyTable.length);
+    setTitle('New Table');
+  };
+
   const addColumn = () => {
     const newProp = `property ${headingOrder.length}`;
 
@@ -65,6 +72,19 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     );
   };
 
+  const deleteColumn = (index) => {
+    // ORDER MATTERS! Update the rows BEFORE updating the headings
+    setTableRows(
+      tableRows.map((row) => {
+        delete row[headingOrder[index]];
+        return row;
+      })
+    );
+    setHeadingOrder(
+      headingOrder.filter((heading, headingIndex) => headingIndex !== index)
+    );
+  };
+
   const addRow = () => {
     const newRow = Object.fromEntries(
       headingOrder.map((heading) => [heading, ''])
@@ -73,11 +93,12 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     setRowNumber(rowNumber + 1);
   };
 
-  const newTable = () => {
-    setTableRows(emptyTable.slice()); // create shallow copy
-    setHeadingOrder(getAllKeys(emptyTable));
-    setRowNumber(emptyTable.length);
-    setTitle('New Table');
+  const deleteRow = (index) => {
+    let shallowTable = tableRows.filter(
+      (row, rowIndex) => parseInt(index) !== parseInt(rowIndex)
+    );
+    setRowNumber(shallowTable.length);
+    setTableRows(shallowTable);
   };
 
   //  ---------------------------- File Manipulation ---------------------------
@@ -117,6 +138,8 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     dataUpdateFactory,
     addRow,
     addColumn,
+    deleteRow,
+    deleteColumn,
     importTable,
     exportTable,
     newTable,

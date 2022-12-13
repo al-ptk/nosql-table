@@ -23,18 +23,22 @@ export function JsonTable() {
 }
 
 function TableHead() {
-  const { headingOrder, headingReadFactory, headingUpdateFactory, addColumn } =
-    useContext(AppStateContext);
+  const {
+    headingOrder,
+    headingReadFactory,
+    headingUpdateFactory,
+    addColumn,
+    deleteColumn,
+  } = useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
       <tr>
-        <td>
-          <textarea value="Index" readOnly cols="5" />
-        </td>
+        <td>Index</td>
         {headingOrder.map((heading, headingIndex) => (
           <HeadingCell
             readValue={headingReadFactory(headingIndex)}
             updateValue={headingUpdateFactory(headingIndex)}
+            deleteSelf={() => deleteColumn(headingIndex)}
             key={headingIndex}
           />
         ))}
@@ -53,13 +57,15 @@ function TableBody() {
     dataReadFactory,
     dataUpdateFactory,
     addRow,
+    deleteRow,
   } = useContext(AppStateContext);
   return (
     <tbody>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
           <td>
-            <textarea value={rowIndex} readOnly cols="5" />
+            {rowIndex}
+            <button onClick={() => deleteRow(rowIndex)}>X</button>
           </td>
           {headingOrder.map((heading, cellIndex) => {
             return (
