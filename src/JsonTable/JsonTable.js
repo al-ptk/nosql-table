@@ -23,7 +23,7 @@ export function JsonTable() {
 }
 
 function TableHead() {
-  const { headingOrder, headingReadFactory, headingUpdateFactory } =
+  const { headingOrder, headingReadFactory, headingUpdateFactory, addColumn } =
     useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
@@ -35,14 +35,22 @@ function TableHead() {
             key={headingIndex}
           />
         ))}
+        <td>
+          <button onClick={() => addColumn()}>+</button>
+        </td>
       </tr>
     </thead>
   );
 }
 
 function TableBody() {
-  const { headingOrder, rowNumber, dataReadFactory, dataUpdateFactory } =
-    useContext(AppStateContext);
+  const {
+    headingOrder,
+    rowNumber,
+    dataReadFactory,
+    dataUpdateFactory,
+    addRow,
+  } = useContext(AppStateContext);
   return (
     <tbody>
       {range(rowNumber).map((rowIndex) => (
@@ -58,6 +66,11 @@ function TableBody() {
           })}
         </tr>
       ))}
+      <tr>
+        <td>
+          <button onClick={() => addRow()}>+</button>
+        </td>
+      </tr>
     </tbody>
   );
 }
