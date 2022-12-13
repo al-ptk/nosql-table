@@ -1,7 +1,7 @@
 - [x] The new table button
+- [x] The instance number
 - [ ] Delete rows and columns
 - [ ] Copy, cut and paste roes
-- [ ] The instance number
 - [ ] The file and edit buttons
 - [ ] A repeat (macro) function
 - [ ] Rearrange rows and columns
@@ -12,14 +12,13 @@
 - [ ] Autosave to localstorage
 - [ ] Sticky headings bar
 - [ ] Add github link for bug\frature request link
-
-- [ ] Find a better way of dealing with state ???
-- [ ] Separate gui from functions ???
-- [ ] improve styling (too broad)
-- [ ] Do schema file
-  - [ ] Do cells in accordance with heading type
 - [ ] create wizard for adding rows
-- [ ] add Mongoose integration
+- [ ] Create infrastructure around the app:
+  - [ ] Landing Page
+  - [ ] Login Page
+  - [ ] Backend authentication and storage ???
+    - [ ] Limit size of tables to a certain kb or mb limit
+    - [ ] Limit number of tables on cloud to 5 ???
 
 Branch out - a real data bank:
 
@@ -43,6 +42,7 @@ Maybe, maybe, maybe:
 - [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
 - [ ] Account management (password emails, updates, etc.)
 - [ ] Use typescript. The interfaces thing seems pretty good.
+- [ ] add Mongoose integration
 
 Legend:  
 ??? — questionable

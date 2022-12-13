@@ -28,6 +28,9 @@ function TableHead() {
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
       <tr>
+        <td>
+          <textarea value="Index" readOnly cols="5" />
+        </td>
         {headingOrder.map((heading, headingIndex) => (
           <HeadingCell
             readValue={headingReadFactory(headingIndex)}
@@ -55,6 +58,9 @@ function TableBody() {
     <tbody>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
+          <td>
+            <textarea value={rowIndex} readOnly cols="5" />
+          </td>
           {headingOrder.map((heading, cellIndex) => {
             return (
               <DataCell
