@@ -11,33 +11,20 @@ import { useContext } from 'react';
 import { AppStateContext } from '../App';
 
 export function JsonTable() {
-  const {
-    tableRows,
-    headingOrder,
-    rowNumber,
-    showPreview,
-    headingReadFactory,
-    headingUpdateFactory,
-    dataReadFactory,
-    dataUpdateFactory,
-  } = useContext(AppStateContext);
-
   return (
     <StyledMain>
       <StyledTable>
-        <TableHead
-          {...{ headingOrder, headingReadFactory, headingUpdateFactory }}
-        />
-        <TableBody
-          {...{ rowNumber, headingOrder, dataReadFactory, dataUpdateFactory }}
-        />
+        <TableHead />
+        <TableBody />
       </StyledTable>
-      <JSONPreview {...{ showPreview, tableRows, rowNumber, headingOrder }} />
+      <JSONPreview />
     </StyledMain>
   );
 }
 
-function TableHead({ headingOrder, headingReadFactory, headingUpdateFactory }) {
+function TableHead() {
+  const { headingOrder, headingReadFactory, headingUpdateFactory } =
+    useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
       <tr>
@@ -53,12 +40,9 @@ function TableHead({ headingOrder, headingReadFactory, headingUpdateFactory }) {
   );
 }
 
-function TableBody({
-  rowNumber,
-  headingOrder,
-  dataReadFactory,
-  dataUpdateFactory,
-}) {
+function TableBody() {
+  const { headingOrder, rowNumber, dataReadFactory, dataUpdateFactory } =
+    useContext(AppStateContext);
   return (
     <tbody>
       {range(rowNumber).map((rowIndex) => (
@@ -78,7 +62,8 @@ function TableBody({
   );
 }
 
-function JSONPreview({ showPreview, tableRows }) {
+function JSONPreview() {
+  const { tableRows, showPreview } = useContext(AppStateContext);
   return showPreview ? (
     <p
       style={{
