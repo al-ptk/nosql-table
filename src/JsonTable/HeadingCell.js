@@ -5,6 +5,8 @@ export const HeadingCell = ({
   readValue,
   updateValue,
   deleteSelf,
+  moveLeft,
+  moveRight,
   ...props
 }) => {
   const handleInput = (e) => {
@@ -16,6 +18,7 @@ export const HeadingCell = ({
 
   return (
     <StyledHeading {...props}>
+      <button onClick={moveLeft}> {'<'} </button>
       <textarea
         value={readValue() || ''}
         onInput={handleInput}
@@ -23,6 +26,7 @@ export const HeadingCell = ({
         cols="20"
         maxLength="20"
       ></textarea>
+      <button onClick={moveRight}> {'>'} </button>
       <button onClick={deleteSelf}>X</button>
     </StyledHeading>
   );

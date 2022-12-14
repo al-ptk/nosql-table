@@ -46,6 +46,7 @@ function TableHead() {
     addColumn,
     deleteColumn,
     setCursorPosition,
+    swapColumn,
   } = useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
@@ -59,6 +60,12 @@ function TableHead() {
             onClick={() => {
               setCursorPosition(['-1', headingIndex]);
               elictPickedColumn(headingIndex);
+            }}
+            moveLeft={() => {
+              swapColumn(headingIndex, headingIndex - 1);
+            }}
+            moveRight={() => {
+              swapColumn(headingIndex, headingIndex + 1);
             }}
             key={headingIndex}
           />

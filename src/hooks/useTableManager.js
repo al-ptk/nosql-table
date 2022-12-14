@@ -89,6 +89,20 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     );
   };
 
+  const swapColumn = (oldIndex, newIndex) => {
+    oldIndex = parseInt(oldIndex);
+    newIndex = parseInt(newIndex);
+
+    if (newIndex < 0 || newIndex >= headingOrder.length) return;
+
+    const shallowOrder = headingOrder.slice();
+    [shallowOrder[oldIndex], shallowOrder[newIndex]] = [
+      shallowOrder[newIndex],
+      shallowOrder[oldIndex],
+    ];
+    setHeadingOrder(shallowOrder);
+  };
+
   const addRow = () => {
     const newRow = Object.fromEntries(
       headingOrder.map((heading) => [heading, ''])
@@ -103,6 +117,20 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     );
     setRowNumber(shallowTable.length);
     setTableRows(shallowTable);
+  };
+
+  const swapRow = (oldIndex, newIndex) => {
+    oldIndex = parseInt(oldIndex);
+    newIndex = parseInt(newIndex);
+
+    if (newIndex < 0 || newIndex >= tableRows.length) return;
+
+    const shallowRows = tableRows.slice();
+    [shallowRows[oldIndex], shallowRows[newIndex]] = [
+      shallowRows[newIndex],
+      shallowRows[oldIndex],
+    ];
+    setTableRows(shallowRows);
   };
 
   //  ---------------------------- File Manipulation ---------------------------
@@ -144,6 +172,8 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     addColumn,
     deleteRow,
     deleteColumn,
+    swapRow,
+    swapColumn,
     importTable,
     exportTable,
     newTable,

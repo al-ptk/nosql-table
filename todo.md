@@ -22,6 +22,9 @@
     - [ ] Limit size of tables to a certain kb or mb limit
     - [ ] Limit number of tables on cloud to 5 ???
 
+Refactors:
+- [ ] 
+
 Branch out - a real data bank:
 
 - [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field and automatically generates all columns
