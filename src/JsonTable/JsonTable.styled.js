@@ -21,6 +21,11 @@ export const StyledTable = styled.table`
   th {
     border: 1px solid rgba(0, 0, 0, 0.5);
   }
+
+  :focus,
+  :focus-within {
+    outline: 1px solid black;
+  }
 `;
 
 export const StyledJsonFormatter = styled(JsonFormatter)``;

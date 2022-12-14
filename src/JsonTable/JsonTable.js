@@ -11,9 +11,10 @@ import { useContext } from 'react';
 import { AppStateContext } from '../App';
 
 export function JsonTable() {
+  const { handleArrowKeys } = useContext(AppStateContext);
   return (
     <StyledMain>
-      <StyledTable>
+      <StyledTable onKeyDown={handleArrowKeys} tabIndex="0">
         <TableHead />
         <TableBody />
       </StyledTable>
@@ -23,9 +24,7 @@ export function JsonTable() {
 }
 
 const elictPickedColumn = (headingIndex) => {
-  const columnGroup = document.querySelectorAll(
-    `[data-col="${headingIndex}"]`
-  );
+  const columnGroup = document.querySelectorAll(`[data-col="${headingIndex}"]`);
   columnGroup.forEach(
     (elem) => (elem.style.backgroundColor = 'rgba(255,0,0,.3)')
   );
