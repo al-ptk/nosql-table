@@ -9,7 +9,6 @@ export default function useCursor() {
 
   const setCursorPosition = (coords) => {
     cursorState.position = coords;
-    console.log(cursorState.position);
   };
 
   return {

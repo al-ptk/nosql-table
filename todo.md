@@ -1,20 +1,21 @@
 - [x] The new table button
 - [x] The instance number
 - [x] Delete rows and columns
-- [ ] Rearrange rows and columns
-  - [x] Make rows and columns selectable
-  - [ ] Make rows and columns draggable
+- [x] Rearrange rows and columns
 - [ ] Copy, cut and paste rows
-- [ ] The file and edit buttons
+- [ ] Duplicate columns
+- [ ] Tab and enter movements
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
-- [ ] Tab and enter movements
 - [ ] Transposition
 - [ ] Render arrays as html lists
 - [ ] Autosave to localstorage
 - [ ] Sticky headings bar
 - [ ] Add github link for bug\frature request link
 - [ ] create wizard for adding rows
+
+GUI stuff
+- [ ] The file and edit buttons
 - [ ] Create infrastructure around the app:
   - [ ] Landing Page
   - [ ] Login Page

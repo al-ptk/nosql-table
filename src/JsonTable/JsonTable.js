@@ -99,6 +99,7 @@ function TableBody() {
     addRow,
     deleteRow,
     setCursorPosition,
+    swapRow,
   } = useContext(AppStateContext);
   return (
     <tbody style={{ position: 'relative' }}>
@@ -111,7 +112,18 @@ function TableBody() {
               elictPickedRow(e);
             }}
           >
+            <button
+              onClick={() => swapRow(rowIndex, rowIndex - 1)}
+              aria-label="Move row up"
+            >
+              ^
+            </button>
             {rowIndex}
+            <button
+              onClick={() => swapRow(rowIndex, parseInt(rowIndex) + 1)}              aria-label="Move row dow"
+            >
+              v
+            </button>
             <button onClick={() => deleteRow(rowIndex)}>X</button>
           </th>
           {headingOrder.map((heading, headingIndex) => {

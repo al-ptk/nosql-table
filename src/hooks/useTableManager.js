@@ -123,7 +123,10 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     oldIndex = parseInt(oldIndex);
     newIndex = parseInt(newIndex);
 
-    if (newIndex < 0 || newIndex >= tableRows.length) return;
+    if (newIndex < 0 || newIndex >= tableRows.length) {
+      console.log(`Invalid newIndex ${newIndex}`);
+      return;
+    }
 
     const shallowRows = tableRows.slice();
     [shallowRows[oldIndex], shallowRows[newIndex]] = [
