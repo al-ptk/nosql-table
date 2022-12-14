@@ -3,7 +3,7 @@
 - [x] Delete rows and columns
 - [x] Rearrange rows and columns
 - [ ] duplicate, cut, paste
-  - [ ] Rows
+  - [x] Rows
   - [ ] Columns
 - [ ] Tab and enter movements
 - [ ] A repeat (macro) function
@@ -35,7 +35,7 @@ GUI stuff
 
 Refactors:
 
-- [ ]
+- [ ] Rename EVERY row to instance and EVERY heading to property. The current naming is conceptually coupled — what if I transpose the table?
 
 Branch out - a real data bank:
 
