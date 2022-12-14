@@ -24,7 +24,7 @@ export const StyledTable = styled.table`
 
   :focus,
   :focus-within {
-    outline: 1px solid black;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
   }
 `;
 
