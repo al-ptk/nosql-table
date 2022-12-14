@@ -15,7 +15,7 @@ export const HeadingCell = ({
   };
 
   return (
-    <StyledHeading onClick={props.onClick}>
+    <StyledHeading {...props}>
       <textarea
         value={readValue() || ''}
         onInput={handleInput}

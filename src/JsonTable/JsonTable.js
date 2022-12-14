@@ -24,7 +24,7 @@ export function JsonTable() {
 
 const elictPickedColumn = (headingIndex) => {
   const columnGroup = document.querySelectorAll(
-    `[data-column="${headingIndex}"]`
+    `[data-col="${headingIndex}"]`
   );
   columnGroup.forEach(
     (elem) => (elem.style.backgroundColor = 'rgba(255,0,0,.3)')
@@ -98,7 +98,8 @@ function TableBody() {
                 readValue={dataReadFactory(rowIndex, heading)}
                 updateValue={dataUpdateFactory(rowIndex, heading)}
                 key={headingIndex}
-                coords={[rowIndex, headingIndex]}
+                data-row={rowIndex}
+                data-col={headingIndex}
               />
             );
           })}
