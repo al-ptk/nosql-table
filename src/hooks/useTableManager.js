@@ -6,16 +6,10 @@ const emptyTable = [
   { 'property 0': '', 'property 1': '' },
 ];
 
-// @remove ???
-function* propertyNumberGenerator(initialValue = 0) {
-  let i = initialValue;
-  while (true) {
-    yield i;
-    i++;
-  }
-}
-const propNumGen = propertyNumberGenerator(emptyTable.length);
-
+/*
+  For all states of one project. 
+  Each project has an unique table, with its own title and schema.
+*/
 export default function useTableManager(tableStream = emptyTable.slice()) {
   const [tableRows, setTableRows] = useState(tableStream);
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(tableStream));
@@ -68,7 +62,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   };
 
   const addColumn = () => {
-    const newProp = `property ${propNumGen.next().value}`;
+    const newProp = `property ${headingOrder.length}`;
 
     // Update Headings
     setHeadingOrder(headingOrder.concat(newProp));
