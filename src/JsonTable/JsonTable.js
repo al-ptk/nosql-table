@@ -15,7 +15,7 @@ export function JsonTable() {
   return (
     <StyledMain>
       <StyledTable onKeyDown={handleArrowKeys} tabIndex="0">
-        <TableHead />
+        <TableHead /> 
         <TableBody />
       </StyledTable>
       <JSONPreview />

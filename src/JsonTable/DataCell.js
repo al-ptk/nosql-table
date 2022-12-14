@@ -7,7 +7,9 @@ export const DataCell = ({ readValue, updateValue, ...props }) => {
     <td {...props}>
       <textarea
         value={cellValue || ''}
-        onInput={(e) => updateValue(e.target.value)}
+        onInput={(e) => {
+          updateValue(e.target.value);
+        }}
       ></textarea>
     </td>
   );
