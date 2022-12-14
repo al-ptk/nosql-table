@@ -47,6 +47,10 @@ function TableHead() {
               swapColumn(headingIndex, headingIndex + 1);
             }}
             key={headingIndex}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              console.log('IMPLEMENT CONTEXT MENUS!');
+            }}
           />
         ))}
         <td>
@@ -65,26 +69,65 @@ function TableBody() {
     dataUpdateFactory,
     addRow,
     swapRow,
+    duplicateRow,
+    cutRow,
+    copyRow,
+    pasteRow,
+    deleteRow,
   } = useContext(AppStateContext);
   return (
     <tbody style={{ position: 'relative' }}>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
-          <th scope="row">
-            <button
-              onClick={() => swapRow(rowIndex, rowIndex - 1)}
-              aria-label="Move row up"
-            >
-              ^
-            </button>
-            {rowIndex}
-            <button
-              onClick={() => swapRow(rowIndex, parseInt(rowIndex) + 1)}
-              aria-label="Move row dow"
-            >
-              v
-            </button>
-            <button onClick={() => rowIndex}>X</button>
+          <th
+            scope="row"
+            onContextMenu={(e) => {
+              e.preventDefault();
+              console.log('IMPLEMENT CONTEXT MENUS!');
+            }}
+          >
+            <p>
+              <button
+                onClick={() => swapRow(rowIndex, rowIndex - 1)}
+                aria-label="Move row up"
+              >
+                ^
+              </button>
+              {rowIndex}
+              <button
+                onClick={() => swapRow(rowIndex, rowIndex * 1 + 1)}
+                aria-label="Move row dow"
+              >
+                v
+              </button>
+              <button
+                onClick={() => deleteRow(rowIndex * 1)}
+                aria-label="Delete row"
+              >
+                X
+              </button>
+            </p>
+            <p>
+              <button onClick={() => cutRow(rowIndex)}>Cut row</button>
+            </p>
+            <p>
+              <button onClick={() => copyRow(rowIndex)}>Copy row</button>
+            </p>
+            <p>
+              <button onClick={() => duplicateRow(rowIndex)}>
+                Duplicate row
+              </button>
+            </p>
+            <p>
+              <button onClick={() => pasteRow(rowIndex)}>
+                Paste row above
+              </button>
+            </p>
+            <p>
+              <button onClick={() => pasteRow(rowIndex * 1 + 1)}>
+                Paste row below
+              </button>
+            </p>
           </th>
           {headingOrder.map((heading, headingIndex) => {
             return (

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { getAllKeys } from '../utils/helperFunctions';
+import mockTable from '../mockTable.json';
+import { useEffect } from 'react';
 
-const emptyTable = [
-  { 'property 0': '', 'property 1': '' },
-  { 'property 0': '', 'property 1': '' },
-];
+const emptyTable =
+  ![
+    { 'property 0': '', 'property 1': '' },
+    { 'property 0': '', 'property 1': '' },
+  ] || mockTable;
 
 /*
   For all states of one project. 
@@ -15,6 +18,11 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   const [headingOrder, setHeadingOrder] = useState(getAllKeys(tableStream));
   const [rowNumber, setRowNumber] = useState(tableStream.length);
   const [title, setTitle] = useState('JSON table');
+  const [clipboard, setClipboard] = useState(null);
+
+  useEffect(() => {
+    setRowNumber(tableRows.length - 1); // w/0 the -1, indexes goes out of bounds
+  }, [tableRows]);
 
   //  ---------------------------- Cell Manipulation ---------------------------
   const headingUpdateFactory = (index) => {
@@ -57,9 +65,10 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   const newTable = () => {
     setTableRows(emptyTable.slice()); // create shallow copy
     setHeadingOrder(getAllKeys(emptyTable));
-    setRowNumber(emptyTable.length);
     setTitle('New Table');
   };
+
+  // --- Columns ----
 
   const addColumn = () => {
     const newProp = `property ${headingOrder.length}`;
@@ -103,20 +112,27 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     setHeadingOrder(shallowOrder);
   };
 
+  const duplicateColumn = (headingIndex) => {};
+
+  const cutColumn = (headingIndex) => {};
+
+  const copyColumn = (headingIndex) => {};
+
+  const pasteColumn = (headingIndex) => {};
+
+  // --- Rows ----
+
   const addRow = () => {
     const newRow = Object.fromEntries(
       headingOrder.map((heading) => [heading, ''])
     );
     setTableRows(tableRows.concat(newRow));
-    setRowNumber(rowNumber + 1);
   };
 
-  const deleteRow = (index) => {
-    let shallowTable = tableRows.filter(
-      (row, rowIndex) => parseInt(index) !== parseInt(rowIndex)
-    );
-    setRowNumber(shallowTable.length);
-    setTableRows(shallowTable);
+  const deleteRow = (rowIndex) => {
+    let shallowRows = tableRows.slice();
+    shallowRows.splice(rowIndex, 1);
+    setTableRows(shallowRows);
   };
 
   const swapRow = (oldIndex, newIndex) => {
@@ -136,6 +152,30 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     setTableRows(shallowRows);
   };
 
+  const duplicateRow = (rowIndex) => {
+    const shallowRows = tableRows.slice();
+    shallowRows.splice(rowIndex, 0, tableRows[rowIndex]);
+    setTableRows(shallowRows);
+  };
+
+  const cutRow = (rowIndex) => {
+    let data = tableRows[rowIndex];
+    setClipboard({ type: 'row', data });
+    deleteRow(rowIndex);
+  };
+
+  const copyRow = (rowIndex) => {
+    let data = tableRows[rowIndex];
+    setClipboard({ type: 'row', data });
+  };
+
+  const pasteRow = (rowIndex) => {
+    if (clipboard?.type !== 'row') return;
+    const shallowRows = tableRows.slice();
+    shallowRows.splice(rowIndex, 0, clipboard.data);
+    setTableRows(shallowRows);
+  };
+
   //  ---------------------------- File Manipulation ---------------------------
   const importTable = (fileInput) => {
     const reader = new FileReader();
@@ -144,7 +184,6 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
       const newTable = JSON.parse(reader.result);
       setHeadingOrder(getAllKeys(newTable));
       setTableRows(newTable);
-      setRowNumber(newTable.length);
       setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
     };
   };
@@ -164,7 +203,6 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     headingOrder,
     setHeadingOrder,
     rowNumber,
-    setRowNumber,
     title,
     setTitle,
     headingReadFactory,
@@ -177,6 +215,14 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     deleteColumn,
     swapRow,
     swapColumn,
+    duplicateRow,
+    duplicateColumn,
+    cutRow,
+    cutColumn,
+    copyRow,
+    copyColumn,
+    pasteRow,
+    pasteColumn,
     importTable,
     exportTable,
     newTable,
