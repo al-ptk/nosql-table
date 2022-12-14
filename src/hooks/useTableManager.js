@@ -184,15 +184,14 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     setTableRows(shallowRows);
   };
 
-  const cutRow = (rowIndex) => {
-    let rowData = tableRows[rowIndex];
-    setClipboard({ type: 'row', data: rowData });
-    deleteRow(rowIndex);
-  };
-
   const copyRow = (rowIndex) => {
     let rowData = tableRows[rowIndex];
     setClipboard({ type: 'row', data: rowData });
+  };
+
+  const cutRow = (rowIndex) => {
+    copyRow(rowIndex);
+    deleteRow(rowIndex);
   };
 
   const pasteRow = (rowIndex) => {

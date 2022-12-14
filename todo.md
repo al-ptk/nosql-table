@@ -4,7 +4,7 @@
 - [x] Rearrange rows and columns
 - [ ] duplicate, cut, paste
   - [x] Rows
-  - [ ] Columns
+  - [x] Columns
 - [ ] Tab and enter movements
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
