@@ -4,18 +4,15 @@ import { useState } from 'react';
 import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './StyledFooter';
 import useTableManager from './hooks/useTableManager';
-import useCursor from './hooks/useCursor';
 import { createContext } from 'react';
 export const AppStateContext = createContext();
 
 function App() {
   const tableManager = useTableManager();
-  const tableCursor = useCursor();
   const [showPreview, setShowPreview] = useState(false);
 
   const AppState = {
     ...tableManager,
-    ...tableCursor,
     showPreview,
     setShowPreview,
   };

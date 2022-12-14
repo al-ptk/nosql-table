@@ -11,15 +11,9 @@ import { useContext } from 'react';
 import { AppStateContext } from '../App';
 
 export function JsonTable() {
-  const { resetCursorPosition } = useContext(AppStateContext);
   return (
     <StyledMain>
-      <StyledTable
-        tabIndex="0"
-        onBlur={() => {
-          resetCursorPosition();
-        }}
-      >
+      <StyledTable tabIndex="0">
         <TableHead />
         <TableBody />
       </StyledTable>
@@ -28,16 +22,6 @@ export function JsonTable() {
   );
 }
 
-const elictPickedColumn = (headingIndex) => {
-  const columnGroup = document.querySelectorAll(`[data-col="${headingIndex}"]`);
-  columnGroup.forEach(
-    (elem) => (elem.style.backgroundColor = 'rgba(255,0,0,.3)')
-  );
-  setTimeout(() => {
-    columnGroup.forEach((elem) => (elem.style.backgroundColor = 'transparent'));
-  }, 1000);
-};
-
 function TableHead() {
   const {
     headingOrder,
@@ -45,7 +29,6 @@ function TableHead() {
     headingUpdateFactory,
     addColumn,
     deleteColumn,
-    setCursorPosition,
     swapColumn,
   } = useContext(AppStateContext);
   return (
@@ -57,10 +40,6 @@ function TableHead() {
             readValue={headingReadFactory(headingIndex)}
             updateValue={headingUpdateFactory(headingIndex)}
             deleteSelf={() => deleteColumn(headingIndex)}
-            onClick={() => {
-              setCursorPosition(['-1', headingIndex]);
-              elictPickedColumn(headingIndex);
-            }}
             moveLeft={() => {
               swapColumn(headingIndex, headingIndex - 1);
             }}
@@ -78,18 +57,6 @@ function TableHead() {
   );
 }
 
-const elictPickedRow = (e) => {
-  // Stopping bubble up
-  e.stopPropagation();
-  // Capturing the "lowest" element that register the even
-  const chosenRow = e.currentTarget.parentElement;
-  chosenRow.style.backgroundColor = 'rgba(255,0,0,.3)';
-  const setBorderBack = () => {
-    chosenRow.style.backgroundColor = 'transparent';
-  };
-  setTimeout(setBorderBack, 1000);
-};
-
 function TableBody() {
   const {
     headingOrder,
@@ -97,21 +64,13 @@ function TableBody() {
     dataReadFactory,
     dataUpdateFactory,
     addRow,
-    deleteRow,
-    setCursorPosition,
     swapRow,
   } = useContext(AppStateContext);
   return (
     <tbody style={{ position: 'relative' }}>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
-          <th
-            scope="row"
-            onClick={(e) => {
-              setCursorPosition([rowIndex, '-1']);
-              elictPickedRow(e);
-            }}
-          >
+          <th scope="row">
             <button
               onClick={() => swapRow(rowIndex, rowIndex - 1)}
               aria-label="Move row up"
@@ -120,11 +79,12 @@ function TableBody() {
             </button>
             {rowIndex}
             <button
-              onClick={() => swapRow(rowIndex, parseInt(rowIndex) + 1)}              aria-label="Move row dow"
+              onClick={() => swapRow(rowIndex, parseInt(rowIndex) + 1)}
+              aria-label="Move row dow"
             >
               v
             </button>
-            <button onClick={() => deleteRow(rowIndex)}>X</button>
+            <button onClick={() => rowIndex}>X</button>
           </th>
           {headingOrder.map((heading, headingIndex) => {
             return (
@@ -132,9 +92,6 @@ function TableBody() {
                 readValue={dataReadFactory(rowIndex, heading)}
                 updateValue={dataUpdateFactory(rowIndex, heading)}
                 key={headingIndex}
-                data-row={rowIndex}
-                data-col={headingIndex}
-                onFocus={() => setCursorPosition([rowIndex, headingIndex])}
               />
             );
           })}
