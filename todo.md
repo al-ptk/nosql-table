@@ -2,10 +2,9 @@
 - [x] The instance number
 - [x] Delete rows and columns
 - [x] Rearrange rows and columns
-- [ ] duplicate, cut, paste
+- [x] duplicate, cut, paste
   - [x] Rows
   - [x] Columns
-- [ ] Tab and enter movements
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition

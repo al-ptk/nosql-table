@@ -83,7 +83,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   const addColumn = (heading, valuesArray, headingIndex) => {
     heading = heading || `property ${propNumber.next().value}`;
     valuesArray = valuesArray || new Array(tableRows.length).fill('');
-    headingIndex = headingIndex || headingOrder.length;
+    headingIndex = headingIndex ?? headingOrder.length;
 
     // Update Headings
     const shallowOrder = headingOrder.slice();
@@ -131,7 +131,8 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
 
   const copyColumn = (headingIndex) => {
     const colHeading = headingOrder[headingIndex];
-    const colRows = tableRows.map((row) => row[headingIndex]);
+    const heading = headingOrder[headingIndex];
+    const colRows = tableRows.map((row) => row[heading]);
     setClipboard({ type: 'col', data: { colHeading, colRows } });
   };
 
