@@ -15,6 +15,7 @@
 - [ ] create wizard for adding rows
 
 GUI stuff
+
 - [ ] The file and edit buttons
 - [ ] Create infrastructure around the app:
   - [ ] Landing Page
@@ -22,9 +23,18 @@ GUI stuff
   - [ ] Backend authentication and storage ???
     - [ ] Limit size of tables to a certain kb or mb limit
     - [ ] Limit number of tables on cloud to 5 ???
+- [ ] Contextual Menu
+  - [ ] Headings (for columns and rows)
+    - [ ] Paste above\left
+    - [ ] Paste below\right
+    - [ ] copy
+    - [ ] cut
+    - [ ] delete
+    - [ ] duplicate
 
 Refactors:
-- [ ] 
+
+- [ ]
 
 Branch out - a real data bank:
 
