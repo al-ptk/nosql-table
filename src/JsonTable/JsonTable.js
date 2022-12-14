@@ -11,11 +11,16 @@ import { useContext } from 'react';
 import { AppStateContext } from '../App';
 
 export function JsonTable() {
-  const { handleArrowKeys } = useContext(AppStateContext);
+  const { resetCursorPosition } = useContext(AppStateContext);
   return (
     <StyledMain>
-      <StyledTable onKeyDown={handleArrowKeys} tabIndex="0">
-        <TableHead /> 
+      <StyledTable
+        tabIndex="0"
+        onBlur={() => {
+          resetCursorPosition();
+        }}
+      >
+        <TableHead />
         <TableBody />
       </StyledTable>
       <JSONPreview />
@@ -40,6 +45,7 @@ function TableHead() {
     headingUpdateFactory,
     addColumn,
     deleteColumn,
+    setCursorPosition,
   } = useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
@@ -50,7 +56,10 @@ function TableHead() {
             readValue={headingReadFactory(headingIndex)}
             updateValue={headingUpdateFactory(headingIndex)}
             deleteSelf={() => deleteColumn(headingIndex)}
-            onClick={() => elictPickedColumn(headingIndex)}
+            onClick={() => {
+              setCursorPosition(['-1', headingIndex]);
+              elictPickedColumn(headingIndex);
+            }}
             key={headingIndex}
           />
         ))}
@@ -69,7 +78,7 @@ const elictPickedRow = (e) => {
   const chosenRow = e.currentTarget.parentElement;
   chosenRow.style.backgroundColor = 'rgba(255,0,0,.3)';
   const setBorderBack = () => {
-    chosenRow.style.backgroundColor = 'white';
+    chosenRow.style.backgroundColor = 'transparent';
   };
   setTimeout(setBorderBack, 1000);
 };
@@ -82,12 +91,19 @@ function TableBody() {
     dataUpdateFactory,
     addRow,
     deleteRow,
+    setCursorPosition,
   } = useContext(AppStateContext);
   return (
     <tbody style={{ position: 'relative' }}>
       {range(rowNumber).map((rowIndex) => (
         <tr key={rowIndex}>
-          <th scope="row" onClick={elictPickedRow}>
+          <th
+            scope="row"
+            onClick={(e) => {
+              setCursorPosition([rowIndex, '-1']);
+              elictPickedRow(e);
+            }}
+          >
             {rowIndex}
             <button onClick={() => deleteRow(rowIndex)}>X</button>
           </th>
@@ -99,6 +115,7 @@ function TableBody() {
                 key={headingIndex}
                 data-row={rowIndex}
                 data-col={headingIndex}
+                onFocus={() => setCursorPosition([rowIndex, headingIndex])}
               />
             );
           })}
