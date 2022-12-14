@@ -7,6 +7,10 @@ export const HeadingCell = ({
   deleteSelf,
   moveLeft,
   moveRight,
+  copyColumn,
+  cutColumn,
+  pasteLeft,
+  pasteRight,
   ...props
 }) => {
   const handleInput = (e) => {
@@ -18,16 +22,30 @@ export const HeadingCell = ({
 
   return (
     <StyledHeading {...props}>
-      <button onClick={moveLeft}> {'<'} </button>
-      <textarea
-        value={readValue() || ''}
-        onInput={handleInput}
-        rows="1"
-        cols="20"
-        maxLength="20"
-      ></textarea>
-      <button onClick={moveRight}> {'>'} </button>
-      <button onClick={deleteSelf}>X</button>
+      <p>
+        <button onClick={moveLeft}> {'<'} </button>
+        <textarea
+          value={readValue() || ''}
+          onInput={handleInput}
+          rows="1"
+          cols="20"
+          maxLength="20"
+        ></textarea>
+        <button onClick={moveRight}> {'>'} </button>
+        <button onClick={deleteSelf}>X</button>
+      </p>
+      <p>
+        <button onClick={copyColumn}>Copy column</button>
+      </p>
+      <p>
+        <button onClick={cutColumn}>Cut Column</button>
+      </p>
+      <p>
+        <button onClick={pasteLeft}>Paste to the left</button>
+      </p>
+      <p>
+        <button onClick={pasteRight}>Paste to the right</button>
+      </p>
     </StyledHeading>
   );
 };

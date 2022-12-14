@@ -36,8 +36,8 @@ export function ActionBar() {
         onInput={(e) => setTitle(e.target.value)}
         className="title"
       />
-      <button onClick={addColumn}>Add Column</button>
-      <button onClick={addRow}>Add Row</button>
+      <button onClick={() => addColumn()}>Add Column</button>
+      <button onClick={() => addRow()}>Add Row</button>
       <button onClick={togglePreview}>Show Preview</button>
     </StyledActionBar>
   );

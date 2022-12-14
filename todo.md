@@ -36,6 +36,8 @@ GUI stuff
 Refactors:
 
 - [ ] Rename EVERY row to instance and EVERY heading to property. The current naming is conceptually coupled — what if I transpose the table?
+- [ ] Clean up cell actions with context menus and action bar buttons
+- [ ] Create separate component for index th's called IndexCell
 
 Branch out - a real data bank:
 

@@ -19,21 +19,21 @@ function App() {
 
   return (
     <>
+      <GlobalStyle />
       <AppStateContext.Provider value={AppState}>
-        <GlobalStyle />
         <ActionBar />
         <JsonTable />
-        <StyledFooter>
-          Made by{' '}
-          <a
-            href="https://al-ptk.github.io/portfolio"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            Alan Patrick
-          </a>
-        </StyledFooter>
       </AppStateContext.Provider>
+      <StyledFooter>
+        Made by{' '}
+        <a
+          href="https://al-ptk.github.io/portfolio"
+          target={'_blank'}
+          rel="noreferrer"
+        >
+          Alan Patrick
+        </a>
+      </StyledFooter>
     </>
   );
 }

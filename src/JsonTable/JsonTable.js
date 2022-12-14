@@ -30,6 +30,9 @@ function TableHead() {
     addColumn,
     deleteColumn,
     swapColumn,
+    copyColumn,
+    cutColumn,
+    pasteColumn,
   } = useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
@@ -46,6 +49,14 @@ function TableHead() {
             moveRight={() => {
               swapColumn(headingIndex, headingIndex + 1);
             }}
+            cutColumn={() => cutColumn(headingIndex)}
+            copyColumn={() => copyColumn(headingIndex)}
+            pasteLeft={() => pasteColumn(headingIndex)}
+            // About pasteLeft:
+            // Pasting a new column on index A
+            // will move the old column (currently sitting at index A)
+            // to index A+1 — essetially moving the old column to the right
+            pasteRight={() => pasteColumn(headingIndex + 1)}
             key={headingIndex}
             onContextMenu={(e) => {
               e.preventDefault();

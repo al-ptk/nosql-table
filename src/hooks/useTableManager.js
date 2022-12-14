@@ -9,6 +9,13 @@ const emptyTable =
     { 'property 0': '', 'property 1': '' },
   ] || mockTable;
 
+function* propNumberGenerator(start = 0) {
+  while (true) {
+    yield start;
+    start++;
+  }
+}
+
 /*
   For all states of one project. 
   Each project has an unique table, with its own title and schema.
@@ -19,6 +26,9 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   const [rowNumber, setRowNumber] = useState(tableStream.length);
   const [title, setTitle] = useState('JSON table');
   const [clipboard, setClipboard] = useState(null);
+  const [propNumber, setNumGenerator] = useState(
+    propNumberGenerator(tableStream.length)
+  );
 
   useEffect(() => {
     setRowNumber(tableRows.length - 1); // w/0 the -1, indexes goes out of bounds
@@ -70,16 +80,23 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
 
   // --- Columns ----
 
-  const addColumn = () => {
-    const newProp = `property ${headingOrder.length}`;
+  const addColumn = (heading, valuesArray, headingIndex) => {
+    heading = heading || `property ${propNumber.next().value}`;
+    valuesArray = valuesArray || new Array(tableRows.length).fill('');
+    headingIndex = headingIndex || headingOrder.length;
 
     // Update Headings
-    setHeadingOrder(headingOrder.concat(newProp));
+    const shallowOrder = headingOrder.slice();
+    shallowOrder.splice(headingIndex, 0, heading); // Adds heading to array
+    setHeadingOrder(shallowOrder);
 
     // Update Rows
     setTableRows(
-      tableRows.map((row) => {
-        row[newProp] = '';
+      tableRows.map((row, rowIndex) => {
+        // since valuesArray will have the same length and order
+        // as the tableRows, I can use the row's index to access
+        // its respective value in the value array.
+        row[heading] = valuesArray[rowIndex];
         return row;
       })
     );
@@ -112,13 +129,22 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     setHeadingOrder(shallowOrder);
   };
 
-  const duplicateColumn = (headingIndex) => {};
+  const copyColumn = (headingIndex) => {
+    const colHeading = headingOrder[headingIndex];
+    const colRows = tableRows.map((row) => row[headingIndex]);
+    setClipboard({ type: 'col', data: { colHeading, colRows } });
+  };
 
-  const cutColumn = (headingIndex) => {};
+  const cutColumn = (headingIndex) => {
+    copyColumn(headingIndex);
+    deleteColumn(headingIndex);
+  };
 
-  const copyColumn = (headingIndex) => {};
-
-  const pasteColumn = (headingIndex) => {};
+  const pasteColumn = (headingIndex) => {
+    if (clipboard?.type !== 'col') return;
+    const { colHeading, colRows } = clipboard.data;
+    addColumn(colHeading, colRows, headingIndex);
+  };
 
   // --- Rows ----
 
@@ -159,14 +185,14 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
   };
 
   const cutRow = (rowIndex) => {
-    let data = tableRows[rowIndex];
-    setClipboard({ type: 'row', data });
+    let rowData = tableRows[rowIndex];
+    setClipboard({ type: 'row', data: rowData });
     deleteRow(rowIndex);
   };
 
   const copyRow = (rowIndex) => {
-    let data = tableRows[rowIndex];
-    setClipboard({ type: 'row', data });
+    let rowData = tableRows[rowIndex];
+    setClipboard({ type: 'row', data: rowData });
   };
 
   const pasteRow = (rowIndex) => {
@@ -185,6 +211,7 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
       setHeadingOrder(getAllKeys(newTable));
       setTableRows(newTable);
       setTitle(fileInput.current.files[0].name.slice(0, -'.json'.length));
+      setNumGenerator(propNumberGenerator(newTable.length));
     };
   };
 
@@ -216,7 +243,6 @@ export default function useTableManager(tableStream = emptyTable.slice()) {
     swapRow,
     swapColumn,
     duplicateRow,
-    duplicateColumn,
     cutRow,
     cutColumn,
     copyRow,
