@@ -4,16 +4,16 @@ export const StyledFooter = styled.footer`
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 1.5em;
+  height: fit-content;
+  padding: 6px 0px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 
-  background-color: hsl(215, 70%, 25%);
+  background-color: #373737;
   color: white;
-  border-radius: 5px 5px 0 0;
 
   a {
     color: white;
