@@ -36,6 +36,7 @@ function TableHead() {
   } = useContext(AppStateContext);
   return (
     <thead style={{ position: 'sticky', top: 50 }}>
+      {/* For vertical rows, make tr be flex column */}
       <tr>
         <th scope="col">Index</th>
         {headingOrder.map((heading, headingIndex) => (
@@ -89,6 +90,7 @@ function TableBody() {
   return (
     <tbody style={{ position: 'relative' }}>
       {range(rowNumber).map((rowIndex) => (
+        // For vertical rows, make tr be flex column
         <tr key={rowIndex}>
           <th
             scope="row"
@@ -145,7 +147,7 @@ function TableBody() {
               <DataCell
                 readValue={dataReadFactory(rowIndex, heading)}
                 updateValue={dataUpdateFactory(rowIndex, heading)}
-                key={headingIndex}
+                key={`${rowIndex}-${headingIndex}`}
               />
             );
           })}
