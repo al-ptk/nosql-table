@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
+import { ContextualMenu } from './JsonTable.styled';
 
 export const HeadingCell = ({
   readValue,
@@ -13,6 +15,8 @@ export const HeadingCell = ({
   pasteRight,
   ...props
 }) => {
+  const [contextMenu, setContextMenu] = useState(null);
+
   const handleInput = (e) => {
     e.preventDefault();
     // Disable new lines
@@ -20,32 +24,45 @@ export const HeadingCell = ({
     updateValue(e.target.value);
   };
 
-  return (
-    <StyledHeading {...props}>
-      <p>
-        <button onClick={moveLeft}> {'<'} </button>
-        <textarea
-          value={readValue() || ''}
-          onInput={handleInput}
-          rows="1"
-          cols="20"
-          maxLength="20"
-        ></textarea>
-        <button onClick={moveRight}> {'>'} </button>
-        <button onClick={deleteSelf}>X</button>
-      </p>
-      <p>
+  const PropsContextMenu = ({ xPos, yPos }) => {
+    const ref = useRef(null);
+    return (
+      <ContextualMenu
+        {...{ xPos, yPos }}
+        ref={ref}
+        tabIndex={0}
+        onBlur={(e) => {
+          e.stopPropagation();
+          console.log(e.currentTarget);
+        }}
+      >
+        <button onClick={moveLeft}> Move Back</button>
+        <button onClick={moveRight}> Move Foward </button>
+        <button onClick={deleteSelf}>Delete Column</button>
         <button onClick={copyColumn}>Copy column</button>
-      </p>
-      <p>
         <button onClick={cutColumn}>Cut Column</button>
-      </p>
-      <p>
         <button onClick={pasteLeft}>Paste to the left</button>
-      </p>
-      <p>
         <button onClick={pasteRight}>Paste to the right</button>
-      </p>
+      </ContextualMenu>
+    );
+  };
+
+  return (
+    <StyledHeading
+      {...props}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setContextMenu(<PropsContextMenu xPos={0} yPos={0} />);
+      }}
+    >
+      <textarea
+        value={readValue() || ''}
+        onInput={handleInput}
+        rows="1"
+        cols="20"
+        maxLength="20"
+      ></textarea>
+      {contextMenu}
     </StyledHeading>
   );
 };

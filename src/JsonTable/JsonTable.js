@@ -3,7 +3,7 @@ import {
   StyledTable,
   StyledJsonFormatter,
   StyledTHead,
-  StyledTBody
+  StyledTBody,
 } from './JsonTable.styled';
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';

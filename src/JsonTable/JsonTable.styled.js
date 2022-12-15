@@ -12,8 +12,13 @@ export const StyledTable = styled.table`
 
   td,
   th {
+    position: relative;
     border: 1px solid rgba(0, 0, 0, 0.5);
     flex: 0;
+    textarea {
+      width: 150px;
+      height: 50px;
+    }
   }
 
   :focus,
@@ -48,11 +53,17 @@ export const StyledTBody = styled.tbody`
     display: flex;
     flex-direction: column;
   }
+`;
 
-  td {
-    textarea {
-      width: 150px;
-      height: 50px;
-    }
+export const ContextualMenu = styled.div`
+  position: absolute;
+  top: ${(props) => props.yPos};
+  left: ${(props) => props.xPos};
+  z-index: 10;
+  width: 200px;
+  background-color: gray;
+
+  button {
+    display: block;
   }
 `;
