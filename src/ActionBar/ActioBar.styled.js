@@ -7,29 +7,25 @@ export const StyledActionBar = styled.header`
   height: 3em;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   gap: 15px;
 
-  background-color: hsl(215, 70%, 25%);
+  background-color: #373737;
   color: white;
-  border-radius: 0 0 10px 10px;
 
   button {
     padding: 5px;
-
-    background-color: hsl(190, 88%, 42%);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
-
+    background-color: transparent;
     color: white;
+    border: none;
     font-weight: bold;
   }
 
   input[type='text'].title {
     width: 200px;
-
-    padding: 0 10px;
+    margin-bottom: 2px;
+    padding: 0 1px;
 
     background-color: transparent;
     color: white;
