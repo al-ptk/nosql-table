@@ -26,11 +26,7 @@ function App() {
       </AppStateContext.Provider>
       <StyledFooter>
         Made by{' '}
-        <a
-          href="https://al-ptk.github.io/portfolio"
-          target={'_blank'}
-          rel="noreferrer"
-        >
+        <a href="https://github.com/al-ptk" target={'_blank'} rel="noreferrer">
           Alan Patrick
         </a>
       </StyledFooter>

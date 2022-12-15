@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 import JsonFormatter from 'react-json-formatter';
 
-export const StyledMain = styled.main`
-  margin: 10vh auto;
-  padding: 100px;
+export const StyledTable = styled.table`
+  margin: 100px 10vw;
+  max-width: 80vw;
 
   display: flex;
-  flex-direction: column;
-  gap: 50px;
-`;
-
-export const StyledTable = styled.table`
-  width: 80%;
-  margin: 0 auto;
 
   background-color: white;
   border-collapse: collapse;
@@ -29,3 +22,19 @@ export const StyledTable = styled.table`
 `;
 
 export const StyledJsonFormatter = styled(JsonFormatter)``;
+
+export const StyledTHead = styled.thead`
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const StyledTBody = styled.tbody`
+  display: flex;
+  
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+`;

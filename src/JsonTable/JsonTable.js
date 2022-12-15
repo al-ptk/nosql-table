@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  StyledMain,
   StyledTable,
   StyledJsonFormatter,
+  StyledTHead,
+  StyledTBody
 } from './JsonTable.styled';
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
@@ -12,13 +13,10 @@ import { AppStateContext } from '../App';
 
 export function JsonTable() {
   return (
-    <StyledMain>
-      <StyledTable tabIndex="0">
-        <TableHead />
-        <TableBody />
-      </StyledTable>
-      <JSONPreview />
-    </StyledMain>
+    <StyledTable tabIndex="0">
+      <TableHead />
+      <TableBody />
+    </StyledTable>
   );
 }
 
@@ -35,7 +33,7 @@ function TableHead() {
     pasteColumn,
   } = useContext(AppStateContext);
   return (
-    <thead style={{ position: 'sticky', top: 50 }}>
+    <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr>
         <th scope="col">Index</th>
@@ -69,7 +67,7 @@ function TableHead() {
           <button onClick={() => addColumn()}>+</button>
         </td>
       </tr>
-    </thead>
+    </StyledTHead>
   );
 }
 
@@ -88,7 +86,7 @@ function TableBody() {
     deleteRow,
   } = useContext(AppStateContext);
   return (
-    <tbody style={{ position: 'relative' }}>
+    <StyledTBody>
       {range(rowNumber).map((rowIndex) => (
         // For vertical rows, make tr be flex column
         <tr key={rowIndex}>
@@ -158,7 +156,7 @@ function TableBody() {
           <button onClick={() => addRow()}>+</button>
         </td>
       </tr>
-    </tbody>
+    </StyledTBody>
   );
 }
 
