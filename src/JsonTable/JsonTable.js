@@ -4,12 +4,14 @@ import {
   StyledJsonFormatter,
   StyledTHead,
   StyledTBody,
+  ContextualMenu,
 } from './JsonTable.styled';
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 import { useContext } from 'react';
 import { AppStateContext } from '../App';
+import { useState } from 'react';
 
 export function JsonTable() {
   return (
@@ -85,61 +87,77 @@ function TableBody() {
     pasteRow,
     deleteRow,
   } = useContext(AppStateContext);
+
+  const IndexHeading = ({ rowIndex }) => {
+    const [showContextMenu, setShowContextMenu] = useState(false);
+    return (
+      <th
+        scope="row"
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setShowContextMenu(true);
+        }}
+      >
+        {rowIndex}
+        {showContextMenu && <IndexHeadingMenu rowIndex={rowIndex} />}
+      </th>
+    );
+  };
+
+  const IndexHeadingMenu = ({ rowIndex }) => {
+    return (
+      <ContextualMenu>
+        <p>
+          <button
+            onClick={() => swapRow(rowIndex, rowIndex - 1)}
+            aria-label="Move row up"
+          >
+            Move row backward
+          </button>
+        </p>
+        <p>
+          <button
+            onClick={() => swapRow(rowIndex, rowIndex * 1 + 1)}
+            aria-label="Move row down"
+          >
+            Move row forward
+          </button>
+        </p>
+        <p>
+          <button
+            onClick={() => deleteRow(rowIndex * 1)}
+            aria-label="Delete row"
+          >
+            Delete row
+          </button>
+        </p>
+        <p>
+          <button onClick={() => cutRow(rowIndex)}>Cut row</button>
+        </p>
+        <p>
+          <button onClick={() => copyRow(rowIndex)}>Copy row</button>
+        </p>
+        <p>
+          <button onClick={() => duplicateRow(rowIndex)}>Duplicate row</button>
+        </p>
+        <p>
+          <button onClick={() => pasteRow(rowIndex)}>Paste row above</button>
+        </p>
+        <p>
+          <button onClick={() => pasteRow(rowIndex * 1 + 1)}>
+            Paste row below
+          </button>
+        </p>
+      </ContextualMenu>
+    );
+  };
+
   return (
     <StyledTBody>
       {range(rowNumber).map((rowIndex) => (
         // For vertical rows, make tr be flex column
         <tr key={rowIndex}>
-          <th
-            scope="row"
-            onContextMenu={(e) => {
-              e.preventDefault();
-              console.log('IMPLEMENT CONTEXT MENUS!');
-            }}
-          >
-            <p>
-              <button
-                onClick={() => swapRow(rowIndex, rowIndex - 1)}
-                aria-label="Move row up"
-              >
-                ^
-              </button>
-              {rowIndex}
-              <button
-                onClick={() => swapRow(rowIndex, rowIndex * 1 + 1)}
-                aria-label="Move row dow"
-              >
-                v
-              </button>
-              <button
-                onClick={() => deleteRow(rowIndex * 1)}
-                aria-label="Delete row"
-              >
-                X
-              </button>
-            </p>
-            <p>
-              <button onClick={() => cutRow(rowIndex)}>Cut row</button>
-            </p>
-            <p>
-              <button onClick={() => copyRow(rowIndex)}>Copy row</button>
-            </p>
-            <p>
-              <button onClick={() => duplicateRow(rowIndex)}>
-                Duplicate row
-              </button>
-            </p>
-            <p>
-              <button onClick={() => pasteRow(rowIndex)}>
-                Paste row above
-              </button>
-            </p>
-            <p>
-              <button onClick={() => pasteRow(rowIndex * 1 + 1)}>
-                Paste row below
-              </button>
-            </p>
-          </th>
+          <IndexHeading rowIndex={rowIndex} />
           {headingOrder.map((heading, headingIndex) => {
             return (
               <DataCell
