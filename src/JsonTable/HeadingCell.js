@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useRef } from 'react';
 import styled from 'styled-components';
-import { ContextualMenu } from './JsonTable.styled';
+import DropDownMenu from '../DropDownMenu';
 
 export const HeadingCell = ({
   readValue,
@@ -15,7 +14,7 @@ export const HeadingCell = ({
   pasteRight,
   ...props
 }) => {
-  const [contextMenu, setContextMenu] = useState(null);
+  const [showContextMenu, setShowContextMenu] = useState(false);
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -25,16 +24,12 @@ export const HeadingCell = ({
   };
 
   const PropsContextMenu = ({ xPos, yPos }) => {
-    const ref = useRef(null);
     return (
-      <ContextualMenu
-        {...{ xPos, yPos }}
-        ref={ref}
-        tabIndex={0}
-        onBlur={(e) => {
-          e.stopPropagation();
-          console.log(e.currentTarget);
+      <DropDownMenu
+        blurHandler={() => {
+          setShowContextMenu(false);
         }}
+        {...{ xPos, yPos }}
       >
         <button onClick={moveLeft}> Move Back</button>
         <button onClick={moveRight}> Move Foward </button>
@@ -43,7 +38,7 @@ export const HeadingCell = ({
         <button onClick={cutColumn}>Cut Column</button>
         <button onClick={pasteLeft}>Paste to the left</button>
         <button onClick={pasteRight}>Paste to the right</button>
-      </ContextualMenu>
+      </DropDownMenu>
     );
   };
 
@@ -52,7 +47,8 @@ export const HeadingCell = ({
       {...props}
       onContextMenu={(e) => {
         e.preventDefault();
-        setContextMenu(<PropsContextMenu xPos={0} yPos={0} />);
+        setShowContextMenu([e.clientX, e.clientY]);
+        console.log(e);
       }}
     >
       <textarea
@@ -62,7 +58,9 @@ export const HeadingCell = ({
         cols="20"
         maxLength="20"
       ></textarea>
-      {contextMenu}
+      {showContextMenu && (
+        <PropsContextMenu xPos={showContextMenu[0]} yPos={showContextMenu[1]} />
+      )}
     </StyledHeading>
   );
 };

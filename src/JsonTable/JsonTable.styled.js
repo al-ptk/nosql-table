@@ -54,16 +54,3 @@ export const StyledTBody = styled.tbody`
     flex-direction: column;
   }
 `;
-
-export const ContextualMenu = styled.div`
-  position: absolute;
-  top: ${(props) => props.yPos};
-  left: ${(props) => props.xPos};
-  z-index: 10;
-  width: 200px;
-  background-color: gray;
-
-  button {
-    display: block;
-  }
-`;

@@ -95,12 +95,14 @@ function TableBody() {
         scope="row"
         onContextMenu={(e) => {
           e.preventDefault();
-          setShowContextMenu(true);
+          setShowContextMenu([e.clientX, e.clientY]);
         }}
       >
         {rowIndex}
         {showContextMenu && (
           <IndexHeadingMenu
+            xPos={showContextMenu[0]}
+            yPos={showContextMenu[1]}
             rowIndex={rowIndex}
             updateShowContextMenu={() => {
               setShowContextMenu(false);
@@ -111,9 +113,17 @@ function TableBody() {
     );
   }
 
-  const IndexHeadingMenu = ({ rowIndex, updateShowContextMenu }) => {
+  const IndexHeadingMenu = ({
+    rowIndex,
+    updateShowContextMenu,
+    xPos,
+    yPos,
+  }) => {
     return (
-      <DropDownMenu blurHandler={() => updateShowContextMenu()}>
+      <DropDownMenu
+        {...{ xPos, yPos }}
+        blurHandler={() => updateShowContextMenu()}
+      >
         <p>
           <button
             onClick={() => swapRow(rowIndex, rowIndex - 1)}
