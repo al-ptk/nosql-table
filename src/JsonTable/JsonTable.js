@@ -8,10 +8,10 @@ import {
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
-import { useContext } from 'react';
-import { AppStateContext } from '../App';
 import { useState } from 'react';
 import DropDownMenu from '../DropDownMenu';
+import { useSelector } from 'react-redux';
+import {} from '../app/slices/tableSlice';
 
 export function JsonTable() {
   return (
@@ -23,51 +23,22 @@ export function JsonTable() {
 }
 
 function TableHead() {
-  const {
-    headingOrder,
-    headingReadFactory,
-    headingUpdateFactory,
-    addColumn,
-    deleteColumn,
-    swapColumn,
-    copyColumn,
-    cutColumn,
-    pasteColumn,
-  } = useContext(AppStateContext);
+  const schema = useSelector((state) => state.schema);
+
   return (
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr>
         <th scope="col">Index</th>
-        {headingOrder.map((heading, headingIndex) => (
+        {schema.map((property, propertyIndex) => (
           <HeadingCell
-            readValue={headingReadFactory(headingIndex)}
-            updateValue={headingUpdateFactory(headingIndex)}
-            deleteSelf={() => deleteColumn(headingIndex)}
-            moveLeft={() => {
-              swapColumn(headingIndex, headingIndex - 1);
-            }}
-            moveRight={() => {
-              swapColumn(headingIndex, headingIndex + 1);
-            }}
-            cutColumn={() => cutColumn(headingIndex)}
-            copyColumn={() => copyColumn(headingIndex)}
-            pasteLeft={() => pasteColumn(headingIndex)}
-            // About pasteLeft:
-            // Pasting a new column on index A
-            // will move the old column (currently sitting at index A)
-            // to index A+1 — essetially moving the old column to the right
-            pasteRight={() => pasteColumn(headingIndex + 1)}
-            key={headingIndex}
+            key={`prop-${property.name}`}
             onContextMenu={(e) => {
               e.preventDefault();
               console.log('IMPLEMENT CONTEXT MENUS!');
             }}
           />
         ))}
-        <td>
-          <button onClick={() => addColumn()}>+</button>
-        </td>
       </tr>
     </StyledTHead>
   );
