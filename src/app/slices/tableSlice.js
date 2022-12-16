@@ -66,11 +66,56 @@ const tableSlice = createSlice({
     },
 
     // Property Manager
-    addProperty: (state, action) => {},
-    deleteProperty: (state, action) => {},
-    copyProperty: (state, action) => {},
-    cutProperty: (state, action) => {},
-    pasteProperty: (state, action) => {},
+    addProperty: (state, action) => {
+      const { propertyIndex } = action.payload;
+      const propNum = state.propCounter.next().value;
+      const propertyName = `property ${propNum}`;
+      state.instances.map((instance) => (instance[propertyName] = ''));
+      state.schema.splice(propertyIndex, 0, propertyName);
+    },
+    deleteProperty: (state, action) => {
+      const { propertyIndex } = action.payload;
+      state.instances.splice(propertyIndex, 1);
+    },
+    copyProperty: (state, action) => {
+      const { propertyIndex } = action.payload;
+      const propertyName = state.schema[propertyIndex].name;
+      const propertySlice = state.instances.map(
+        (instance) => instance[propertyName]
+      );
+      state.clipboard = {
+        type: 'property',
+        data: propertySlice,
+      };
+    },
+    cutProperty: (state, action) => {
+      const { propertyIndex } = action.payload;
+      const property = state.schema[propertyIndex];
+      const propertySlice = state.instances.map((instance) => {
+        // propertySlice is a copy of all instances' values
+        // under same property name
+        let value = instance[property.name];
+        delete instance[property.name];
+        return value;
+      });
+      state.schema.splice(propertyIndex, 1);
+      state.clipboard = {
+        type: 'property',
+        data: {
+          property,
+          propertySlice,
+        },
+      };
+    },
+    pasteProperty: (state, action) => {
+      if (state.clipboard.type !== 'property') return;
+      const { propertyIndex } = action.payload;
+      const { property, name, propertySlice } = state.clipboard.data;
+      this.instances.forEach((instance, instanceIndex) => {
+        instance[(property, name)] = propertySlice[instanceIndex];
+      });
+      this.schema.splice(propertyIndex, 0, property);
+    },
 
     // Table Manager
     updateTitle: (state, action) => {},
