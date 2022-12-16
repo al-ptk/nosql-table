@@ -29,3 +29,10 @@ export function getAllKeys(objList) {
 export function range(length, start = 0, step = 1) {
   return Object.keys(Array(length).fill(null));
 }
+
+export function* counterGenerator(start = 0) {
+  while (true) {
+    yield start;
+    start++;
+  }
+}

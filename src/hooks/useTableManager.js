@@ -9,13 +9,6 @@ const emptyTable =
     { 'property 0': '', 'property 1': '' },
   ] || mockTable;
 
-function* propNumberGenerator(start = 0) {
-  while (true) {
-    yield start;
-    start++;
-  }
-}
-
 /*
   For all states of one project. 
   Each project has an unique table, with its own title and schema.
