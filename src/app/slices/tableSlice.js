@@ -12,11 +12,13 @@ const initialState = {
   // They are identified by the "type" filed
   propCounter: counterGenerator(2),
   title: 'New Table',
+  exportFile: null,
 };
 
 const tableSlice = createSlice({
   name: 'table',
   initialState,
+  
   reducers: {
     // Cell Manager
     updateDataCell: (state, action) => {
@@ -118,10 +120,40 @@ const tableSlice = createSlice({
     },
 
     // Table Manager
-    updateTitle: (state, action) => {},
-    importTable: (state, action) => {},
-    exportTable: (state, action) => {},
-    newTable: (state, action) => {},
+    updateTitle: (state, action) => {
+      const { newTitle } = action.payload;
+      state.title = newTitle;
+    },
+    importTable: (state, action) => {
+      const { fileInput } = action.payload;
+      const reader = new FileReader();
+      reader.readAsText(fileInput.current.files[0]);
+      reader.onload = function () {
+        const newTable = JSON.parse(reader.result);
+        state.instances = newTable.instances;
+        state.schema = newTable.schema;
+        state.title = newTable.title;
+        state.propCounter = counterGenerator(newTable.schema.length);
+        state.clipboard = { type: null, data: null };
+      };
+    },
+    makeExportFile: (state) => {
+      const JTEstream = JSON.stringify({
+        instances: state.instances,
+        title: state.title,
+        schema: state.schema,
+      });
+      const file = new File([JTEstream], `${state.title}.jte`, {
+        type: 'application/json',
+      });
+      state.exportFile = file;
+    },
+    cleanExportFile: (state) => {
+      state.exportFile = null;
+    },
+    newTable: (state) => {
+      state = initialState;
+    },
   },
 });
 
