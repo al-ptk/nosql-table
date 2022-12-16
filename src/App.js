@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './StyledFooter';
 import useTableManager from './hooks/useTableManager';
+import { Provider as StoreProvider } from 'react-redux';
+import store from './app/store';
 import { createContext } from 'react';
 export const AppStateContext = createContext();
 
@@ -20,10 +22,10 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <AppStateContext.Provider value={AppState}>
+      <StoreProvider store={store}>
         <ActionBar />
         <JsonTable />
-      </AppStateContext.Provider>
+      </StoreProvider>
       <StyledFooter>
         Made by{' '}
         <a href="https://github.com/al-ptk" target={'_blank'} rel="noreferrer">
