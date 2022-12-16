@@ -6,8 +6,10 @@ const initialState = {
     { 'property 0': '', 'property 1': '' },
     { 'property 0': '', 'property 1': '' },
   ],
-  schema: ['property 0', 'property 1'],
-  clipboard: {},
+  schema: [{ name: 'property 0' }, { name: 'property 1' }],
+  clipboard: { type: null, data: null },
+  // The clipboard may contain: instances, properties
+  // They are identified by the "type" filed
   propCounter: counterGenerator(2),
   title: 'New Table',
 };
@@ -18,28 +20,57 @@ const tableSlice = createSlice({
   reducers: {
     // Cell Manager
     updateDataCell: (state, action) => {
-      const { rowIndex, colIndex, data } = action.payload;
-      state.instances[rowIndex][colIndex] = data;
+      const { instanceIndex, propertyIndex, data } = action.payload;
+      state.instances[instanceIndex][propertyIndex] = data;
     },
     updateHeadingCell: (state, action) => {
-      const { colIndex, data } = action.payload;
-      state.schema[colIndex] = data;
+      const { propertyIndex, data } = action.payload;
+      state.schema[propertyIndex] = data;
     },
 
-    // Row Manager
-    addRow: (state, action) => {},
-    deleteRow: (state, action) => {},
-    copyRow: (state, action) => {},
-    cutRow: (state, action) => {},
-    pasteRow: (state, action) => {},
-    duplicateRow: (state, action) => {},
+    // Instance Manager
+    addInstance: (state) => {
+      let newInstance = state.schema.map((property) => [property.name, '']);
+      newInstance = Object.fromEntries(newInstance);
+      state.instances.push(newInstance);
+    },
+    deleteInstance: (state, action) => {
+      const { instanceIndex } = action.payload;
+      state.instances.splice(instanceIndex, 1);
+    },
+    copyInstance: (state, action) => {
+      const { instanceIndex } = action.payload;
+      state.clipboard = {
+        type: 'instance',
+        data: state.instances[instanceIndex],
+      };
+    },
+    cutInstance: (state, action) => {
+      const { instanceIndex } = action.payload;
+      // splice removes element from array and returns it as array
+      let cutInstance = state.instances.splice(instanceIndex, 1)[0];
+      state.clipboard = { type: 'instance', data: cutInstance };
+    },
+    pasteInstance: (state, action) => {
+      if (state.clipboard.type !== 'instance') return;
+      const { instanceIndex } = action.payload;
+      state.instances.splice(instanceIndex, 0, state.clipboard);
+    },
+    duplicateInstance: (state, action) => {
+      const { instanceIndex } = action.payload;
+      state.instances.splice(
+        instanceIndex + 1,
+        0,
+        state.instances[instanceIndex]
+      );
+    },
 
-    // Column Manager
-    addColumn: (state, action) => {},
-    deleteColumn: (state, action) => {},
-    copyColumn: (state, action) => {},
-    cutColumn: (state, action) => {},
-    pasteColumn: (state, action) => {},
+    // Property Manager
+    addProperty: (state, action) => {},
+    deleteProperty: (state, action) => {},
+    copyProperty: (state, action) => {},
+    cutProperty: (state, action) => {},
+    pasteProperty: (state, action) => {},
 
     // Table Manager
     updateTitle: (state, action) => {},
@@ -54,20 +85,20 @@ export const {
   updateDataCell,
   updateHeadingCell,
 
-  // Row Manager
-  addRow,
-  deleteRow,
-  copyRow,
-  cutRow,
-  pasteRow,
-  duplicateRow,
+  // Instance Manager
+  addInstance,
+  deleteInstance,
+  copyInstance,
+  cutInstance,
+  pasteInstance,
+  duplicateInstance,
 
-  // Column Manager
-  addColumn,
-  deleteColumn,
-  copyColumn,
-  cutColumn,
-  pasteColumn,
+  // Property Manager
+  addProperty,
+  deleteProperty,
+  copyProperty,
+  cutProperty,
+  pasteProperty,
 
   // Table Manager
   updateTitle,
