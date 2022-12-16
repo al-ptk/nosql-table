@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyledTable,
-  StyledJsonFormatter,
-  StyledTHead,
-  StyledTBody,
-} from './JsonTable.styled';
-import { range } from '../utils/helperFunctions';
+import { StyledTable, StyledTHead, StyledTBody } from './JsonTable.styled';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 import { useSelector } from 'react-redux';
@@ -43,58 +37,20 @@ function TableHead() {
 }
 
 function TableBody() {
-  const {
-    headingOrder,
-    rowNumber,
-    dataReadFactory,
-    dataUpdateFactory,
-    addRow,
-    swapRow,
-    duplicateRow,
-    cutRow,
-    copyRow,
-    pasteRow,
-    deleteRow,
-  } = useContext(AppStateContext);
+  const instances = useSelector((state) => state.table.instances);
+  const schema = useSelector((state) => state.table.schema);
 
   return (
     <StyledTBody>
-      {range(rowNumber).map((rowIndex) => (
+      {instances.map((instance, instanceIndex) => (
         // For vertical rows, make tr be flex column
-        <tr key={rowIndex}>
-          <IndexHeading rowIndex={rowIndex} />
-          {headingOrder.map((heading, headingIndex) => {
-            return (
-              <DataCell
-                readValue={dataReadFactory(rowIndex, heading)}
-                updateValue={dataUpdateFactory(rowIndex, heading)}
-                key={`${rowIndex}-${headingIndex}`}
-              />
-            );
+        <tr key={`instance-${instanceIndex}`}>
+          <IndexHeading instanceIndex={instanceIndex} />
+          {schema.map((property, propertyIndex) => {
+            return <DataCell key={`cell-${instanceIndex}-${propertyIndex}`} />;
           })}
         </tr>
       ))}
-      <tr>
-        <td>
-          <button onClick={() => addRow()}>+</button>
-        </td>
-      </tr>
     </StyledTBody>
   );
-}
-
-function JSONPreview() {
-  const { tableRows, showPreview } = useContext(AppStateContext);
-  return showPreview ? (
-    <p
-      style={{
-        backgroundColor: 'white',
-        width: 400,
-        margin: '0 auto',
-        padding: 10,
-      }}
-    >
-      <StyledJsonFormatter json={JSON.stringify(tableRows)} tabWith={4} />
-    </p>
-  ) : null;
 }

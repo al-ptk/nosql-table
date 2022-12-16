@@ -34,10 +34,10 @@ GUI stuff
 
 Refactors:
 
-- [ ] Rename EVERY row to instance and EVERY heading to property. The current naming is conceptually coupled — what if I transpose the table?
+- [x] Rename EVERY row to instance and EVERY heading to property. The current naming is conceptually coupled — what if I transpose the table?
 - [ ] Clean up cell actions with context menus and action bar buttons
 - [ ] Create separate component for index th's called IndexCell
-- [ ] Change the state management to using Jotai. This app fits the MVC model, and I've been writing controllers all this time. Table functions are Jotai controllers. The table itself is a Jotai atom. I can hook up controllers to views through Jotai hooks.
+- [x] Use redux for state management
 
 Branch out - a real data bank:
 
