@@ -8,10 +8,7 @@ import {
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
-import { useState } from 'react';
-import DropDownMenu from '../DropDownMenu';
 import { useSelector } from 'react-redux';
-import {} from '../app/slices/tableSlice';
 import IndexHeading from './IndexHeading';
 
 export function JsonTable() {

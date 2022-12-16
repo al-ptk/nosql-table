@@ -31,10 +31,12 @@ const tableSlice = createSlice({
     },
 
     // Instance Manager
-    addInstance: (state) => {
+    addInstance: (state, action) => {
+      let { targetIndex } = action.payload;
+      targetIndex = targetIndex ?? state.instances.length - 1;
       let newInstance = state.schema.map((property) => [property.name, '']);
       newInstance = Object.fromEntries(newInstance);
-      state.instances.push(newInstance);
+      state.instances.splice(targetIndex, 0, newInstance);
     },
     deleteInstance: (state, action) => {
       const { instanceIndex } = action.payload;
@@ -181,6 +183,7 @@ export const {
   // Instance Manager
   addInstance,
   deleteInstance,
+  swapInstances,
   copyInstance,
   cutInstance,
   pasteInstance,
@@ -189,6 +192,7 @@ export const {
   // Property Manager
   addProperty,
   deleteProperty,
+  swapProperties,
   copyProperty,
   cutProperty,
   pasteProperty,

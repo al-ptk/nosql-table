@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import DropDownMenu from '../DropDownMenu';
 import { useDispatch } from 'react-redux';
+import {
+  addInstance,
+  deleteInstance,
+  swapInstances,
+  copyInstance,
+  cutInstance,
+  pasteInstance,
+  duplicateInstance,
+} from '../app/slices/tableSlice';
 
 export default function IndexHeading({ instanceIndex }) {
   const [showContextMenu, setShowContextMenu] = useState(false);
@@ -33,49 +42,83 @@ const IndexHeadingMenu = ({
   xPos,
   yPos,
 }) => {
+  const dispatch = useDispatch();
+  instanceIndex = parseInt(instanceIndex);
+
   return (
     <DropDownMenu
       {...{ xPos, yPos }}
       blurHandler={() => updateShowContextMenu()}
     >
-      <p>
-        <button
-          onClick={() => swapRow(rowIndex, rowIndex - 1)}
-          aria-label="Move row up"
-        >
-          Move row backward
-        </button>
-      </p>
-      <p>
-        <button
-          onClick={() => swapRow(rowIndex, rowIndex * 1 + 1)}
-          aria-label="Move row down"
-        >
-          Move row forward
-        </button>
-      </p>
-      <p>
-        <button onClick={() => deleteRow(rowIndex * 1)} aria-label="Delete row">
-          Delete row
-        </button>
-      </p>
-      <p>
-        <button onClick={() => cutRow(rowIndex)}>Cut row</button>
-      </p>
-      <p>
-        <button onClick={() => copyRow(rowIndex)}>Copy row</button>
-      </p>
-      <p>
-        <button onClick={() => duplicateRow(rowIndex)}>Duplicate row</button>
-      </p>
-      <p>
-        <button onClick={() => pasteRow(rowIndex)}>Paste row above</button>
-      </p>
-      <p>
-        <button onClick={() => pasteRow(rowIndex * 1 + 1)}>
-          Paste row below
-        </button>
-      </p>
+      <button
+        onClick={() =>
+          dispatch(
+            addInstance({
+              targetIndex: instanceIndex,
+            })
+          )
+        }
+      >
+        Add Before
+      </button>
+      <button
+        onClick={() =>
+          dispatch(
+            addInstance({
+              targetIndex: instanceIndex + 1,
+            })
+          )
+        }
+      >
+        Add After
+      </button>
+      <button
+        onClick={() =>
+          dispatch(
+            swapInstances({
+              selectedIndex: instanceIndex,
+              targetIndex: instanceIndex - 1,
+            })
+          )
+        }
+        aria-label="Move row up"
+      >
+        Move row backward
+      </button>
+      <button
+        onClick={() =>
+          dispatch(
+            swapInstances({
+              selectedIndex: instanceIndex,
+              targetIndex: instanceIndex - 1,
+            })
+          )
+        }
+        aria-label="Move row down"
+      >
+        Move row forward
+      </button>
+      <button
+        onClick={() => dispatch(deleteInstance(instanceIndex * 1))}
+        aria-label="Delete row"
+      >
+        Delete row
+      </button>
+      <button onClick={() => dispatch(cutInstance(instanceIndex))}>
+        Cut row
+      </button>
+      <button onClick={() => dispatch(copyInstance(instanceIndex))}>
+        Copy row
+      </button>
+      <button onClick={() => dispatch(duplicateInstance(instanceIndex))}>
+        Duplicate row
+      </button>
+      <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
+        Paste row above
+      </button>
+      <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
+        Paste row below
+      </button>
     </DropDownMenu>
   );
 };
