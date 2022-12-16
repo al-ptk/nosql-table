@@ -12,6 +12,7 @@ import { useState } from 'react';
 import DropDownMenu from '../DropDownMenu';
 import { useSelector } from 'react-redux';
 import {} from '../app/slices/tableSlice';
+import IndexHeading from './IndexHeading';
 
 export function JsonTable() {
   return (
@@ -58,87 +59,6 @@ function TableBody() {
     pasteRow,
     deleteRow,
   } = useContext(AppStateContext);
-
-  function IndexHeading({ rowIndex }) {
-    const [showContextMenu, setShowContextMenu] = useState(false);
-    return (
-      <th
-        scope="row"
-        onContextMenu={(e) => {
-          e.preventDefault();
-          setShowContextMenu([e.clientX, e.clientY]);
-        }}
-      >
-        {rowIndex}
-        {showContextMenu && (
-          <IndexHeadingMenu
-            xPos={showContextMenu[0]}
-            yPos={showContextMenu[1]}
-            rowIndex={rowIndex}
-            updateShowContextMenu={() => {
-              setShowContextMenu(false);
-            }}
-          />
-        )}
-      </th>
-    );
-  }
-
-  const IndexHeadingMenu = ({
-    rowIndex,
-    updateShowContextMenu,
-    xPos,
-    yPos,
-  }) => {
-    return (
-      <DropDownMenu
-        {...{ xPos, yPos }}
-        blurHandler={() => updateShowContextMenu()}
-      >
-        <p>
-          <button
-            onClick={() => swapRow(rowIndex, rowIndex - 1)}
-            aria-label="Move row up"
-          >
-            Move row backward
-          </button>
-        </p>
-        <p>
-          <button
-            onClick={() => swapRow(rowIndex, rowIndex * 1 + 1)}
-            aria-label="Move row down"
-          >
-            Move row forward
-          </button>
-        </p>
-        <p>
-          <button
-            onClick={() => deleteRow(rowIndex * 1)}
-            aria-label="Delete row"
-          >
-            Delete row
-          </button>
-        </p>
-        <p>
-          <button onClick={() => cutRow(rowIndex)}>Cut row</button>
-        </p>
-        <p>
-          <button onClick={() => copyRow(rowIndex)}>Copy row</button>
-        </p>
-        <p>
-          <button onClick={() => duplicateRow(rowIndex)}>Duplicate row</button>
-        </p>
-        <p>
-          <button onClick={() => pasteRow(rowIndex)}>Paste row above</button>
-        </p>
-        <p>
-          <button onClick={() => pasteRow(rowIndex * 1 + 1)}>
-            Paste row below
-          </button>
-        </p>
-      </DropDownMenu>
-    );
-  };
 
   return (
     <StyledTBody>

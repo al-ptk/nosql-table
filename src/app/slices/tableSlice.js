@@ -18,7 +18,7 @@ const initialState = {
 const tableSlice = createSlice({
   name: 'table',
   initialState,
-  
+
   reducers: {
     // Cell Manager
     updateDataCell: (state, action) => {
@@ -39,6 +39,14 @@ const tableSlice = createSlice({
     deleteInstance: (state, action) => {
       const { instanceIndex } = action.payload;
       state.instances.splice(instanceIndex, 1);
+    },
+    swapInstances: (state, action) => {
+      const { selectedIndex, targetIndex } = action.payload;
+      if (targetIndex < 0 || targetIndex >= state.instances.length) return;
+      [state.instances[selectedIndex], state.instances[targetIndex]] = [
+        state.instances[targetIndex],
+        state.instances[selectedIndex],
+      ];
     },
     copyInstance: (state, action) => {
       const { instanceIndex } = action.payload;
@@ -78,6 +86,14 @@ const tableSlice = createSlice({
     deleteProperty: (state, action) => {
       const { propertyIndex } = action.payload;
       state.instances.splice(propertyIndex, 1);
+    },
+    swapProperties: (state, action) => {
+      const { selectedIndex, targetIndex } = action.payload;
+      if (targetIndex < 0 || targetIndex >= state.schema.length) return;
+      [state.schema[selectedIndex], state.schema[targetIndex]] = [
+        state.schema[targetIndex],
+        state.schema[selectedIndex],
+      ];
     },
     copyProperty: (state, action) => {
       const { propertyIndex } = action.payload;
