@@ -4,7 +4,6 @@ import {
   StyledJsonFormatter,
   StyledTHead,
   StyledTBody,
-  ContextualMenu,
 } from './JsonTable.styled';
 import { range } from '../utils/helperFunctions';
 import { HeadingCell } from './HeadingCell';
@@ -12,6 +11,7 @@ import { DataCell } from './DataCell';
 import { useContext } from 'react';
 import { AppStateContext } from '../App';
 import { useState } from 'react';
+import DropDownMenu from '../DropDownMenu';
 
 export function JsonTable() {
   return (
@@ -88,7 +88,7 @@ function TableBody() {
     deleteRow,
   } = useContext(AppStateContext);
 
-  const IndexHeading = ({ rowIndex }) => {
+  function IndexHeading({ rowIndex }) {
     const [showContextMenu, setShowContextMenu] = useState(false);
     return (
       <th
@@ -99,14 +99,21 @@ function TableBody() {
         }}
       >
         {rowIndex}
-        {showContextMenu && <IndexHeadingMenu rowIndex={rowIndex} />}
+        {showContextMenu && (
+          <IndexHeadingMenu
+            rowIndex={rowIndex}
+            updateShowContextMenu={() => {
+              setShowContextMenu(false);
+            }}
+          />
+        )}
       </th>
     );
-  };
+  }
 
-  const IndexHeadingMenu = ({ rowIndex }) => {
+  const IndexHeadingMenu = ({ rowIndex, updateShowContextMenu }) => {
     return (
-      <ContextualMenu>
+      <DropDownMenu blurHandler={() => updateShowContextMenu()}>
         <p>
           <button
             onClick={() => swapRow(rowIndex, rowIndex - 1)}
@@ -148,7 +155,7 @@ function TableBody() {
             Paste row below
           </button>
         </p>
-      </ContextualMenu>
+      </DropDownMenu>
     );
   };
 
