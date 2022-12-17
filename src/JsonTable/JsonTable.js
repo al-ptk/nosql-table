@@ -43,7 +43,6 @@ function TableBody() {
   return (
     <StyledTBody>
       {instances.map((instance, instanceIndex) => (
-        // For vertical rows, make tr be flex column
         <tr key={`instance-${instanceIndex}`}>
           <IndexHeading instanceIndex={instanceIndex} />
           {schema.map((property, propertyIndex) => {

@@ -81,9 +81,8 @@ const IndexHeadingMenu = ({
             })
           )
         }
-        aria-label="Move row up"
       >
-        Move row backward
+        Move backward
       </button>
       <button
         onClick={() =>
@@ -94,30 +93,24 @@ const IndexHeadingMenu = ({
             })
           )
         }
-        aria-label="Move row down"
       >
-        Move row forward
+        Move forward
       </button>
-      <button
-        onClick={() => dispatch(deleteInstance(instanceIndex * 1))}
-        aria-label="Delete row"
-      >
-        Delete row
+      <button onClick={() => dispatch(deleteInstance(instanceIndex * 1))}>
+        Delete
       </button>
-      <button onClick={() => dispatch(cutInstance(instanceIndex))}>
-        Cut row
-      </button>
+      <button onClick={() => dispatch(cutInstance(instanceIndex))}>Cut</button>
       <button onClick={() => dispatch(copyInstance(instanceIndex))}>
-        Copy row
+        Copy
       </button>
       <button onClick={() => dispatch(duplicateInstance(instanceIndex))}>
-        Duplicate row
+        Duplicate
       </button>
       <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
-        Paste row above
+        Paste above
       </button>
       <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
-        Paste row below
+        Paste below
       </button>
     </DropDownMenu>
   );
