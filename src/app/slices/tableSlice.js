@@ -22,7 +22,6 @@ const initialState = {
   // They are identified by the "type" filed
   propCounter: counterGenerator(2),
   title: 'New Table',
-  exportFile: null,
 };
 
 const tableSlice = createSlice({
@@ -153,31 +152,23 @@ const tableSlice = createSlice({
       state.title = newTitle;
     },
     importTable: (state, action) => {
-      const { fileInput } = action.payload;
-      const reader = new FileReader();
-      reader.readAsText(fileInput.current.files[0]);
-      reader.onload = function () {
-        const newTable = JSON.parse(reader.result);
-        state.instances = newTable.instances;
-        state.schema = newTable.schema;
-        state.title = newTable.title;
-        state.propCounter = counterGenerator(newTable.schema.length);
-        state.clipboard = { type: null, data: null };
-      };
+      const { newTable } = action.payload;
+      state.instances = newTable.instances;
+      state.schema = newTable.schema;
+      state.title = newTable.title;
+      state.propCounter = counterGenerator(newTable.schema.length);
+      state.clipboard = { type: null, data: null };
     },
     makeExportFile: (state) => {
       const JTEstream = JSON.stringify({
-        instances: state.instances,
         title: state.title,
         schema: state.schema,
+        instances: state.instances,
       });
       const file = new File([JTEstream], `${state.title}.jte`, {
         type: 'application/json',
       });
-      state.exportFile = file;
-    },
-    cleanExportFile: (state) => {
-      state.exportFile = null;
+      return file;
     },
     newTable: (state) => {
       state = initialState;
@@ -210,7 +201,7 @@ export const {
   // Table Manager
   updateTitle,
   importTable,
-  exportTable,
+  makeExportFile,
   newTable,
 } = tableSlice.actions;
 

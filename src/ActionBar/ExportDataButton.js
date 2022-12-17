@@ -1,12 +1,18 @@
-import React, { useContext, useRef } from 'react';
-import { AppStateContext } from '../App';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { makeExportFile } from '../app/slices/tableSlice';
 
 export function ExportDataButton() {
-  const { title, exportTable } = useContext(AppStateContext);
+  const title = useSelector((state) => state.table.title);
+  const dispatch = useDispatch();
   const linkRef = useRef(null);
 
-  const downloadTable = () => {
-    const tableFile = exportTable();
+  const downloadTable = async () => {
+    const tableFile = await dispatch(makeExportFile());
+    if (!tableFile) {
+      alert('Something went wrong');
+      return;
+    }
     linkRef.current.href = URL.createObjectURL(tableFile);
     linkRef.current.click();
   };

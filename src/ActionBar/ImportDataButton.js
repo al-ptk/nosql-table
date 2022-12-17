@@ -1,24 +1,34 @@
-import React, { useContext, useRef } from 'react';
-import { AppStateContext } from '../App';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { importTable } from '../app/slices/tableSlice';
 
 export function ImportDataButton() {
-  const { importTable } = useContext(AppStateContext);
-
+  const dispatch = useDispatch();
   const fileInput = useRef();
 
   const selectFile = () => {
     fileInput.current.click();
   };
 
+  const importFile = () => {
+    const reader = new FileReader();
+    reader.readAsText(fileInput.current.files[0]);
+    reader.onload = function () {
+      const newTable = JSON.parse(reader.result);
+      dispatch(importTable({ newTable }));
+    };
+  };
+
   return (
     <span>
       <input
+        id="fileInput"
         type="file"
-        accept="application/json"
+        accept=".jte .json"
         style={{ display: 'none' }}
         ref={fileInput}
         onChange={() => {
-          importTable(fileInput);
+          importFile();
         }}
       />
       <button onClick={selectFile} className="btn btn-primary">
