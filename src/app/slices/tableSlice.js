@@ -20,7 +20,6 @@ const initialState = {
   clipboard: { type: null, data: null },
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
-  propCounter: counterGenerator(2),
   title: 'New Table',
 };
 
@@ -36,12 +35,12 @@ const tableSlice = createSlice({
     },
     updateHeadingCell: (state, action) => {
       const { propertyIndex, data } = action.payload;
-      state.schema[propertyIndex] = data;
+      state.schema[propertyIndex].name = data;
     },
 
     // Instance Manager
     addInstance: (state, action) => {
-      let { targetIndex } = action.payload;
+      let { targetIndex } = action?.payload;
       targetIndex = targetIndex ?? state.instances.length - 1;
       let newInstance = state.schema.map((property) => [property.name, '']);
       newInstance = Object.fromEntries(newInstance);
@@ -88,11 +87,14 @@ const tableSlice = createSlice({
 
     // Property Manager
     addProperty: (state, action) => {
-      const { propertyIndex } = action.payload;
-      const propNum = state.propCounter.next().value;
-      const propertyName = `property ${propNum}`;
+      let { propertyIndex } = action?.payload;
+      propertyIndex = propertyIndex || state.schema.length;
+      const propertyName = `property ${state.schema.length}`;
       state.instances.map((instance) => (instance[propertyName] = ''));
-      state.schema.splice(propertyIndex, 0, propertyName);
+      state.schema.splice(propertyIndex, 0, {
+        type: 'any',
+        name: propertyName,
+      });
     },
     deleteProperty: (state, action) => {
       const { propertyIndex } = action.payload;
@@ -156,7 +158,6 @@ const tableSlice = createSlice({
       state.instances = newTable.instances;
       state.schema = newTable.schema;
       state.title = newTable.title;
-      state.propCounter = counterGenerator(newTable.schema.length);
       state.clipboard = { type: null, data: null };
     },
     makeExportFile: (state) => {
@@ -205,6 +206,4 @@ export const {
   newTable,
 } = tableSlice.actions;
 
-const tableReducer = tableSlice.reducer;
-
-export default tableReducer;
+export default tableSlice.reducer;

@@ -16,7 +16,7 @@ export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
   const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
-  const propertyName = useSelector((state) => state.schema[propertyIndex].name);
+  const propertyName = useSelector((state) => state.table.schema[propertyIndex].name);
 
   const handleInput = (e) => {
     e.preventDefault();

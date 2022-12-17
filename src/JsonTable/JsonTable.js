@@ -15,7 +15,7 @@ export function JsonTable() {
 }
 
 function TableHead() {
-  const schema = useSelector((state) => state.schema);
+  const schema = useSelector((state) => state.table.schema);
 
   return (
     <StyledTHead>

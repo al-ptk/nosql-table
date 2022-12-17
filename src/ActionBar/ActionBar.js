@@ -36,8 +36,8 @@ export function ActionBar() {
         onInput={(e) => dispatch(updateTitle({ newTitle: e.target.value }))}
         className="title"
       />
-      <button onClick={() => dispatch(addProperty())}>Add New Property</button>
-      <button onClick={() => dispatch(addInstance())}>Add New Instance</button>
+      <button onClick={() => dispatch(addProperty({}))}>Add New Property</button>
+      <button onClick={() => dispatch(addInstance({}))}>Add New Instance</button>
       <button onClick={togglePreview}>Show Preview</button>
     </StyledActionBar>
   );
