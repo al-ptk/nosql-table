@@ -1,6 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { counterGenerator } from '../../utils/helperFunctions';
 
+/*
+  Some conceptual definitions:
+
+  Table: Data type meant to encapsulate two other types (instances and schema). A table is a json file to be used by other appplications, like database-populating scripts.
+  
+  Schema: Describes the name and type of all possible fields found in each element of instances. Types can be primitives, like strings, date and numbers; composed, like arrays and objects; or even custom, like user-made widgets.
+
+  Instances: An array of objects that populate the table based on the fields each instance possesses. Instance here is can be read the same as "instance of an object." Not all instances have all schema properties, but schema properties describe all possible fields of an instance.
+*/
+
 const initialState = {
   instances: [
     { 'property 0': '', 'property 1': '' },
