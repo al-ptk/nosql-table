@@ -34,7 +34,13 @@ const tableSlice = createSlice({
     },
     updateHeadingCell: (state, action) => {
       const { propertyIndex, data } = action.payload;
+      const oldProp = state.schema[propertyIndex].name;
+      const newProp = data;
       state.schema[propertyIndex].name = data;
+      state.instances.forEach((instance) => {
+        instance[newProp] = instance[oldProp];
+        delete instance[oldProp];
+      });
     },
 
     // Instance Manager

@@ -4,9 +4,11 @@ import { updateDataCell } from '../app/slices/tableSlice';
 
 export const DataCell = ({ accessCoordinates }) => {
   const table = useSelector((state) => state.table.instances);
+  const schema = useSelector((state) => state.table.schema);
   const dispatch = useDispatch();
 
-  const { instanceIndex, propertyName } = accessCoordinates;
+  const { instanceIndex, propertyIndex } = accessCoordinates;
+  const propertyName = schema[propertyIndex].name;
   const cellValue = table[instanceIndex][propertyName];
 
   const handleInput = (e) => {

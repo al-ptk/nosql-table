@@ -16,7 +16,7 @@ export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
   const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
-  const propertyName = useSelector((state) => state.table.schema[propertyIndex].name);
+  const schema = useSelector((state) => state.table.schema);
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ export const HeadingCell = ({ propertyIndex }) => {
       }}
     >
       <textarea
-        value={propertyName || ''}
+        value={schema[propertyIndex].name || ''}
         onInput={handleInput}
         rows="1"
         cols="20"

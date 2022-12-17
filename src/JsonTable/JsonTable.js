@@ -24,7 +24,7 @@ function TableHead() {
         <th scope="col">Index</th>
         {schema.map((property, propertyIndex) => (
           <HeadingCell
-            key={`prop-${property.name}`}
+            key={`prop-${propertyIndex}`}
             propertyIndex={propertyIndex}
           />
         ))}
@@ -48,7 +48,7 @@ function TableBody() {
                 key={`cell-${instanceIndex}-${propertyIndex}`}
                 accessCoordinates={{
                   instanceIndex,
-                  propertyName: property.name,
+                  propertyIndex,
                 }}
               />
             );
