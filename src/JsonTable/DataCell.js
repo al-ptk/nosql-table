@@ -1,16 +1,23 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateDataCell } from '../app/slices/tableSlice';
 
-export const DataCell = ({ readValue, updateValue, ...props }) => {
-  let cellValue = Array.isArray(readValue()) ? `[${readValue()}]` : readValue();
+export const DataCell = ({ accessCoordinates }) => {
+  const table = useSelector((state) => state.table.instances);
+  const dispatch = useDispatch();
+
+  const { instanceIndex, propertyName } = accessCoordinates;
+  const cellValue = table[instanceIndex][propertyName];
+
+  const handleInput = (e) => {
+    dispatch(
+      updateDataCell({ instanceIndex, propertyName, data: e.target.value })
+    );
+  };
 
   return (
-    <td {...props}>
-      <textarea
-        value={cellValue || ''}
-        onInput={(e) => {
-          updateValue(e.target.value);
-        }}
-      ></textarea>
+    <td>
+      <textarea value={cellValue || ''} onInput={handleInput}></textarea>
     </td>
   );
 };

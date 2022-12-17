@@ -32,8 +32,8 @@ const tableSlice = createSlice({
   reducers: {
     // Cell Manager
     updateDataCell: (state, action) => {
-      const { instanceIndex, propertyIndex, data } = action.payload;
-      state.instances[instanceIndex][propertyIndex] = data;
+      const { instanceIndex, propertyName, data } = action.payload;
+      state.instances[instanceIndex][propertyName] = data;
     },
     updateHeadingCell: (state, action) => {
       const { propertyIndex, data } = action.payload;

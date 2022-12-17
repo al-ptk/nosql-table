@@ -23,13 +23,7 @@ function TableHead() {
       <tr>
         <th scope="col">Index</th>
         {schema.map((property, propertyIndex) => (
-          <HeadingCell
-            key={`prop-${property.name}`}
-            onContextMenu={(e) => {
-              e.preventDefault();
-              console.log('IMPLEMENT CONTEXT MENUS!');
-            }}
-          />
+          <HeadingCell key={`prop-${property.name}`} />
         ))}
       </tr>
     </StyledTHead>
@@ -46,7 +40,15 @@ function TableBody() {
         <tr key={`instance-${instanceIndex}`}>
           <IndexHeading instanceIndex={instanceIndex} />
           {schema.map((property, propertyIndex) => {
-            return <DataCell key={`cell-${instanceIndex}-${propertyIndex}`} />;
+            return (
+              <DataCell
+                key={`cell-${instanceIndex}-${propertyIndex}`}
+                accessCoordinates={{
+                  instanceIndex,
+                  propertyName: property.name,
+                }}
+              />
+            );
           })}
         </tr>
       ))}
