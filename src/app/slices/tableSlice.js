@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { counterGenerator } from '../../utils/helperFunctions';
 
 /*
   Some conceptual definitions:
