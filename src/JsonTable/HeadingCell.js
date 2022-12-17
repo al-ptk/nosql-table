@@ -1,67 +1,119 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import DropDownMenu from '../DropDownMenu';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addProperty,
+  copyProperty,
+  cutProperty,
+  deleteProperty,
+  pasteProperty,
+  swapProperties,
+  updateHeadingCell,
+} from '../app/slices/tableSlice';
 
-export const HeadingCell = ({
-  readValue,
-  updateValue,
-  deleteSelf,
-  moveLeft,
-  moveRight,
-  copyColumn,
-  cutColumn,
-  pasteLeft,
-  pasteRight,
-  ...props
-}) => {
-  const [showContextMenu, setShowContextMenu] = useState(false);
+export const HeadingCell = ({ propertyIndex }) => {
+  propertyIndex = parseInt(propertyIndex);
+  const [contextMenu, setContextMenu] = useState(null);
+  const dispatch = useDispatch();
+  const propertyName = useSelector((state) => state.schema[propertyIndex].name);
 
   const handleInput = (e) => {
     e.preventDefault();
     // Disable new lines
     if (e.nativeEvent.inputType === 'insertLineBreak') return;
-    updateValue(e.target.value);
-  };
-
-  const PropsContextMenu = ({ xPos, yPos }) => {
-    return (
-      <DropDownMenu
-        blurHandler={() => {
-          setShowContextMenu(false);
-        }}
-        {...{ xPos, yPos }}
-      >
-        <button onClick={moveLeft}> Move Back</button>
-        <button onClick={moveRight}> Move Foward </button>
-        <button onClick={deleteSelf}>Delete Column</button>
-        <button onClick={copyColumn}>Copy column</button>
-        <button onClick={cutColumn}>Cut Column</button>
-        <button onClick={pasteLeft}>Paste to the left</button>
-        <button onClick={pasteRight}>Paste to the right</button>
-      </DropDownMenu>
-    );
+    dispatch(updateHeadingCell({ propertyIndex, data: e.target.value }));
   };
 
   return (
     <StyledHeading
-      {...props}
       onContextMenu={(e) => {
         e.preventDefault();
-        setShowContextMenu([e.clientX, e.clientY]);
-        console.log(e);
+        setContextMenu(
+          <HeadinCellContextMenu
+            xPos={e.clientX}
+            yPos={e.clientY}
+            blurHandler={() => setContextMenu(null)}
+            propertyIndex={propertyIndex}
+          />
+        );
       }}
     >
       <textarea
-        value={readValue() || ''}
+        value={propertyName || ''}
         onInput={handleInput}
         rows="1"
         cols="20"
         maxLength="20"
       ></textarea>
-      {showContextMenu && (
-        <PropsContextMenu xPos={showContextMenu[0]} yPos={showContextMenu[1]} />
-      )}
+      {contextMenu}
     </StyledHeading>
+  );
+};
+
+const HeadinCellContextMenu = ({ xPos, yPos, blurHandler, propertyIndex }) => {
+  const dispatch = useDispatch();
+
+  const addBefore = () => {
+    dispatch(addProperty({ propertyIndex }));
+  };
+
+  const addAfter = () => {
+    dispatch(addProperty({ propertyIndex: propertyIndex + 1 }));
+  };
+
+  const moveBefore = () => {
+    dispatch(
+      swapProperties({
+        selectedIndex: propertyIndex,
+        targetIndex: propertyIndex - 1,
+      })
+    );
+  };
+
+  const moveAfter = () => {
+    dispatch(
+      swapProperties({
+        selectedIndex: propertyIndex,
+        targetIndex: propertyIndex + 1,
+      })
+    );
+  };
+
+  const selfDelete = () => {
+    dispatch(deleteProperty({ propertyIndex }));
+  };
+
+  const copy = () => {
+    dispatch(copyProperty({ propertyIndex }));
+  };
+
+  const cut = () => {
+    dispatch(cutProperty({ propertyIndex }));
+  };
+
+  const pasteBefore = () => {
+    // Array.slice is used for including elements mid array
+    // so pasting in the same index pushes the old element foward
+    dispatch(pasteProperty({ propertyIndex }));
+  };
+
+  const pasteAfter = () => {
+    dispatch(pasteProperty({ propertyIndex: propertyIndex + 1 }));
+  };
+
+  return (
+    <DropDownMenu {...{ xPos, yPos, blurHandler }}>
+      <button onClick={addBefore}> Add Before</button>
+      <button onClick={addAfter}> Add After</button>
+      <button onClick={moveBefore}> Move Back</button>
+      <button onClick={moveAfter}> Move Foward</button>
+      <button onClick={selfDelete}>Delete</button>
+      <button onClick={copy}>Copy</button>
+      <button onClick={cut}>Cut</button>
+      <button onClick={pasteBefore}>Paste Before</button>
+      <button onClick={pasteAfter}>Paste After</button>
+    </DropDownMenu>
   );
 };
 

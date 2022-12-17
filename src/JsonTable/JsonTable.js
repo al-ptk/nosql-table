@@ -23,7 +23,10 @@ function TableHead() {
       <tr>
         <th scope="col">Index</th>
         {schema.map((property, propertyIndex) => (
-          <HeadingCell key={`prop-${property.name}`} />
+          <HeadingCell
+            key={`prop-${property.name}`}
+            propertyIndex={propertyIndex}
+          />
         ))}
       </tr>
     </StyledTHead>
