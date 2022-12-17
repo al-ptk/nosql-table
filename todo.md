@@ -13,16 +13,20 @@
 - [ ] Sticky headings bar
 - [ ] Add github link for bug\frature request link
 - [ ] create wizard for adding rows
-
-GUI stuff
-
-- [ ] The file and edit buttons
 - [ ] Create infrastructure around the app:
   - [ ] Landing Page
   - [ ] Login Page
   - [ ] Backend authentication and storage ???
     - [ ] Limit size of tables to a certain kb or mb limit
     - [ ] Limit number of tables on cloud to 5 ???
+
+GUI stuff
+
+- [x] The ActionBar stuff
+  - [ ] File
+  - [ ] Edit
+    - [ ] Select row\column\cell
+  - [ ] Insert
 - [x] Contextual Menu
   - [x] Headings (for columns and rows)
     - [x] Paste above\left
