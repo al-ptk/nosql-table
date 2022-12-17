@@ -8,11 +8,17 @@ export default function DropDownMenu({ children, xPos, yPos, blurHandler }) {
     self.current.focus();
   }, [self]);
 
-  console.log(xPos, yPos);
   return (
     <StyledMenu
       tabIndex={0}
-      onBlur={blurHandler}
+      onBlur={(e) => {
+        // When buttons are clicked withing the menu
+        // the blur gets captured first and cuts off the button's click.
+        // Pushing the handler to the event cue
+        // solves the events' ording issue.
+        // 'Tis a hack, but alas!
+        setTimeout(() => blurHandler(), 50);
+      }}
       ref={self}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
@@ -36,5 +42,6 @@ export const StyledMenu = styled.div`
     background-color: transparent;
     color: white;
     border: none;
+    width: 100%;
   }
 `;

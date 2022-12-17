@@ -23,14 +23,14 @@ GUI stuff
   - [ ] Backend authentication and storage ???
     - [ ] Limit size of tables to a certain kb or mb limit
     - [ ] Limit number of tables on cloud to 5 ???
-- [ ] Contextual Menu
-  - [ ] Headings (for columns and rows)
-    - [ ] Paste above\left
-    - [ ] Paste below\right
-    - [ ] copy
-    - [ ] cut
-    - [ ] delete
-    - [ ] duplicate
+- [x] Contextual Menu
+  - [x] Headings (for columns and rows)
+    - [x] Paste above\left
+    - [x] Paste below\right
+    - [x] copy
+    - [x] cut
+    - [x] delete
+    - [x] duplicate
 
 Refactors:
 
