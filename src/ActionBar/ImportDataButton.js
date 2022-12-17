@@ -24,7 +24,7 @@ export function ImportDataButton() {
       <input
         id="fileInput"
         type="file"
-        accept=".jte .json"
+        accept="application/json"
         style={{ display: 'none' }}
         ref={fileInput}
         onChange={() => {

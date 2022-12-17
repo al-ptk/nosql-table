@@ -1,18 +1,22 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { makeExportFile } from '../app/slices/tableSlice';
+import { useSelector } from 'react-redux';
 
 export function ExportDataButton() {
   const title = useSelector((state) => state.table.title);
-  const dispatch = useDispatch();
+  const instances = useSelector((state) => state.table.instances);
+  const schema = useSelector((state) => state.table.schema);
+  
   const linkRef = useRef(null);
 
   const downloadTable = async () => {
-    const tableFile = await dispatch(makeExportFile());
-    if (!tableFile) {
-      alert('Something went wrong');
-      return;
-    }
+    const JTEstream = JSON.stringify({
+      title,
+      schema,
+      instances,
+    });
+    const tableFile = new File([JTEstream], `${title}.jte`, {
+      type: 'application/json',
+    });
     linkRef.current.href = URL.createObjectURL(tableFile);
     linkRef.current.click();
   };

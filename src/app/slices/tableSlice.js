@@ -160,17 +160,6 @@ const tableSlice = createSlice({
       state.title = newTable.title;
       state.clipboard = { type: null, data: null };
     },
-    makeExportFile: (state) => {
-      const JTEstream = JSON.stringify({
-        title: state.title,
-        schema: state.schema,
-        instances: state.instances,
-      });
-      const file = new File([JTEstream], `${state.title}.jte`, {
-        type: 'application/json',
-      });
-      return file;
-    },
     newTable: (state) => {
       state = initialState;
     },
