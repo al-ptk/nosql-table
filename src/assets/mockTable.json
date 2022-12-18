@@ -1,0 +1,37 @@
+{
+  "title": "Holidays",
+  "schema": [
+    { "name": "Title", "type": "string" },
+    { "name": "Food", "type": "string" },
+    { "name": "Date", "type": "string" },
+    { "name": "Mood", "type": "string" },
+    { "name": "Mythology", "type": "string" }
+  ],
+  "instances": [
+    {
+      "Title": "Christmas",
+      "Food": "French Toast",
+      "Date": "Dec 25",
+      "Mood": "cozy"
+    },
+    {
+      "Title": "Hallowen",
+      "Food": "Pumpkin Pie",
+      "Date": "Oct 31",
+      "Mood": "spooky"
+    },
+    {
+      "Title": "São João",
+      "Food": "Peanut Candy",
+      "Date": "Jun 24",
+      "Mood": "baloon-eske",
+      "Mythology": "Baptist guy"
+    },
+    {
+      "Title": "Carnaval",
+      "Food": "Tropical Drink",
+      "Date": "Feb 17",
+      "Mood": "summer samba!"
+    }
+  ]
+}
