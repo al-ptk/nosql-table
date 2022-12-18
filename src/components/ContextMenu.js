@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useContext } from 'react';
 
 /*
   ContextMenu and ContextMenuButton are to belonog in a local context provider.
@@ -11,25 +10,24 @@ import { useContext } from 'react';
 
       <div> // Any wrapper should do
         <ContextMenu 
-          ReferenceContext={LocalContext} 
+        ref={ref}
           xPos={some_number} 
           yPos={some_number}
         >
           <ContextMenu 
             buttonText={someText}
             buttonAction={someFunction}
-            ReferenceContext={LocalContext}
+            closeContextMenu={closeContextMenu}
           />
         </ContextMenu>
       </div>
     }
 */
 
-export function ContextMenu({ children, ReferenceContext, xPos, yPos }) {
-  const { ref } = useContext(ReferenceContext);
+export function ContextMenu({ children, Reference, xPos, yPos }) {
   return (
     <StyledMenu
-      ref={ref}
+      ref={Reference}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
     >
@@ -41,9 +39,8 @@ export function ContextMenu({ children, ReferenceContext, xPos, yPos }) {
 export const ContextMenuButton = ({
   buttonText,
   buttonAction,
-  ReferenceContext,
+  closeContextMenu,
 }) => {
-  const { closeContextMenu } = useContext(ReferenceContext);
   return (
     <button
       onClick={() => {

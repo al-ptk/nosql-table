@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import DropDownMenu from '../DropDownMenu';
+import DropDownMenu from '../components/DropDownMenu';
 
 export default function ActionBarButton({ name, children }) {
   const [contextMenu, setContextMenu] = useState(null);

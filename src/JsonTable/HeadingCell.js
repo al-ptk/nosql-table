@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DropDownMenu from '../DropDownMenu';
+import DropDownMenu from '../components/DropDownMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProperty,
@@ -34,7 +34,7 @@ export const HeadingCell = ({ propertyIndex }) => {
           <HeadinCellContextMenu
             xPos={e.clientX}
             yPos={e.clientY}
-            blurHandler={() => setContextMenu(null)}
+            updateShowContextMenu={() => setContextMenu(null)}
             propertyIndex={propertyIndex}
           />
         );
@@ -52,7 +52,13 @@ export const HeadingCell = ({ propertyIndex }) => {
   );
 };
 
-const HeadinCellContextMenu = ({ xPos, yPos, blurHandler, propertyIndex }) => {
+const HeadinCellContextMenu = ({
+  xPos,
+  yPos,
+  updateShowContextMenu,
+  propertyIndex,
+}) => {
+  
   const dispatch = useDispatch();
 
   const addBefore = () => {

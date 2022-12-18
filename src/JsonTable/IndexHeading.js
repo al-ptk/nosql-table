@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import DropDownMenu from '../DropDownMenu';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addInstance,
@@ -10,9 +9,10 @@ import {
   pasteInstance,
   duplicateInstance,
 } from '../app/slices/tableSlice';
+import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 
 export default function IndexHeading({ instanceIndex }) {
-  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [showContextMenu, setShowContextMenu] = useState(null);
   return (
     <th
       scope="row"
@@ -23,12 +23,12 @@ export default function IndexHeading({ instanceIndex }) {
     >
       {instanceIndex}
       {showContextMenu && (
-        <IndexHeadingMenu
+        <IndexHeadingContextMenu
           xPos={showContextMenu[0]}
           yPos={showContextMenu[1]}
           instanceIndex={instanceIndex}
           updateShowContextMenu={() => {
-            setShowContextMenu(false);
+            setShowContextMenu(null);
           }}
         />
       )}
@@ -36,7 +36,7 @@ export default function IndexHeading({ instanceIndex }) {
   );
 }
 
-const IndexHeadingMenu = ({
+const IndexHeadingContextMenu = ({
   instanceIndex,
   updateShowContextMenu,
   xPos,
@@ -45,73 +45,102 @@ const IndexHeadingMenu = ({
   const dispatch = useDispatch();
   instanceIndex = parseInt(instanceIndex);
 
+  const Reference = useRef(null);
+  const closeContextMenu = () => {
+    updateShowContextMenu();
+  };
+
   return (
-    <DropDownMenu
-      {...{ xPos, yPos }}
-      blurHandler={() => updateShowContextMenu()}
-    >
-      <button
-        onClick={() =>
-          dispatch(
-            addInstance({
-              targetIndex: instanceIndex,
-            })
-          )
-        }
+    <div>
+      <ContextMenu
+        {...{ xPos, yPos, Reference }}
+        onBlur={() => {
+          const isFocusWithin = Reference.current.contains(
+            document.activeElement
+          );
+          if (!isFocusWithin) {
+            closeContextMenu();
+          }
+          return;
+        }}
       >
-        Add Before
-      </button>
-      <button
-        onClick={() =>
-          dispatch(
-            addInstance({
-              targetIndex: instanceIndex + 1,
-            })
-          )
-        }
-      >
-        Add After
-      </button>
-      <button
-        onClick={() =>
-          dispatch(
-            swapInstances({
-              selectedIndex: instanceIndex,
-              targetIndex: instanceIndex - 1,
-            })
-          )
-        }
-      >
-        Move backward
-      </button>
-      <button
-        onClick={() =>
-          dispatch(
-            swapInstances({
-              selectedIndex: instanceIndex,
-              targetIndex: instanceIndex - 1,
-            })
-          )
-        }
-      >
-        Move forward
-      </button>
-      <button onClick={() => dispatch(deleteInstance(instanceIndex * 1))}>
-        Delete
-      </button>
-      <button onClick={() => dispatch(cutInstance(instanceIndex))}>Cut</button>
-      <button onClick={() => dispatch(copyInstance(instanceIndex))}>
-        Copy
-      </button>
-      <button onClick={() => dispatch(duplicateInstance(instanceIndex))}>
-        Duplicate
-      </button>
-      <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
-        Paste above
-      </button>
-      <button onClick={() => dispatch(pasteInstance(instanceIndex))}>
-        Paste below
-      </button>
-    </DropDownMenu>
+        <ContextMenuButton
+          buttonText={'Move Before'}
+          buttonAction={() =>
+            dispatch(
+              swapInstances({
+                selectedIndex: instanceIndex,
+                targetIndex: instanceIndex - 1,
+              })
+            )
+          }
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Move After'}
+          buttonAction={() =>
+            dispatch(
+              swapInstances({
+                selectedIndex: instanceIndex,
+                targetIndex: instanceIndex + 1,
+              })
+            )
+          }
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Add Before'}
+          buttonAction={() =>
+            dispatch(
+              addInstance({
+                targetIndex: instanceIndex,
+              })
+            )
+          }
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Add After'}
+          buttonAction={() =>
+            dispatch(
+              addInstance({
+                targetIndex: instanceIndex + 1,
+              })
+            )
+          }
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Delete'}
+          buttonAction={() => dispatch(deleteInstance(instanceIndex))}
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Cut'}
+          buttonAction={() => dispatch(cutInstance(instanceIndex))}
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Copy'}
+          buttonAction={() => dispatch(copyInstance(instanceIndex))}
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Duplicate'}
+          buttonAction={() => dispatch(duplicateInstance(instanceIndex))}
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Paste Before'}
+          buttonAction={() => dispatch(pasteInstance(instanceIndex))}
+          closeContextMenu={closeContextMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Paste After'}
+          buttonAction={() => dispatch(pasteInstance(instanceIndex + 1))}
+          closeContextMenu={closeContextMenu}
+        />
+      </ContextMenu>
+    </div>
   );
 };
