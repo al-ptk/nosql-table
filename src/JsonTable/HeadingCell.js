@@ -14,10 +14,11 @@ import {
 
 export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
-  const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
-
+  
+  const [contextMenu, setContextMenu] = useState(null);
+  
   const handleInput = (e) => {
     e.preventDefault();
     // Disable new lines

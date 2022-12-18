@@ -5,6 +5,7 @@
 - [x] duplicate, cut, paste
   - [x] Rows
   - [x] Columns
+- [ ] Context Menu and Menu Bar
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition

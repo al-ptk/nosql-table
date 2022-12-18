@@ -7,6 +7,7 @@ import {
   addProperty,
 } from '../app/slices/tableSlice';
 import { StyledActionBar } from './ActioBar.styled';
+import ActionBarButton from './ActionBarDropDown';
 import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
@@ -27,17 +28,24 @@ export function ActionBar() {
 
   return (
     <StyledActionBar>
-      <button onClick={() => dispatch(newTable())}>New Table</button>
-      <ImportDataButton />
-      <ExportDataButton />
+      <ActionBarButton name={'file'}>
+        <button onClick={() => dispatch(newTable())}>New Table</button>
+
+        <ImportDataButton />
+        <ExportDataButton />
+      </ActionBarButton>
       <input
         type={'text'}
         value={title}
         onInput={(e) => dispatch(updateTitle({ newTitle: e.target.value }))}
         className="title"
       />
-      <button onClick={() => dispatch(addProperty({}))}>Add New Property</button>
-      <button onClick={() => dispatch(addInstance({}))}>Add New Instance</button>
+      <button onClick={() => dispatch(addProperty({}))}>
+        Add New Property
+      </button>
+      <button onClick={() => dispatch(addInstance({}))}>
+        Add New Instance
+      </button>
       <button onClick={togglePreview}>Show Preview</button>
     </StyledActionBar>
   );

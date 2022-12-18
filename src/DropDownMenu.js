@@ -1,25 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function DropDownMenu({ children, xPos, yPos, blurHandler }) {
-  const self = React.useRef(null);
-
+export default function DropDownMenu({ children, xPos, yPos, menuRef }) {
   React.useEffect(() => {
-    self.current.focus();
-  }, [self]);
+    menuRef.current.focus();
+  }, [menuRef]);
 
   return (
     <StyledMenu
       tabIndex={0}
-      onBlur={(e) => {
-        // When buttons are clicked withing the menu
-        // the blur gets captured first and cuts off the button's click.
-        // Pushing the handler to the event cue
-        // solves the events' ording issue.
-        // 'Tis a hack, but alas!
-        setTimeout(() => blurHandler(), 50);
-      }}
-      ref={self}
+      ref={menuRef}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
     >

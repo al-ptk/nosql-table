@@ -21,7 +21,7 @@ function TableHead() {
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr>
-        <th scope="col">Index</th>
+        <th scope="col">&nbsp;</th>
         {schema.map((property, propertyIndex) => (
           <HeadingCell
             key={`prop-${propertyIndex}`}

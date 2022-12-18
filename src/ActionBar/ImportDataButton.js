@@ -2,9 +2,10 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { importTable } from '../app/slices/tableSlice';
 
-export function ImportDataButton() {
+export function ImportDataButton(props) {
+  console.log(props.menuRef);
   const dispatch = useDispatch();
-  const fileInput = useRef();
+  const fileInput = useRef(null);
 
   const selectFile = () => {
     fileInput.current.click();
@@ -15,6 +16,7 @@ export function ImportDataButton() {
     reader.readAsText(fileInput.current.files[0]);
     reader.onload = function () {
       const newTable = JSON.parse(reader.result);
+      console.log(newTable);
       dispatch(importTable({ newTable }));
     };
   };
@@ -22,12 +24,11 @@ export function ImportDataButton() {
   return (
     <span>
       <input
-        id="fileInput"
         type="file"
         accept="application/json"
         style={{ display: 'none' }}
         ref={fileInput}
-        onChange={() => {
+        onChange={(e) => {
           importFile();
         }}
       />

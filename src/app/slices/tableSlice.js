@@ -160,6 +160,7 @@ const tableSlice = createSlice({
     },
     importTable: (state, action) => {
       const { newTable } = action.payload;
+      console.log(newTable);
       state.instances = newTable.instances;
       state.schema = newTable.schema;
       state.title = newTable.title;
