@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addInstance,
@@ -47,19 +47,16 @@ const IndexHeadingContextMenu = ({
 
   const Reference = useRef(null);
 
+  // As soon as component mounts, give it focus
+  useEffect(() => {
+    Reference.current.focus();
+  }, [Reference]);
+
   return (
     <div>
       <ContextMenu
         {...{ xPos, yPos, Reference }}
-        onBlur={() => {
-          const isFocusWithin = Reference.current.contains(
-            document.activeElement
-          );
-          if (!isFocusWithin) {
-            updateShowContextMenu();
-          }
-          return;
-        }}
+        closeContextMenu={updateShowContextMenu}
       >
         <ContextMenuButton
           buttonText={'Move Before'}

@@ -11,6 +11,7 @@ import {
   updateHeadingCell,
 } from '../app/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
+import { useEffect } from 'react';
 
 export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
@@ -63,6 +64,11 @@ const HeadinCellContextMenu = ({
 
   const Reference = useRef(null);
 
+  // As soon as component mounts, give it focus
+  useEffect(() => {
+    Reference.current.focus();
+  }, [Reference]);
+
   const addBefore = () => {
     dispatch(addProperty({ propertyIndex }));
   };
@@ -114,15 +120,7 @@ const HeadinCellContextMenu = ({
   return (
     <ContextMenu
       {...{ xPos, yPos, Reference }}
-      onBlur={() => {
-        const isFocusWithin = Reference.current.contains(
-          document.activeElement
-        );
-        if (!isFocusWithin) {
-          updateShowContextMenu();
-        }
-        return;
-      }}
+      closeContextMenu={updateShowContextMenu}
     >
       <ContextMenuButton
         closeContextMenu={updateShowContextMenu}

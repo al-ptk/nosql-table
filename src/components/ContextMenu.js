@@ -24,12 +24,30 @@ import styled from 'styled-components';
     }
 */
 
-export function ContextMenu({ children, Reference, xPos, yPos }) {
+export function ContextMenu({
+  children,
+  Reference,
+  xPos,
+  yPos,
+  closeContextMenu,
+}) {
   return (
     <StyledMenu
       ref={Reference}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
+      tabIndex={0}
+      onBlur={(e) => {
+        e.preventDefault();
+        const isFocusWithin = Reference.current.contains(
+          document.activeElement
+        );
+        console.log(e.target);
+        if (!isFocusWithin) {
+          closeContextMenu();
+        }
+        return;
+      }}
     >
       {children}
     </StyledMenu>
