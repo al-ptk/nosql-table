@@ -46,9 +46,6 @@ const IndexHeadingContextMenu = ({
   instanceIndex = parseInt(instanceIndex);
 
   const Reference = useRef(null);
-  const closeContextMenu = () => {
-    updateShowContextMenu();
-  };
 
   return (
     <div>
@@ -59,7 +56,7 @@ const IndexHeadingContextMenu = ({
             document.activeElement
           );
           if (!isFocusWithin) {
-            closeContextMenu();
+            updateShowContextMenu();
           }
           return;
         }}
@@ -74,7 +71,7 @@ const IndexHeadingContextMenu = ({
               })
             )
           }
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Move After'}
@@ -86,7 +83,7 @@ const IndexHeadingContextMenu = ({
               })
             )
           }
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Add Before'}
@@ -97,7 +94,7 @@ const IndexHeadingContextMenu = ({
               })
             )
           }
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Add After'}
@@ -108,37 +105,37 @@ const IndexHeadingContextMenu = ({
               })
             )
           }
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Delete'}
           buttonAction={() => dispatch(deleteInstance(instanceIndex))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Cut'}
           buttonAction={() => dispatch(cutInstance(instanceIndex))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Copy'}
           buttonAction={() => dispatch(copyInstance(instanceIndex))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Duplicate'}
           buttonAction={() => dispatch(duplicateInstance(instanceIndex))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Paste Before'}
           buttonAction={() => dispatch(pasteInstance(instanceIndex))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
         <ContextMenuButton
           buttonText={'Paste After'}
           buttonAction={() => dispatch(pasteInstance(instanceIndex + 1))}
-          closeContextMenu={closeContextMenu}
+          closeContextMenu={updateShowContextMenu}
         />
       </ContextMenu>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import DropDownMenu from '../components/DropDownMenu';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,9 +16,9 @@ export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
-  
+
   const [contextMenu, setContextMenu] = useState(null);
-  
+
   const handleInput = (e) => {
     e.preventDefault();
     // Disable new lines
@@ -58,8 +58,10 @@ const HeadinCellContextMenu = ({
   updateShowContextMenu,
   propertyIndex,
 }) => {
-  
   const dispatch = useDispatch();
+  propertyIndex = parseInt(propertyIndex);
+
+  const Reference = useRef(null);
 
   const addBefore = () => {
     dispatch(addProperty({ propertyIndex }));

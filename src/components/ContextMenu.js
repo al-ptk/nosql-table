@@ -4,7 +4,7 @@ import styled from 'styled-components';
   ContextMenu and ContextMenuButton are to belonog in a local context provider.
   Use them by composition, like this:
 
-    function foo () {
+    function foo ({xPos, yPos, setContextVisibility}) {
       const ref = useRef(null);
       const closeContextMenu = () => {ref.current.remove()}/
 
@@ -17,7 +17,7 @@ import styled from 'styled-components';
           <ContextMenu 
             buttonText={someText}
             buttonAction={someFunction}
-            closeContextMenu={closeContextMenu}
+            closeContextMenu={setContextVisibility}
           />
         </ContextMenu>
       </div>
