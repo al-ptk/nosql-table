@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import DropDownMenu from '../components/DropDownMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addProperty,
@@ -11,6 +10,7 @@ import {
   swapProperties,
   updateHeadingCell,
 } from '../app/slices/tableSlice';
+import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 
 export const HeadingCell = ({ propertyIndex }) => {
   propertyIndex = parseInt(propertyIndex);
@@ -112,17 +112,64 @@ const HeadinCellContextMenu = ({
   };
 
   return (
-    <DropDownMenu {...{ xPos, yPos, blurHandler }}>
-      <button onClick={addBefore}> Add Before</button>
-      <button onClick={addAfter}> Add After</button>
-      <button onClick={moveBefore}> Move Back</button>
-      <button onClick={moveAfter}> Move Foward</button>
-      <button onClick={selfDelete}>Delete</button>
-      <button onClick={copy}>Copy</button>
-      <button onClick={cut}>Cut</button>
-      <button onClick={pasteBefore}>Paste Before</button>
-      <button onClick={pasteAfter}>Paste After</button>
-    </DropDownMenu>
+    <ContextMenu
+      {...{ xPos, yPos, Reference }}
+      onBlur={() => {
+        const isFocusWithin = Reference.current.contains(
+          document.activeElement
+        );
+        if (!isFocusWithin) {
+          updateShowContextMenu();
+        }
+        return;
+      }}
+    >
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Add Before'}
+        buttonAction={addBefore}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Add After'}
+        buttonAction={addAfter}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Move Back'}
+        buttonAction={moveBefore}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Move Foward'}
+        buttonAction={moveAfter}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Delete'}
+        buttonAction={selfDelete}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Copy'}
+        buttonAction={copy}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Cut'}
+        buttonAction={cut}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Paste Before'}
+        buttonAction={pasteBefore}
+      />
+      <ContextMenuButton
+        closeContextMenu={updateShowContextMenu}
+        buttonText={'Paste After'}
+        buttonAction={pasteAfter}
+      />
+    </ContextMenu>
   );
 };
 
