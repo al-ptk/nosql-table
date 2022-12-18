@@ -5,7 +5,8 @@
 - [x] duplicate, cut, paste
   - [x] Rows
   - [x] Columns
-- [ ] Context Menu and Menu Bar
+- [x] Context Menu
+- [ ] Menu Bar
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition
@@ -20,6 +21,12 @@
   - [ ] Backend authentication and storage ???
     - [ ] Limit size of tables to a certain kb or mb limit
     - [ ] Limit number of tables on cloud to 5 ???
+- [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field and automatically generates all columns
+- [ ] User-created tiny widgets with inputs. (Think back to resumes and creating formation card like college or course)
+- [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
+- [ ] Account management (password emails, updates, etc.)
+- [ ] Use typescript. The interfaces thing seems pretty good.
+- [ ] add Mongoose integration
 
 GUI stuff
 
@@ -40,13 +47,9 @@ GUI stuff
 Refactors:
 
 - [x] Rename EVERY row to instance and EVERY heading to property. The current naming is conceptually coupled — what if I transpose the table?
-- [ ] Clean up cell actions with context menus and action bar buttons
-- [ ] Create separate component for index th's called IndexCell
+- [x] Clean up cell actions with context menus and action bar buttons
+- [x] Create separate component for index th's called IndexCell
 - [x] Use redux for state management
-
-Branch out - a real data bank:
-
-- [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field and automatically generates all columns
 
 Types of field to add:
 
@@ -59,14 +62,3 @@ Types of field to add:
 - [ ] links - gets rendered as link
 - [ ] random picker - the user gives a pool of values (values must have same type and be string, number or bool) and a random value is assigned at creation of row
 - [ ] Checklist - array made up of preset values
-
-Maybe, maybe, maybe:
-
-- [ ] User-created tiny widgets with inputs. (Think back to resumes and creating formation card like college or course)
-- [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
-- [ ] Account management (password emails, updates, etc.)
-- [ ] Use typescript. The interfaces thing seems pretty good.
-- [ ] add Mongoose integration
-
-Legend:  
-??? — questionable
