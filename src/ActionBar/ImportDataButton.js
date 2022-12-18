@@ -16,8 +16,11 @@ export function ImportDataButton(props) {
     reader.readAsText(fileInput.current.files[0]);
     reader.onload = function () {
       const newTable = JSON.parse(reader.result);
-      console.log(newTable);
-      dispatch(importTable({ newTable }));
+      const fileName = fileInput.current.files[0].name.slice(
+        0,
+        -'.json'.length
+      );
+      dispatch(importTable({ newTable, fileName }));
     };
   };
 
@@ -29,7 +32,11 @@ export function ImportDataButton(props) {
         style={{ display: 'none' }}
         ref={fileInput}
         onChange={(e) => {
-          importFile();
+          const fileName = fileInput.current.files[0].name.slice(
+            0,
+            -'.json'.length
+          );
+          importFile({ fileName });
         }}
       />
       <button onClick={selectFile} className="btn btn-primary">

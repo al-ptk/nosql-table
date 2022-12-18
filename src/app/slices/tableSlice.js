@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllKeys } from '../../utils/helperFunctions';
 
 /*
   Some conceptual definitions:
@@ -159,11 +160,10 @@ const tableSlice = createSlice({
       state.title = newTitle;
     },
     importTable: (state, action) => {
-      const { newTable } = action.payload;
-      console.log(newTable);
-      state.instances = newTable.instances;
-      state.schema = newTable.schema;
-      state.title = newTable.title;
+      const { newTable, fileName } = action.payload;
+      state.instances = newTable?.instances ?? newTable;
+      state.schema = newTable?.schema ?? generateSchema(newTable);
+      state.title = newTable?.title ?? fileName;
       state.clipboard = { type: null, data: null };
     },
     newTable: (state) => {
@@ -202,3 +202,11 @@ export const {
 } = tableSlice.actions;
 
 export default tableSlice.reducer;
+
+function generateSchema(instances) {
+  const propArray = getAllKeys(instances);
+  const schema = propArray.map((prop) => {
+    return { name: prop, type: 'string' };
+  });
+  return schema;
+}
