@@ -17,10 +17,11 @@ const initialState = {
     { 'property 0': '', 'property 1': '' },
   ],
   schema: [{ name: 'property 0' }, { name: 'property 1' }],
-  clipboard: { type: null, data: null },
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
+  clipboard: { type: null, data: null },
   title: 'New Table',
+  selected: {}
 };
 
 const tableSlice = createSlice({

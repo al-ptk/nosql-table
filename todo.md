@@ -9,6 +9,7 @@
 - [x] Menu Bar
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
+----
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition
 - [ ] Render arrays as html lists
@@ -32,7 +33,8 @@
 GUI stuff
 
 - [x] The ActionMenu stuff
-  - [ ] File
+  - [x] File
+    - [ ] Different types of exporting
   - [ ] Edit
     - [ ] Select row\column\cell
   - [ ] Insert
@@ -51,7 +53,9 @@ Refactors:
 - [x] Clean up cell actions with context menus and action bar buttons
 - [x] Create separate component for index th's called IndexCell
 - [x] Use redux for state management
-- [ ] Change ContextMenu to DropDownMenu
+- [ ] Refactor Context Menu 
+  - [ ] Change it to DropdownMenu that happens to be used as context menu
+  - [ ] Make DropdownMenu take an array of props to make buttons based upon.
 - [ ] Fix preview
 
 Types of field to add:
