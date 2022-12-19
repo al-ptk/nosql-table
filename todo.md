@@ -7,14 +7,14 @@
   - [x] Columns
 - [x] Context Menu
 - [ ] Menu Bar
+- [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition
 - [ ] Render arrays as html lists
 - [ ] Autosave to localstorage
-- [ ] Sticky headings bar
 - [ ] Add github link for bug\frature request link
-- [ ] create wizard for adding rows
+- [ ] create wizard for adding instances
 - [ ] Create infrastructure around the app:
   - [ ] Landing Page
   - [ ] Login Page
@@ -30,7 +30,7 @@
 
 GUI stuff
 
-- [x] The ActionBar stuff
+- [x] The ActionMenu stuff
   - [ ] File
   - [ ] Edit
     - [ ] Select row\column\cell
