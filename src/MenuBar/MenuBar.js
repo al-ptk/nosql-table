@@ -20,10 +20,10 @@ export default function MenuBar() {
 
   return (
     <StyledMenuBar>
-      <TitleEdit />
       <FileMenuAnchor />
       <EditMenuAchonr />
       <InsertMenuAnchor />
+      <TitleEdit />
       <button onClick={togglePreview}>Preview</button>
     </StyledMenuBar>
   );
