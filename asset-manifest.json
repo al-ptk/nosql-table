@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/nosql-table/static/css/main.93847a3c.css",
-    "main.js": "/nosql-table/static/js/main.b9108ed6.js",
-    "index.html": "/nosql-table/index.html",
-    "main.93847a3c.css.map": "/nosql-table/static/css/main.93847a3c.css.map",
-    "main.b9108ed6.js.map": "/nosql-table/static/js/main.b9108ed6.js.map"
+    "main.css": "/json-table-editor/static/css/main.93847a3c.css",
+    "main.js": "/json-table-editor/static/js/main.214105d0.js",
+    "index.html": "/json-table-editor/index.html",
+    "main.93847a3c.css.map": "/json-table-editor/static/css/main.93847a3c.css.map",
+    "main.214105d0.js.map": "/json-table-editor/static/js/main.214105d0.js.map"
   },
   "entrypoints": [
     "static/css/main.93847a3c.css",
-    "static/js/main.b9108ed6.js"
+    "static/js/main.214105d0.js"
   ]
 }
