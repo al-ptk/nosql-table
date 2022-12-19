@@ -6,7 +6,7 @@
   - [x] Rows
   - [x] Columns
 - [x] Context Menu
-- [ ] Menu Bar
+- [x] Menu Bar
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
 - [ ] Select value of column \ field type: string, number, array, object
@@ -27,6 +27,7 @@
 - [ ] Account management (password emails, updates, etc.)
 - [ ] Use typescript. The interfaces thing seems pretty good.
 - [ ] add Mongoose integration
+- [ ] Add different exporting options
 
 GUI stuff
 
@@ -50,7 +51,8 @@ Refactors:
 - [x] Clean up cell actions with context menus and action bar buttons
 - [x] Create separate component for index th's called IndexCell
 - [x] Use redux for state management
-- [ ] change ContextMenu to DropDownMenu
+- [ ] Change ContextMenu to DropDownMenu
+- [ ] Fix preview
 
 Types of field to add:
 

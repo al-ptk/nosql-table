@@ -92,7 +92,7 @@ const StyledMenu = styled.div`
   z-index: 10;
   width: 200px;
   background-color: #373737;
-  border: 1px solid white;
+  border: 2px solid white;
 
   button {
     display: block;
