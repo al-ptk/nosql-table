@@ -180,6 +180,12 @@ const tableSlice = createSlice({
     newTable: (state) => {
       state = initialState;
     },
+    setSelected: (state, action) => {
+      const { index, type } = action.payload;
+      // I deestructure the payload before assinging it to state
+      // in order to be more readable.
+      state.selected = { index, type };
+    },
   },
 });
 
@@ -211,6 +217,7 @@ export const {
   importTable,
   makeExportFile,
   newTable,
+  setSelected,
 } = tableSlice.actions;
 
 export default tableSlice.reducer;

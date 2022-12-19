@@ -32,6 +32,7 @@
 - [ ] add Mongoose integration
 - [ ] Add different exporting options
 - [ ] Add undos and redos
+- [ ] Autosave to localstorage 
 
 GUI stuff
 
