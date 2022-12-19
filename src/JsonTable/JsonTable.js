@@ -10,7 +10,6 @@ export function JsonTable() {
     <StyledTable tabIndex="0">
       <TableHead />
       <TableBody />
-      <div id="portal-root"></div>
     </StyledTable>
   );
 }
