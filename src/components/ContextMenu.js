@@ -7,12 +7,14 @@ import styled from 'styled-components';
 
     function SomeComponent () {
       const [context, setContextMenu] = useState(null)
+      const Reference = useRef(null)
 
       return 
         <div onContextMenu={() => {
           setContextMenu(
               <SomeComponentContextMenu 
                 closeMenu={()=setContextMenu(null)}
+                {...{xPos, yPos, Reference}}
               />
           )
           }
@@ -23,15 +25,13 @@ import styled from 'styled-components';
     }
 
     function SomeComponentContextMenu ({xPos, yPos, closeMenu}) {
-      const ref = useRef(null);
-
-      <div> // Any wrapper should do
+      return <div> // Any wrapper should do
         <ContextMenu 
         ref={ref}
           xPos={some_number} 
           yPos={some_number}
         >
-          <ContextMenu 
+          <ContextMenuButton
             buttonText={someText}
             buttonAction={someFunction}
             closeMenu={closeMenu}

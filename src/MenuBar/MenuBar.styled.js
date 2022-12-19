@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledActionBar = styled.header`
+export const StyledMenuBar= styled.header`
   position: fixed;
   top: 0;
   width: 100vw;
   height: 3em;
+  z-index: 10;
+  isolation: isolate;
 
   display: flex;
   justify-content: flex-start;

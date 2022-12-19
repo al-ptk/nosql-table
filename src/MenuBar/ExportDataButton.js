@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-export function ExportDataButton() {
+export function ExportDataButton({ closeMenu }) {
   const title = useSelector((state) => state.table.title);
   const getTableFile = useTableFile(); // for lazy access, instead of constant redraw
   const linkRef = useRef(null);
@@ -24,7 +24,13 @@ export function ExportDataButton() {
       >
         &nbsp;
       </a>
-      <button onClick={downloadTable} className="btn btn-primary">
+      <button
+        onClick={() => {
+          downloadTable();
+          closeMenu();
+        }}
+        className="btn btn-primary"
+      >
         Export Data
       </button>
     </span>

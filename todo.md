@@ -50,6 +50,7 @@ Refactors:
 - [x] Clean up cell actions with context menus and action bar buttons
 - [x] Create separate component for index th's called IndexCell
 - [x] Use redux for state management
+- [ ] change ContextMenu to DropDownMenu
 
 Types of field to add:
 
