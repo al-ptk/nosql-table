@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nosql-table/static/css/main.93847a3c.css",
+    "main.js": "/nosql-table/static/js/main.33c29d7f.js",
+    "index.html": "/nosql-table/index.html",
+    "main.93847a3c.css.map": "/nosql-table/static/css/main.93847a3c.css.map",
+    "main.33c29d7f.js.map": "/nosql-table/static/js/main.33c29d7f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.93847a3c.css",
+    "static/js/main.33c29d7f.js"
+  ]
+}
