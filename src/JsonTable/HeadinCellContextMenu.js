@@ -7,11 +7,8 @@ import {
   deleteProperty,
   pasteProperty,
   swapProperties,
-  repeatToAllInstances,
 } from '../app/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
-import { RepeatValueModal } from './RepeatValueModal';
-import ReactDOM from 'react-dom/client';
 
 export const HeadinCellContextMenu = ({
   xPos,
@@ -125,7 +122,6 @@ export const HeadinCellContextMenu = ({
         buttonText={'Paste After'}
         buttonAction={pasteAfter}
       />
-
     </ContextMenu>
   );
 };

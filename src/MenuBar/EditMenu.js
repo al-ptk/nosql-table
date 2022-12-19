@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addInstance, addProperty } from '../app/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
-import { createRoot } from 'react-dom/client';
 
-export const InsertButton = () => {
+export const EditMenuAchonr = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
 
@@ -16,43 +13,46 @@ export const InsertButton = () => {
           const xPos = coords.left;
           const yPos = coords.bottom;
           setDropdown(
-            <InsertDropdown
+            <EditDropdown
               {...{ xPos, yPos, Reference }}
               closeMenu={() => setDropdown(null)}
             />
           );
         }}
       >
-        Insert
+        Edit
       </button>
       {dropdown}
     </div>
   );
 };
 
-function InsertDropdown({ xPos, yPos, Reference, closeMenu }) {
-  const dispatch = useDispatch();
+function EditDropdown({ xPos, yPos, Reference, closeMenu }) {
   return (
     <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
       <ContextMenuButton
-        buttonText={'Add new property'}
-        buttonAction={() => dispatch(addProperty({}))}
+        buttonText={'Cut'}
+        buttonAction={() => {}}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Add new instance'}
-        buttonAction={() => dispatch(addInstance({}))}
+        buttonText={'Copy'}
+        buttonAction={() => {}}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Repeat'}
-        buttonAction={() => {
-          let node = document.createElement('div');
-          document.body.appendChild(node);
-          createRoot(node).render(
-            <button onClick={(e) => e.target.remove()}>Delete me</button>
-          );
-        }}
+        buttonText={'Paste before'}
+        buttonAction={() => {}}
+        closeMenu={closeMenu}
+      />
+      <ContextMenuButton
+        buttonText={'Paste After'}
+        buttonAction={() => {}}
+        closeMenu={closeMenu}
+      />
+      <ContextMenuButton
+        buttonText={'Duplicate'}
+        buttonAction={() => {}}
         closeMenu={closeMenu}
       />
     </ContextMenu>

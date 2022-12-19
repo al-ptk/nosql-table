@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { EditMenuAchonr } from './EditMenu';
+import { FileMenuAnchor } from './FileMenu';
+import { InsertMenuAnchor } from './InsertMenu';
 import { StyledMenuBar } from './MenuBar.styled';
-import { FileButton } from './FileButton';
-import { EditButton } from './EditButton';
-import { InsertButton } from './InsertButton';
 import { TitleEdit } from './TitleEdit';
 
 export default function MenuBar() {
@@ -20,10 +20,10 @@ export default function MenuBar() {
 
   return (
     <StyledMenuBar>
-      <FileButton />
-      <EditButton />
-      <InsertButton />
       <TitleEdit />
+      <FileMenuAnchor />
+      <EditMenuAchonr />
+      <InsertMenuAnchor />
       <button onClick={togglePreview}>Preview</button>
     </StyledMenuBar>
   );

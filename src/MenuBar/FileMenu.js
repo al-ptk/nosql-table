@@ -1,7 +1,11 @@
 import { useRef, useState } from 'react';
+import { ExportDataButton } from './ExportDataButton';
+import { ImportDataButton } from './ImportDataButton';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
+import { newTable } from '../app/slices/tableSlice';
+import { useDispatch } from 'react-redux';
 
-export const EditButton = () => {
+export const FileMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
 
@@ -13,48 +17,31 @@ export const EditButton = () => {
           const xPos = coords.left;
           const yPos = coords.bottom;
           setDropdown(
-            <EditDropdown
+            <FileDropDown
               {...{ xPos, yPos, Reference }}
               closeMenu={() => setDropdown(null)}
             />
           );
         }}
       >
-        Edit
+        File
       </button>
       {dropdown}
     </div>
   );
 };
 
-function EditDropdown({ xPos, yPos, Reference, closeMenu }) {
+const FileDropDown = ({ xPos, yPos, Reference, closeMenu }) => {
+  const dispatch = useDispatch();
   return (
     <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
       <ContextMenuButton
-        buttonText={'Cut'}
-        buttonAction={() => {}}
+        buttonText={'New Table'}
+        buttonAction={() => dispatch(newTable())}
         closeMenu={closeMenu}
       />
-      <ContextMenuButton
-        buttonText={'Copy'}
-        buttonAction={() => {}}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Paste before'}
-        buttonAction={() => {}}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Paste After'}
-        buttonAction={() => {}}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Duplicate'}
-        buttonAction={() => {}}
-        closeMenu={closeMenu}
-      />
+      <ImportDataButton closeMenu={closeMenu} />
+      <ExportDataButton closeMenu={closeMenu} />
     </ContextMenu>
   );
-}
+};
