@@ -1,13 +1,29 @@
 import { useEffect } from 'react';
-import { useRef } from 'react';
 import styled from 'styled-components';
 
 /*
+  ContextMenu and ContextMenuButton require a custom parent component.
   Use them by composition, like this:
 
-    function foo ({xPos, yPos, setContextVisibility}) {
+    function SomeComponent () {
+      const [context, setContextMenu] = useState(null)
+
+      return 
+        <div onContextMenu={() => {
+          setContextMenu(
+              <SomeComponentContextMenu 
+                closeMenu={()=setContextMenu(null)}
+              />
+          )
+          }
+        >
+          {some stuff}
+          {context}
+        </div>
+    }
+
+    function SomeComponentContextMenu ({xPos, yPos, closeMenu}) {
       const ref = useRef(null);
-      const closeContextMenu = () => {ref.current.remove()}/
 
       <div> // Any wrapper should do
         <ContextMenu 
@@ -18,7 +34,7 @@ import styled from 'styled-components';
           <ContextMenu 
             buttonText={someText}
             buttonAction={someFunction}
-            closeContextMenu={setContextVisibility}
+            closeMenu={closeMenu}
           />
         </ContextMenu>
       </div>
@@ -28,8 +44,7 @@ import styled from 'styled-components';
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
   // Used for effect hook, down below
   const controlContextVisibility = () => {
-    Reference.current.focus();
-
+    Reference.current.focus(); // focus necessary
     const checkMenuFocusWithin = (e) => {
       // made into a named function in order to remove listener later on.
       const isFocusWithin = Reference.current.contains(document.activeElement);
@@ -37,7 +52,6 @@ export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
         closeMenu();
       }
     };
-
     window.addEventListener('click', checkMenuFocusWithin);
     return () => {
       window.removeEventListener('click', checkMenuFocusWithin);
