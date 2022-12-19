@@ -9,7 +9,9 @@
 - [x] Menu Bar
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
-----
+
+---
+
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Transposition
 - [ ] Render arrays as html lists
@@ -29,6 +31,7 @@
 - [ ] Use typescript. The interfaces thing seems pretty good.
 - [ ] add Mongoose integration
 - [ ] Add different exporting options
+- [ ] Add undos and redos
 
 GUI stuff
 
@@ -53,11 +56,12 @@ Refactors:
 - [x] Clean up cell actions with context menus and action bar buttons
 - [x] Create separate component for index th's called IndexCell
 - [x] Use redux for state management
-- [ ] Refactor Context Menu 
+- [ ] Refactor Context Menu
   - [ ] Change it to DropdownMenu that happens to be used as context menu
   - [ ] Make DropdownMenu take an array of props to make buttons based upon.
   - [ ] Make DropdownMenu use a portal
 - [ ] Fix preview
+- [ ] Make edit buttons become disables if the type selected does not support said operation — or if nothing is selected at at all
 
 Types of field to add:
 
