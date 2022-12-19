@@ -62,6 +62,7 @@ Refactors:
   - [ ] Make DropdownMenu use a portal
 - [ ] Fix preview
 - [ ] Make edit buttons become disables if the type selected does not support said operation — or if nothing is selected at at all
+- [ ] Make selected thing be highlighted
 
 Types of field to add:
 
