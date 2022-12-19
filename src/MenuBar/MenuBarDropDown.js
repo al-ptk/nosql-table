@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import DropDownMenu from '../components/DropDownMenu';
 
-export default function ActionBarButton({ name, children }) {
+export default function MenuBarButton({ name, children }) {
   const [contextMenu, setContextMenu] = useState(null);
   const menuRef = useRef(null);
 
@@ -10,7 +10,7 @@ export default function ActionBarButton({ name, children }) {
       <button
         onClick={(e) =>
           setContextMenu(
-            <ActionBarDropDown menuRef={menuRef}>{children}</ActionBarDropDown>
+            <MenuBarDropDown menuRef={menuRef}>{children}</MenuBarDropDown>
           )
         }
       >
@@ -21,8 +21,6 @@ export default function ActionBarButton({ name, children }) {
   );
 }
 
-function ActionBarDropDown({ xPos, yPos, menuRef, children }) {
-  return (
-    <DropDownMenu {...{ xPos, yPos, menuRef }}>{children}</DropDownMenu>
-  );
+function MenuBarDropDown({ xPos, yPos, menuRef, children }) {
+  return <DropDownMenu {...{ xPos, yPos, menuRef }}>{children}</DropDownMenu>;
 }

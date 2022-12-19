@@ -6,12 +6,12 @@ import {
   addInstance,
   addProperty,
 } from '../app/slices/tableSlice';
-import { StyledActionBar } from './ActioBar.styled';
-import ActionBarButton from './ActionBarDropDown';
+import { StyledActionBar } from './MenuBar.styled';
+import MenuBarButton from './MenuBarDropDown';
 import { ExportDataButton } from './ExportDataButton';
 import { ImportDataButton } from './ImportDataButton';
 
-export function ActionBar() {
+export default function MenuBar() {
   const [showPreview, setShowPreview] = useState(false);
   const title = useSelector((state) => state.table.title);
   const dispatch = useDispatch();
@@ -28,12 +28,11 @@ export function ActionBar() {
 
   return (
     <StyledActionBar>
-      <ActionBarButton name={'file'}>
+      <MenuBarButton name={'file'}>
         <button onClick={() => dispatch(newTable())}>New Table</button>
-
         <ImportDataButton />
         <ExportDataButton />
-      </ActionBarButton>
+      </MenuBarButton>
       <input
         type={'text'}
         value={title}

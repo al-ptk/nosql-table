@@ -1,16 +1,16 @@
 import JsonTable from './JsonTable';
 import { GlobalStyle } from './utils/styled-globals';
-import { ActionBar } from './ActionBar/ActionBar';
 import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider } from 'react-redux';
 import store from './app/store';
+import MenuBar from './MenuBar/MenuBar';
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <StoreProvider store={store}>
-        <ActionBar />
+        <MenuBar />
         <JsonTable />
       </StoreProvider>
       <StyledFooter>
