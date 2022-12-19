@@ -21,7 +21,7 @@ const initialState = {
   // They are identified by the "type" filed
   clipboard: { type: null, data: null },
   title: 'New Table',
-  selected: {}
+  selected: { type: null, index: null },
 };
 
 const tableSlice = createSlice({
@@ -157,6 +157,13 @@ const tableSlice = createSlice({
       });
       this.schema.splice(propertyIndex, 0, property);
     },
+    repeatToAllInstances: (state, action) => {
+      const { value, propertyIndex } = action.payload;
+      const propName = state.schema[propertyIndex].name;
+      state.instances.forEach((instance) => {
+        instance[propName] = value;
+      });
+    },
 
     // Table Manager
     updateTitle: (state, action) => {
@@ -197,6 +204,7 @@ export const {
   copyProperty,
   cutProperty,
   pasteProperty,
+  repeatToAllInstances,
 
   // Table Manager
   updateTitle,

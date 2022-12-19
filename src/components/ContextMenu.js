@@ -44,6 +44,7 @@ import styled from 'styled-components';
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
   // Used for effect hook, down below
   const controlContextVisibility = () => {
+    if (Reference === undefined) return;
     Reference.current.focus(); // focus necessary
     const checkMenuFocusWithin = (e) => {
       // made into a named function in order to remove listener later on.
@@ -74,8 +75,8 @@ export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
 export const ContextMenuButton = ({ buttonText, buttonAction, closeMenu }) => {
   return (
     <button
-      onClick={() => {
-        buttonAction();
+      onClick={(e) => {
+        buttonAction(e);
         closeMenu();
       }}
       tabIndex={0}

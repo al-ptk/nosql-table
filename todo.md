@@ -56,6 +56,7 @@ Refactors:
 - [ ] Refactor Context Menu 
   - [ ] Change it to DropdownMenu that happens to be used as context menu
   - [ ] Make DropdownMenu take an array of props to make buttons based upon.
+  - [ ] Make DropdownMenu use a portal
 - [ ] Fix preview
 
 Types of field to add:

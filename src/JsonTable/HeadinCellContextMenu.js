@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addProperty,
@@ -7,8 +7,11 @@ import {
   deleteProperty,
   pasteProperty,
   swapProperties,
+  repeatToAllInstances,
 } from '../app/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
+import { RepeatValueModal } from './RepeatValueModal';
+import ReactDOM from 'react-dom/client';
 
 export const HeadinCellContextMenu = ({
   xPos,
@@ -71,10 +74,12 @@ export const HeadinCellContextMenu = ({
   };
 
   return (
-    <ContextMenu
-      {...{ xPos, yPos, Reference }}
-      closeMenu={closeMenu}
-    >
+    <ContextMenu {...{ xPos, yPos, Reference }} closeMenu={closeMenu}>
+      <ContextMenu
+        buttonText={'Repeat Value'}
+        closeMenu={closeMenu}
+        buttonAction={(e) => {}}
+      />
       <ContextMenuButton
         closeMenu={closeMenu}
         buttonText={'Add Before'}
@@ -120,6 +125,7 @@ export const HeadinCellContextMenu = ({
         buttonText={'Paste After'}
         buttonAction={pasteAfter}
       />
+
     </ContextMenu>
   );
 };
