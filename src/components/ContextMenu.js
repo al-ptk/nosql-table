@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 /*
-  ContextMenu and ContextMenuButton are to belonog in a local context provider.
   Use them by composition, like this:
 
     function foo ({xPos, yPos, setContextVisibility}) {
@@ -24,47 +25,46 @@ import styled from 'styled-components';
     }
 */
 
-export function ContextMenu({
-  children,
-  Reference,
-  xPos,
-  yPos,
-  closeContextMenu,
-}) {
+export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
+  // Used for effect hook, down below
+  const controlContextVisibility = () => {
+    Reference.current.focus();
+
+    const checkMenuFocusWithin = (e) => {
+      // made into a named function in order to remove listener later on.
+      const isFocusWithin = Reference.current.contains(document.activeElement);
+      if (!isFocusWithin) {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener('click', checkMenuFocusWithin);
+    return () => {
+      window.removeEventListener('click', checkMenuFocusWithin);
+    };
+  };
+  useEffect(controlContextVisibility, [Reference, closeMenu]);
+
   return (
     <StyledMenu
       ref={Reference}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
       tabIndex={0}
-      onBlur={(e) => {
-        e.preventDefault();
-        const isFocusWithin = Reference.current.contains(
-          document.activeElement
-        );
-        console.log(e.target);
-        if (!isFocusWithin) {
-          closeContextMenu();
-        }
-        return;
-      }}
     >
       {children}
     </StyledMenu>
   );
 }
 
-export const ContextMenuButton = ({
-  buttonText,
-  buttonAction,
-  closeContextMenu,
-}) => {
+export const ContextMenuButton = ({ buttonText, buttonAction, closeMenu }) => {
   return (
     <button
       onClick={() => {
         buttonAction();
-        closeContextMenu();
+        closeMenu();
       }}
+      tabIndex={0}
     >
       {buttonText}
     </button>

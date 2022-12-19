@@ -104,7 +104,10 @@ const tableSlice = createSlice({
     },
     deleteProperty: (state, action) => {
       const { propertyIndex } = action.payload;
-      state.instances.splice(propertyIndex, 1);
+      state.instances.forEach(
+        (instance) => delete instance[state.schema[propertyIndex].name]
+      );
+      state.schema.splice(propertyIndex, 1);
     },
     swapProperties: (state, action) => {
       const { selectedIndex, targetIndex } = action.payload;
