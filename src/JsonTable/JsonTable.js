@@ -22,7 +22,7 @@ function TableHead() {
       {/* For vertical rows, make tr be flex column */}
       <tr>
         <th scope="col" className="index-heading">
-          &nbsp;
+          Instance Index
         </th>
         {schema.map((property, propertyIndex) => (
           <HeadingCell

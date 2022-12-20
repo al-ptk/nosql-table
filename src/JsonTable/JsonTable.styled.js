@@ -22,6 +22,7 @@ const horizontalRows = css`
 `;
 
 const verticalRows = css`
+  overflow: auto;
   display: flex;
   thead {
     tr {
@@ -44,7 +45,7 @@ export const StyledTable = styled.table`
   margin: 100px 10vw;
   max-width: 80vw;
 
-  background-color: white;
+  background-color: transparent;
   border-collapse: collapse;
 
   tr {
@@ -65,25 +66,23 @@ export const StyledTable = styled.table`
     }
   }
 
-  :focus,
-  :focus-within {
-    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
-  }
-`;
-
-export const StyledTHead = styled.thead`
-  tr {
-    background-color: #373737;
-  }
-
   th {
+    background-color: #373737;
+    color: white;
     textarea {
       color: white;
       background-color: inherit;
       border: none;
     }
   }
+
+  :focus,
+  :focus-within {
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
+  }
 `;
+
+export const StyledTHead = styled.thead``;
 
 export const StyledTBody = styled.tbody`
   textarea {
