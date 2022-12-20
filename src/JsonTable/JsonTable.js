@@ -43,7 +43,9 @@ function TableBody() {
     <StyledTBody>
       {instances.map((instance, instanceIndex) => (
         <tr key={`instance-${instanceIndex}`}>
-          <IndexHeading instanceIndex={instanceIndex} />
+          <IndexHeading
+            instanceIndex={instanceIndex}
+          />
           {schema.map((property, propertyIndex) => {
             return (
               <DataCell

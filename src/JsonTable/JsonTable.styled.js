@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import JsonFormatter from 'react-json-formatter';
 
 const horizontalRows = css`
   display: flex;
@@ -44,6 +43,7 @@ export const StyledTable = styled.table`
   ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
   margin: 100px 10vw;
   max-width: 80vw;
+  width: fit-content;
 
   background-color: transparent;
   border-collapse: collapse;
@@ -90,5 +90,3 @@ export const StyledTBody = styled.tbody`
     color: black;
   }
 `;
-
-export const StyledJsonFormatter = styled(JsonFormatter)``;
