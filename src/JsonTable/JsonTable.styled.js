@@ -32,7 +32,6 @@ const verticalRows = css`
   }
   tbody {
     display: flex;
-    overflow-x: auto;
     tr {
       display: flex;
       flex-direction: column;
