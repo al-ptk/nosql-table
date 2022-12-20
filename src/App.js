@@ -5,15 +5,19 @@ import { Provider as StoreProvider } from 'react-redux';
 import store from './app/store';
 import MenuBar from './MenuBar/MenuBar';
 import { useState } from 'react';
+import { JSONPreview } from './JSONPreview';
 
 function App() {
   const [isVertical, setIsVertical] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
   return (
     <>
       <GlobalStyle />
       <StoreProvider store={store}>
-        <MenuBar {...{ setIsVertical }} />
+        <MenuBar {...{ setIsVertical, showPreview, setShowPreview }} />
         <JsonTable {...{ isVertical }} />
+        <JSONPreview {...{ showPreview, setShowPreview }} />
       </StoreProvider>
       <StyledFooter>
         Made by{' '}
