@@ -10,18 +10,26 @@
 - [ ] Fix edit functions
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
-- [ ] Improve UX:
-  - [ ] differentiate between editable headings and uneditable index
-- [ ] Center heading text
 - [ ] Fix preview
+- [x] Transposition
+- [ ] Render arrays as html lists
+- [ ] Add github link for bug\frature request link
+- [ ] Add a modal with a bigger textbox for texts too large
+- [ ] Improve UI\UX:
+  - [ ] differentiate between editable headings and uneditable index
+  - [ ] Better spacing
+  - [ ] Center heading text
+
+And this marks the launch of version 1.0
+After these, I only do bug fixes and will prepare for the next project.
+Later, I will come back and add new features to this.
 
 ---
 
+For the next version
+
 - [ ] Select value of column \ field type: string, number, array, object
-- [ ] Transposition
-- [ ] Render arrays as html lists
 - [ ] Autosave to localstorage
-- [ ] Add github link for bug\frature request link
 - [ ] create wizard for adding instances
 - [ ] Create infrastructure around the app:
   - [ ] Landing Page
