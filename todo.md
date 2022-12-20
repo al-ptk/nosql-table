@@ -7,8 +7,13 @@
   - [x] Columns
 - [x] Context Menu
 - [x] Menu Bar
+- [ ] Fix edit functions
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] A repeat (macro) function
+- [ ] Improve UX:
+  - [ ] differentiate between editable headings and uneditable index
+- [ ] Center heading text
+- [ ] Fix preview
 
 ---
 
@@ -32,7 +37,7 @@
 - [ ] add Mongoose integration
 - [ ] Add different exporting options
 - [ ] Add undos and redos
-- [ ] Autosave to localstorage 
+- [ ] Autosave to localstorage
 
 GUI stuff
 
@@ -61,7 +66,6 @@ Refactors:
   - [ ] Change it to DropdownMenu that happens to be used as context menu
   - [ ] Make DropdownMenu take an array of props to make buttons based upon.
   - [ ] Make DropdownMenu use a portal
-- [ ] Fix preview
 - [ ] Make edit buttons become disables if the type selected does not support said operation — or if nothing is selected at at all
 - [ ] Make selected thing be highlighted
 
