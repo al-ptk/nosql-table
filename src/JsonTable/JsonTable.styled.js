@@ -4,7 +4,7 @@ import JsonFormatter from 'react-json-formatter';
 const horizontalRows = css`
   display: flex;
   flex-direction: column;
-
+  overflow: auto;
   thead {
     tr {
       flex: 1;
@@ -12,36 +12,26 @@ const horizontalRows = css`
       flex-wrap: nowrap;
     }
   }
-
   tbody {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: scroll;
-
     tr {
       display: flex;
     }
-  }
-
-  .index-heading {
-    width: 100px;
   }
 `;
 
 const verticalRows = css`
   display: flex;
-
   thead {
     tr {
       display: flex;
       flex-direction: column;
     }
   }
-
   tbody {
     display: flex;
-
+    overflow-x: auto;
     tr {
       display: flex;
       flex-direction: column;
@@ -57,14 +47,21 @@ export const StyledTable = styled.table`
   background-color: white;
   border-collapse: collapse;
 
+  tr {
+    width: fit-content;
+    height: fit-content;
+    overflow: clip;
+  }
+
   td,
   th {
+    width: 150px;
+    height: 50px;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    flex: 0;
     textarea {
-      max-width: 150px;
-      height: 50px;
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -88,6 +85,11 @@ export const StyledTHead = styled.thead`
   }
 `;
 
-export const StyledTBody = styled.tbody``;
+export const StyledTBody = styled.tbody`
+  textarea {
+    background-color: white;
+    color: black;
+  }
+`;
 
 export const StyledJsonFormatter = styled(JsonFormatter)``;
