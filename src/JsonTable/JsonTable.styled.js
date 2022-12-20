@@ -1,11 +1,58 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import JsonFormatter from 'react-json-formatter';
 
+const horizontalRows = css`
+  display: flex;
+  flex-direction: column;
+
+  thead {
+    tr {
+      flex: 1;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  tbody {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    tr {
+      display: flex;
+    }
+  }
+
+  .index-heading {
+    width: 100px;
+  }
+`;
+
+const verticalRows = css`
+  display: flex;
+
+  thead {
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  tbody {
+    display: flex;
+
+    tr {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+`;
+
 export const StyledTable = styled.table`
+  ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
   margin: 100px 10vw;
   max-width: 80vw;
-
-  display: flex;
 
   background-color: white;
   border-collapse: collapse;
@@ -16,7 +63,7 @@ export const StyledTable = styled.table`
     border: 1px solid rgba(0, 0, 0, 0.5);
     flex: 0;
     textarea {
-      width: 150px;
+      max-width: 150px;
       height: 50px;
     }
   }
@@ -27,12 +74,8 @@ export const StyledTable = styled.table`
   }
 `;
 
-export const StyledJsonFormatter = styled(JsonFormatter)``;
-
 export const StyledTHead = styled.thead`
   tr {
-    display: flex;
-    flex-direction: column;
     background-color: #373737;
   }
 
@@ -45,12 +88,6 @@ export const StyledTHead = styled.thead`
   }
 `;
 
-export const StyledTBody = styled.tbody`
-  display: flex;
-  overflow-x: scroll;
+export const StyledTBody = styled.tbody``;
 
-  tr {
-    display: flex;
-    flex-direction: column;
-  }
-`;
+export const StyledJsonFormatter = styled(JsonFormatter)``;

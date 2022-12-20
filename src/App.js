@@ -4,14 +4,16 @@ import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider } from 'react-redux';
 import store from './app/store';
 import MenuBar from './MenuBar/MenuBar';
+import { useState } from 'react';
 
 function App() {
+  const [isVertical, setIsVertical] = useState(false);
   return (
     <>
       <GlobalStyle />
       <StoreProvider store={store}>
-        <MenuBar />
-        <JsonTable />
+        <MenuBar {...{ setIsVertical }} />
+        <JsonTable {...{ isVertical }} />
       </StoreProvider>
       <StyledFooter>
         Made by{' '}

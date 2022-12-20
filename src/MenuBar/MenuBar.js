@@ -5,7 +5,7 @@ import { InsertMenuAnchor } from './InsertMenu';
 import { StyledMenuBar } from './MenuBar.styled';
 import { TitleEdit } from './TitleEdit';
 
-export default function MenuBar() {
+export default function MenuBar({ setIsVertical }) {
   const [showPreview, setShowPreview] = useState(false);
 
   const togglePreview = (e) => {
@@ -25,6 +25,12 @@ export default function MenuBar() {
       <InsertMenuAnchor />
       <TitleEdit />
       <button onClick={togglePreview}>Preview</button>
+      <button onClick={() => setIsVertical((bool) => !bool)}>
+        Toggle Orientation
+      </button>
+      <button onClick={() => alert('Not implemented yet.')}>
+        Report a bug
+      </button>
     </StyledMenuBar>
   );
 }

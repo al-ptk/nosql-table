@@ -5,9 +5,9 @@ import { DataCell } from './DataCell';
 import { useSelector } from 'react-redux';
 import IndexHeading from './IndexHeading';
 
-export function JsonTable() {
+export function JsonTable({ isVertical }) {
   return (
-    <StyledTable tabIndex="0">
+    <StyledTable tabIndex="0" isVertical={isVertical}>
       <TableHead />
       <TableBody />
     </StyledTable>
@@ -21,7 +21,9 @@ function TableHead() {
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr>
-        <th scope="col">&nbsp;</th>
+        <th scope="col" className="index-heading">
+          &nbsp;
+        </th>
         {schema.map((property, propertyIndex) => (
           <HeadingCell
             key={`prop-${propertyIndex}`}
