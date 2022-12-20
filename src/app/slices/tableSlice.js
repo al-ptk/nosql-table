@@ -11,7 +11,7 @@ import { getAllKeys } from '../../utils/helperFunctions';
   Instances: An array of objects that populate the table based on the fields each instance possesses. Instance here is can be read the same as "instance of an object." Not all instances have all schema properties, but schema properties describe all possible fields of an instance.
 */
 
-const initialState = {
+const emptyTable = {
   instances: [
     { 'property 0': '', 'property 1': '' },
     { 'property 0': '', 'property 1': '' },
@@ -26,7 +26,7 @@ const initialState = {
 
 const tableSlice = createSlice({
   name: 'table',
-  initialState,
+  initialState: emptyTable,
 
   reducers: {
     // Cell Manager
@@ -178,7 +178,11 @@ const tableSlice = createSlice({
       state.clipboard = { type: null, data: null };
     },
     newTable: (state) => {
-      state = initialState;
+      state.instances = emptyTable.instances;
+      state.schema = emptyTable.schema;
+      state.selected = emptyTable.selected;
+      state.clipboard = emptyTable.clipboard;
+      state.title = emptyTable.title;
     },
     setSelected: (state, action) => {
       const { index, type } = action.payload;
