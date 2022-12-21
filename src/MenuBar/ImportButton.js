@@ -44,7 +44,7 @@ export function ImportButton({ closeMenu }) {
           selectFile();
         }}
       >
-        Import Data
+        Import file
       </button>
     </span>
   );

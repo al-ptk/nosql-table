@@ -19,6 +19,7 @@
   - [x] Better spacing
   - [x] Center heading text
 - [x] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
+- [ ] Write readme (possibly, an 'Help' document also)
 
 And this marks the launch of version 1.0
 After these, I only do bug fixes and will prepare for the next project.
@@ -28,26 +29,29 @@ Later, I will come back and add new features to this.
 
 For the next version
 
-- [ ] Comments about the website on side-drawer menu
-- [ ] Select value of column \ field type: string, number, array, object
 - [ ] Render arrays as html lists
-- [ ] Autosave to localstorage
-- [ ] create wizard for adding instances
-- [ ] Create infrastructure around the app:
-  - [ ] Landing Page
-  - [ ] Login Page
-  - [ ] Backend authentication and storage ???
-    - [ ] Limit size of tables to a certain kb or mb limit
-    - [ ] Limit number of tables on cloud to 5 ???
+- [ ] Select value of column \ field type: string, number, array, object
 - [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field and automatically generates all columns
 - [ ] User-created tiny widgets with inputs. (Think back to resumes and creating formation card like college or course)
-- [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
-- [ ] Account management (password emails, updates, etc.)
-- [ ] Use typescript. The interfaces thing seems pretty good.
-- [ ] add Mongoose integration
-- [ ] Add different exporting options
-- [ ] Add undos and redos
+- [ ] Iterate feature: same as repeat, but: (both strings and other types)
+  - [ ] accept the index to change the value repeated
+  - [ ] adds a random number
+  - [ ] picks randomly from a list of options
 - [ ] Autosave to localstorage
+- [ ] create wizard for adding instances
+- [ ] Backend authentication and storage ???
+  - [ ] Limit size of tables to a certain kb or mb limit
+  - [ ] Limit number of tables on cloud to 5 ???
+  - [ ] add Mongoose integration
+  - [ ] Account management (password emails, updates, etc.)
+- [ ] Comments about the website on side-drawer menu
+- [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
+- [ ] Use typescript. The interfaces thing seems pretty good.
+- [ ] Add different exporting options
+  - [ ] full file
+  - [ ] only rows
+  - [ ] html table
+- [ ] Add undos and redos
 
 Tutorial:
 
@@ -60,10 +64,19 @@ GUI stuff
 - [x] The ActionMenu stuff
   - [ ] File
     - [ ] Different types of exporting
+    - [ ] Print
+    - [ ] Close table
   - [ ] Edit
     - [ ] Select row\column\cell
   - [ ] Insert
     - [ ] insert all
+  - [ ] User Menu
+- [ ] Table
+  - [ ] Move table to within a div
+  - [ ] Add quick buttons for
+    - [ ] Add instance\property
+    - [ ] Delete instnace property
+    - [ ] Select menu for type of property
 - [x] Contextual Menu
   - [x] Headings (for columns and rows)
     - [x] Paste above\left
@@ -72,7 +85,9 @@ GUI stuff
     - [x] cut
     - [x] delete
     - [x] duplicate
-- [ ] 
+- [ ] Create views for the app:
+  - [ ] Landing Page
+  - [ ] Login Page
 
 Refactors:
 

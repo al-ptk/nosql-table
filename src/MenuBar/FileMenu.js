@@ -42,11 +42,11 @@ const FileDropDown = ({ xPos, yPos, Reference, closeMenu }) => {
       />
       <hr />
       <ImportButton closeMenu={closeMenu} />
-      <ExportButton closeMenu={closeMenu} exportMoode={'full'}>
+      <ExportButton closeMenu={closeMenu} exportMode={'full'}>
         Export file
       </ExportButton>
-      <ExportButton closeMenu={closeMenu} exportMoode={'rows-oly'}>
-        Export rows
+      <ExportButton closeMenu={closeMenu} exportMode={'rows-only'}>
+        Export only rows
       </ExportButton>
     </ContextMenu>
   );
