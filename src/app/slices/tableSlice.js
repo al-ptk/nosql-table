@@ -14,20 +14,17 @@ import { getAllKeys } from '../../utils/helperFunctions';
 const emptyTable = {
   instances: [
     {
-      'property 0': 'aaaaaaa',
-      'property 1': 'bbbbbbbb',
-      'property 2': 11111111,
+      'property 0': '',
+      'property 1': '',
     },
     {
-      'property 0': 'ccccccc',
-      'property 1': 'dddddddd',
-      'property 2': 11111111,
+      'property 0': '',
+      'property 1': '',
     },
   ],
   schema: [
-    { name: 'property 0' },
-    { name: 'property 1' },
-    { name: 'property 2' },
+    { name: 'property 0', type: 'string' },
+    { name: 'property 1', type: 'string' },
   ],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed

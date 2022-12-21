@@ -1,8 +1,10 @@
+import GithubIcon from '../assets/GithubIcon';
 import { EditMenuAchonr } from './EditMenu';
 import { FileMenuAnchor } from './FileMenu';
 import { InsertMenuAnchor } from './InsertMenu';
 import { StyledMenuBar } from './MenuBar.styled';
 import { TitleEdit } from './TitleEdit';
+import { ViewMenuAnchor } from './ViewMenu';
 
 export default function MenuBar({
   setIsVertical,
@@ -14,14 +16,22 @@ export default function MenuBar({
       <FileMenuAnchor />
       <EditMenuAchonr />
       <InsertMenuAnchor />
+      <ViewMenuAnchor {...{ setIsVertical, setShowPreview, showPreview }} />
       <TitleEdit />
-      <button onClick={() => setShowPreview((bool) => !bool)}>Preview</button>
-      <button onClick={() => setIsVertical((bool) => !bool)}>
-        Toggle Orientation
-      </button>
-      <button onClick={() => alert('Not implemented yet.')}>
-        Report a bug
-      </button>
+      <a
+        href="https://github.com/al-ptk/json-table-editor/issues"
+        target={'_blank'}
+        rel="noreferrer"
+      >
+        Bugs & Suggestions
+      </a>
+      <a
+        href="https://github.com/al-ptk/json-table-editor/"
+        target={'_blank'}
+        rel="noreferrer"
+      >
+        <GithubIcon height={'24px'} style={{ marginBottom: '-3px' }} />
+      </a>
     </StyledMenuBar>
   );
 }

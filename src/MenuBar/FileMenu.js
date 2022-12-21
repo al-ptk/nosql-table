@@ -40,6 +40,7 @@ const FileDropDown = ({ xPos, yPos, Reference, closeMenu }) => {
         buttonAction={() => dispatch(newTable())}
         closeMenu={closeMenu}
       />
+      <hr />
       <ImportDataButton closeMenu={closeMenu} />
       <ExportDataButton closeMenu={closeMenu} />
     </ContextMenu>

@@ -44,8 +44,9 @@ function InsertDropdown({ xPos, yPos, Reference, closeMenu }) {
         buttonAction={() => dispatch(addInstance({}))}
         closeMenu={closeMenu}
       />
+      <hr />
       <ContextMenuButton
-        buttonText={'Repeat'}
+        buttonText={'Insert for all in property'}
         buttonAction={() => {
           let node = document.createElement('div');
           document.body.appendChild(node);

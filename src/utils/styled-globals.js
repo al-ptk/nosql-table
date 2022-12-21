@@ -9,4 +9,8 @@ export const GlobalStyle = createGlobalStyle`
   textarea {
     resize: none;
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
