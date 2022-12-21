@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { JSONPreview } from './JSONPreview';
 
 function App() {
-  const [isVertical, setIsVertical] = useState(false);
+  const [isVertical, setIsVertical] = useState(true);
   const [showPreview, setShowPreview] = useState(false);
 
   return (

@@ -48,7 +48,7 @@ const tableSlice = createSlice({
     // Instance Manager
     addInstance: (state, action) => {
       let { targetIndex } = action?.payload;
-      targetIndex = targetIndex ?? state.instances.length - 1;
+      targetIndex = targetIndex ?? state.instances.length; // given no index, removes last one
       let newInstance = state.schema.map((property) => [property.name, '']);
       newInstance = Object.fromEntries(newInstance);
       state.instances.splice(targetIndex, 0, newInstance);
@@ -74,14 +74,17 @@ const tableSlice = createSlice({
     },
     cutInstance: (state, action) => {
       const { instanceIndex } = action.payload;
-      // splice removes element from array and returns it as array
-      let cutInstance = state.instances.splice(instanceIndex, 1)[0];
-      state.clipboard = { type: 'instance', data: cutInstance };
+      state.clipboard = {
+        type: 'instance',
+        data: state.instances[instanceIndex],
+      };
+      state.instances.splice(instanceIndex, 1);
+      console.log(state.clipboard);
     },
     pasteInstance: (state, action) => {
       if (state.clipboard.type !== 'instance') return;
       const { instanceIndex } = action.payload;
-      state.instances.splice(instanceIndex, 0, state.clipboard);
+      state.instances.splice(instanceIndex, 0, state.clipboard.data);
     },
     duplicateInstance: (state, action) => {
       const { instanceIndex } = action.payload;

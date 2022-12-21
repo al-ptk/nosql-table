@@ -19,6 +19,7 @@
   - [ ] differentiate between editable headings and uneditable index
   - [ ] Better spacing
   - [ ] Center heading text
+- [ ] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
 
 And this marks the launch of version 1.0
 After these, I only do bug fixes and will prepare for the next project.

@@ -21,7 +21,6 @@ const horizontalRows = css`
 `;
 
 const verticalRows = css`
-  overflow: auto;
   display: flex;
   thead {
     tr {
@@ -31,6 +30,7 @@ const verticalRows = css`
   }
   tbody {
     display: flex;
+    overflow: auto;
     tr {
       display: flex;
       flex-direction: column;

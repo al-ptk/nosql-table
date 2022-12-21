@@ -73,32 +73,34 @@ export const IndexHeadingContextMenu = ({
         />
         <ContextMenuButton
           buttonText={'Delete'}
-          buttonAction={() => dispatch(deleteInstance(instanceIndex))}
+          buttonAction={() => dispatch(deleteInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
           buttonText={'Cut'}
-          buttonAction={() => dispatch(cutInstance(instanceIndex))}
+          buttonAction={() => dispatch(cutInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
           buttonText={'Copy'}
-          buttonAction={() => dispatch(copyInstance(instanceIndex))}
+          buttonAction={() => dispatch(copyInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
           buttonText={'Duplicate'}
-          buttonAction={() => dispatch(duplicateInstance(instanceIndex))}
+          buttonAction={() => dispatch(duplicateInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
           buttonText={'Paste Before'}
-          buttonAction={() => dispatch(pasteInstance(instanceIndex))}
+          buttonAction={() => dispatch(pasteInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
           buttonText={'Paste After'}
-          buttonAction={() => dispatch(pasteInstance(instanceIndex + 1))}
+          buttonAction={() =>
+            dispatch(pasteInstance({ instanceIndex: instanceIndex + 1 }))
+          }
           closeMenu={closeMenu}
         />
       </ContextMenu>
