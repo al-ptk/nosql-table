@@ -49,17 +49,19 @@ import styled from 'styled-components';
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
   const controlContextVisibility = () => {
     if (Reference === undefined) return;
-    document.body.click();
+    document.body.click(); // closes other menus
     Reference.current.focus();
-    const checkMenuFocusWithin = (e) => {
+    const closeMenuOnOutsideClick = (e) => {
       const isFocusWithin = Reference.current.contains(document.activeElement);
       if (!isFocusWithin) {
         closeMenu();
       }
     };
-    window.addEventListener('click', checkMenuFocusWithin);
+    window.addEventListener('click', closeMenuOnOutsideClick);
+    window.addEventListener('contextmenu', closeMenuOnOutsideClick);
     return () => {
-      window.removeEventListener('click', checkMenuFocusWithin);
+      window.removeEventListener('click', closeMenuOnOutsideClick);
+      window.removeEventListener('contextmenu', closeMenuOnOutsideClick);
     };
   };
 
@@ -96,9 +98,10 @@ const StyledMenu = styled.div`
   top: ${(props) => props.yPos};
   left: ${(props) => props.xPos};
   z-index: 10;
-  width: 200px;
+  width: fit-content;
   background-color: #373737;
   border: 1px solid white;
+  padding: 2px 0px;
 
   button {
     display: block;
@@ -106,8 +109,12 @@ const StyledMenu = styled.div`
     color: white;
     border: none;
     width: 100%;
+    text-align: left;
+    padding: 1px 7.5px;
   }
 
   hr {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 2px 0;
   }
 `;

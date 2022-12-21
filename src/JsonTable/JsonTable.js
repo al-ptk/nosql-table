@@ -21,7 +21,11 @@ function TableHead() {
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr>
-        <th scope="col" className="index-heading">
+        <th
+          scope="col"
+          className="index-heading"
+          onContextMenu={(e) => e.preventDefault()}
+        >
           Instance Index
         </th>
         {schema.map((property, propertyIndex) => (
@@ -43,9 +47,7 @@ function TableBody() {
     <StyledTBody>
       {instances.map((instance, instanceIndex) => (
         <tr key={`instance-${instanceIndex}`}>
-          <IndexHeading
-            instanceIndex={instanceIndex}
-          />
+          <IndexHeading instanceIndex={instanceIndex} />
           {schema.map((property, propertyIndex) => {
             return (
               <DataCell
