@@ -62,22 +62,34 @@ export const StyledTable = styled.table`
     textarea {
       width: 100%;
       height: 100%;
+      border: none;
+
+      &:focus {
+        border: 2px solid black;
+      }
     }
   }
 
   th {
     background-color: #373737;
     color: white;
+    display: grid;
+    place-items: center;
     textarea {
       color: white;
       background-color: inherit;
       border: none;
-    }
-  }
+      width: 90%;
+      height: fit-content;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 3px;
 
-  :focus,
-  :focus-within {
-    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.7);
+      &:focus {
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
+      }
+    }
   }
 `;
 
