@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { ExportDataButton } from './ExportDataButton';
-import { ImportDataButton } from './ImportDataButton';
+import { ExportButton } from './ExportButton';
+import { ImportButton } from './ImportButton';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 import { newTable } from '../app/slices/tableSlice';
 import { useDispatch } from 'react-redux';
@@ -41,8 +41,13 @@ const FileDropDown = ({ xPos, yPos, Reference, closeMenu }) => {
         closeMenu={closeMenu}
       />
       <hr />
-      <ImportDataButton closeMenu={closeMenu} />
-      <ExportDataButton closeMenu={closeMenu} />
+      <ImportButton closeMenu={closeMenu} />
+      <ExportButton closeMenu={closeMenu} exportMoode={'full'}>
+        Export file
+      </ExportButton>
+      <ExportButton closeMenu={closeMenu} exportMoode={'rows-oly'}>
+        Export rows
+      </ExportButton>
     </ContextMenu>
   );
 };

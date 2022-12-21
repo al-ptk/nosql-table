@@ -103,6 +103,7 @@ const StyledMenu = styled.div`
   border: 1px solid white;
   padding: 2px 0px;
 
+  span > button,
   button {
     display: block;
     background-color: transparent;
@@ -110,7 +111,7 @@ const StyledMenu = styled.div`
     border: none;
     width: 100%;
     text-align: left;
-    padding: 1px 7.5px;
+    padding: 1px 10px;
   }
 
   hr {

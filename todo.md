@@ -28,6 +28,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Comments about the website on side-drawer menu
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Render arrays as html lists
 - [ ] Autosave to localstorage
@@ -51,16 +52,18 @@ For the next version
 Tutorial:
 
 - [ ] Different orientations
+- [ ] preview VS exporting
 - [ ] Double-click to open modal of cell
 
 GUI stuff
 
 - [x] The ActionMenu stuff
-  - [x] File
+  - [ ] File
     - [ ] Different types of exporting
   - [ ] Edit
     - [ ] Select row\column\cell
   - [ ] Insert
+    - [ ] insert all
 - [x] Contextual Menu
   - [x] Headings (for columns and rows)
     - [x] Paste above\left
@@ -69,6 +72,7 @@ GUI stuff
     - [x] cut
     - [x] delete
     - [x] duplicate
+- [ ] 
 
 Refactors:
 

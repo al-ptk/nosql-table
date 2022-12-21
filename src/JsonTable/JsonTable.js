@@ -4,6 +4,7 @@ import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 import { useSelector } from 'react-redux';
 import IndexHeading from './IndexHeading';
+import { AddEntityButton } from './AddEntityButton';
 
 export function JsonTable({ isVertical }) {
   return (
@@ -35,6 +36,7 @@ function TableHead() {
           />
         ))}
       </tr>
+      <AddEntityButton handleClick={() => {}}>+</AddEntityButton>
     </StyledTHead>
   );
 }
@@ -61,6 +63,7 @@ function TableBody() {
           })}
         </tr>
       ))}
+      <AddEntityButton handleClick={() => {}}>+</AddEntityButton>
     </StyledTBody>
   );
 }

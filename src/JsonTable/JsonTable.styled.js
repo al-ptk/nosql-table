@@ -40,9 +40,9 @@ const verticalRows = css`
 
 export const StyledTable = styled.table`
   ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
-  margin: 100px 10vw;
-  max-width: 80vw;
+  margin: 100px auto;
   width: fit-content;
+  max-width: 80vw;
 
   background-color: transparent;
   border-collapse: collapse;

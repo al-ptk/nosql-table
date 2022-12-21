@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { importTable } from '../app/slices/tableSlice';
 
-export function ImportDataButton({ closeMenu }) {
+export function ImportButton({ closeMenu }) {
   const dispatch = useDispatch();
   const fileInput = useRef(null);
 
@@ -43,7 +43,6 @@ export function ImportDataButton({ closeMenu }) {
         onClick={() => {
           selectFile();
         }}
-        className="btn btn-primary"
       >
         Import Data
       </button>

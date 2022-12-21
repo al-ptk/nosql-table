@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-export function ExportDataButton({ closeMenu }) {
+export function ExportButton({ closeMenu, exportMode, ...props }) {
   const title = useSelector((state) => state.table.title);
-  const getTableFile = useTableFile(); // for lazy access, instead of constant redraw
+  const getTableFile = useTableFile(exportMode); // for lazy access, instead of constant redraw
   const linkRef = useRef(null);
 
   const downloadTable = async () => {
@@ -29,24 +29,27 @@ export function ExportDataButton({ closeMenu }) {
           downloadTable();
           closeMenu();
         }}
-        className="btn btn-primary"
       >
-        Export Data
+        {props.children}
       </button>
     </span>
   );
 }
 
-const useTableFile = () => {
+const useTableFile = (exportMode) => {
   const title = useSelector((state) => state.table.title);
   const instances = useSelector((state) => state.table.instances);
   const schema = useSelector((state) => state.table.schema);
 
-  const JTEstream = JSON.stringify({
-    title,
-    schema,
-    instances,
-  });
+  const JTEstream = {
+    full: JSON.stringify({
+      title,
+      schema,
+      instances,
+    }),
+    'rows-only': JSON.stringify(instances),
+  }[exportMode];
+
   const tableFile = new File([JTEstream], `${title}.jte`, {
     type: 'application/json',
   });

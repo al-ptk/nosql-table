@@ -44,7 +44,7 @@ const ViewDropDown = ({
   showPreview,
 }) => {
   return (
-    <ContextMenu {...{ xPos, yPos, Reference }}>
+    <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
       <ContextMenuButton
         buttonAction={() => setShowPreview((bool) => !bool)}
         buttonText={'Show preview'}
