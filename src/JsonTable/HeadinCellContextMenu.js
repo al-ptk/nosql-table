@@ -72,11 +72,43 @@ export const HeadinCellContextMenu = ({
 
   return (
     <ContextMenu {...{ xPos, yPos, Reference }} closeMenu={closeMenu}>
-      <ContextMenu
-        buttonText={'Repeat Value'}
+      <ContextMenuButton
         closeMenu={closeMenu}
-        buttonAction={(e) => {}}
+        buttonText={'Move back'}
+        buttonAction={moveBefore}
       />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Move foward'}
+        buttonAction={moveAfter}
+      />
+      <hr />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Cut'}
+        buttonAction={cut}
+      />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Copy'}
+        buttonAction={copy}
+      />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Paste Before'}
+        buttonAction={pasteBefore}
+      />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Paste After'}
+        buttonAction={pasteAfter}
+      />
+      <ContextMenuButton
+        closeMenu={closeMenu}
+        buttonText={'Delete'}
+        buttonAction={selfDelete}
+      />
+      <hr />
       <ContextMenuButton
         closeMenu={closeMenu}
         buttonText={'Add Before'}
@@ -88,39 +120,11 @@ export const HeadinCellContextMenu = ({
         buttonAction={addAfter}
       />
       <ContextMenuButton
+        buttonText={'Insert for all'}
         closeMenu={closeMenu}
-        buttonText={'Move Back'}
-        buttonAction={moveBefore}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Move Foward'}
-        buttonAction={moveAfter}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Delete'}
-        buttonAction={selfDelete}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Copy'}
-        buttonAction={copy}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Cut'}
-        buttonAction={cut}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Paste Before'}
-        buttonAction={pasteBefore}
-      />
-      <ContextMenuButton
-        closeMenu={closeMenu}
-        buttonText={'Paste After'}
-        buttonAction={pasteAfter}
+        buttonAction={(e) => {
+          alert('hey!');
+        }}
       />
     </ContextMenu>
   );

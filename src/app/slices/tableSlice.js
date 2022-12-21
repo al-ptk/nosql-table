@@ -13,10 +13,22 @@ import { getAllKeys } from '../../utils/helperFunctions';
 
 const emptyTable = {
   instances: [
-    { 'property 0': '', 'property 1': '' },
-    { 'property 0': '', 'property 1': '' },
+    {
+      'property 0': 'aaaaaaa',
+      'property 1': 'bbbbbbbb',
+      'property 2': 11111111,
+    },
+    {
+      'property 0': 'ccccccc',
+      'property 1': 'dddddddd',
+      'property 2': 11111111,
+    },
   ],
-  schema: [{ name: 'property 0' }, { name: 'property 1' }],
+  schema: [
+    { name: 'property 0' },
+    { name: 'property 1' },
+    { name: 'property 2' },
+  ],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
   clipboard: { type: null, data: null },
@@ -29,11 +41,14 @@ const tableSlice = createSlice({
   initialState: emptyTable,
 
   reducers: {
-    // Cell Manager
+    //
+    //                            Cell Manager
+    //
     updateDataCell: (state, action) => {
       const { instanceIndex, propertyName, data } = action.payload;
       state.instances[instanceIndex][propertyName] = data;
     },
+
     updateHeadingCell: (state, action) => {
       const { propertyIndex, data } = action.payload;
       const oldProp = state.schema[propertyIndex].name;
@@ -45,7 +60,9 @@ const tableSlice = createSlice({
       });
     },
 
-    // Instance Manager
+    //
+    //                          Instance Manager
+    //
     addInstance: (state, action) => {
       let { targetIndex } = action?.payload;
       targetIndex = targetIndex ?? state.instances.length; // given no index, removes last one
@@ -53,10 +70,12 @@ const tableSlice = createSlice({
       newInstance = Object.fromEntries(newInstance);
       state.instances.splice(targetIndex, 0, newInstance);
     },
+
     deleteInstance: (state, action) => {
       const { instanceIndex } = action.payload;
       state.instances.splice(instanceIndex, 1);
     },
+
     swapInstances: (state, action) => {
       const { selectedIndex, targetIndex } = action.payload;
       if (targetIndex < 0 || targetIndex >= state.instances.length) return;
@@ -65,6 +84,7 @@ const tableSlice = createSlice({
         state.instances[selectedIndex],
       ];
     },
+
     copyInstance: (state, action) => {
       const { instanceIndex } = action.payload;
       state.clipboard = {
@@ -81,11 +101,13 @@ const tableSlice = createSlice({
       state.instances.splice(instanceIndex, 1);
       console.log(state.clipboard);
     },
+
     pasteInstance: (state, action) => {
       if (state.clipboard.type !== 'instance') return;
       const { instanceIndex } = action.payload;
       state.instances.splice(instanceIndex, 0, state.clipboard.data);
     },
+
     duplicateInstance: (state, action) => {
       const { instanceIndex } = action.payload;
       state.instances.splice(
@@ -95,7 +117,9 @@ const tableSlice = createSlice({
       );
     },
 
-    // Property Manager
+    //
+    //                      Property Manager
+    //
     addProperty: (state, action) => {
       let { propertyIndex } = action?.payload;
       propertyIndex = propertyIndex || state.schema.length;
@@ -106,6 +130,7 @@ const tableSlice = createSlice({
         name: propertyName,
       });
     },
+
     deleteProperty: (state, action) => {
       const { propertyIndex } = action.payload;
       state.instances.forEach(
@@ -113,6 +138,7 @@ const tableSlice = createSlice({
       );
       state.schema.splice(propertyIndex, 1);
     },
+
     swapProperties: (state, action) => {
       const { selectedIndex, targetIndex } = action.payload;
       if (targetIndex < 0 || targetIndex >= state.schema.length) return;
@@ -121,6 +147,7 @@ const tableSlice = createSlice({
         state.schema[selectedIndex],
       ];
     },
+
     copyProperty: (state, action) => {
       const { propertyIndex } = action.payload;
       const propertyName = state.schema[propertyIndex].name;
@@ -132,12 +159,11 @@ const tableSlice = createSlice({
         data: propertySlice,
       };
     },
+
     cutProperty: (state, action) => {
       const { propertyIndex } = action.payload;
-      const property = state.schema[propertyIndex];
+      const property = { ...state.schema[propertyIndex] };
       const propertySlice = state.instances.map((instance) => {
-        // propertySlice is a copy of all instances' values
-        // under same property name
         let value = instance[property.name];
         delete instance[property.name];
         return value;
@@ -151,15 +177,17 @@ const tableSlice = createSlice({
         },
       };
     },
+
     pasteProperty: (state, action) => {
       if (state.clipboard.type !== 'property') return;
       const { propertyIndex } = action.payload;
-      const { property, name, propertySlice } = state.clipboard.data;
-      this.instances.forEach((instance, instanceIndex) => {
-        instance[(property, name)] = propertySlice[instanceIndex];
+      const { property, propertySlice } = state.clipboard.data;
+      state.instances.forEach((instance, instanceIndex) => {
+        instance[property.name] = propertySlice[instanceIndex];
       });
-      this.schema.splice(propertyIndex, 0, property);
+      state.schema.splice(propertyIndex, 0, property);
     },
+
     repeatToAllInstances: (state, action) => {
       const { value, propertyIndex } = action.payload;
       const propName = state.schema[propertyIndex].name;
@@ -168,11 +196,14 @@ const tableSlice = createSlice({
       });
     },
 
-    // Table Manager
+    //
+    //                  Table Manager
+    //
     updateTitle: (state, action) => {
       const { newTitle } = action.payload;
       state.title = newTitle;
     },
+
     importTable: (state, action) => {
       const { newTable, fileName } = action.payload;
       state.instances = newTable?.instances ?? newTable;
@@ -180,6 +211,7 @@ const tableSlice = createSlice({
       state.title = newTable?.title ?? fileName;
       state.clipboard = { type: null, data: null };
     },
+
     newTable: (state) => {
       state.instances = emptyTable.instances;
       state.schema = emptyTable.schema;
@@ -187,10 +219,12 @@ const tableSlice = createSlice({
       state.clipboard = emptyTable.clipboard;
       state.title = emptyTable.title;
     },
+
     setSelected: (state, action) => {
       const { index, type } = action.payload;
       // I deestructure the payload before assinging it to state
-      // in order to be more readable.
+      // in order to be know the interface I am using.
+      // Typescript soon, I promise.
       state.selected = { index, type };
     },
   },

@@ -36,18 +36,22 @@ import styled from 'styled-components';
             buttonAction={someFunction}
             closeMenu={closeMenu}
           />
+          <ContextMenuButton
+            buttonText={someOtherText}
+            buttonAction={someFunction}
+            closeMenu={closeMenu}
+          />
         </ContextMenu>
       </div>
     }
 */
 
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
-  // Used for effect hook, down below
   const controlContextVisibility = () => {
     if (Reference === undefined) return;
-    Reference.current.focus(); // focus necessary
+    document.body.click();
+    Reference.current.focus();
     const checkMenuFocusWithin = (e) => {
-      // made into a named function in order to remove listener later on.
       const isFocusWithin = Reference.current.contains(document.activeElement);
       if (!isFocusWithin) {
         closeMenu();
@@ -58,6 +62,7 @@ export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
       window.removeEventListener('click', checkMenuFocusWithin);
     };
   };
+
   useEffect(controlContextVisibility, [Reference, closeMenu]);
 
   return (
@@ -93,7 +98,7 @@ const StyledMenu = styled.div`
   z-index: 10;
   width: 200px;
   background-color: #373737;
-  border: 2px solid white;
+  border: 1px solid white;
 
   button {
     display: block;
@@ -101,5 +106,8 @@ const StyledMenu = styled.div`
     color: white;
     border: none;
     width: 100%;
+  }
+
+  hr {
   }
 `;

@@ -26,7 +26,7 @@ export const IndexHeadingContextMenu = ({
     <div>
       <ContextMenu {...{ xPos, yPos, Reference }} closeMenu={closeMenu}>
         <ContextMenuButton
-          buttonText={'Move Before'}
+          buttonText={'Move back'}
           buttonAction={() =>
             dispatch(
               swapInstances({
@@ -38,7 +38,7 @@ export const IndexHeadingContextMenu = ({
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Move After'}
+          buttonText={'Move forward'}
           buttonAction={() =>
             dispatch(
               swapInstances({
@@ -49,28 +49,7 @@ export const IndexHeadingContextMenu = ({
           }
           closeMenu={closeMenu}
         />
-        <ContextMenuButton
-          buttonText={'Add Before'}
-          buttonAction={() =>
-            dispatch(
-              addInstance({
-                targetIndex: instanceIndex,
-              })
-            )
-          }
-          closeMenu={closeMenu}
-        />
-        <ContextMenuButton
-          buttonText={'Add After'}
-          buttonAction={() =>
-            dispatch(
-              addInstance({
-                targetIndex: instanceIndex + 1,
-              })
-            )
-          }
-          closeMenu={closeMenu}
-        />
+        <hr />
         <ContextMenuButton
           buttonText={'Delete'}
           buttonAction={() => dispatch(deleteInstance({ instanceIndex }))}
@@ -100,6 +79,29 @@ export const IndexHeadingContextMenu = ({
           buttonText={'Paste After'}
           buttonAction={() =>
             dispatch(pasteInstance({ instanceIndex: instanceIndex + 1 }))
+          }
+          closeMenu={closeMenu}
+        />
+        <hr />
+        <ContextMenuButton
+          buttonText={'Add Before'}
+          buttonAction={() =>
+            dispatch(
+              addInstance({
+                targetIndex: instanceIndex,
+              })
+            )
+          }
+          closeMenu={closeMenu}
+        />
+        <ContextMenuButton
+          buttonText={'Add After'}
+          buttonAction={() =>
+            dispatch(
+              addInstance({
+                targetIndex: instanceIndex + 1,
+              })
+            )
           }
           closeMenu={closeMenu}
         />
