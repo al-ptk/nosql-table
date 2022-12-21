@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllKeys } from '../../utils/helperFunctions';
 
 /*
   Some conceptual definitions:
@@ -266,4 +265,14 @@ function generateSchema(instances) {
     return { name: prop, type: 'string' };
   });
   return schema;
+}
+
+function getAllKeys(objList) {
+  let result = [];
+  for (const obj of objList) {
+    const keys = Object.keys(obj);
+    const notInResult = keys.filter((key) => !result.includes(key));
+    result.push(...notInResult);
+  }
+  return result;
 }

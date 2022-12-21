@@ -7,19 +7,18 @@
   - [x] Columns
 - [x] Context Menu
 - [x] Menu Bar
-- [ ] Fix edit functions
+- [x] Fix edit functions
 - [ ] Create selected feature as hook for edit\insert functionality
-- [ ] A repeat (macro) function
-- [ ] Fix preview
-- [x] Transposition
-- [ ] Render arrays as html lists
-- [ ] Add github link for bug\frature request link
 - [ ] Add a modal with a bigger textbox for texts too large
-- [ ] Improve UI\UX:
-  - [ ] differentiate between editable headings and uneditable index
-  - [ ] Better spacing
-  - [ ] Center heading text
-- [ ] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
+- [ ] A repeat (macro) function
+- [x] Fix preview
+- [x] Transposition
+- [x] Add github link for bug\frature request link
+- [x] Improve UI\UX:
+  - [x] differentiate between editable headings and uneditable index
+  - [x] Better spacing
+  - [x] Center heading text
+- [x] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
 
 And this marks the launch of version 1.0
 After these, I only do bug fixes and will prepare for the next project.
@@ -30,6 +29,7 @@ Later, I will come back and add new features to this.
 For the next version
 
 - [ ] Select value of column \ field type: string, number, array, object
+- [ ] Render arrays as html lists
 - [ ] Autosave to localstorage
 - [ ] create wizard for adding instances
 - [ ] Create infrastructure around the app:
@@ -47,6 +47,11 @@ For the next version
 - [ ] Add different exporting options
 - [ ] Add undos and redos
 - [ ] Autosave to localstorage
+
+Tutorial:
+
+- [ ] Different orientations
+- [ ] Double-click to open modal of cell
 
 GUI stuff
 
