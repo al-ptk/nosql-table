@@ -19,7 +19,9 @@
   - [x] Better spacing
   - [x] Center heading text
 - [x] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
-- [ ] Write readme (possibly, an 'Help' document also)
+- [ ] Write readme (possibly, an 'Help' document also')
+- [ ] Make shell for alanpatrick.net and link this project
+- [ ] Publish on twitter\linkedin
 
 And this marks the launch of version 1.0
 After these, I only do bug fixes and will prepare for the next project.
