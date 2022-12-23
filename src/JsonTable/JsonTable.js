@@ -4,13 +4,17 @@ import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
 import { useSelector } from 'react-redux';
 import IndexHeading from './IndexHeading';
+import { useDispatch } from 'react-redux';
+import { addInstance, addProperty } from '../app/slices/tableSlice';
 
 export function JsonTable({ isVertical }) {
   return (
-    <StyledTable tabIndex="0" isVertical={isVertical}>
-      <TableHead />
-      <TableBody />
-    </StyledTable>
+    <div>
+      <StyledTable tabIndex="0" isVertical={isVertical}>
+        <TableHead />
+        <TableBody />
+      </StyledTable>
+    </div>
   );
 }
 
@@ -20,7 +24,7 @@ function TableHead() {
   return (
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
-      <tr>
+      <tr style={{ position: 'relative' }}>
         <th
           scope="col"
           className="index-heading"
@@ -34,10 +38,35 @@ function TableHead() {
             propertyIndex={propertyIndex}
           />
         ))}
+        <AddPropertyButton />
       </tr>
     </StyledTHead>
   );
 }
+
+const AddPropertyButton = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <td>
+      <button
+        onClick={() => {
+          console.log('clicked');
+          dispatch(addProperty({}));
+        }}
+        style={{
+          backgroundColor: '#373737',
+          color: 'white',
+          border: 'none',
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        Add Column
+      </button>
+    </td>
+  );
+};
 
 function TableBody() {
   const instances = useSelector((state) => state.table.instances);
@@ -61,6 +90,32 @@ function TableBody() {
           })}
         </tr>
       ))}
+      <AddInstanceButton />
     </StyledTBody>
   );
 }
+
+const AddInstanceButton = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <tr>
+      <td>
+        <button
+          onClick={() => {
+            dispatch(addInstance({}));
+          }}
+          style={{
+            backgroundColor: '#373737',
+            color: 'white',
+            border: 'none',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          Add Instance
+        </button>
+      </td>
+    </tr>
+  );
+};
