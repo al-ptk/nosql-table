@@ -4,30 +4,37 @@ import { ImportButton } from './ImportButton';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 import { newTable } from '../app/slices/tableSlice';
 import { useDispatch } from 'react-redux';
+import { StyledAnchorContainer } from './MenuBar.styled';
 
 export const FileMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
+  const buttonReference = useRef(null);
+
+  const createMenu = () => {
+    const coords = buttonReference.current.getBoundingClientRect();
+    const xPos = coords.left;
+    const yPos = coords.bottom;
+    setDropdown(
+      <FileDropDown
+        {...{ xPos, yPos, Reference }}
+        closeMenu={() => setDropdown(null)}
+      />
+    );
+  };
 
   return (
-    <div>
-      <button
-        onClick={(e) => {
-          const coords = e.target.getBoundingClientRect();
-          const xPos = coords.left;
-          const yPos = coords.bottom;
-          setDropdown(
-            <FileDropDown
-              {...{ xPos, yPos, Reference }}
-              closeMenu={() => setDropdown(null)}
-            />
-          );
-        }}
-      >
+    <StyledAnchorContainer
+      onMouseOver={createMenu}
+      onMouseLeave={() => {
+        setDropdown(null);
+      }}
+    >
+      <button onClick={createMenu} ref={buttonReference}>
         File
       </button>
       {dropdown}
-    </div>
+    </StyledAnchorContainer>
   );
 };
 

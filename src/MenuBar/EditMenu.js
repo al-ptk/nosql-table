@@ -12,30 +12,37 @@ import {
   deleteProperty,
   deleteInstance,
 } from '../app/slices/tableSlice';
+import { StyledAnchorContainer } from './MenuBar.styled';
 
 export const EditMenuAchonr = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
+  const buttonReference = useRef(null);
+
+  const createMenu = () => {
+    const coords = buttonReference.current.getBoundingClientRect();
+    const xPos = coords.left;
+    const yPos = coords.bottom;
+    setDropdown(
+      <EditDropdown
+        {...{ xPos, yPos, Reference }}
+        closeMenu={() => setDropdown(null)}
+      />
+    );
+  };
 
   return (
-    <div>
-      <button
-        onClick={(e) => {
-          const coords = e.target.getBoundingClientRect();
-          const xPos = coords.left;
-          const yPos = coords.bottom;
-          setDropdown(
-            <EditDropdown
-              {...{ xPos, yPos, Reference }}
-              closeMenu={() => setDropdown(null)}
-            />
-          );
-        }}
-      >
+    <StyledAnchorContainer 
+      onMouseOver={createMenu}
+      onMouseLeave={() => {
+        setDropdown(null);
+      }}
+    >
+      <button onClick={createMenu} ref={buttonReference}>
         Edit
       </button>
       {dropdown}
-    </div>
+    </StyledAnchorContainer>
   );
 };
 

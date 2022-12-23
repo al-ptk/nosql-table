@@ -9,28 +9,13 @@ export const StyledMenuBar = styled.header`
   isolation: isolate;
 
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
   gap: 15px;
   padding: 0px 15px;
 
   background-color: #373737;
   color: white;
-
-  a,
-  button {
-    padding: 5px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-weight: bold;
-    text-decoration: none;
-  }
-
-   > a,
-   > div > button {
-    font-size: 16px;
-  }
 
   input[type='text'].title {
     width: 200px;
@@ -51,3 +36,21 @@ export const StyledMenuBar = styled.header`
     margin: 2px 0;
   }
 `;
+
+export const StyledAnchorContainer = styled.div`
+  a,
+  button {
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+   > a,
+   > div > button {
+    font-size: 18px;
+  }
+
+`

@@ -3,30 +3,37 @@ import { useDispatch } from 'react-redux';
 import { addInstance, addProperty } from '../app/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 import { createRoot } from 'react-dom/client';
+import { StyledAnchorContainer } from './MenuBar.styled';
 
 export const InsertMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
+  const buttonReference = useRef(null);
+
+  const createMenu = () => {
+    const coords = buttonReference.current.getBoundingClientRect();
+    const xPos = coords.left;
+    const yPos = coords.bottom;
+    setDropdown(
+      <InsertDropdown
+        {...{ xPos, yPos, Reference }}
+        closeMenu={() => setDropdown(null)}
+      />
+    );
+  };
 
   return (
-    <div>
-      <button
-        onClick={(e) => {
-          const coords = e.target.getBoundingClientRect();
-          const xPos = coords.left;
-          const yPos = coords.bottom;
-          setDropdown(
-            <InsertDropdown
-              {...{ xPos, yPos, Reference }}
-              closeMenu={() => setDropdown(null)}
-            />
-          );
-        }}
-      >
+    <StyledAnchorContainer
+      onMouseOver={createMenu}
+      onMouseLeave={() => {
+        setDropdown(null);
+      }}
+    >
+      <button onClick={createMenu} ref={buttonReference}>
         Insert
       </button>
       {dropdown}
-    </div>
+    </StyledAnchorContainer>
   );
 };
 

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 
 /*
+  The idea of the ContextMenu component is to create a vertical list of buttons at any position of the viewport, like all context menus found in modern, GUI-based computers.
+
   ContextMenu and ContextMenuButton require a custom parent component.
   Use them by composition, like this:
 
@@ -112,6 +114,7 @@ const StyledMenu = styled.div`
     width: 100%;
     text-align: left;
     padding: 1px 10px;
+    font-size: 16px;
   }
 
   hr {
