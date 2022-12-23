@@ -8,7 +8,6 @@ import { ViewMenuAnchor } from './ViewMenu';
 
 export default function MenuBar({
   setIsVertical,
-  showPreview,
   setShowPreview,
 }) {
   return (
@@ -17,7 +16,7 @@ export default function MenuBar({
         <FileMenuAnchor />
         <EditMenuAchonr />
         <InsertMenuAnchor />
-        <ViewMenuAnchor {...{ setIsVertical, setShowPreview, showPreview }} />
+        <ViewMenuAnchor {...{ setIsVertical, setShowPreview, }} />
       </div>
       <TitleEdit />
       <StyledAnchorContainer>

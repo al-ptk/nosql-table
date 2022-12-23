@@ -8,6 +8,7 @@ export default function IndexHeading({ instanceIndex }) {
   const dispatch = useDispatch();
   return (
     <th
+      style={{ cursor: 'default' }}
       scope="row"
       onClick={() => {
         dispatch(setSelected({ type: 'instance', index: instanceIndex }));

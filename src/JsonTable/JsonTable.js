@@ -7,18 +7,18 @@ import IndexHeading from './IndexHeading';
 import { useDispatch } from 'react-redux';
 import { addInstance, addProperty } from '../app/slices/tableSlice';
 
-export function JsonTable({ isVertical }) {
+export function JsonTable({ isVertical, setIsVertical }) {
   return (
     <div>
       <StyledTable tabIndex="0" isVertical={isVertical}>
-        <TableHead />
+        <TableHead setIsVertical={setIsVertical} />
         <TableBody />
       </StyledTable>
     </div>
   );
 }
 
-function TableHead() {
+function TableHead({ setIsVertical }) {
   const schema = useSelector((state) => state.table.schema);
 
   return (
@@ -30,7 +30,18 @@ function TableHead() {
           className="index-heading"
           onContextMenu={(e) => e.preventDefault()}
         >
-          Instance Index
+          <button
+            onClick={() => setIsVertical((bool) => !bool)}
+            style={{
+              backgroundColor: 'transparent',
+              border: 'none',
+              height: '100%',
+              width: '100%',
+              color: 'white',
+            }}
+          >
+            Rotate
+          </button>
         </th>
         {schema.map((property, propertyIndex) => (
           <HeadingCell
@@ -51,7 +62,6 @@ const AddPropertyButton = () => {
     <td>
       <button
         onClick={() => {
-          console.log('clicked');
           dispatch(addProperty({}));
         }}
         style={{
@@ -62,7 +72,7 @@ const AddPropertyButton = () => {
           height: '100%',
         }}
       >
-        Add Column
+        Add Property
       </button>
     </td>
   );

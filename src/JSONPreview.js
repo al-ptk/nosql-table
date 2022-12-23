@@ -26,11 +26,12 @@ const ModalBackdrop = styled.div`
 
 const ModalContainer = styled.div`
   position: relative;
-  background-color: #e5e5e5;
+  overflow-y: scroll;
   width: 80vw;
   height: 80vh;
   margin: 10vh auto;
   padding: 80px 50px;
+  background-color: #e5e5e5;
 
   div {
     background-color: #cfcfcf;

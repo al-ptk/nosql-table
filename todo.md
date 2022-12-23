@@ -8,7 +8,7 @@
 - [x] Context Menu
 - [x] Menu Bar
 - [x] Fix edit functions
-- [ ] Create buttons for quick addition of instances and properties
+- [x] Create buttons for quick addition of instances and properties
 - [ ] Create selected feature as hook for edit\insert functionality
 - [ ] Add a modal with a bigger textbox for texts too large
 - [ ] A repeat (macro) function

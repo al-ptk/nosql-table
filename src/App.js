@@ -15,8 +15,8 @@ function App() {
     <>
       <GlobalStyle />
       <StoreProvider store={store}>
-        <MenuBar {...{ setIsVertical, showPreview, setShowPreview }} />
-        <JsonTable {...{ isVertical }} />
+        <MenuBar {...{ setIsVertical, setShowPreview }} />
+        <JsonTable {...{ isVertical, setIsVertical }} />
         <JSONPreview {...{ showPreview, setShowPreview }} />
       </StoreProvider>
       <StyledFooter>

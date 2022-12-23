@@ -2,22 +2,28 @@ import { useRef, useState } from 'react';
 import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
 import { StyledAnchorContainer } from './MenuBar.styled';
 
-export function ViewMenuAnchor({ setIsVertical, setShowPreview, showPreview }) {
+export function ViewMenuAnchor({ setIsVertical, setShowPreview }) {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
   const buttonReference = useRef(null);
 
-    const createMenu = () => {
-      const coords = buttonReference.current.getBoundingClientRect();
-      const xPos = coords.left;
-      const yPos = coords.bottom;
-      setDropdown(
-        <ViewDropDown
-          {...{ xPos, yPos, Reference }}
-          closeMenu={() => setDropdown(null)}
-        />
-      );
-    };
+  const createMenu = () => {
+    const coords = buttonReference.current.getBoundingClientRect();
+    const xPos = coords.left;
+    const yPos = coords.bottom;
+    setDropdown(
+      <ViewDropDown
+        {...{
+          xPos,
+          yPos,
+          Reference,
+          setIsVertical,
+          setShowPreview,
+        }}
+        closeMenu={() => setDropdown(null)}
+      />
+    );
+  };
 
   return (
     <StyledAnchorContainer
@@ -41,7 +47,6 @@ const ViewDropDown = ({
   closeMenu,
   setIsVertical,
   setShowPreview,
-  showPreview,
 }) => {
   return (
     <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
