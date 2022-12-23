@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateHeadingCell, setSelected } from '../app/slices/tableSlice';
 import { HeadinCellContextMenu } from './HeadinCellContextMenu';
 
-export const HeadingCell = ({ propertyIndex }) => {
+export const HeadingCell = ({ propertyIndex, className }) => {
   propertyIndex = parseInt(propertyIndex);
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
@@ -20,6 +20,11 @@ export const HeadingCell = ({ propertyIndex }) => {
 
   return (
     <StyledHeading
+      className={className}
+      tabIndex={-1}
+      onBlur={() => {
+        dispatch(setSelected({ type: null, index: null }));
+      }}
       onClick={() => {
         dispatch(setSelected({ type: 'property', index: propertyIndex }));
       }}

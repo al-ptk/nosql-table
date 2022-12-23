@@ -17,6 +17,13 @@ export function JsonTable({ isVertical, setIsVertical }) {
 
 function TableHead({ setIsVertical }) {
   const schema = useSelector((state) => state.table.schema);
+  const selected = useSelector((state) => state.table.selected);
+
+  const isHeadingHighlighted = (index) => {
+    if (selected.type !== 'property') return null;
+    const cellHighlighted = index === selected.index;
+    return cellHighlighted ? 'highlight-selected' : null;
+  };
 
   return (
     <StyledTHead>
@@ -27,6 +34,7 @@ function TableHead({ setIsVertical }) {
           <HeadingCell
             key={`prop-${propertyIndex}`}
             propertyIndex={propertyIndex}
+            className={isHeadingHighlighted(propertyIndex)}
           />
         ))}
         <AddPropertyButton />
@@ -86,9 +94,20 @@ function TableBody() {
   const schema = useSelector((state) => state.table.schema);
   const selected = useSelector((state) => state.table.selected);
 
-  const isInstanceSelected = (instanceIndex) => {
-    const cellHighlighted =
-      selected.type === 'instance' && selected.index === instanceIndex;
+  const isHeadingHighlighted = (index) => {
+    if (selected.type !== 'instance') return null;
+    const cellHighlighted = selected.index === index;
+    return cellHighlighted ? 'highlight-selected' : null;
+  };
+
+  const isCellHighlighted = (instanceIndex, propertyIndex) => {
+    const { type, index } = selected;
+    let cellHighlighted =
+      type === 'instance'
+        ? instanceIndex === index
+        : type === 'property'
+        ? propertyIndex === index
+        : null;
     return cellHighlighted ? 'highlight-selected' : null;
   };
 
@@ -98,7 +117,7 @@ function TableBody() {
         <tr key={`instance-${instanceIndex}`}>
           <IndexHeading
             instanceIndex={instanceIndex}
-            className={isInstanceSelected(instanceIndex)}
+            className={isHeadingHighlighted(instanceIndex)}
           />
           {schema.map((property, propertyIndex) => {
             return (
@@ -108,7 +127,7 @@ function TableBody() {
                   instanceIndex,
                   propertyIndex,
                 }}
-                className={isInstanceSelected(instanceIndex)}
+                className={isCellHighlighted(instanceIndex, propertyIndex)}
               />
             );
           })}
