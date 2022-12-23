@@ -3,11 +3,16 @@ import { useDispatch } from 'react-redux';
 import { setSelected } from '../app/slices/tableSlice';
 import { IndexHeadingContextMenu } from './IndexHeadingContextMenu';
 
-export default function IndexHeading({ instanceIndex }) {
+export default function IndexHeading({ instanceIndex, className }) {
   const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
   return (
     <th
+      className={className}
+      tabIndex={-1}
+      onBlur={() => {
+        dispatch(setSelected({ type: null, index: null }));
+      }}
       style={{ cursor: 'default' }}
       scope="row"
       onClick={() => {

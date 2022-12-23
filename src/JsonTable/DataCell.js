@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDataCell } from '../app/slices/tableSlice';
 
-export const DataCell = ({ accessCoordinates }) => {
+export const DataCell = ({ accessCoordinates, className }) => {
   const table = useSelector((state) => state.table.instances);
   const schema = useSelector((state) => state.table.schema);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const DataCell = ({ accessCoordinates }) => {
   };
 
   return (
-    <td>
+    <td className={className}>
       <textarea value={cellValue || ''} onInput={handleInput}></textarea>
     </td>
   );

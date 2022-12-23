@@ -84,12 +84,22 @@ const AddPropertyButton = () => {
 function TableBody() {
   const instances = useSelector((state) => state.table.instances);
   const schema = useSelector((state) => state.table.schema);
+  const selected = useSelector((state) => state.table.selected);
+
+  const isInstanceSelected = (instanceIndex) => {
+    const cellHighlighted =
+      selected.type === 'instance' && selected.index === instanceIndex;
+    return cellHighlighted ? 'highlight-selected' : null;
+  };
 
   return (
     <StyledTBody>
       {instances.map((instance, instanceIndex) => (
         <tr key={`instance-${instanceIndex}`}>
-          <IndexHeading instanceIndex={instanceIndex} />
+          <IndexHeading
+            instanceIndex={instanceIndex}
+            className={isInstanceSelected(instanceIndex)}
+          />
           {schema.map((property, propertyIndex) => {
             return (
               <DataCell
@@ -98,6 +108,7 @@ function TableBody() {
                   instanceIndex,
                   propertyIndex,
                 }}
+                className={isInstanceSelected(instanceIndex)}
               />
             );
           })}
