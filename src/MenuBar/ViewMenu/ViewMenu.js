@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
-import { StyledAnchorContainer } from './MenuBar.styled';
+import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+import { StyledAnchorContainer } from '../MenuBar.styled';
 
 export function ViewMenuAnchor({ setIsVertical, setShowPreview }) {
   const [dropdown, setDropdown] = useState(null);

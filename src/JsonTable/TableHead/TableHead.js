@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyledTHead } from './StyledTHead';
 import { HeadingCell } from '../HeadingCell/HeadingCell';
 import { useSelector, useDispatch } from 'react-redux';
 import { addProperty } from '../../app/slices/tableSlice';
@@ -15,7 +14,7 @@ export function TableHead({ setIsVertical }) {
   };
 
   return (
-    <StyledTHead>
+    <thead>
       {/* For vertical rows, make tr be flex column */}
       <tr style={{ position: 'relative' }}>
         <RotateButton setIsVertical={setIsVertical} />
@@ -28,7 +27,7 @@ export function TableHead({ setIsVertical }) {
         ))}
         <AddPropertyButton />
       </tr>
-    </StyledTHead>
+    </thead>
   );
 }
 

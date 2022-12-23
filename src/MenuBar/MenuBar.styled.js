@@ -17,20 +17,6 @@ export const StyledMenuBar = styled.header`
   background-color: #373737;
   color: white;
 
-  input[type='text'].title {
-    width: 200px;
-    margin: 0px 10px 3px 20px;
-    padding: 0 1px;
-
-    background-color: transparent;
-    color: white;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid;
-
-    font-size: 18px;
-  }
-
   hr {
     color: rgba(255, 255, 255, 0.3);
     margin: 2px 0;

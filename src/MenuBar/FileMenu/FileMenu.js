@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { ExportButton } from './ExportButton';
 import { ImportButton } from './ImportButton';
-import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
-import { newTable } from '../app/slices/tableSlice';
+import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+import { newTable } from '../../app/slices/tableSlice';
 import { useDispatch } from 'react-redux';
-import { StyledAnchorContainer } from './MenuBar.styled';
+import { StyledAnchorContainer } from '../MenuBar.styled';
 
 export const FileMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);

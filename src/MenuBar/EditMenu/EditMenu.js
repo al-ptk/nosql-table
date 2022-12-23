@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
+import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
 import {
   copyProperty,
   copyInstance,
@@ -11,8 +11,8 @@ import {
   duplicateInstance,
   deleteProperty,
   deleteInstance,
-} from '../app/slices/tableSlice';
-import { StyledAnchorContainer } from './MenuBar.styled';
+} from '../../app/slices/tableSlice';
+import { StyledAnchorContainer } from '../MenuBar.styled';
 
 export const EditMenuAchonr = () => {
   const [dropdown, setDropdown] = useState(null);

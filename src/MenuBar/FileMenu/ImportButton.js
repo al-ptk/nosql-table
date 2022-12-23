@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { importTable } from '../app/slices/tableSlice';
+import { importTable } from '../../app/slices/tableSlice';
 
 export function ImportButton({ closeMenu }) {
   const dispatch = useDispatch();
