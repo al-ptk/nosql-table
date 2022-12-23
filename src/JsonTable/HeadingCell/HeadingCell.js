@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports all actions that operate on the table, to turn them into buttons
-import { updateHeadingCell, setSelected } from '../app/slices/tableSlice';
+import { updateHeadingCell, setSelected } from '../../app/slices/tableSlice';
 import { HeadinCellContextMenu } from './HeadinCellContextMenu';
 
 export const HeadingCell = ({ propertyIndex, className }) => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSelected } from '../app/slices/tableSlice';
+import { setSelected } from '../../app/slices/tableSlice';
 import { IndexHeadingContextMenu } from './IndexHeadingContextMenu';
 
 export default function IndexHeading({ instanceIndex, className }) {

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+// Layout organization for horizontal mode
 const horizontalRows = css`
   display: flex;
   flex-direction: column;
@@ -20,6 +21,7 @@ const horizontalRows = css`
   }
 `;
 
+// Layout organization for vertical mode
 const verticalRows = css`
   display: flex;
   thead {
@@ -39,6 +41,7 @@ const verticalRows = css`
 `;
 
 export const StyledTable = styled.table`
+  // Pick layout mode
   ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
   margin: 100px auto;
   width: fit-content;
@@ -90,14 +93,5 @@ export const StyledTable = styled.table`
         box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
       }
     }
-  }
-`;
-
-export const StyledTHead = styled.thead``;
-
-export const StyledTBody = styled.tbody`
-  textarea {
-    background-color: white;
-    color: black;
   }
 `;

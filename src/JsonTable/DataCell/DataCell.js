@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateDataCell } from '../app/slices/tableSlice';
+import { updateDataCell } from '../../app/slices/tableSlice';
 
 export const DataCell = ({ accessCoordinates, className }) => {
   const table = useSelector((state) => state.table.instances);
