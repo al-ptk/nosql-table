@@ -2,19 +2,16 @@ import React from 'react';
 import { StyledTable, StyledTHead, StyledTBody } from './JsonTable.styled';
 import { HeadingCell } from './HeadingCell';
 import { DataCell } from './DataCell';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import IndexHeading from './IndexHeading';
-import { useDispatch } from 'react-redux';
 import { addInstance, addProperty } from '../app/slices/tableSlice';
 
 export function JsonTable({ isVertical, setIsVertical }) {
   return (
-    <div>
-      <StyledTable tabIndex="0" isVertical={isVertical}>
-        <TableHead setIsVertical={setIsVertical} />
-        <TableBody />
-      </StyledTable>
-    </div>
+    <StyledTable tabIndex="0" isVertical={isVertical}>
+      <TableHead setIsVertical={setIsVertical} />
+      <TableBody />
+    </StyledTable>
   );
 }
 
@@ -25,24 +22,7 @@ function TableHead({ setIsVertical }) {
     <StyledTHead>
       {/* For vertical rows, make tr be flex column */}
       <tr style={{ position: 'relative' }}>
-        <th
-          scope="col"
-          className="index-heading"
-          onContextMenu={(e) => e.preventDefault()}
-        >
-          <button
-            onClick={() => setIsVertical((bool) => !bool)}
-            style={{
-              backgroundColor: 'transparent',
-              border: 'none',
-              height: '100%',
-              width: '100%',
-              color: 'white',
-            }}
-          >
-            Rotate
-          </button>
-        </th>
+        <RotateButton setIsVertical={setIsVertical} />
         {schema.map((property, propertyIndex) => (
           <HeadingCell
             key={`prop-${propertyIndex}`}
@@ -54,6 +34,29 @@ function TableHead({ setIsVertical }) {
     </StyledTHead>
   );
 }
+
+const RotateButton = ({ setIsVertical }) => {
+  return (
+    <th
+      scope="col"
+      className="index-heading"
+      onContextMenu={(e) => e.preventDefault()}
+    >
+      <button
+        onClick={() => setIsVertical((bool) => !bool)}
+        style={{
+          backgroundColor: 'transparent',
+          border: 'none',
+          height: '100%',
+          width: '100%',
+          color: 'white',
+        }}
+      >
+        Rotate
+      </button>
+    </th>
+  );
+};
 
 const AddPropertyButton = () => {
   const dispatch = useDispatch();
