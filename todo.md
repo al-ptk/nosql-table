@@ -9,9 +9,9 @@
 - [x] Menu Bar
 - [x] Fix edit functions
 - [x] Create buttons for quick addition of instances and properties
-- [ ] Create selected feature as hook for edit\insert functionality
-- [ ] Add a modal with a bigger textbox for texts too large
-- [ ] A repeat (macro) function
+- [x] Create selected feature as hook for edit\insert functionality
+- [x] Add a modal with a bigger textbox for texts too large
+- [x] A repeat (macro) function
 - [x] Fix preview
 - [x] Transposition
 - [x] Add github link for bug\frature request link
@@ -20,6 +20,16 @@
   - [x] Better spacing
   - [x] Center heading text
 - [x] Disable multiple context menus from appearing — maybe create a centralized context menu state to only enable one?
+
+MAJOR REFACTOR FOR RELEASE OF v1.0
+
+- [ ] Redo all dropdown menus from the menu bar
+- [ ] Make ContextMenu take a list of props
+  - [ ] Also, it should take buttons that receive a closeMenu function as props
+- [ ] Better modals
+  - [ ] styling (make the background slight darker than body and rounded)
+  - [ ] prepare
+
 - [ ] Write readme (possibly, an 'Help' document also')
 - [ ] Make shell for alanpatrick.net and link this project
 - [ ] Publish on twitter\linkedin

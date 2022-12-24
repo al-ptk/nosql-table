@@ -11,6 +11,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
   const schema = useSelector((state) => state.table.schema);
 
   const [contextMenu, setContextMenu] = useState(null);
+  const [repeatModal, setRepeatModal] = useState(null);
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -22,10 +23,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
     <StyledHeading
       className={className}
       tabIndex={-1}
-      onBlur={() => {
-        dispatch(setSelected({ type: null, index: null }));
-      }}
-      onClick={() => {
+      onClick={(e) => {
         dispatch(setSelected({ type: 'property', index: propertyIndex }));
       }}
       onContextMenu={(e) => {
@@ -36,6 +34,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
             yPos={e.clientY}
             closeMenu={() => setContextMenu(null)}
             propertyIndex={propertyIndex}
+            setRepeatModal={setRepeatModal}
           />
         );
       }}
@@ -48,6 +47,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
         maxLength="20"
       ></textarea>
       {contextMenu}
+      {repeatModal}
     </StyledHeading>
   );
 };

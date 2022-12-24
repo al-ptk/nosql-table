@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addProperty,
@@ -7,14 +7,17 @@ import {
   deleteProperty,
   pasteProperty,
   swapProperties,
+  repeatForAll,
 } from '../../redux/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+import { createPortal } from 'react-dom';
 
 export const HeadinCellContextMenu = ({
   xPos,
   yPos,
   closeMenu,
   propertyIndex,
+  setRepeatModal,
 }) => {
   const dispatch = useDispatch();
   propertyIndex = parseInt(propertyIndex);
@@ -120,12 +123,56 @@ export const HeadinCellContextMenu = ({
         buttonAction={addAfter}
       />
       <ContextMenuButton
-        buttonText={'Insert for all'}
+        buttonText={'Repeat For All'}
         closeMenu={closeMenu}
-        buttonAction={(e) => {
-          alert('hey!');
+        buttonAction={() => {
+          setRepeatModal(
+            <RepetitionInsertModal {...{ propertyIndex, setRepeatModal }} />
+          );
         }}
       />
     </ContextMenu>
+  );
+};
+
+const RepetitionInsertModal = ({ propertyIndex, setRepeatModal }) => {
+  const dispatch = useDispatch();
+  const [text, setText] = useState('');
+  const closeParent = (e) => {
+    setRepeatModal(null);
+  };
+
+  return createPortal(
+    <div
+      style={{
+        position: 'absolute',
+        zIndex: 100,
+        width: '400px',
+        height: '400px',
+        inset: '10vh 0 0 30vw',
+        backgroundColor: 'rgba(0,0,0,.7)',
+        padding: 30,
+      }}
+    >
+      <textarea value={text} onInput={(e) => setText(e.target.value)} />
+      <p>
+        <button
+          onClick={(e) => {
+            dispatch(repeatForAll({ propertyIndex, newValue: text }));
+            closeParent(e);
+          }}
+        >
+          Repeat Values!
+        </button>
+        <button
+          onClick={(e) => {
+            closeParent(e);
+          }}
+        >
+          Cancel!
+        </button>
+      </p>
+    </div>,
+    document.querySelector('#modal-portal')
   );
 };

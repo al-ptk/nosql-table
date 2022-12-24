@@ -184,11 +184,11 @@ const tableSlice = createSlice({
       state.schema.splice(propertyIndex, 0, property);
     },
 
-    repeatToAllInstances: (state, action) => {
-      const { value, propertyIndex } = action.payload;
+    repeatForAll: (state, action) => {
+      const { propertyIndex, newValue } = action.payload;
       const propName = state.schema[propertyIndex].name;
       state.instances.forEach((instance) => {
-        instance[propName] = value;
+        instance[propName] = newValue;
       });
     },
 
@@ -247,7 +247,7 @@ export const {
   copyProperty,
   cutProperty,
   pasteProperty,
-  repeatToAllInstances,
+  repeatForAll,
 
   // Table Manager
   updateTitle,

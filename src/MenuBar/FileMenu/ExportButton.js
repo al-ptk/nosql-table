@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 export function ExportButton({ closeMenu, exportMode, ...props }) {
   const title = useSelector((state) => state.table.title);
-  console.log(exportMode);
   const getTableFile = useTableFile(exportMode); // for lazy access, instead of constant redraw
   const linkRef = useRef(null);
 
