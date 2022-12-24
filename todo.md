@@ -26,9 +26,11 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [ ] Redo all dropdown menus from the menu bar
 - [ ] Make ContextMenu take a list of props
   - [ ] Also, it should take buttons that receive a closeMenu function as props
-- [ ] Better modals
-  - [ ] styling (make the background slight darker than body and rounded)
-  - [ ] prepare
+- [ ] styling modals (make the background slight darker than body and rounded)
+- [ ] make it mobile friendly
+- [ ] Make cells darker but different from headers
+  - [ ] give rows alternating colors
+- [ ] Find better fonts
 
 - [ ] Write readme (possibly, an 'Help' document also')
 - [ ] Make shell for alanpatrick.net and link this project
@@ -65,6 +67,7 @@ For the next version
   - [ ] only rows
   - [ ] html table
 - [ ] Add undos and redos
+- [ ] ANIMATIONS!
 
 Tutorial:
 
