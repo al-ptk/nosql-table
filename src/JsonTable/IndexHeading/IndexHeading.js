@@ -6,16 +6,11 @@ import { IndexHeadingContextMenu } from './IndexHeadingContextMenu';
 export default function IndexHeading({ instanceIndex, className }) {
   const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
+  
   return (
     <th
       className={className}
       tabIndex={-1}
-      onBlur={() => {
-        setTimeout(
-          () => dispatch(setSelected({ type: null, index: null })),
-          50
-        );
-      }}
       style={{ cursor: 'default' }}
       scope="row"
       onClick={() => {

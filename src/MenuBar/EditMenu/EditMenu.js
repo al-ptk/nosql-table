@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+
 import {
   copyProperty,
   copyInstance,
@@ -11,6 +11,7 @@ import {
   duplicateInstance,
   deleteProperty,
   deleteInstance,
+  setSelected,
 } from '../../redux/slices/tableSlice';
 import { StyledAnchorContainer } from '../MenuBar.styled';
 
@@ -46,7 +47,7 @@ export const EditMenuAchonr = () => {
   );
 };
 
-function EditDropdown({ xPos, yPos, Reference, closeMenu }) {
+function EditDropdown({ xPos, yPos }) {
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
   const index = selected.index;
@@ -79,7 +80,14 @@ function EditDropdown({ xPos, yPos, Reference, closeMenu }) {
 
   return (
     <div style={{ position: 'fixed', left: xPos, top: yPos }}>
-      <button onClick={reducersBySelectedType.cut}>Cut</button>
+      <button
+        onClick={(e) => {
+          reducersBySelectedType.cut();
+          dispatch(setSelected({ type: null, index: null }));
+        }}
+      >
+        Cut
+      </button>
       <button onClick={reducersBySelectedType.copy}>Copy</button>
       <button onClick={reducersBySelectedType.pasteBefore}>Paste Before</button>
       <button onClick={reducersBySelectedType.pasteAfter}>Paste After</button>
