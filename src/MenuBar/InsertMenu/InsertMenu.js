@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addInstance, addProperty } from '../../app/slices/tableSlice';
+import { addInstance, addProperty } from '../../redux/slices/tableSlice';
 import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
 import { createRoot } from 'react-dom/client';
 import { StyledAnchorContainer } from '../MenuBar.styled';

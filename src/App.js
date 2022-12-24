@@ -2,10 +2,10 @@ import JsonTable from './JsonTable';
 import { GlobalStyle } from './utils/styled-globals';
 import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider } from 'react-redux';
-import store from './app/store';
+import store from './redux/store';
 import MenuBar from './MenuBar/MenuBar';
 import { useState } from 'react';
-import { JSONPreview } from './JSONPreview';
+import { JSONPreview } from './components/JSONPreview';
 
 function App() {
   const [isVertical, setIsVertical] = useState(false);

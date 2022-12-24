@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { ExportButton } from './ExportButton';
 import { ImportButton } from './ImportButton';
 import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
-import { newTable } from '../../app/slices/tableSlice';
+import { newTable } from '../../redux/slices/tableSlice';
 import { useDispatch } from 'react-redux';
 import { StyledAnchorContainer } from '../MenuBar.styled';
 

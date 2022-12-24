@@ -45,7 +45,7 @@ export const StyledTable = styled.table`
   ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
   margin: 100px auto;
   width: fit-content;
-  max-width: 80vw;
+  max-width: 90vw;
 
   background-color: transparent;
   border-collapse: collapse;

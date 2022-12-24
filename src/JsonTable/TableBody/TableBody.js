@@ -3,7 +3,7 @@ import { StyledTBody } from './StyledTBody';
 import { DataCell } from '../DataCell/DataCell';
 import { useSelector, useDispatch } from 'react-redux';
 import IndexHeading from '../IndexHeading/IndexHeading';
-import { addInstance } from '../../app/slices/tableSlice';
+import { addInstance } from '../../redux/slices/tableSlice';
 
 export function TableBody() {
   const instances = useSelector((state) => state.table.instances);

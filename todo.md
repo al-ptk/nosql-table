@@ -34,7 +34,7 @@ For the next version
 
 - [ ] Render arrays as html lists
 - [ ] Select value of column \ field type: string, number, array, object
-- [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field and automatically generates all columns
+- [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field **and** automatically generates all columns
 - [ ] User-created tiny widgets with inputs. (Think back to resumes and creating formation card like college or course)
 - [ ] Iterate feature: same as repeat, but: (both strings and other types)
   - [ ] accept the index to change the value repeated

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSelected } from '../../app/slices/tableSlice';
+import { setSelected } from '../../redux/slices/tableSlice';
 import { IndexHeadingContextMenu } from './IndexHeadingContextMenu';
 
 export default function IndexHeading({ instanceIndex, className }) {
@@ -11,7 +11,10 @@ export default function IndexHeading({ instanceIndex, className }) {
       className={className}
       tabIndex={-1}
       onBlur={() => {
-        dispatch(setSelected({ type: null, index: null }));
+        setTimeout(
+          () => dispatch(setSelected({ type: null, index: null })),
+          50
+        );
       }}
       style={{ cursor: 'default' }}
       scope="row"

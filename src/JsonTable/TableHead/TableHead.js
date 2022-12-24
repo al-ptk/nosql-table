@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeadingCell } from '../HeadingCell/HeadingCell';
 import { useSelector, useDispatch } from 'react-redux';
-import { addProperty } from '../../app/slices/tableSlice';
+import { addProperty } from '../../redux/slices/tableSlice';
 
 export function TableHead({ setIsVertical }) {
   const schema = useSelector((state) => state.table.schema);
