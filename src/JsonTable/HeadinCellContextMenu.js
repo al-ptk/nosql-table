@@ -7,8 +7,8 @@ import {
   deleteProperty,
   pasteProperty,
   swapProperties,
-} from '../app/slices/tableSlice';
-import { ContextMenu, ContextMenuButton } from '../components/ContextMenu';
+} from '../../redux/slices/tableSlice';
+import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
 
 export const HeadinCellContextMenu = ({
   xPos,

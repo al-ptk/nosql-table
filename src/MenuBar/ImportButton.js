@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+<<<<<<< Updated upstream:src/MenuBar/ImportButton.js
 import { importTable } from '../app/slices/tableSlice';
+=======
+import { importTable } from '../../redux/slices/tableSlice';
+>>>>>>> Stashed changes:src/MenuBar/FileMenu/ImportButton.js
 
 export function ImportButton({ closeMenu }) {
   const dispatch = useDispatch();

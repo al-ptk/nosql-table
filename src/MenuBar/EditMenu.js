@@ -11,8 +11,8 @@ import {
   duplicateInstance,
   deleteProperty,
   deleteInstance,
-} from '../app/slices/tableSlice';
-import { StyledAnchorContainer } from './MenuBar.styled';
+} from '../../redux/slices/tableSlice';
+import { StyledAnchorContainer } from '../MenuBar.styled';
 
 export const EditMenuAchonr = () => {
   const [dropdown, setDropdown] = useState(null);
@@ -32,7 +32,7 @@ export const EditMenuAchonr = () => {
   };
 
   return (
-    <StyledAnchorContainer 
+    <StyledAnchorContainer
       onMouseOver={createMenu}
       onMouseLeave={() => {
         setDropdown(null);
@@ -78,37 +78,13 @@ function EditDropdown({ xPos, yPos, Reference, closeMenu }) {
   };
 
   return (
-    <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
-      <ContextMenuButton
-        buttonText={'Cut'}
-        buttonAction={reducersBySelectedType.cut}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Copy'}
-        buttonAction={reducersBySelectedType.copy}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Paste before'}
-        buttonAction={reducersBySelectedType.pasteBefore}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Paste After'}
-        buttonAction={reducersBySelectedType.pasteAfter}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Duplicate'}
-        buttonAction={reducersBySelectedType.duplicate}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Delete'}
-        buttonAction={reducersBySelectedType.delete}
-        closeMenu={closeMenu}
-      />
-    </ContextMenu>
+    <div style={{ position: 'fixed', left: xPos, top: yPos }}>
+      <button onClick={reducersBySelectedType.cut}>Cut</button>
+      <button onClick={reducersBySelectedType.copy}>Copy</button>
+      <button onClick={reducersBySelectedType.pasteBefore}>Paste Before</button>
+      <button onClick={reducersBySelectedType.pasteAfter}>Paste After</button>
+      <button onClick={reducersBySelectedType.duplicate}>Duplicate</button>
+      <button onClick={reducersBySelectedType.delete}>Delete</button>
+    </div>
   );
 }
