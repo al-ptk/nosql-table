@@ -68,6 +68,8 @@ For the next version
   - [ ] html table
 - [ ] Add undos and redos
 - [ ] ANIMATIONS!
+- [ ] Instead of a file, take the json list straight from client's clipboard. Or, at least, let them paste it in a box and use that box to create the table
+- [ ] Abstract all box modals into a HOC then implement behavior common to all (essentially, to render through a portal, and have some niceties)
 
 Tutorial:
 
