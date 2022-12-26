@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeadingCell } from '../HeadingCell/HeadingCell';
-import { useSelector, useDispatch } from 'react-redux';
-import { addProperty } from '../../redux/slices/tableSlice';
+import { useSelector } from 'react-redux';
 
 export function TableHead({ setIsVertical, setModal }) {
   const schema = useSelector((state) => state.table.schema);
@@ -26,7 +25,6 @@ export function TableHead({ setIsVertical, setModal }) {
             setModal={setModal}
           />
         ))}
-        <AddPropertyButton />
       </tr>
     </thead>
   );
@@ -52,28 +50,5 @@ const RotateButton = ({ setIsVertical }) => {
         Rotate
       </button>
     </th>
-  );
-};
-
-const AddPropertyButton = () => {
-  const dispatch = useDispatch();
-
-  return (
-    <td>
-      <button
-        onClick={() => {
-          dispatch(addProperty({}));
-        }}
-        style={{
-          backgroundColor: '#373737',
-          color: 'white',
-          border: 'none',
-          width: '100%',
-          height: '100%',
-        }}
-      >
-        Add Property
-      </button>
-    </td>
   );
 };

@@ -1,7 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSelected } from '../redux/slices/tableSlice';
+import {
+  addProperty,
+  setSelected,
+  addInstance,
+} from '../redux/slices/tableSlice';
 import { StyledTable } from './JsonTable.styled';
 import { TableBody } from './TableBody/TableBody';
 import { TableHead } from './TableHead/TableHead';
@@ -22,9 +26,50 @@ export function JsonTable({ isVertical, setIsVertical, setModal }) {
   }, [dispatch]);
 
   return (
-    <StyledTable tabIndex="0" isVertical={isVertical}>
-      <TableHead {...{ setIsVertical, setModal }} />
-      <TableBody />
-    </StyledTable>
+    <div
+      style={{
+        margin: '100px auto',
+        width: 'fit-content',
+        maxWidth: '80vw',
+        position: 'relative',
+      }}
+    >
+      <StyledTable tabIndex="0" isVertical={isVertical}>
+        <TableHead {...{ setIsVertical, setModal }} />
+        <TableBody />
+      </StyledTable>
+      <button
+        style={{
+          height: '100%',
+          width: 'fit-content',
+          color: 'rgba(255,255,255, .5)',
+          backgroundColor: 'rgba(0,0,0,.5)',
+          border: 'none',
+          position: 'absolute',
+          left: '100%',
+          top: 0,
+          zIndex: 200,
+        }}
+        onClick={() => dispatch(addProperty({}))}
+      >
+        Add Property
+      </button>
+      <button
+        style={{
+          height: '25px',
+          width: '100%',
+          color: 'rgba(255,255,255, .5)',
+          backgroundColor: 'rgba(0,0,0,.5)',
+          border: 'none',
+          position: 'absolute',
+          left: 0,
+          top: '100%',
+          zIndex: 200,
+        }}
+        onClick={() => dispatch(addInstance({}))}
+      >
+        Add Instance
+      </button>
+    </div>
   );
 }

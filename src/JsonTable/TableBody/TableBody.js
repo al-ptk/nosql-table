@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyledTBody } from './StyledTBody';
 import { DataCell } from '../DataCell/DataCell';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import IndexHeading from '../IndexHeading/IndexHeading';
-import { addInstance } from '../../redux/slices/tableSlice';
 
 export function TableBody() {
   const instances = useSelector((state) => state.table.instances);
@@ -49,32 +48,6 @@ export function TableBody() {
           })}
         </tr>
       ))}
-      <AddInstanceButton />
     </StyledTBody>
   );
 }
-
-const AddInstanceButton = () => {
-  const dispatch = useDispatch();
-
-  return (
-    <tr>
-      <td>
-        <button
-          onClick={() => {
-            dispatch(addInstance({}));
-          }}
-          style={{
-            backgroundColor: '#373737',
-            color: 'white',
-            border: 'none',
-            width: '100%',
-            height: '100%',
-          }}
-        >
-          Add Instance
-        </button>
-      </td>
-    </tr>
-  );
-};

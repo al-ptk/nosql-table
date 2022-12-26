@@ -43,8 +43,8 @@ const verticalRows = css`
 export const StyledTable = styled.table`
   // Pick layout mode
   ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
-  margin: 100px auto;
-  width: fit-content;
+  /* margin: 100px auto;
+  width: fit-content; */
   max-width: 90vw;
 
   background-color: transparent;
