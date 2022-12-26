@@ -38,5 +38,4 @@ export const StyledAnchorContainer = styled.div`
    > div > button {
     font-size: 18px;
   }
-
 `
