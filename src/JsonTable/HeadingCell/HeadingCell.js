@@ -5,13 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateHeadingCell, setSelected } from '../../redux/slices/tableSlice';
 import { HeadinCellContextMenu } from './HeadinCellContextMenu';
 
-export const HeadingCell = ({ propertyIndex, className }) => {
+export const HeadingCell = ({ propertyIndex, className, setModal }) => {
   propertyIndex = parseInt(propertyIndex);
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
-
   const [contextMenu, setContextMenu] = useState(null);
-  const [repeatModal, setRepeatModal] = useState(null);
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -34,7 +32,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
             yPos={e.clientY}
             closeMenu={() => setContextMenu(null)}
             propertyIndex={propertyIndex}
-            setRepeatModal={setRepeatModal}
+            setModal={setModal}
           />
         );
       }}
@@ -47,7 +45,6 @@ export const HeadingCell = ({ propertyIndex, className }) => {
         maxLength="20"
       ></textarea>
       {contextMenu}
-      {repeatModal}
     </StyledHeading>
   );
 };

@@ -16,7 +16,7 @@ export const HeadinCellContextMenu = ({
   yPos,
   closeMenu,
   propertyIndex,
-  setRepeatModal,
+  setModal,
 }) => {
   const dispatch = useDispatch();
   propertyIndex = parseInt(propertyIndex);
@@ -103,11 +103,9 @@ export const HeadinCellContextMenu = ({
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Repeat For All'}
+        buttonText={'Repeat for all of property'}
         buttonAction={() => {
-          setRepeatModal(
-            <RepeatedInsertInput {...{ propertyIndex, setRepeatModal }} />
-          );
+          setModal(<RepeatedInsertInput {...{ propertyIndex, setModal }} />);
         }}
         closeMenu={closeMenu}
       />

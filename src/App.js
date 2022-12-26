@@ -10,14 +10,16 @@ import { JSONPreview } from './components/JSONPreview';
 function App() {
   const [isVertical, setIsVertical] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [modal, setModal] = useState(false);
 
   return (
     <>
       <GlobalStyle />
       <StoreProvider store={store}>
-        <MenuBar {...{ setIsVertical, setShowPreview }} />
-        <JsonTable {...{ isVertical, setIsVertical }} />
+        <MenuBar {...{ setIsVertical, setShowPreview, setModal }} />
+        <JsonTable {...{ isVertical, setIsVertical, setModal }} />
         <JSONPreview {...{ showPreview, setShowPreview }} />
+        {modal}
       </StoreProvider>
       <StyledFooter>
         Made by{' '}

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 
-export const RepeatedInsertInput = ({ propertyIndex, setRepeatModal }) => {
+export const RepeatedInsertInput = ({ propertyIndex, setModal }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const closeParent = (e) => {
-    setRepeatModal(null);
+    setModal(null);
   };
 
   return createPortal(

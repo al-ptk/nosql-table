@@ -1,13 +1,9 @@
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addInstance, addProperty } from '../../redux/slices/tableSlice';
-import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
-import { createRoot } from 'react-dom/client';
-import { StyledAnchorContainer } from '../MenuBar.styled';
+import { DropDownAnchor } from '../MenuBarStyledComponents';
+import { InsertDropdown } from './InsertDropdown';
 
-export const InsertMenuAnchor = () => {
+export const InsertMenuAnchor = ({ setModal }) => {
   const [dropdown, setDropdown] = useState(null);
-  const Reference = useRef(null);
   const buttonReference = useRef(null);
 
   const createMenu = () => {
@@ -16,53 +12,23 @@ export const InsertMenuAnchor = () => {
     const yPos = coords.bottom;
     setDropdown(
       <InsertDropdown
-        {...{ xPos, yPos, Reference }}
+        {...{ xPos, yPos, setModal }}
         closeMenu={() => setDropdown(null)}
       />
     );
   };
 
   return (
-    <StyledAnchorContainer
+    <DropDownAnchor.Container
       onMouseOver={createMenu}
       onMouseLeave={() => {
         setDropdown(null);
       }}
     >
-      <button onClick={createMenu} ref={buttonReference}>
+      <DropDownAnchor.Button ref={buttonReference}>
         Insert
-      </button>
+      </DropDownAnchor.Button>
       {dropdown}
-    </StyledAnchorContainer>
+    </DropDownAnchor.Container>
   );
 };
-
-function InsertDropdown({ xPos, yPos, Reference, closeMenu }) {
-  const dispatch = useDispatch();
-  return (
-    <ContextMenu {...{ xPos, yPos, Reference, closeMenu }}>
-      <ContextMenuButton
-        buttonText={'Add new property'}
-        buttonAction={() => dispatch(addProperty({}))}
-        closeMenu={closeMenu}
-      />
-      <ContextMenuButton
-        buttonText={'Add new instance'}
-        buttonAction={() => dispatch(addInstance({}))}
-        closeMenu={closeMenu}
-      />
-      <hr />
-      <ContextMenuButton
-        buttonText={'Insert for all in property'}
-        buttonAction={() => {
-          let node = document.createElement('div');
-          document.body.appendChild(node);
-          createRoot(node).render(
-            <button onClick={(e) => e.target.remove()}>Delete me</button>
-          );
-        }}
-        closeMenu={closeMenu}
-      />
-    </ContextMenu>
-  );
-}

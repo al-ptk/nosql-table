@@ -3,7 +3,7 @@ import { HeadingCell } from '../HeadingCell/HeadingCell';
 import { useSelector, useDispatch } from 'react-redux';
 import { addProperty } from '../../redux/slices/tableSlice';
 
-export function TableHead({ setIsVertical }) {
+export function TableHead({ setIsVertical, setModal }) {
   const schema = useSelector((state) => state.table.schema);
   const selected = useSelector((state) => state.table.selected);
 
@@ -23,6 +23,7 @@ export function TableHead({ setIsVertical }) {
             key={`prop-${propertyIndex}`}
             propertyIndex={propertyIndex}
             className={isHeadingHighlighted(propertyIndex)}
+            setModal={setModal}
           />
         ))}
         <AddPropertyButton />

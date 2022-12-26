@@ -6,13 +6,13 @@ import { TitleInput } from './TitleInput/TitleInput';
 import { ViewMenuAnchor } from './ViewMenu/ViewMenu';
 import { StyledAnchorContainer, StyledMenuBar } from './MenuBar.styled';
 
-export default function MenuBar({ setIsVertical, setShowPreview }) {
+export default function MenuBar({ setIsVertical, setShowPreview, setModal }) {
   return (
     <StyledMenuBar>
       <div style={{ display: 'flex', gap: 20 }}>
         <FileMenuAnchor />
         <EditMenuAchonr />
-        <InsertMenuAnchor />
+        <InsertMenuAnchor {...{ setModal }} />
         <ViewMenuAnchor {...{ setIsVertical, setShowPreview }} />
       </div>
       <TitleInput />
