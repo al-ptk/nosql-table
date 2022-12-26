@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { importTable } from '../../redux/slices/tableSlice';
+import { DropDown } from '../MenuBarStyledComponents';
 
-export function ImportButton({ closeMenu }) {
+export function ImportButton() {
   const dispatch = useDispatch();
   const fileInput = useRef(null);
 
@@ -20,7 +21,6 @@ export function ImportButton({ closeMenu }) {
         -'.json'.length
       );
       dispatch(importTable({ newTable, fileName }));
-      closeMenu();
     };
   };
 
@@ -39,13 +39,13 @@ export function ImportButton({ closeMenu }) {
           importFile({ fileName });
         }}
       />
-      <button
+      <DropDown.Button
         onClick={() => {
           selectFile();
         }}
       >
         Import file
-      </button>
+      </DropDown.Button>
     </span>
   );
 }

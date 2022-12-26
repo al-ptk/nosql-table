@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { DropDown } from '../MenuBarStyledComponents';
 
-export function ExportButton({ closeMenu, exportMode, ...props }) {
+export function ExportButton({ exportMode, ...props }) {
   const title = useSelector((state) => state.table.title);
   const getTableFile = useTableFile(exportMode); // for lazy access, instead of constant redraw
   const linkRef = useRef(null);
@@ -24,14 +25,13 @@ export function ExportButton({ closeMenu, exportMode, ...props }) {
       >
         &nbsp;
       </a>
-      <button
+      <DropDown.Button
         onClick={() => {
           downloadTable();
-          closeMenu();
         }}
       >
         {props.children}
-      </button>
+      </DropDown.Button>
     </span>
   );
 }
