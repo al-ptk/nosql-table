@@ -3,49 +3,6 @@ import { StyledDropDownMenu } from './StyledMenu';
 
 /*
   The idea of the ContextMenu component is to create a vertical list of buttons at any position of the viewport, like all context menus found in modern, GUI-based computers.
-
-  ContextMenu and ContextMenuButton require a custom parent component.
-  Use them by composition, like this:
-
-    function SomeComponent () {
-      const [context, setContextMenu] = useState(null)
-      const Reference = useRef(null)
-
-      return 
-        <div onContextMenu={() => {
-          setContextMenu(
-              <SomeComponentContextMenu 
-                closeMenu={()=setContextMenu(null)}
-                {...{xPos, yPos, Reference}}
-              />
-          )
-          }
-        >
-          {some stuff}
-          {context}
-        </div>
-    }
-
-    function SomeComponentContextMenu ({xPos, yPos, closeMenu}) {
-      return <div> // Any wrapper should do
-        <ContextMenu 
-        ref={ref}
-          xPos={some_number} 
-          yPos={some_number}
-        >
-          <ContextMenuButton
-            buttonText={someText}
-            buttonAction={someFunction}
-            closeMenu={closeMenu}
-          />
-          <ContextMenuButton
-            buttonText={someOtherText}
-            buttonAction={someFunction}
-            closeMenu={closeMenu}
-          />
-        </ContextMenu>
-      </div>
-    }
 */
 
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
