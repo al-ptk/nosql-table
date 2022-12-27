@@ -9,7 +9,10 @@ import {
   pasteInstance,
   duplicateInstance,
 } from '../../redux/slices/tableSlice';
-import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+import {
+  ContextMenu,
+  ContextMenuButton,
+} from '../../components/ContextMenu/ContextMenu';
 
 export const IndexHeadingContextMenu = ({
   instanceIndex,

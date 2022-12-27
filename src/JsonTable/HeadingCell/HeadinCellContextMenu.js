@@ -8,7 +8,10 @@ import {
   pasteProperty,
   swapProperties,
 } from '../../redux/slices/tableSlice';
-import { ContextMenu, ContextMenuButton } from '../../components/ContextMenu';
+import {
+  ContextMenu,
+  ContextMenuButton,
+} from '../../components/ContextMenu/ContextMenu';
 import { RepeatedInsertInput } from './RepeatedInsertInput';
 
 export const HeadinCellContextMenu = ({

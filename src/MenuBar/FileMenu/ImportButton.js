@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { importTable } from '../../redux/slices/tableSlice';
-import { DropDown } from '../MenuBarStyledComponents';
+import { DropDown } from '../../components/DropDown.styles';
 
 export function ImportButton() {
   const dispatch = useDispatch();

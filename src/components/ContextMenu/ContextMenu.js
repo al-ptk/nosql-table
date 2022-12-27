@@ -1,24 +1,31 @@
 import { useEffect } from 'react';
-import { StyledDropDownMenu } from './StyledMenu';
+import { StyledContextMenu } from './ContextMenu.styles';
 
 /*
   The idea of the ContextMenu component is to create a vertical list of buttons at any position of the viewport, like all context menus found in modern, GUI-based computers.
 */
 
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
+
   const controlContextVisibility = () => {
-    if (Reference === undefined) return;
+    if (Reference === undefined) return; // No reference, no action
     document.body.click(); // closes other menus
     Reference.current.focus();
+
+    // event handler
     const closeMenuOnOutsideClick = (e) => {
       const isFocusWithin = Reference.current.contains(document.activeElement);
       if (!isFocusWithin) {
         closeMenu();
       }
     };
+
+    // add events on mount
     window.addEventListener('click', closeMenuOnOutsideClick);
     window.addEventListener('contextmenu', closeMenuOnOutsideClick);
+
     return () => {
+      // remove events on unmount
       window.removeEventListener('click', closeMenuOnOutsideClick);
       window.removeEventListener('contextmenu', closeMenuOnOutsideClick);
     };
@@ -27,19 +34,19 @@ export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
   useEffect(controlContextVisibility, [Reference, closeMenu]);
 
   return (
-    <StyledDropDownMenu
+    <StyledContextMenu.Container
       ref={Reference}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
       tabIndex={0}>
       {children}
-    </StyledDropDownMenu>
+    </StyledContextMenu.Container>
   );
 }
 
 export const ContextMenuButton = ({ buttonText, buttonAction, closeMenu }) => {
   return (
-    <button
+    <StyledContextMenu.Button
       onClick={(e) => {
         buttonAction(e);
         closeMenu();
@@ -47,6 +54,6 @@ export const ContextMenuButton = ({ buttonText, buttonAction, closeMenu }) => {
       tabIndex={0}
     >
       {buttonText}
-    </button>
+    </StyledContextMenu.Button>
   );
 };

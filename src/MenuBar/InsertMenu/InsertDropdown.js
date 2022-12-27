@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addInstance, addProperty } from '../../redux/slices/tableSlice';
-import { DropDown } from '../MenuBarStyledComponents';
+import { DropDown } from '../../components/DropDown.styles';
 import { RepeatedInsertInput } from '../../JsonTable/HeadingCell/RepeatedInsertInput';
 
 export function InsertDropdown({ xPos, yPos, setModal }) {

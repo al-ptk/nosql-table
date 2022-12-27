@@ -3,7 +3,7 @@ import { ExportButton } from './ExportButton';
 import { ImportButton } from './ImportButton';
 import { newTable } from '../../redux/slices/tableSlice';
 import { useDispatch } from 'react-redux';
-import { DropDown, DropDownAnchor } from '../MenuBarStyledComponents';
+import { DropDown, DropDownAnchor } from '../../components/DropDown.styles';
 
 export const FileMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);

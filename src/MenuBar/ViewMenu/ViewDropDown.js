@@ -1,4 +1,4 @@
-import { DropDown } from '../MenuBarStyledComponents';
+import { DropDown } from '../../components/DropDown.styles';
 
 export const ViewDropDown = ({
   xPos,

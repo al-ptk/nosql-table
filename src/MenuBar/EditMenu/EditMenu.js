@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { DropDownAnchor } from '../MenuBarStyledComponents';
+import { DropDownAnchor } from '../../components/DropDown.styles';
 import { EditDropdown } from './EditDropdown';
 
 export const EditMenuAchonr = () => {

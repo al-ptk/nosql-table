@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { DropDown } from '../MenuBarStyledComponents';
+import { DropDown } from '../../components/DropDown.styles';
 
 export function ExportButton({ exportMode, ...props }) {
   const title = useSelector((state) => state.table.title);

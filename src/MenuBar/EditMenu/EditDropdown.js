@@ -11,7 +11,7 @@ import {
   deleteInstance,
   setSelected,
 } from '../../redux/slices/tableSlice';
-import { DropDown } from '../MenuBarStyledComponents';
+import { DropDown } from '../../components/DropDown.styles';
 
 export function EditDropdown({ xPos, yPos }) {
   const dispatch = useDispatch();

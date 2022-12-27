@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { DropDownAnchor } from '../MenuBarStyledComponents';
+import { DropDownAnchor } from '../../components/DropDown.styles';
 import { ViewDropDown } from './ViewDropDown';
 
 export function ViewMenuAnchor({ setIsVertical, setShowPreview }) {
