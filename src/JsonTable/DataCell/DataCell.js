@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ExpandedCellModal } from '../../components/ExpandedCellModal';
+import { ExpandedCellModal } from '../../components/ExpandedCellModal/ExpandedCellModal';
 import { updateDataCell } from '../../redux/slices/tableSlice';
 import { StyledDataCell } from './DataCell.styles';
 

@@ -5,7 +5,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import store from './redux/store';
 import MenuBar from './MenuBar/MenuBar';
 import { useState } from 'react';
-import { JSONPreview } from './components/JSONPreview';
+import { JSONPreview } from './components/JSONPreview/JSONPreview';
 
 function App() {
   const [isVertical, setIsVertical] = useState(false);

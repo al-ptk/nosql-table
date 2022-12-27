@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useCellAccessor } from '../JsonTable/DataCell/DataCell';
+import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 
 export function ExpandedCellModal({ accessCoordinates }) {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
