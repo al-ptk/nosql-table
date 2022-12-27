@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { StyledContextMenu } from './ContextMenu.styles';
+import { createPortal } from 'react-dom';
 
 /*
   The idea of the ContextMenu component is to create a vertical list of buttons at any position of the viewport, like all context menus found in modern, GUI-based computers.
 */
 
 export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
-
   const controlContextVisibility = () => {
     if (Reference === undefined) return; // No reference, no action
     document.body.click(); // closes other menus
@@ -33,14 +33,16 @@ export function ContextMenu({ children, Reference, xPos, yPos, closeMenu }) {
 
   useEffect(controlContextVisibility, [Reference, closeMenu]);
 
-  return (
+  return createPortal(
     <StyledContextMenu.Container
       ref={Reference}
       xPos={!isNaN(xPos) ? `${xPos}px` : 'inherit'}
       yPos={!isNaN(yPos) ? `${yPos}px` : 'inherit'}
-      tabIndex={0}>
+      tabIndex={0}
+    >
       {children}
-    </StyledContextMenu.Container>
+    </StyledContextMenu.Container>,
+    document.getElementById('modal-portal')
   );
 }
 

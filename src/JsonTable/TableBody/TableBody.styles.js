@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledTBody = styled.tbody`
+  tr {
+    position: relative;
+  }
 
   tr:nth-child(2n + 1) * {
     background-color: #404040;

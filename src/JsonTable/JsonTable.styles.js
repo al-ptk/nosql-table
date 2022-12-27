@@ -29,9 +29,9 @@ export const StyledTable = {
     left: ${(props) => props.left};
 
     position: absolute;
-    z-index: 50;
     border: none;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.5);
   `,
 };
 
