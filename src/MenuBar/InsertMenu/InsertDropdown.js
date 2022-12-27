@@ -15,7 +15,7 @@ export function InsertDropdown({ xPos, yPos, setModal }) {
       <DropDown.Button onClick={() => dispatch(addInstance({}))}>
         Add new instance
       </DropDown.Button>
-      <DropDown.HozRuler />
+      <DropDown.HorRuler />
       <DropDown.Button
         onClick={() => {
           if (selected.index === null || selected.type !== 'property') return;

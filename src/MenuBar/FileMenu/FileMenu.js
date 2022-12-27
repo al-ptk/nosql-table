@@ -38,11 +38,11 @@ const FileDropDown = ({ xPos, yPos }) => {
       <DropDown.Button onClick={() => dispatch(newTable())}>
         New Table
       </DropDown.Button>
-      <DropDown.HozRuler />
+      <DropDown.HorRuler />
       <ImportButton />
       <ExportButton exportMode={'full'}>Export file</ExportButton>
       <ExportButton exportMode={'rows-only'}>Export only rows</ExportButton>
-      <DropDown.HozRuler />
+      <DropDown.HorRuler />
       <DropDown.Button>Close Table</DropDown.Button>
     </DropDown.Container>
   );

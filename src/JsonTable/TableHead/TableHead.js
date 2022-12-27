@@ -36,6 +36,12 @@ const RotateButton = ({ setIsVertical }) => {
       scope="col"
       className="index-heading"
       onContextMenu={(e) => e.preventDefault()}
+      style={{
+        position: 'sticky',
+        left: 0,
+        backgroundColor: '#373737',
+        zIndex: 10,
+      }}
     >
       <button
         onClick={() => setIsVertical((bool) => !bool)}

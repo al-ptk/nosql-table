@@ -36,5 +36,5 @@ export const DropDown = {
       color: rgba(255, 255, 255, 0.3);
     }
   `,
-  HozRuler: styled.hr``,
+  HorRuler: styled.hr``,
 };
