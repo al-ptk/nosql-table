@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addInstance, addProperty } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
-import { RepeatedInsertInput } from '../../JsonTable/HeadingCell/RepeatedInsertInput';
+import { RepeatedInsertInput } from '../../components/RepeatedInsertInput/RepeatedInsertInput';
 
 export function InsertDropdown({ xPos, yPos, setModal }) {
   const dispatch = useDispatch();

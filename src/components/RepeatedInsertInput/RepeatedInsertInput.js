@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
+import { StyledRepeatedInput } from './RepeatedInsertInput.styles';
 
 export const RepeatedInsertInput = ({ propertyIndex }) => {
   const dispatch = useDispatch();
@@ -12,36 +13,29 @@ export const RepeatedInsertInput = ({ propertyIndex }) => {
   };
 
   return createPortal(
-    <div
-      style={{
-        position: 'absolute',
-        zIndex: 100,
-        width: '400px',
-        height: '400px',
-        inset: '10vh 0 0 30vw',
-        backgroundColor: 'rgba(0,0,0,.7)',
-        padding: 30,
-      }}
-    >
-      <textarea value={text} onInput={(e) => setText(e.target.value)} />
-      <p>
-        <button
+    <StyledRepeatedInput.Backdrop>
+      <StyledRepeatedInput.Container>
+        <StyledRepeatedInput.Textarea
+          value={text}
+          onInput={(e) => setText(e.target.value)}
+        />
+        <StyledRepeatedInput.Button
           onClick={(e) => {
             dispatch(repeatForAll({ propertyIndex, newValue: text }));
             closeParent(e);
           }}
         >
           Repeat Values!
-        </button>
-        <button
+        </StyledRepeatedInput.Button>
+        <StyledRepeatedInput.Button
           onClick={(e) => {
             closeParent(e);
           }}
         >
           Cancel!
-        </button>
-      </p>
-    </div>,
+        </StyledRepeatedInput.Button>
+      </StyledRepeatedInput.Container>
+    </StyledRepeatedInput.Backdrop>,
     document.querySelector('#modal-portal')
   );
 };

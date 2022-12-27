@@ -12,7 +12,7 @@ import {
   ContextMenu,
   ContextMenuButton,
 } from '../../components/ContextMenu/ContextMenu';
-import { RepeatedInsertInput } from './RepeatedInsertInput';
+import { RepeatedInsertInput } from '../../components/RepeatedInsertInput/RepeatedInsertInput';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export const HeadinCellContextMenu = ({
