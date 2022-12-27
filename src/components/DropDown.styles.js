@@ -31,6 +31,10 @@ export const DropDown = {
     text-align: left;
     padding: 1px 10px;
     font-size: 16px;
+
+    :disabled {
+      color: rgba(255, 255, 255, 0.3);
+    }
   `,
   HozRuler: styled.hr``,
 };

@@ -18,6 +18,7 @@ export function EditDropdown({ xPos, yPos }) {
   const selected = useSelector((state) => state.table.selected);
   const index = selected.index;
 
+  // Select the functions to render based on the type of entity selected
   const reducersBySelectedType = {
     property: {
       cut: () => dispatch(cutProperty({ propertyIndex: index })),
@@ -51,22 +52,38 @@ export function EditDropdown({ xPos, yPos }) {
           reducersBySelectedType.cut();
           dispatch(setSelected({ type: null, index: null }));
         }}
+        disabled={selected.type === null}
       >
         Cut
       </DropDown.Button>
-      <DropDown.Button onClick={reducersBySelectedType.copy}>
+      <DropDown.Button
+        onClick={reducersBySelectedType.copy}
+        disabled={selected.type === null}
+      >
         Copy
       </DropDown.Button>
-      <DropDown.Button onClick={reducersBySelectedType.pasteBefore}>
+      <DropDown.Button
+        onClick={reducersBySelectedType.pasteBefore}
+        disabled={selected.type === null}
+      >
         Paste Before
       </DropDown.Button>
-      <DropDown.Button onClick={reducersBySelectedType.pasteAfter}>
+      <DropDown.Button
+        onClick={reducersBySelectedType.pasteAfter}
+        disabled={selected.type === null}
+      >
         Paste After
       </DropDown.Button>
-      <DropDown.Button onClick={reducersBySelectedType.duplicate}>
+      <DropDown.Button
+        onClick={reducersBySelectedType.duplicate}
+        disabled={selected.type === null || selected.type !== 'instance'}
+      >
         Duplicate
       </DropDown.Button>
-      <DropDown.Button onClick={reducersBySelectedType.delete}>
+      <DropDown.Button
+        onClick={reducersBySelectedType.delete}
+        disabled={selected.type === null}
+      >
         Delete
       </DropDown.Button>
     </DropDown.Container>

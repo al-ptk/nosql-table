@@ -42,6 +42,7 @@ const FileDropDown = ({ xPos, yPos }) => {
       <ImportButton />
       <ExportButton exportMode={'full'}>Export file</ExportButton>
       <ExportButton exportMode={'rows-only'}>Export only rows</ExportButton>
+      <DropDown.HozRuler />
       <DropDown.Button>Close Table</DropDown.Button>
     </DropDown.Container>
   );

@@ -25,6 +25,7 @@ export function InsertDropdown({ xPos, yPos, setModal }) {
             />
           );
         }}
+        disabled={selected.index === null || selected.type !== 'property'}
       >
         Insert for all cells of property
       </DropDown.Button>
