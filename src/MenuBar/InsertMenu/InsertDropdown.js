@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addInstance, addProperty } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
-import { RepeatedInsertInput } from '../../components/RepeatedInsertInput/RepeatedInsertInput';
+import { MassInsertInput } from '../../components/MassInsertInput/MassInsertInput';
 
 export function InsertDropdown({ xPos, yPos, setModal }) {
   const dispatch = useDispatch();
@@ -21,9 +21,7 @@ export function InsertDropdown({ xPos, yPos, setModal }) {
           if (selected.index === null || selected.type !== 'property') return;
           dispatch(
             setModal({
-              modal: (
-                <RepeatedInsertInput {...{ propertyIndex: selected.index }} />
-              ),
+              modal: <MassInsertInput {...{ propertyIndex: selected.index }} />,
             })
           );
         }}

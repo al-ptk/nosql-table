@@ -12,7 +12,7 @@ import {
   ContextMenu,
   ContextMenuButton,
 } from '../../components/ContextMenu/ContextMenu';
-import { RepeatedInsertInput } from '../../components/RepeatedInsertInput/RepeatedInsertInput';
+import { MassInsertInput } from '../../components/MassInsertInput/MassInsertInput';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export const HeadinCellContextMenu = ({
@@ -106,11 +106,11 @@ export const HeadinCellContextMenu = ({
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Repeat for all of property'}
+        buttonText={'Insert for all'}
         buttonAction={() => {
           dispatch(
             setModal({
-              modal: <RepeatedInsertInput {...{ propertyIndex }} />,
+              modal: <MassInsertInput {...{ propertyIndex }} />,
             })
           );
         }}

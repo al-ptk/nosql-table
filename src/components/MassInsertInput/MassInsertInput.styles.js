@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledRepeatedInput = {
+export const StyledMassInsertInput = {
   Backdrop: styled.div`
     position: absolute;
     z-index: 100;
