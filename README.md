@@ -1,5 +1,14 @@
+- [About the App](#about-the-app)
+- [Technical Decisions](#technical-decisions)
+- [Workflow, tips and shortcuts](#workflow-tips-and-shortcuts)
+- [Roadmap](#roadmap)
+
+## About the App
+
 The point of this app was to facilitate the creating of mock data for other projects.
 Turns out, I could've just use ChatGPT. But alas!
+
+## Technical Decisions
 
 The usage of redux was initially was to create a more complex useState thing.  
 I found out alternatives later (zustand, jotai), but I choose to stick with redux.  
@@ -11,5 +20,13 @@ The lack of DRY-ness in the code is proposital: I want to get a better understan
 What if I need to add a component in the middle of something that was abstracted way? What if there is variants I haven't forseen?  
 I made my code as DRY as I felt confident it was matured, no more.
 (I took my reasoning from someone way smarter than me, so go watch what Dan Abramove said about wet code)
+
+## Workflow, tips and shortcuts
+
+- The mental model is this: You are creating a schema for a list of objects. Instances are each object created; Properties are the fields of each value. Not all properties are held by all instances.
+- Double-click a cell to show it's expanded version
+- Use 'Insert for all' to repeat or randomize values under a property
+
+## Roadmap
 
 Here is the roadmap (that I may follow after doing some other projects):
