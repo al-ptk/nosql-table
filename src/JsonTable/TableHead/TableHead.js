@@ -2,6 +2,7 @@ import React from 'react';
 import { HeadingCell } from '../HeadingCell/HeadingCell';
 import { useSelector } from 'react-redux';
 import { RotateButton } from './RotateButton/RotateButton';
+import { StyledTableHead } from './TableHead.styles';
 
 export function TableHead({ setIsVertical, setModal }) {
   const schema = useSelector((state) => state.table.schema);
@@ -14,9 +15,9 @@ export function TableHead({ setIsVertical, setModal }) {
   };
 
   return (
-    <thead>
+    <StyledTableHead.Container>
       {/* For vertical rows, make tr be flex column */}
-      <tr style={{ position: 'relative' }}>
+      <StyledTableHead.Row>
         <RotateButton setIsVertical={setIsVertical} />
         {schema.map((property, propertyIndex) => (
           <HeadingCell
@@ -26,7 +27,7 @@ export function TableHead({ setIsVertical, setModal }) {
             setModal={setModal}
           />
         ))}
-      </tr>
-    </thead>
+      </StyledTableHead.Row>
+    </StyledTableHead.Container>
   );
 }

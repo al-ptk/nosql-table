@@ -5,8 +5,6 @@ export const StyledHeadingCell = {
     width: 150px;
     height: 50px;
     position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    background-color: #373737;
     color: white;
     display: grid;
     place-items: center;

@@ -6,7 +6,6 @@ export const StyledRotateButton = {
     height: 50px;
     position: sticky;
     left: 0px;
-    background-color: #373737;
     z-index: 10;
   `,
   Button: styled.button`

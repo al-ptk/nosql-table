@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledTBody } from './StyledTBody';
+import { StyledTBody } from './TableBody.styles';
 import { DataCell } from '../DataCell/DataCell';
 import { useSelector } from 'react-redux';
 import IndexHeading from '../IndexHeading/IndexHeading';

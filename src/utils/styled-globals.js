@@ -8,15 +8,21 @@ export const GlobalStyle = createGlobalStyle`
 
   textarea {
     resize: none;
+    border: none !important;
   }
 
   button {
     cursor: pointer;
   }
 
+  td, th {
+    border: none !important;
+    outline: none;
+  }
+
   th.highlight-selected,
   td.highlight-selected > textarea {
-    background-color: hsl(190, 50%, 50%);
-    color: white;
+    background-color: hsl(190, 50%, 50%) !important;
+    color: white !important;
   }
 `;
