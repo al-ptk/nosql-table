@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { InsertDropdown } from './InsertDropdown';
 
-export const InsertMenuAnchor = ({ setModal }) => {
+export const InsertMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
   const buttonReference = useRef(null);
 
@@ -11,10 +11,7 @@ export const InsertMenuAnchor = ({ setModal }) => {
     const xPos = coords.left;
     const yPos = coords.bottom;
     setDropdown(
-      <InsertDropdown
-        {...{ xPos, yPos, setModal }}
-        closeMenu={() => setDropdown(null)}
-      />
+      <InsertDropdown {...{ xPos, yPos }} closeMenu={() => setDropdown(null)} />
     );
   };
 

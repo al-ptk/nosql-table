@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { ViewDropDown } from './ViewDropDown';
 
-export function ViewMenuAnchor({ setIsVertical, setShowPreview }) {
+export function ViewMenuAnchor() {
   const [dropdown, setDropdown] = useState(null);
   const buttonReference = useRef(null);
 
@@ -15,8 +15,6 @@ export function ViewMenuAnchor({ setIsVertical, setShowPreview }) {
         {...{
           xPos,
           yPos,
-          setIsVertical,
-          setShowPreview,
         }}
         closeMenu={() => setDropdown(null)}
       />

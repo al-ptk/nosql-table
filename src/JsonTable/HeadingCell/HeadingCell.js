@@ -4,7 +4,7 @@ import { updateHeadingCell, setSelected } from '../../redux/slices/tableSlice';
 import { HeadinCellContextMenu } from './HeadinCell.ContextMenu';
 import { StyledHeadingCell } from './HeadingCell.styles';
 
-export const HeadingCell = ({ propertyIndex, className, setModal }) => {
+export const HeadingCell = ({ propertyIndex, className }) => {
   propertyIndex = parseInt(propertyIndex);
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
@@ -31,7 +31,6 @@ export const HeadingCell = ({ propertyIndex, className, setModal }) => {
             yPos={e.clientY}
             closeMenu={() => setContextMenu(null)}
             propertyIndex={propertyIndex}
-            setModal={setModal}
           />
         );
       }}

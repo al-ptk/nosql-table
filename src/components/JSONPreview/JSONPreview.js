@@ -1,14 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { togglePreview } from '../../redux/slices/uiKnobsSlice';
 import { StyledJSONPreview } from './JSONPreview.styles';
 
-export function JSONPreview({ showPreview, setShowPreview }) {
+export function JSONPreview() {
   const instances = useSelector((state) => state.table.instances);
+  const showPreview = useSelector((state) => state.uiKnobs.showPreview);
+  const dispatch = useDispatch();
+
   return showPreview ? (
     <StyledJSONPreview.Backdrop>
       <StyledJSONPreview.Container>
         <StyledJSONPreview.CloseButton
-          onClick={() => setShowPreview((bool) => !bool)}
+          onClick={() => dispatch(togglePreview())}
         >
           X
         </StyledJSONPreview.CloseButton>

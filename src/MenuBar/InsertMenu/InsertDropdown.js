@@ -19,10 +19,12 @@ export function InsertDropdown({ xPos, yPos, setModal }) {
       <DropDown.Button
         onClick={() => {
           if (selected.index === null || selected.type !== 'property') return;
-          setModal(
-            <RepeatedInsertInput
-              {...{ propertyIndex: selected.index, setModal }}
-            />
+          dispatch(
+            setModal({
+              modal: (
+                <RepeatedInsertInput {...{ propertyIndex: selected.index }} />
+              ),
+            })
           );
         }}
         disabled={selected.index === null || selected.type !== 'property'}

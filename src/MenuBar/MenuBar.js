@@ -6,14 +6,14 @@ import { TitleInput } from './TitleInput/TitleInput';
 import { ViewMenuAnchor } from './ViewMenu/ViewMenu';
 import { StyledMenuBar } from './MenuBar.styles';
 
-export default function MenuBar({ setIsVertical, setShowPreview, setModal }) {
+export default function MenuBar() {
   return (
     <StyledMenuBar.Container>
       <StyledMenuBar.FlexWrapper>
         <FileMenuAnchor />
         <EditMenuAnchor />
-        <InsertMenuAnchor {...{ setModal }} />
-        <ViewMenuAnchor {...{ setIsVertical, setShowPreview }} />
+        <InsertMenuAnchor />
+        <ViewMenuAnchor />
       </StyledMenuBar.FlexWrapper>
       <TitleInput />
       <StyledMenuBar.FlexWrapper>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addProperty,
   setSelected,
@@ -10,8 +10,9 @@ import { StyledTable } from './JsonTable.styles';
 import { TableBody } from './TableBody/TableBody';
 import { TableHead } from './TableHead/TableHead';
 
-export function JsonTable({ isVertical, setIsVertical, setModal }) {
+export function JsonTable() {
   const dispatch = useDispatch();
+  const isVertical = useSelector((state) => state.uiKnobs.isVertical);
 
   useEffect(() => {
     const clickToUnselect = (e) => {
@@ -35,7 +36,7 @@ export function JsonTable({ isVertical, setIsVertical, setModal }) {
       }}
     >
       <StyledTable tabIndex="0" isVertical={isVertical}>
-        <TableHead {...{ setIsVertical, setModal }} />
+        <TableHead />
         <TableBody />
       </StyledTable>
       <button
