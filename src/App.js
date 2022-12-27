@@ -4,7 +4,7 @@ import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider, useSelector } from 'react-redux';
 import store from './redux/store';
 import MenuBar from './MenuBar/MenuBar';
-import { JSONPreview } from './components/JSONPreview/JSONPreview';
+import JSONPreview from './modals/JSONPreview';
 
 function App() {
   return (

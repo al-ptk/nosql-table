@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addInstance, addProperty } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
-import { MassInsertInput } from '../../components/MassInsertInput/MassInsertInput';
+import MassInsertInput from '../../modals/MassInsertInput';
 
 export function InsertDropdown({ xPos, yPos, setModal }) {
   const dispatch = useDispatch();

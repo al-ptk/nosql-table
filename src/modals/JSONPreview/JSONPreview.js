@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { togglePreview } from '../../redux/slices/uiKnobsSlice';
+import Backdrop from '../Backdrop';
 import { StyledJSONPreview } from './JSONPreview.styles';
 
 export function JSONPreview() {
@@ -9,7 +10,7 @@ export function JSONPreview() {
   const dispatch = useDispatch();
 
   return showPreview ? (
-    <StyledJSONPreview.Backdrop>
+    <Backdrop>
       <StyledJSONPreview.Container>
         <StyledJSONPreview.CloseButton
           onClick={() => dispatch(togglePreview())}
@@ -21,6 +22,6 @@ export function JSONPreview() {
           tabWith={4}
         />
       </StyledJSONPreview.Container>
-    </StyledJSONPreview.Backdrop>
+    </Backdrop>
   ) : null;
 }

@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 
   th.highlight-selected,
   td.highlight-selected > textarea {
-    background-color: hsl(190, 50%, 50%) !important;
+    background-color: rgba(	64, 170, 191, .65) !important;
     color: white !important;
   }
 `;

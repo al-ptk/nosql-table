@@ -7,7 +7,7 @@ export const StyledExpandedCellModal = {
     width: 400px;
     height: 400px;
     inset: 10vh 0 0 30vw;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #373737;
     padding: 30px;
   `,
   CloseButton: styled.button`

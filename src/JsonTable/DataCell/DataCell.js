@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ExpandedCellModal } from '../../components/ExpandedCellModal/ExpandedCellModal';
 import { updateDataCell } from '../../redux/slices/tableSlice';
 import { StyledDataCell } from './DataCell.styles';
+import ExpandedCellModal from '../../modals/ExpandedCellModal';
 
 export const DataCell = ({ accessCoordinates, className }) => {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);

@@ -12,8 +12,8 @@ import {
   ContextMenu,
   ContextMenuButton,
 } from '../../components/ContextMenu/ContextMenu';
-import { MassInsertInput } from '../../components/MassInsertInput/MassInsertInput';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
+import MassInsertInput from '../../modals/MassInsertInput';
 
 export const HeadinCellContextMenu = ({
   xPos,
