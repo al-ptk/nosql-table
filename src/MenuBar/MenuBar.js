@@ -1,38 +1,38 @@
 import GithubIcon from '../assets/GithubIcon';
-import { EditMenuAchonr } from './EditMenu/EditMenu';
+import { EditMenuAnchor } from './EditMenu/EditMenu';
 import { FileMenuAnchor } from './FileMenu/FileMenu';
 import { InsertMenuAnchor } from './InsertMenu/InsertMenu';
 import { TitleInput } from './TitleInput/TitleInput';
 import { ViewMenuAnchor } from './ViewMenu/ViewMenu';
-import { StyledAnchorContainer, StyledMenuBar } from './MenuBar.styled';
+import { StyledMenuBar } from './MenuBar.styles';
 
 export default function MenuBar({ setIsVertical, setShowPreview, setModal }) {
   return (
-    <StyledMenuBar>
-      <div style={{ display: 'flex', gap: 20 }}>
+    <StyledMenuBar.Container>
+      <StyledMenuBar.FlexWrapper>
         <FileMenuAnchor />
-        <EditMenuAchonr />
+        <EditMenuAnchor />
         <InsertMenuAnchor {...{ setModal }} />
         <ViewMenuAnchor {...{ setIsVertical, setShowPreview }} />
-      </div>
+      </StyledMenuBar.FlexWrapper>
       <TitleInput />
-      <StyledAnchorContainer>
-        <a
+      <StyledMenuBar.FlexWrapper>
+        <StyledMenuBar.Link
           href="https://github.com/al-ptk/json-table-editor/issues"
           target={'_blank'}
           rel="noreferrer"
         >
           Feedback
-        </a>
-        <a
+        </StyledMenuBar.Link>
+        <StyledMenuBar.Link
           href="https://github.com/al-ptk/json-table-editor/"
           target={'_blank'}
           rel="noreferrer"
           aria-label="Json table editor's github page"
         >
-          <GithubIcon height={'24px'} style={{ marginBottom: '-3px' }} />
-        </a>
-      </StyledAnchorContainer>
-    </StyledMenuBar>
+          <GithubIcon height={'24px'} />
+        </StyledMenuBar.Link>
+      </StyledMenuBar.FlexWrapper>
+    </StyledMenuBar.Container>
   );
 }

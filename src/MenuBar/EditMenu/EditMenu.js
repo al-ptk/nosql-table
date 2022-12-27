@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { EditDropdown } from './EditDropdown';
 
-export const EditMenuAchonr = () => {
+export const EditMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
   const Reference = useRef(null);
   const buttonReference = useRef(null);
