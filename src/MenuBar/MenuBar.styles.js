@@ -6,7 +6,7 @@ export const StyledMenuBar = {
     top: 0;
     width: 100vw;
     height: 3em;
-    z-index: 10;
+    z-index: 200;
     isolation: isolate;
 
     display: flex;

@@ -4,6 +4,8 @@ const StyledBackdrop = styled.div`
   position: fixed;
   inset: 0 0 0 0;
   background-color: rgba(0, 0, 0, 0.5);
+  isolation: isolate;
+  z-index: 300;
 `;
 
 export default function Backdrop({ children, ...props }) {

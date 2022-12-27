@@ -1,5 +1,40 @@
 import styled, { css } from 'styled-components';
 
+export const StyledTable = {
+  Container: styled.div`
+    margin: 100px auto;
+    width: fit-content;
+    max-width: 80vw;
+    position: relative;
+  `,
+
+  Table: styled.table`
+    // Pick layout mode
+    ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
+    max-width: 90vw;
+    background-color: transparent;
+    border-collapse: collapse;
+
+    tr {
+      width: fit-content;
+      height: fit-content;
+      overflow: clip;
+    }
+  `,
+
+  AddEntityButton: styled.button`
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+    top: ${(props) => props.top};
+    left: ${(props) => props.left};
+
+    position: absolute;
+    z-index: 50;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+  `,
+};
+
 // Layout organization for horizontal mode
 const horizontalRows = css`
   display: flex;
@@ -37,22 +72,5 @@ const verticalRows = css`
       display: flex;
       flex-direction: column;
     }
-  }
-`;
-
-export const StyledTable = styled.table`
-  // Pick layout mode
-  ${(props) => (props.isVertical ? verticalRows : horizontalRows)}
-  /* margin: 100px auto;
-  width: fit-content; */
-  max-width: 90vw;
-
-  background-color: transparent;
-  border-collapse: collapse;
-
-  tr {
-    width: fit-content;
-    height: fit-content;
-    overflow: clip;
   }
 `;

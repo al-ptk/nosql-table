@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledFooter = styled.footer`
   position: fixed;
+  z-index: 200;
   bottom: 0;
   width: 100vw;
   height: fit-content;

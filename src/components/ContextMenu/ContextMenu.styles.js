@@ -5,7 +5,7 @@ export const StyledContextMenu = {
     position: fixed;
     top: ${(props) => props.yPos};
     left: ${(props) => props.xPos};
-    z-index: 1000;
+    z-index: 150;
     width: fit-content;
     background-color: #373737;
     border: 1px solid white;

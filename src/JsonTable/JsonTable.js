@@ -27,50 +27,29 @@ export function JsonTable() {
   }, [dispatch]);
 
   return (
-    <div
-      style={{
-        margin: '100px auto',
-        width: 'fit-content',
-        maxWidth: '80vw',
-        position: 'relative',
-      }}
-    >
-      <StyledTable tabIndex="0" isVertical={isVertical}>
+    <StyledTable.Container>
+      <StyledTable.Table tabIndex="0" isVertical={isVertical}>
         <TableHead />
         <TableBody />
-      </StyledTable>
-      <button
-        style={{
-          height: '100%',
-          width: 'fit-content',
-          color: 'rgba(255,255,255, .5)',
-          backgroundColor: 'rgba(0,0,0,.5)',
-          border: 'none',
-          position: 'absolute',
-          left: '100%',
-          top: 0,
-          zIndex: 200,
-        }}
+      </StyledTable.Table>
+      <StyledTable.AddEntityButton
+        top={0}
+        left={'100%'}
+        width={'fit-content'}
+        height={'100%'}
         onClick={() => dispatch(addProperty({}))}
       >
         Add Property
-      </button>
-      <button
-        style={{
-          height: '25px',
-          width: '100%',
-          color: 'rgba(255,255,255, .5)',
-          backgroundColor: 'rgba(0,0,0,.5)',
-          border: 'none',
-          position: 'absolute',
-          left: 0,
-          top: '100%',
-          zIndex: 200,
-        }}
+      </StyledTable.AddEntityButton>
+      <StyledTable.AddEntityButton
+        top={'100%'}
+        left={0}
+        width={'100%'}
+        height={'25px'}
         onClick={() => dispatch(addInstance({}))}
       >
         Add Instance
-      </button>
-    </div>
+      </StyledTable.AddEntityButton>
+    </StyledTable.Container>
   );
 }

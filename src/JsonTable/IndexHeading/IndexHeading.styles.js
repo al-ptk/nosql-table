@@ -6,8 +6,7 @@ export const StyledIndexHeading = {
     position: sticky;
     left: 0;
     background-color: #373737;
-    z-index: 20;
-    isolation: isolate;
+    z-index: 100;
     width: 150px;
     height: 50px;
     border: 1px solid rgba(0, 0, 0, 0.5);

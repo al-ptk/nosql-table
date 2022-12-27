@@ -10,7 +10,7 @@ export function ExpandedCellModal({ accessCoordinates }) {
       <StyledExpandedCellModal.Container>
         <StyledExpandedCellModal.CloseButton
           onClick={(e) => {
-            e.target.parentNode.remove();
+            e.target.parentNode.parentNode.remove();
           }}
         >
           X
