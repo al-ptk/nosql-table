@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/json-table-editor/static/css/main.93847a3c.css",
-    "main.js": "/json-table-editor/static/js/main.0110a276.js",
+    "main.js": "/json-table-editor/static/js/main.4449728a.js",
     "index.html": "/json-table-editor/index.html",
     "main.93847a3c.css.map": "/json-table-editor/static/css/main.93847a3c.css.map",
-    "main.0110a276.js.map": "/json-table-editor/static/js/main.0110a276.js.map"
+    "main.4449728a.js.map": "/json-table-editor/static/js/main.4449728a.js.map"
   },
   "entrypoints": [
     "static/css/main.93847a3c.css",
-    "static/js/main.0110a276.js"
+    "static/js/main.4449728a.js"
   ]
 }
