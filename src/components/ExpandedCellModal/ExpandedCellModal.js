@@ -1,34 +1,23 @@
 import { createPortal } from 'react-dom';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
+import { StyledExpandedCellModal } from './ExpandedCellModal.styles';
 
 export function ExpandedCellModal({ accessCoordinates }) {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
   return createPortal(
-    <div
-      style={{
-        position: 'absolute',
-        zIndex: 100,
-        width: '400px',
-        height: '400px',
-        inset: '10vh 0 0 30vw',
-        backgroundColor: 'rgba(0,0,0,.7)',
-        padding: 30,
-      }}
-    >
-      <button
-        style={{ position: 'absolute', right: 20, top: 20 }}
+    <StyledExpandedCellModal.Container>
+      <StyledExpandedCellModal.CloseButton
         onClick={(e) => {
           e.target.parentNode.remove();
         }}
       >
         X
-      </button>
-      <textarea
-        style={{ width: '100%', height: '100%' }}
+      </StyledExpandedCellModal.CloseButton>
+      <StyledExpandedCellModal.Textarea
         value={cellValue}
         onInput={handleInput}
-      ></textarea>
-    </div>,
+      ></StyledExpandedCellModal.Textarea>
+    </StyledExpandedCellModal.Container>,
     document.querySelector('#modal-portal')
   );
 }
