@@ -44,6 +44,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Cell being highlighted when selected and having its own context menu!
 - [ ] Render arrays as html lists
 - [ ] Select value of column \ field type: string, number, array, object
 - [ ] Add a schema builder. Think a modal that allows you to chose a name and type for each property field **and** automatically generates all columns
