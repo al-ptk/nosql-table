@@ -6,7 +6,7 @@ import {
   setSelected,
   addInstance,
 } from '../redux/slices/tableSlice';
-import { StyledTable } from './JsonTable.styled';
+import { StyledTable } from './JsonTable.styles';
 import { TableBody } from './TableBody/TableBody';
 import { TableHead } from './TableHead/TableHead';
 

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-// Imports all actions that operate on the table, to turn them into buttons
 import { updateHeadingCell, setSelected } from '../../redux/slices/tableSlice';
-import { HeadinCellContextMenu } from './HeadinCellContextMenu';
+import { HeadinCellContextMenu } from './HeadinCell.ContextMenu';
+import { StyledHeadingCell } from './HeadingCell.styles';
 
 export const HeadingCell = ({ propertyIndex, className, setModal }) => {
   propertyIndex = parseInt(propertyIndex);
@@ -18,7 +17,7 @@ export const HeadingCell = ({ propertyIndex, className, setModal }) => {
   };
 
   return (
-    <StyledHeading
+    <StyledHeadingCell.Container
       className={className}
       tabIndex={-1}
       onClick={(e) => {
@@ -37,21 +36,14 @@ export const HeadingCell = ({ propertyIndex, className, setModal }) => {
         );
       }}
     >
-      <textarea
+      <StyledHeadingCell.Textarea
         value={schema[propertyIndex].name || ''}
         onInput={handleInput}
         rows="1"
         cols="20"
         maxLength="20"
-      ></textarea>
+      ></StyledHeadingCell.Textarea>
       {contextMenu}
-    </StyledHeading>
+    </StyledHeadingCell.Container>
   );
 };
-
-const StyledHeading = styled.th`
-  textarea {
-    font-weight: bold;
-    text-align: center;
-  }
-`;

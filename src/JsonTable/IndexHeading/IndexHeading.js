@@ -1,23 +1,17 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSelected } from '../../redux/slices/tableSlice';
-import { IndexHeadingContextMenu } from './IndexHeadingContextMenu';
+import { IndexHeadingContextMenu } from './IndexHeading.ContextMenu';
+import { StyledIndexHeading } from './IndexHeading.styles';
 
 export default function IndexHeading({ instanceIndex, className }) {
   const [contextMenu, setContextMenu] = useState(null);
   const dispatch = useDispatch();
 
   return (
-    <th
+    <StyledIndexHeading.Container
       className={className}
       tabIndex={-1}
-      style={{
-        cursor: 'default',
-        position: 'sticky',
-        left: 0,
-        backgroundColor: '#373737',
-        zIndex: 10,
-      }}
       scope="row"
       onClick={() => {
         dispatch(setSelected({ type: 'instance', index: instanceIndex }));
@@ -38,6 +32,6 @@ export default function IndexHeading({ instanceIndex, className }) {
     >
       {instanceIndex}
       {contextMenu}
-    </th>
+    </StyledIndexHeading.Container>
   );
 }

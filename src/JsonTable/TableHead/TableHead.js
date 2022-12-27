@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeadingCell } from '../HeadingCell/HeadingCell';
 import { useSelector } from 'react-redux';
+import { RotateButton } from './RotateButton/RotateButton';
 
 export function TableHead({ setIsVertical, setModal }) {
   const schema = useSelector((state) => state.table.schema);
@@ -29,32 +30,3 @@ export function TableHead({ setIsVertical, setModal }) {
     </thead>
   );
 }
-
-const RotateButton = ({ setIsVertical }) => {
-  return (
-    <th
-      scope="col"
-      className="index-heading"
-      onContextMenu={(e) => e.preventDefault()}
-      style={{
-        position: 'sticky',
-        left: 0,
-        backgroundColor: '#373737',
-        zIndex: 10,
-      }}
-    >
-      <button
-        onClick={() => setIsVertical((bool) => !bool)}
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          height: '100%',
-          width: '100%',
-          color: 'white',
-        }}
-      >
-        Rotate
-      </button>
-    </th>
-  );
-};
