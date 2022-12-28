@@ -23,7 +23,7 @@ export const StyledMenuBar = {
     color: white;
     border: none;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 19px;
   `,
   FlexWrapper: styled.div`
     display: flex;

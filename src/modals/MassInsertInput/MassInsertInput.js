@@ -4,7 +4,7 @@ import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { StyledMassInsertInput } from './MassInsertInput.styles';
-import Backdrop from '../Backdrop';
+import Backdrop from '../Modal.styles';
 
 export const MassInsertInput = ({ propertyIndex }) => {
   const dispatch = useDispatch();

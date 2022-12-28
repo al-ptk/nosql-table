@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const Modal = {
+  Backdrop,
+  Container: styled.div`
+    ${(props) => props.cssOverride || ''}
+    position: relative;
+    overflow-y: scroll;
+    width: 80vw;
+    height: 80vh;
+    margin: 10vh auto;
+    padding: 80px 50px;
+    background-color: #e5e5e5;
+  `,
+};
+
 const StyledBackdrop = styled.div`
   position: fixed;
   inset: 0 0 0 0;
@@ -8,7 +22,7 @@ const StyledBackdrop = styled.div`
   z-index: 300;
 `;
 
-export default function Backdrop({ children, ...props }) {
+function Backdrop({ children, ...props }) {
   return (
     <StyledBackdrop
       onClick={(e) => {
@@ -20,3 +34,4 @@ export default function Backdrop({ children, ...props }) {
     </StyledBackdrop>
   );
 }
+
