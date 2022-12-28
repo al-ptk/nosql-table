@@ -1,18 +1,18 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { togglePreview } from '../../redux/slices/uiKnobsSlice';
+import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { Modal } from '../Modal.styles';
 import { StyledJSONPreview } from './JSONPreview.styles';
 
 export function JSONPreview() {
   const instances = useSelector((state) => state.table.instances);
-  const showPreview = useSelector((state) => state.uiKnobs.showPreview);
   const dispatch = useDispatch();
 
-  return showPreview ? (
+  return createPortal(
     <Modal.Backdrop>
       <Modal.Container>
-        <Modal.CloseButton onClick={() => dispatch(togglePreview())}>
+        <Modal.CloseButton onClick={() => dispatch(setModal({}))}>
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <StyledJSONPreview.Formatter
@@ -20,6 +20,7 @@ export function JSONPreview() {
           tabWith={4}
         />
       </Modal.Container>
-    </Modal.Backdrop>
-  ) : null;
+    </Modal.Backdrop>,
+    document.querySelector('#modal-portal')
+  );
 }

@@ -4,7 +4,6 @@ import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider, useSelector } from 'react-redux';
 import store from './redux/store';
 import MenuBar from './MenuBar/MenuBar';
-import JSONPreview from './modals/JSONPreview';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <GlobalStyle />
       <MenuBar />
       <JsonTable />
-      <JSONPreview />
       <RenderModal />
       <StyledFooter>
         Made by{' '}

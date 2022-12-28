@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isVertical: false,
-  showPreview: false,
   modal: null,
 };
 
@@ -10,9 +9,6 @@ const uiKnobsSlice = createSlice({
   name: 'uiKnobs',
   initialState,
   reducers: {
-    togglePreview: (state) => {
-      state.showPreview = !state.showPreview;
-    },
     toggleIsVertical: (state) => {
       state.isVertical = !state.isVertical;
     },

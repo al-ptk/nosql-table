@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 import { Modal } from '../Modal.styles';
@@ -5,12 +6,14 @@ import { StyledExpandedCellModal } from './ExpandedCellModal.styles';
 
 export function ExpandedCellModal({ accessCoordinates }) {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
+  const ref = useRef(null);
+
   return createPortal(
-    <Modal.Backdrop>
+    <Modal.Backdrop ref={ref}>
       <Modal.Container>
         <Modal.CloseButton
           onClick={(e) => {
-            e.target.parentNode.parentNode.remove();
+            ref.current.remove();
           }}
         >
           <Modal.CloseIcon />
