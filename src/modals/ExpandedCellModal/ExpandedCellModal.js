@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 import { Modal } from '../Modal.styles';
-import { StyledExpandedCellModal } from './ExpandedCellModal.styles';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export function ExpandedCellModal({ accessCoordinates }) {
@@ -14,9 +13,14 @@ export function ExpandedCellModal({ accessCoordinates }) {
   const [text, setText] = useState(cellValue);
   const dispatch = useDispatch();
 
+  const confirmChange = () => {
+    handleInput({ target: { value: text } }); // simulate the e.target.value access
+    dispatch(setModal({}));
+  };
+
   return createPortal(
     <Modal.Backdrop>
-      <Modal.Container cssOverride={StyledExpandedCellModal.ContainerOverride}>
+      <Modal.Container>
         <Modal.CloseButton
           onClick={(e) => {
             dispatch(setModal({}));
@@ -25,22 +29,22 @@ export function ExpandedCellModal({ accessCoordinates }) {
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <div style={{ margin: '-50px 0 20px 0' }}>
-          <StyledExpandedCellModal.Title>
-            Instance {instanceIndex}
-          </StyledExpandedCellModal.Title>
-          <StyledExpandedCellModal.Title>
-            Property: {propertyName}
-          </StyledExpandedCellModal.Title>
+          <Modal.Title>Instance {instanceIndex}</Modal.Title>
+          <Modal.Title>Property: {propertyName}</Modal.Title>
         </div>
-        <StyledExpandedCellModal.Textarea
+        <Modal.Textarea
           value={text}
-          onInput={(e) => setText(e.target.value)}
+          onInput={(e) => {
+            if (e.nativeEvent.inputType === 'insertLineBreak') {
+              return confirmChange();
+            }
+            setText(e.target.value);
+          }}
         />
-        <StyledExpandedCellModal.ButtonHolder>
+        <Modal.ButtonHolder>
           <Modal.Button
             onClick={() => {
-              handleInput({ target: { value: text } }); // simulate the e.target.value access
-              dispatch(setModal({}));
+              confirmChange();
             }}
           >
             Confirm
@@ -52,7 +56,7 @@ export function ExpandedCellModal({ accessCoordinates }) {
           >
             Cancel
           </Modal.Button>
-        </StyledExpandedCellModal.ButtonHolder>
+        </Modal.ButtonHolder>
       </Modal.Container>
     </Modal.Backdrop>,
     document.querySelector('#modal-portal')

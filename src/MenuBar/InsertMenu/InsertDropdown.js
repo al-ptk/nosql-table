@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addInstance, addProperty } from '../../redux/slices/tableSlice';
+import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { DropDown } from '../../components/DropDown.styles';
 import MassInsertInput from '../../modals/MassInsertInput';
 
-export function InsertDropdown({ xPos, yPos, setModal }) {
+export function InsertDropdown({ xPos, yPos }) {
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
 
@@ -27,7 +28,7 @@ export function InsertDropdown({ xPos, yPos, setModal }) {
         }}
         disabled={selected.index === null || selected.type !== 'property'}
       >
-        Insert for all cells of property
+        Insert for all
       </DropDown.Button>
     </DropDown.Container>
   );
