@@ -24,4 +24,8 @@ export const StyledExpandedCellModal = {
     align-items: center;
     justify-content: space-evenly;
   `,
+  Title: styled.h2`
+    color: white;
+    text-align: center;
+  `,
 };

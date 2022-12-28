@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 import { Modal } from '../Modal.styles';
 import { StyledExpandedCellModal } from './ExpandedCellModal.styles';
@@ -8,6 +8,9 @@ import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export function ExpandedCellModal({ accessCoordinates }) {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
+  const { instanceIndex, propertyIndex } = accessCoordinates;
+  const propertyName = useSelector((state) => state.table.schema)[propertyIndex]
+    .name;
   const [text, setText] = useState(cellValue);
   const dispatch = useDispatch();
 
@@ -21,6 +24,14 @@ export function ExpandedCellModal({ accessCoordinates }) {
         >
           <Modal.CloseIcon />
         </Modal.CloseButton>
+        <div style={{ margin: '-50px 0 20px 0' }}>
+          <StyledExpandedCellModal.Title>
+            Property: {propertyName}
+          </StyledExpandedCellModal.Title>
+          <StyledExpandedCellModal.Title>
+            Instance {instanceIndex}
+          </StyledExpandedCellModal.Title>
+        </div>
         <StyledExpandedCellModal.Textarea
           value={text}
           onInput={(e) => setText(e.target.value)}
