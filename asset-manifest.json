@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/json-table-editor/static/css/main.93847a3c.css",
-    "main.js": "/json-table-editor/static/js/main.dbce3528.js",
+    "main.css": "/json-table-editor/static/css/main.3ef2b1fc.css",
+    "main.js": "/json-table-editor/static/js/main.2e2bbedf.js",
+    "static/media/NotoSans-ExtraLight.ttf": "/json-table-editor/static/media/NotoSans-ExtraLight.73c9131923338c4f3cd4.ttf",
+    "static/media/NotoSans-Medium.ttf": "/json-table-editor/static/media/NotoSans-Medium.a4c42b7a92bf0fdb8ec1.ttf",
+    "static/media/NotoSans-Light.ttf": "/json-table-editor/static/media/NotoSans-Light.2cfb54d923b32fbd5525.ttf",
     "index.html": "/json-table-editor/index.html",
-    "main.93847a3c.css.map": "/json-table-editor/static/css/main.93847a3c.css.map",
-    "main.dbce3528.js.map": "/json-table-editor/static/js/main.dbce3528.js.map"
+    "main.3ef2b1fc.css.map": "/json-table-editor/static/css/main.3ef2b1fc.css.map",
+    "main.2e2bbedf.js.map": "/json-table-editor/static/js/main.2e2bbedf.js.map"
   },
   "entrypoints": [
-    "static/css/main.93847a3c.css",
-    "static/js/main.dbce3528.js"
+    "static/css/main.3ef2b1fc.css",
+    "static/js/main.2e2bbedf.js"
   ]
 }
