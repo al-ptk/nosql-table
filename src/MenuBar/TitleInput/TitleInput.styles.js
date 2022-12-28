@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledTitleInput = styled.input`
   width: 200px;
-  margin: 0px 10px 3px 20px;
+  margin: 5px 0px;
   padding: 0 1px;
 
   background-color: transparent;

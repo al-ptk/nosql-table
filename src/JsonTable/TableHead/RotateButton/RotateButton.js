@@ -13,7 +13,7 @@ export const RotateButton = () => {
       onContextMenu={(e) => e.preventDefault()}
     >
       <StyledRotateButton.Button onClick={() => dispatch(toggleIsVertical())}>
-        Rotate
+        <StyledRotateButton.ButtonIcon />
       </StyledRotateButton.Button>
     </StyledRotateButton.Container>
   );

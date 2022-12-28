@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import CirclePlusIcon from '../assets/svgs/CirclePlusIcon';
 
 export const StyledTable = {
   Container: styled.div`
@@ -14,6 +15,7 @@ export const StyledTable = {
     max-width: 90vw;
     background-color: transparent;
     border-collapse: collapse;
+    border-radius: 15px 0 0 0;
 
     tr {
       width: fit-content;
@@ -23,19 +25,22 @@ export const StyledTable = {
   `,
 
   AddEntityButton: styled.button`
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
-    top: ${(props) => props.top};
-    left: ${(props) => props.left};
+    ${(props) => (props.isVerticalButton ? verticalButton : horizontalButton)}
 
     position: absolute;
+    padding: 5px;
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 0.5);
   `,
+  AddEntityIcon: styled(CirclePlusIcon)`
+    width: 30px;
+  `,
 };
 
-// Layout organization for horizontal mode
+// Layout Orientation
+
+// for horizontal mode
 const horizontalRows = css`
   display: flex;
   flex-direction: column;
@@ -56,7 +61,7 @@ const horizontalRows = css`
   }
 `;
 
-// Layout organization for vertical mode
+// for vertical mode
 const verticalRows = css`
   display: flex;
   thead {
@@ -73,4 +78,24 @@ const verticalRows = css`
       flex-direction: column;
     }
   }
+`;
+
+// AddEntityButton orientation
+
+// for vertical mode
+const verticalButton = css`
+  top: 100%;
+  left: 0px;
+  width: 100%;
+  height: fit-content;
+  border-radius: 0px 0px 15px 15px;
+`;
+
+// for horizontal mode
+const horizontalButton = css`
+  top: 0px;
+  left: 100%;
+  width: fit-content;
+  height: 100%;
+  border-radius: 0px 15px 15px 0px;
 `;

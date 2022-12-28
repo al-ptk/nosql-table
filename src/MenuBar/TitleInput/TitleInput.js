@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTitle } from '../../redux/slices/tableSlice';
-import { StyledTitleInput } from './StyledTitleInput';
+import { StyledTitleInput } from './TitleInput.styles';
 
 export const TitleInput = () => {
   const dispatch = useDispatch();

@@ -32,24 +32,30 @@ export function JsonTable() {
         <TableHead />
         <TableBody />
       </StyledTable.Table>
-      <StyledTable.AddEntityButton
-        top={0}
-        left={'100%'}
-        width={'fit-content'}
-        height={'100%'}
-        onClick={() => dispatch(addProperty({}))}
-      >
-        Add Property
-      </StyledTable.AddEntityButton>
-      <StyledTable.AddEntityButton
-        top={'100%'}
-        left={0}
-        width={'100%'}
-        height={'25px'}
-        onClick={() => dispatch(addInstance({}))}
-      >
-        Add Instance
-      </StyledTable.AddEntityButton>
+      {/* Add Property */}
+      <AddEntityButton
+        handleClick={() => dispatch(addInstance({}))}
+        isVerticalButton={!isVertical} // original oriention is not vertical
+        label="Add Instance"
+      />
+      {/* Add Instance */}
+      <AddEntityButton
+        handleClick={() => dispatch(addProperty({}))}
+        isVerticalButton={isVertical} // original oriention is vertical
+        label="Add Property"
+      />
     </StyledTable.Container>
   );
 }
+
+const AddEntityButton = ({ handleClick, isVerticalButton, label }) => {
+  return (
+    <StyledTable.AddEntityButton
+      aria-label={label}
+      isVerticalButton={isVerticalButton}
+      onClick={handleClick}
+    >
+      <StyledTable.AddEntityIcon />
+    </StyledTable.AddEntityButton>
+  );
+};

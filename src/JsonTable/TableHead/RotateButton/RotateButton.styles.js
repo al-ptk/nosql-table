@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import RotateIcon from '../../../assets/svgs/RotateIcon';
 
 export const StyledRotateButton = {
   Container: styled.th`
+    background-color: inherit;
     width: 150px;
     height: 50px;
     position: sticky;
@@ -14,5 +16,9 @@ export const StyledRotateButton = {
     height: 100%;
     width: 100%;
     color: white;
+  `,
+  ButtonIcon: styled(RotateIcon)`
+    fill: white;
+    width: 30px;
   `,
 };
