@@ -1,27 +1,47 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 import { Modal } from '../Modal.styles';
 import { StyledExpandedCellModal } from './ExpandedCellModal.styles';
+import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export function ExpandedCellModal({ accessCoordinates }) {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
-  const ref = useRef(null);
+  const [text, setText] = useState(cellValue);
+  const dispatch = useDispatch();
 
   return createPortal(
-    <Modal.Backdrop ref={ref}>
-      <Modal.Container>
+    <Modal.Backdrop>
+      <Modal.Container cssOverride={StyledExpandedCellModal.ContainerOverride}>
         <Modal.CloseButton
           onClick={(e) => {
-            ref.current.remove();
+            dispatch(setModal({}));
           }}
         >
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <StyledExpandedCellModal.Textarea
-          value={cellValue}
-          onInput={handleInput}
-        ></StyledExpandedCellModal.Textarea>
+          value={text}
+          onInput={(e) => setText(e.target.value)}
+        />
+        <StyledExpandedCellModal.ButtonHolder>
+          <Modal.Button
+            onClick={() => {
+              handleInput({ target: { value: text } }); // simulate the e.target.value access
+              dispatch(setModal({}));
+            }}
+          >
+            Confirm
+          </Modal.Button>
+          <Modal.Button
+            onClick={(e) => {
+              dispatch(setModal({}));
+            }}
+          >
+            Cancel
+          </Modal.Button>
+        </StyledExpandedCellModal.ButtonHolder>
       </Modal.Container>
     </Modal.Backdrop>,
     document.querySelector('#modal-portal')

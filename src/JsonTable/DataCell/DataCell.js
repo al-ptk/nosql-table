@@ -3,22 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateDataCell } from '../../redux/slices/tableSlice';
 import { StyledDataCell } from './DataCell.styles';
 import ExpandedCellModal from '../../modals/ExpandedCellModal';
+import { setModal } from '../../redux/slices/uiKnobsSlice';
 
 export const DataCell = ({ accessCoordinates, className }) => {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
-  const [expandedCell, setExpandedCell] = useState(null);
   const isVertical = useSelector((state) => state.uiKnobs.isVertical);
+  const dispatch = useDispatch();
 
   return (
     <StyledDataCell.Container
       className={className}
       isVertical={isVertical}
       onDoubleClick={() =>
-        setExpandedCell(<ExpandedCellModal {...{ accessCoordinates }} />)
+        dispatch(
+          setModal({ modal: <ExpandedCellModal {...{ accessCoordinates }} /> })
+        )
       }
     >
       <StyledDataCell.Textarea value={cellValue || ''} onInput={handleInput} />
-      {expandedCell}
     </StyledDataCell.Container>
   );
 };
