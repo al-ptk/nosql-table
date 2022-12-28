@@ -40,6 +40,7 @@ export function ExpandedCellModal({ accessCoordinates }) {
             }
             setText(e.target.value);
           }}
+          placeholder={'Put some text in here...'}
         />
         <Modal.ButtonHolder>
           <Modal.Button
