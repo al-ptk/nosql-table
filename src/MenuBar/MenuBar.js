@@ -8,6 +8,7 @@ import { StyledMenuBar } from './MenuBar.styles';
 import { DropDownAnchor } from '../components/DropDown.styles';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../redux/slices/uiKnobsSlice';
+import CreditsModal from '../modals/CreditsModal';
 
 export default function MenuBar() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function MenuBar() {
       <StyledMenuBar.FlexWrapper>
         <DropDownAnchor.Button
           onClick={() => {
-            dispatch(setModal({}));
+            dispatch(setModal({ modal: <CreditsModal /> }));
           }}
         >
           Credits
