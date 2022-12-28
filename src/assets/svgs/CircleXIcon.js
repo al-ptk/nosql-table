@@ -5,9 +5,7 @@ export default function CircleXIcon(props) {
       enable-background="new 0 0 32 32"
       version="1.1"
       viewBox="0 0 32 32"
-      xml:space="preserve"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
     >
       <g id="Cancel">
         <path

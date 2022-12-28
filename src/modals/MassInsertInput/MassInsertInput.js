@@ -4,7 +4,7 @@ import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { StyledMassInsertInput } from './MassInsertInput.styles';
-import Backdrop from '../Modal.styles';
+import { Modal } from '../Modal.styles';
 
 export const MassInsertInput = ({ propertyIndex }) => {
   const dispatch = useDispatch();
@@ -14,29 +14,29 @@ export const MassInsertInput = ({ propertyIndex }) => {
   };
 
   return createPortal(
-    <Backdrop>
-      <StyledMassInsertInput.Container>
+    <Modal.Backdrop>
+      <Modal.Container>
         <StyledMassInsertInput.Textarea
           value={text}
           onInput={(e) => setText(e.target.value)}
         />
-        <StyledMassInsertInput.Button
+        <Modal.Button
           onClick={(e) => {
             dispatch(repeatForAll({ propertyIndex, newValue: text }));
             closeParent(e);
           }}
         >
           Insert values
-        </StyledMassInsertInput.Button>
-        <StyledMassInsertInput.Button
+        </Modal.Button>
+        <Modal.Button
           onClick={(e) => {
             closeParent(e);
           }}
         >
           Cancel
-        </StyledMassInsertInput.Button>
-      </StyledMassInsertInput.Container>
-    </Backdrop>,
+        </Modal.Button>
+      </Modal.Container>
+    </Modal.Backdrop>,
     document.querySelector('#modal-portal')
   );
 };
