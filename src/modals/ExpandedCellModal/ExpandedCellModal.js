@@ -26,10 +26,10 @@ export function ExpandedCellModal({ accessCoordinates }) {
         </Modal.CloseButton>
         <div style={{ margin: '-50px 0 20px 0' }}>
           <StyledExpandedCellModal.Title>
-            Property: {propertyName}
+            Instance {instanceIndex}
           </StyledExpandedCellModal.Title>
           <StyledExpandedCellModal.Title>
-            Instance {instanceIndex}
+            Property: {propertyName}
           </StyledExpandedCellModal.Title>
         </div>
         <StyledExpandedCellModal.Textarea

@@ -60,6 +60,7 @@ For the next version
   - [ ] Limit number of tables on cloud to 5 ???
   - [ ] add Mongoose integration
   - [ ] Account management (password emails, updates, etc.)
+- [ ] tooltip for help according to session — new users ALWAYS get the tooltips, but people already registered wouldn't get it anymore.
 - [ ] Comments about the website on side-drawer menu
 - [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
 - [ ] Use typescript. The interfaces thing seems pretty good.

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDataCell } from '../../redux/slices/tableSlice';
 import { StyledDataCell } from './DataCell.styles';
@@ -20,7 +20,20 @@ export const DataCell = ({ accessCoordinates, className }) => {
         )
       }
     >
-      <StyledDataCell.Textarea value={cellValue || ''} onInput={handleInput} />
+      <StyledDataCell.Textarea
+        value={cellValue || ''}
+        onInput={handleInput}
+        // The code below gives a tip when textarea overflows.
+        // @todo tooltip component
+        //
+        // onMouseOver={(e) => {
+        //   if(tipHasBeenGiven('textarea-overflow')) return;
+        //   const elem = e.target;
+        //   if (elem.clientHeight < elem.scrollHeight) {
+        //     "render tooltip component"
+        //   }
+        // }}
+      />
     </StyledDataCell.Container>
   );
 };
