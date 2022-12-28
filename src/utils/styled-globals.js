@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 
   textarea {
     resize: none;
-    border: none !important;
+    border: none;
   }
 
   button {
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   td, th {
-    border: none !important;
+    border: none ;
     outline: none;
   }
 

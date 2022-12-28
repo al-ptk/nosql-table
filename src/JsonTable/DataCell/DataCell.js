@@ -7,10 +7,12 @@ import ExpandedCellModal from '../../modals/ExpandedCellModal';
 export const DataCell = ({ accessCoordinates, className }) => {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
   const [expandedCell, setExpandedCell] = useState(null);
+  const isVertical = useSelector((state) => state.uiKnobs.isVertical);
 
   return (
     <StyledDataCell.Container
       className={className}
+      isVertical={isVertical}
       onDoubleClick={() =>
         setExpandedCell(<ExpandedCellModal {...{ accessCoordinates }} />)
       }

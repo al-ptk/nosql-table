@@ -17,7 +17,6 @@ export const StyledHeadingCell = {
     height: fit-content;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 3px;
-    font-weight: bold;
     text-align: center;
 
     :focus {

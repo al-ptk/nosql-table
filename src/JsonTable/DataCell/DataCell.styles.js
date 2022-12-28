@@ -5,7 +5,10 @@ export const StyledDataCell = {
     width: 150px;
     height: 50px;
     position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-top: ${(props) =>
+      props.isVertical ? '1px solid rgba(0, 0, 0, .3)' : 'none'};
+    border-left: ${(props) =>
+      props.isVertical ? 'none' : '1px solid rgba(0, 0, 0, .5)'};
   `,
   Textarea: styled.textarea`
     color: white;
@@ -13,13 +16,10 @@ export const StyledDataCell = {
     border: none;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 3px;
 
     &:focus {
       outline: none;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
     }
   `,
 };
