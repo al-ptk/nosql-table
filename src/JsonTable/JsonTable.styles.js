@@ -16,6 +16,7 @@ export const StyledTable = {
     background-color: transparent;
     border-collapse: collapse;
     border-radius: 15px 0 0 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
 
     tr {
       width: fit-content;
@@ -32,6 +33,7 @@ export const StyledTable = {
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   `,
   AddEntityIcon: styled(CirclePlusIcon)`
     width: 30px;
