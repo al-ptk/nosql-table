@@ -36,6 +36,9 @@ export const HeadingCell = ({ propertyIndex, className }) => {
       }}
     >
       <StyledHeadingCell.Textarea
+        onFocus={() => {
+          dispatch(setSelected({ type: 'property', index: propertyIndex }));
+        }}
         value={schema[propertyIndex].name || ''}
         onInput={handleInput}
         rows="1"
