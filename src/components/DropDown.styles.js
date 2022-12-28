@@ -7,7 +7,8 @@ export const DropDownAnchor = {
     background-color: transparent;
     color: white;
     border: none;
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 19px;
   `,
 };
 
