@@ -67,9 +67,9 @@ I took this way of doing things [from a guy much smarter than I.](https://www.de
 
 ### Styled-components
 
-This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these are concerns are simply my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about).
+This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these concerns are simply a result of my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about). I do like the power styled-components gives me, though.
 
-I did adopt a pattern for style organizatino in the later stages development: component keychains. These work by putting all subcomponents under the namespace of a reusable component. Something like this:
+I did adopt a pattern for style organization in the later stages development: component keyring. These work by putting all subcomponents under the namespace of a reusable component. Something like this:
 
 ```javascript
 import styled from 'styled-components';
@@ -82,9 +82,9 @@ const Modal = {
 
 ```
 
-The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container.
+The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container. To use other components, use other keys.
 
-The benefits? Other than an easier time importing elements, creating a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
+The benefits? Other than an easier time importing elements, using a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
 
 ## Roadmap
 

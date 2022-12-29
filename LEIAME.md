@@ -66,9 +66,9 @@ Tirei essa forma de fazer as coisas [dum cara mais inteligente que eu.](https://
 
 ### Styled-components
 
-This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these are concerns are simply my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about).
+Essa library foi escolhida como a solução de css porque eu havia encrontrado-a umas semanas antes do começo deste projeto. Eu tenho preocupações quanto ao tamanho do package, mas essas preocupações são apenas um resultado da minha inexperiência lidando com performance (leia-se: Eu sou um noob e não tenho ideia do que estou falando). Eu gosto do poder que styled-components me dá, no entanto.
 
-I did adopt a pattern for style organizatino in the later stages development: component keychains. These work by putting all subcomponents under the namespace of a reusable component. Something like this:
+Eu adotei um padrão para organização de estilos nos estágios mais avançados do projeto: chaveiro de componentes. Esses funcionam por colocar todos os subcomponentes dentro do namespace de um componente reutilizável. Fica algo assim:
 
 ```javascript
 import styled from 'styled-components';
@@ -81,9 +81,9 @@ const Modal = {
 
 ```
 
-The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container.
+O consumo é um tanto direto — simplesmente use um `<Modal.Container>` para accessar o container. Para acessar componentes diferentes, basta usar uma chave diferente.
 
-The benefits? Other than an easier time importing elements, creating a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
+Os benefícios? Além de uma facilidade maior em importar componentes, usar um sistema parecido com [BEM](https://getbem.com/) e me fazer sentir esperto por uma razão boba, não existem quaisquer benefícios claros. Porém, eu gostei dessa abordagem, então planejo continuar com ela em projetos futuros.
 
 ## Roadmap
 
