@@ -10,8 +10,9 @@
   - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
   - [Roadmap](#roadmap)
 
-Se quiser ver a versão em português, clique [aqui].
-To visit the site, click [>>> here <<<]()
+Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
+
+To visit the site, click [>>> here <<<](https://al-ptk.github.io/json-table-editor/)
 
 # JSON Table Editor
 
