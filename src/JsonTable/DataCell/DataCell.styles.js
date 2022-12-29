@@ -17,6 +17,7 @@ export const StyledDataCell = {
     width: 100%;
     height: 100%;
     padding-bottom: 3px;
+    isolation: isolate;
 
     &:focus {
       outline: none;

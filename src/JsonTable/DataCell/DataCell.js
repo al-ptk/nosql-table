@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDataCell } from '../../redux/slices/tableSlice';
 import { StyledDataCell } from './DataCell.styles';
 import ExpandedCellModal from '../../modals/ExpandedCellModal';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
+import Tooltip from '../../components/Tooltip';
 
 export const DataCell = ({ accessCoordinates, className }) => {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
   const isVertical = useSelector((state) => state.uiKnobs.isVertical);
   const dispatch = useDispatch();
+  const [tooltip, setTooltip] = useState(null);
 
   return (
     <StyledDataCell.Container
@@ -23,17 +25,23 @@ export const DataCell = ({ accessCoordinates, className }) => {
       <StyledDataCell.Textarea
         value={cellValue || ''}
         onInput={handleInput}
-        // The code below gives a tip when textarea overflows.
-        // @todo tooltip component
-        //
-        // onMouseOver={(e) => {
-        //   if(tipHasBeenGiven('textarea-overflow')) return;
-        //   const elem = e.target;
-        //   if (elem.clientHeight < elem.scrollHeight) {
-        //     "render tooltip component"
-        //   }
-        // }}
+        onMouseOver={(e) => {
+          // if(tipHasBeenGiven('textarea-overflow')) return;
+
+          const coords = e.target.parentNode.getBoundingClientRect();
+          const elem = e.target;
+          if (elem.clientHeight < elem.scrollHeight) {
+            console.log(coords.top);
+            setTooltip(
+              <Tooltip xPos={coords.left} yPos={coords.top - 24}>
+                Double click to expand!
+              </Tooltip>
+            );
+          }
+        }}
+        onMouseLeave={() => setTooltip(null)}
       />
+      {tooltip}
     </StyledDataCell.Container>
   );
 };
