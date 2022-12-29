@@ -44,6 +44,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Before creating a new table, check if there is any non-saved tables. If there are, pop a modal to confirm operation.
 - [ ] Cell being highlighted when selected and having its own context menu!
 - [ ] Render arrays as html lists
 - [ ] Select value of column \ field type: string, number, array, object
@@ -82,21 +83,21 @@ Tutorial:
 GUI stuff
 
 - [x] The ActionMenu stuff
-  - [ ] File
+  - [x] File
     - [ ] Different types of exporting
     - [ ] Print
-    - [ ] Close table
-  - [ ] Edit
-    - [ ] Select row\column\cell
-  - [ ] Insert
-    - [ ] insert all
+    - [x] Close table
+  - [x] Edit
+    - [x] Select row\column\cell
+  - [x] Insert
+    - [x] insert all
   - [ ] User Menu
 - [ ] Table
-  - [ ] Move table to within a div
+  - [x] Move table to within a div
   - [ ] Add quick buttons for
-    - [ ] Add instance\property
+    - [x] Add instance\property
     - [ ] Delete instnace property
-    - [ ] Select menu for type of property
+    - [x] Select menu for type of property
 - [x] Contextual Menu
   - [x] Headings (for columns and rows)
     - [x] Paste above\left

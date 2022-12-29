@@ -2,8 +2,10 @@ import { useRef, useState } from 'react';
 import { ExportButton } from './ExportButton';
 import { ImportButton } from './ImportButton';
 import { newTable } from '../../redux/slices/tableSlice';
+import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { useDispatch } from 'react-redux';
 import { DropDown, DropDownAnchor } from '../../components/DropDown.styles';
+import { CloseTable } from '../../modals/CloseTableModal/CloseTableModal';
 
 export const FileMenuAnchor = () => {
   const [dropdown, setDropdown] = useState(null);
@@ -43,7 +45,13 @@ const FileDropDown = ({ xPos, yPos }) => {
       <ExportButton exportMode={'full'}>Export file</ExportButton>
       <ExportButton exportMode={'rows-only'}>Export only rows</ExportButton>
       <DropDown.HorRuler />
-      <DropDown.Button>Close Table</DropDown.Button>
+      <DropDown.Button
+        onClick={() => {
+          dispatch(setModal({ modal: <CloseTable /> }));
+        }}
+      >
+        Close Table
+      </DropDown.Button>
     </DropDown.Container>
   );
 };

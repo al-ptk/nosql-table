@@ -226,6 +226,14 @@ const tableSlice = createSlice({
       state.title = exampleTable.title;
     },
 
+    closeTable: (state) => {
+      state.instances = emptyTable.instances;
+      state.schema = emptyTable.schema;
+      state.selected = emptyTable.selected;
+      state.clipboard = emptyTable.clipboard;
+      state.title = emptyTable.title;
+    },
+
     setSelected: (state, action) => {
       const { index, type } = action.payload;
       // I deestructure the payload before assinging it to state
@@ -264,6 +272,7 @@ export const {
   importTable,
   makeExportFile,
   newTable,
+  closeTable,
   setSelected,
 } = tableSlice.actions;
 
