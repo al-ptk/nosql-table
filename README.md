@@ -1,60 +1,76 @@
-- [About the App](#about-the-app)
-  - [Conceptual Description](#conceptual-description)
-- [Technical Decisions](#technical-decisions)
-  - [Component Tree Explained](#component-tree-explained)
-  - [Redux](#redux)
-  - [Wet code](#wet-code)
-- [Workflow, tips and shortcuts](#workflow-tips-and-shortcuts)
-- [Roadmap](#roadmap)
+- [JSON Table Editor](#json-table-editor)
+  - [About the App](#about-the-app)
+  - [Technical Decisions](#technical-decisions)
+    - [Conceptual Description](#conceptual-description)
+    - [Component Tree Explained](#component-tree-explained)
+    - [Redux](#redux)
+    - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
+- [------------ Continue the work from here ------------------](#-------------continue-the-work-from-here-------------------)
+    - [Styled-components](#styled-components)
+  - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
+  - [Roadmap](#roadmap)
+
+Se quiser ver a versão em português, clique [aqui].
+To visit the site, click [>>> here <<<]()
+
+# JSON Table Editor
 
 ## About the App
 
-The point of this app was to facilitate the creating of mock data for other projects.  
-I wanted a way to quickly and easily mock a list of objects in json, with a few values randomized here and there, and just plug it in the project being done.  
-Turns out, I could've just use ChatGPT. But alas!
-At the time of this writing, one of the "hook" features is here (Mass Insertion), but not the other (Local Randomization).
-There are also features that crept into my mind and added to the backlog.
+The purpose of this app was to facilitate the creating of mock data for other projects.  
+I wanted a way to quickly and easily mock a `json` list of objects, with a few values randomized here and there, and just plug it in the project being done.
+
+Turns out, now we have [ChatGPT](https://openai.com/blog/chatgpt/), which renders this project largely outdated. But since I was done with a big part of project, I decided to finish it before moving on to other projects.
+
+## Technical Decisions
 
 ### Conceptual Description
 
 First, some conceptual definitions:
 
-- Table: Data type meant to encapsulate two other types (instances and schema). A table is a json file to be used by other appplications, like database-populating scripts.
-- Schema: Describes the name and type of all possible fields found in each element of instances. Types can be primitives, like strings, date and numbers; composed, like arrays and objects; or even custom, like user-made widgets.
-- Instances: An array of objects that populate the table based on the fields each instance possesses. Instance here is can be read the same as "instance of an object." Not all instances have all schema properties, but schema properties describe all possible fields of an instance.
-
-## Technical Decisions
+- `Instance`: Some javascript object.
+- `Property`: A field belonging to an instance.
+- `Table`: Both a mental model composed by two data structures, `schema` and `instances`, and the file that contain the data from them.
+- `Schema`: Describes the name and `type` of each possible `property` found in the `instances`. Types can be **primitives**, like strings, date and numbers; **composed data**, like arrays and objects; or even **custom**, like user-made widgets.
+- `Instances`: An array of objects that populate the table based on the properties each instance possesses. Not all instances have all schema properties, but the `schema` properties describe all possible properties of an instance.
 
 ### Component Tree Explained
 
-The main App is composed of a shell (MenuBar.js and StyledFooter.js) and the table (JsonTable).
+The `App.js` is the main component, composed of a shell (`MenuBar.js` and `StyledFooter.js`) and the table (`JsonTable.js`).
 
-MenuBar is reponsible for being — you guessed it — a menu bar! It shows all actions the user can perform.
+The `MenuBar.js` is reponsible for showing all actions the user can perform.
 
-JsonTable is composed by TableHead and TableBody. TableHead holds the properties, TableBody holds the instances.
+The `JsonTable.js` contains the components `TableHead.js`, responsible for managing properties, and `TableBody.js`, responsible for managing the instances. Besides that, `JsonTable.js` possesses buttons for adding new instances and properties, as well as a button for transposing (rotating) the table.
 
-At the html file, besides the App's root div, there is a modal-portal div. I use that together with ReactDOM.createPortal to add all the modals. There are a few modals and more coming!:
+At the root html file, besides the `#root` div (common to most create-react-app projects), there is a `#modal-portal` div. I use that together with `ReactDOM.createPortal` method to render all the modals. Some of the modals are:
 
-- Expanded Cell: It magnifies the cell to present the text that may have been clipped by the tiny cell
-- JSONPreview: It shows how the file will look like. (At the time of this writing, the preview only shows the instance — the json array — byt the actual file has some metadata — schema and title. This discrepancy shall be addressed soon!)
-- MassInsert: Allows to add the same text to a field of all instances
+- ExpandedCell: It magnifies the cell, making larger texts more readable.
+- JSONPreview: It shows how the json file, which contains only `instances`, will look like.
+- MassInsert: Allows mass insertion of values to a `property`.
 
 ### Redux
 
-The usage of redux was initially was to create a more complex useState thing.  
-I found out alternatives later (zustand, jotai), but I choose to stick with redux.  
-I kept redux educational only — I wanted to practice redux.  
-The redux toolkit also weighting in the continuity of redux usage — if I had to do the old school way, I've jumped ship to zustand.  
-Some uses of redux was only to avoid prop drilling.
+The usage of redux was initially was to create a more complex use of the useState hook. I wanted a list of functions that worked on the same state, with each change triggering a re-render. Passing all setters of state to the components was workful. `useContext` was considered, but I ended up with redux.
 
-### Wet code
+Picking redux was an error, but an instructive one. I've learned to use a very popular tool, that should help my career in a forseable future. However, if I were to rewrite the project, from scratch, I would use [jotai](https:/jotai.org) and create all atoms necessary.
 
-The lack of DRY-ness in the code is proposital: I want to get a better understanding of the application as a whole before I start DRY-ing all up.  
-What if I need to add a component in the middle of something that was abstracted way? What if there is variants I haven't forseen?  
-I made my code as DRY as I felt confident it was matured, no more.
-(I took my reasoning from someone way smarter than me, so go watch what Dan Abramove said about wet code)
+And, because I've already picked redux, I kept using it for other shared state in the application.
 
-## Workflow, tips and shortcuts
+Honorable mention: If [reduxjs-toolkit](https://redux-toolkit.js.org/) didn't exist, I probably would've abandoned redux.
+
+### Code Repetition and Wet Code
+
+There is a lot of repetition in my code. It was on purpose. Before I start to abstract anything I say in front of me, I decided to leave the code being more maleable, as I got to know and understood the project better.
+
+I made the code dryer (DRY — don't repeat yourself) as I felt more confident about what I was doing, 
+
+I took this way of doing things [from a guy much smarter than I.](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase)
+
+# ------------ Continue the work from here ------------------
+
+### Styled-components
+
+## Workflow, tips and shortcuts — Future Tutorial
 
 - The mental model is this: You are creating a schema for a list of objects. Instances are each object created; Properties are the fields of each value. Not all properties are held by all instances.
 - Double-click a cell to show it's expanded version
