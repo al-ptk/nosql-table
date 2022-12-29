@@ -5,7 +5,6 @@
     - [Árvore de Componentes Explicada](#árvore-de-componentes-explicada)
     - [Redux](#redux)
     - [Repetição de Código e Wet Code](#repetição-de-código-e-wet-code)
-- [------------ Continue the work from here ------------------](#-------------continue-the-work-from-here-------------------)
     - [Styled-components](#styled-components)
   - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
   - [Roadmap](#roadmap)
@@ -66,9 +65,26 @@ Eu deixei o código mais "seco" (DRY — don't repeat yourself) conforme me sent
 
 Tirei essa forma de fazer as coisas [dum cara mais inteligente que eu.](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase)
 
-# ------------ Continue the work from here ------------------
-
 ### Styled-components
+
+This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these are concerns are simply my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about).
+
+I did adopt a pattern for style organizatino in the later stages development: component keychains. These work by putting all subcomponents under the namespace of a reusable component. Something like this:
+
+```javascript
+import styled from 'styled-components';
+
+const Modal = {
+  Container: styled.div``
+  Title: styled.h1``,
+  Button: styled.button``
+}
+
+```
+
+The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container.
+
+The benefits? Other than an easier time importing elements, creating a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
 
 ## Workflow, tips and shortcuts — Future Tutorial
 
