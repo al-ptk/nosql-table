@@ -5,10 +5,11 @@ export const StyledTP = {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 10%;
     position: relative;
     margin: 100px auto;
     width: 60vw;
+    max-width: 560px;
     height: 40vh;
     background-color: transparent;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);

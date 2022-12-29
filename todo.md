@@ -29,10 +29,11 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
   - [x] give rows alternating colors
 - [x] Find better fonts
 - [x] Implement new and close tables
-- [ ] create tooltip for datacells with long text
+- [x] create tooltip for datacells with long text
 - [ ] make it mobile friendly
 
 - [x] Write readme (possibly, an 'Help' document also')
+- [ ] Write roadmap
 - [ ] Create tutorial \ "cool features" session
 - [ ] Make shell for alanpatrick.net and link this project
 - [ ] Publish on twitter\linkedin
