@@ -16,9 +16,14 @@ export const StyledRotateButton = {
     height: 100%;
     width: 100%;
     color: white;
+
+    :hover > svg {
+      rotate: -180deg;
+    }
   `,
   ButtonIcon: styled(RotateIcon)`
     fill: white;
     width: 30px;
+    transition: rotate 0.5s ease-in-out;
   `,
 };

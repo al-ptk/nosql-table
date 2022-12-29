@@ -21,7 +21,7 @@ export const DropDown = {
     width: fit-content;
     background-color: #373737;
     border: 1px solid white;
-    padding: 2px 0px;
+    padding: 5px 0px;
   `,
   Button: styled.button`
     display: block;
@@ -37,5 +37,7 @@ export const DropDown = {
       color: rgba(255, 255, 255, 0.3);
     }
   `,
-  HorRuler: styled.hr``,
+  HorRuler: styled.hr`
+    margin: 5px 0;
+  `,
 };

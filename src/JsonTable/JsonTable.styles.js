@@ -32,11 +32,15 @@ export const StyledTable = {
     padding: 5px;
     border: none;
     background-color: rgba(0, 0, 0, 0.5);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.65);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+    :hover > svg {
+      rotate: 90deg;
+    }
   `,
   AddEntityIcon: styled(CirclePlusIcon)`
     width: 30px;
+    transition: rotate 0.25s ease-in-out;
   `,
 };
 
