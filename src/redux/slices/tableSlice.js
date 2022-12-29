@@ -11,6 +11,16 @@ import { createSlice } from '@reduxjs/toolkit';
 */
 
 const emptyTable = {
+  instances: [],
+  schema: [],
+  // The clipboard may contain: instances, properties
+  // They are identified by the "type" filed
+  clipboard: { type: null, data: null },
+  title: 'New Table',
+  selected: { type: null, index: null },
+};
+
+const exampleTable = {
   instances: [
     {
       'property 0': '',
@@ -209,11 +219,11 @@ const tableSlice = createSlice({
     },
 
     newTable: (state) => {
-      state.instances = emptyTable.instances;
-      state.schema = emptyTable.schema;
-      state.selected = emptyTable.selected;
-      state.clipboard = emptyTable.clipboard;
-      state.title = emptyTable.title;
+      state.instances = exampleTable.instances;
+      state.schema = exampleTable.schema;
+      state.selected = exampleTable.selected;
+      state.clipboard = exampleTable.clipboard;
+      state.title = exampleTable.title;
     },
 
     setSelected: (state, action) => {

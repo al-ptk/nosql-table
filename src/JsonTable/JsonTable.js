@@ -9,10 +9,14 @@ import {
 import { StyledTable } from './JsonTable.styles';
 import { TableBody } from './TableBody/TableBody';
 import { TableHead } from './TableHead/TableHead';
+import TablePlaceholder from './TablePlaceholder';
 
 export function JsonTable() {
   const dispatch = useDispatch();
   const isVertical = useSelector((state) => state.uiKnobs.isVertical);
+  const isTableEmpty = !Boolean(
+    useSelector((state) => state.table.instances).length
+  );
 
   useEffect(() => {
     const clickToUnselect = (e) => {
@@ -25,6 +29,10 @@ export function JsonTable() {
       document.body.removeEventListener('click', clickToUnselect);
     };
   }, [dispatch]);
+
+  if (isTableEmpty) {
+    return <TablePlaceholder />;
+  }
 
   return (
     <StyledTable.Container>
