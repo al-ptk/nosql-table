@@ -10,7 +10,8 @@
   - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
   - [Roadmap](#roadmap)
 
-If you want the english version, click [here].
+If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
+
 Para ir ao site, clique [>>> aqui <<<]()
 
 # JSON Table Editor
