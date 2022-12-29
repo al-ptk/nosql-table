@@ -28,11 +28,12 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] Make cells darker but different from headers
   - [x] give rows alternating colors
 - [x] Find better fonts
-- [ ] Implement new and close tables
+- [x] Implement new and close tables
+- [ ] create tooltip for datacells with long text
 - [ ] make it mobile friendly
 
-- [ ] Write readme (possibly, an 'Help' document also')
-- [ ] Create tutorial
+- [x] Write readme (possibly, an 'Help' document also')
+- [ ] Create tutorial \ "cool features" session
 - [ ] Make shell for alanpatrick.net and link this project
 - [ ] Publish on twitter\linkedin
 
