@@ -7,13 +7,22 @@ import MassInsertInput from '../../modals/MassInsertInput';
 export function InsertDropdown({ xPos, yPos }) {
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
+  const isTableEmpty = !Boolean(
+    useSelector((state) => state.table.instances).length
+  );
 
   return (
     <DropDown.Container {...{ xPos, yPos }}>
-      <DropDown.Button onClick={() => dispatch(addProperty({}))}>
+      <DropDown.Button
+        disabled={isTableEmpty}
+        onClick={() => dispatch(addProperty({}))}
+      >
         Add new property
       </DropDown.Button>
-      <DropDown.Button onClick={() => dispatch(addInstance({}))}>
+      <DropDown.Button
+        disabled={isTableEmpty}
+        onClick={() => dispatch(addInstance({}))}
+      >
         Add new instance
       </DropDown.Button>
       <DropDown.HorRuler />

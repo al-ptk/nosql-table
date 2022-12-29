@@ -26,6 +26,7 @@ export function ExportButton({ exportMode, ...props }) {
         &nbsp;
       </a>
       <DropDown.Button
+        disabled={props.disabled}
         onClick={() => {
           downloadTable();
         }}
