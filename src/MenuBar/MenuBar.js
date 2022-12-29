@@ -9,9 +9,12 @@ import { DropDownAnchor } from '../components/DropDown.styles';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../redux/slices/uiKnobsSlice';
 import CreditsModal from '../modals/CreditsModal';
+import { useContext } from 'react';
+import { LanguageContext } from '../App';
 
 export default function MenuBar() {
   const dispatch = useDispatch();
+  const language = useContext(LanguageContext);
 
   return (
     <StyledMenuBar.Container>
@@ -28,14 +31,14 @@ export default function MenuBar() {
             dispatch(setModal({ modal: <CreditsModal /> }));
           }}
         >
-          Credits
+          {language['credits']}
         </DropDownAnchor.Button>
         <StyledMenuBar.Link
           href="https://github.com/al-ptk/json-table-editor/issues"
           target={'_blank'}
           rel="noreferrer"
         >
-          Feedback
+          {language['feedback']}
         </StyledMenuBar.Link>
         <StyledMenuBar.Link
           href="https://github.com/al-ptk/json-table-editor/"

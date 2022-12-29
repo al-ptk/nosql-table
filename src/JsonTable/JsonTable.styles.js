@@ -4,6 +4,7 @@ import CirclePlusIcon from '../assets/svgs/CirclePlusIcon';
 export const StyledTable = {
   Container: styled.div`
     margin: 100px auto;
+    margin-bottom: 50vh;
     width: fit-content;
     max-width: 80vw;
     position: relative;

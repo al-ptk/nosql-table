@@ -132,7 +132,7 @@ const tableSlice = createSlice({
       const propertyName = `property ${state.schema.length}`;
       state.instances.map((instance) => (instance[propertyName] = ''));
       state.schema.splice(propertyIndex, 0, {
-        type: 'any',
+        type: 'string',
         name: propertyName,
       });
     },

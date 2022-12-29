@@ -6,6 +6,7 @@
     - [Redux](#redux)
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
+    - [Translation solution](#translation-solution)
   - [Roadmap](#roadmap)
 
 Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
@@ -85,6 +86,10 @@ const Modal = {
 The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container. To use other components, use other keys.
 
 The benefits? Other than an easier time importing elements, using a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
+
+### Translation solution
+
+This one came late.
 
 ## Roadmap
 

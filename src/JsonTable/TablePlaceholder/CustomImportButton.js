@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { LanguageContext } from '../../App';
 import { importTable } from '../../redux/slices/tableSlice';
 import { StyledTP } from './TablePlaceholder.styles';
 
 export const CustomImportButton = () => {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   const fileInput = useRef(null);
   const selectFile = () => {
@@ -38,7 +40,7 @@ export const CustomImportButton = () => {
         }}
       />
       <StyledTP.Button onClick={() => selectFile()}>
-        Import Table
+        {language['importFile']}
       </StyledTP.Button>
     </span>
   );

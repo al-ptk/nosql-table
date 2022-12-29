@@ -6,6 +6,7 @@
     - [Redux](#redux)
     - [Repetição de Código e Wet Code](#repetição-de-código-e-wet-code)
     - [Styled-components](#styled-components)
+    - [Translation solution](#translation-solution)
   - [Roadmap](#roadmap)
 
 If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
@@ -84,6 +85,10 @@ const Modal = {
 O consumo é um tanto direto — simplesmente use um `<Modal.Container>` para accessar o container. Para acessar componentes diferentes, basta usar uma chave diferente.
 
 Os benefícios? Além de uma facilidade maior em importar componentes, usar um sistema parecido com [BEM](https://getbem.com/) e me fazer sentir esperto por uma razão boba, não existem quaisquer benefícios claros. Porém, eu gostei dessa abordagem, então planejo continuar com ela em projetos futuros.
+
+### Translation solution
+
+This one came late.
 
 ## Roadmap
 
