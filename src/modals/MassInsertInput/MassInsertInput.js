@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
@@ -7,6 +7,8 @@ import { Modal } from '../Modal.styles';
 
 export const MassInsertInput = ({ propertyIndex }) => {
   const dispatch = useDispatch();
+  const propertyName = useSelector((state) => state.table.schema)[propertyIndex]
+    .name;
   const [text, setText] = useState('');
   const closeParent = () => {
     dispatch(setModal({}));
@@ -23,8 +25,12 @@ export const MassInsertInput = ({ propertyIndex }) => {
         <Modal.CloseButton onClick={closeParent}>
           <Modal.CloseIcon />
         </Modal.CloseButton>
+        <Modal.Title style={{ margin: '-40px 0 30px 0' }}>
+          Insert for <span style={{fontWeight: 'bold'}}>{propertyName}</span>
+        </Modal.Title>
         <Modal.Textarea
           value={text}
+          autoFocus={true}
           onInput={(e) => {
             if (e.nativeEvent.inputType === 'insertLineBreak') {
               return confirmChange();
