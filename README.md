@@ -6,7 +6,6 @@
     - [Redux](#redux)
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
-  - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
   - [Roadmap](#roadmap)
 
 Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
@@ -62,13 +61,13 @@ Honorable mention: If [reduxjs-toolkit](https://redux-toolkit.js.org/) didn't ex
 
 There is a lot of repetition in my code. It was on purpose. Before I start to abstract anything I say in front of me, I decided to leave the code being more maleable, as I got to know and understood the project better.
 
-I made the code dryer (DRY — don't repeat yourself) as I felt more confident about what I was doing, 
+I made the code dryer (DRY — don't repeat yourself) as I felt more confident about what I was doing,
 
 I took this way of doing things [from a guy much smarter than I.](https://www.deconstructconf.com/2019/dan-abramov-the-wet-codebase)
 
 ### Styled-components
 
-This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these are concerns are simply my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about). 
+This library was chosen as the css solution because I had found out about it as a few week before starting this project. I do have concerns about package size, but these are concerns are simply my inexperience about handling performance (reads: I am a noob and have no idea what I'm talking about).
 
 I did adopt a pattern for style organizatino in the later stages development: component keychains. These work by putting all subcomponents under the namespace of a reusable component. Something like this:
 
@@ -86,12 +85,6 @@ const Modal = {
 The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container.
 
 The benefits? Other than an easier time importing elements, creating a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
-
-## Workflow, tips and shortcuts — Future Tutorial
-
-- The mental model is this: You are creating a schema for a list of objects. Instances are each object created; Properties are the fields of each value. Not all properties are held by all instances.
-- Double-click a cell to show it's expanded version
-- Use 'Insert for all' to repeat or randomize values under a property
 
 ## Roadmap
 

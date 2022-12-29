@@ -6,7 +6,6 @@
     - [Redux](#redux)
     - [Repetição de Código e Wet Code](#repetição-de-código-e-wet-code)
     - [Styled-components](#styled-components)
-  - [Workflow, tips and shortcuts — Future Tutorial](#workflow-tips-and-shortcuts--future-tutorial)
   - [Roadmap](#roadmap)
 
 If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
@@ -85,12 +84,6 @@ const Modal = {
 The consumption is rather straightforward — simply do a `<Modal.Container>` to access the container.
 
 The benefits? Other than an easier time importing elements, creating a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
-
-## Workflow, tips and shortcuts — Future Tutorial
-
-- The mental model is this: You are creating a schema for a list of objects. Instances are each object created; Properties are the fields of each value. Not all properties are held by all instances.
-- Double-click a cell to show it's expanded version
-- Use 'Insert for all' to repeat or randomize values under a property
 
 ## Roadmap
 
