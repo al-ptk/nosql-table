@@ -1,8 +1,11 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { ViewDropDown } from './ViewDropDown';
+import { LanguageContext } from '../../App';
 
+// @dryup menus anchors? They are all very similar
 export function ViewMenuAnchor() {
+  const language = useContext(LanguageContext);
   const [dropdown, setDropdown] = useState(null);
   const buttonReference = useRef(null);
 
@@ -28,7 +31,9 @@ export function ViewMenuAnchor() {
         setDropdown(null);
       }}
     >
-      <DropDownAnchor.Button ref={buttonReference}>View</DropDownAnchor.Button>
+      <DropDownAnchor.Button ref={buttonReference}>
+        {language['view']}
+      </DropDownAnchor.Button>
       {dropdown}
     </DropDownAnchor.Container>
   );

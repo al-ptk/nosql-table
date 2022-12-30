@@ -1,9 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { importTable } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
+import { LanguageContext } from '../../App';
 
+// @dryup create import logic wrapper that takes any buttons given
 export function ImportButton() {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   const fileInput = useRef(null);
 
@@ -44,7 +47,7 @@ export function ImportButton() {
           selectFile();
         }}
       >
-        Import file
+        {language['importFile']}
       </DropDown.Button>
     </span>
   );

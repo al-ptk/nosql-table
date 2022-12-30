@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import { LanguageContext } from '../../App';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { InsertDropdown } from './InsertDropdown';
 
 export const InsertMenuAnchor = () => {
+  const language = useContext(LanguageContext);
   const [dropdown, setDropdown] = useState(null);
   const buttonReference = useRef(null);
 
@@ -23,7 +25,7 @@ export const InsertMenuAnchor = () => {
       }}
     >
       <DropDownAnchor.Button ref={buttonReference}>
-        Insert
+        {language['insert']}
       </DropDownAnchor.Button>
       {dropdown}
     </DropDownAnchor.Container>

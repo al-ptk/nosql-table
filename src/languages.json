@@ -24,7 +24,9 @@
     "exportInstancesOnly": "Export instances only",
     "moveBackwards": "Move backwards",
     "moveForwards": "Move forwards",
-    "importFile": "Import file"
+    "importFile": "Import file",
+    "exampleTitle": "New Table",
+    "exampleProperty": "property"
   },
   "pt-BR": {
     "newTable": "Nova Tabela",
@@ -51,6 +53,8 @@
     "exportInstancesOnly": "Exportar instâncias apenas",
     "moveBackwards": "Mover para trás",
     "moveForwards": "Mover para frente",
-    "importFile": "Importar arquivo"
+    "importFile": "Importar arquivo",
+    "exampleTitle": "Nova Tabela",
+    "exampleProperty": "propriedade"
   }
 }

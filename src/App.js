@@ -1,11 +1,12 @@
 import JsonTable from './JsonTable';
 import { GlobalStyle } from './utils/styled-globals';
-import { StyledFooter } from './components/StyledFooter';
 import { Provider as StoreProvider, useSelector } from 'react-redux';
 import store from './redux/store';
 import MenuBar from './MenuBar/MenuBar';
 import { createContext } from 'react';
 import languages from './languages.json';
+import { Footer } from './Footer';
+// @dryup Move language stuff to redux store instead?
 export const LanguageContext = createContext();
 
 function App() {
@@ -16,17 +17,7 @@ function App() {
         <MenuBar />
         <JsonTable />
         <RenderModal />
-        <StyledFooter>
-          Made by{' '}
-          <a
-            href="https://github.com/al-ptk"
-            target={'_blank'}
-            rel="noreferrer"
-          >
-            Alan Patrick
-
-          </a>
-        </StyledFooter>
+        <Footer />
       </StoreProvider>
     </LanguageContext.Provider>
   );

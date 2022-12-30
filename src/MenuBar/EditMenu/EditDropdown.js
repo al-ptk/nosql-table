@@ -12,8 +12,11 @@ import {
   setSelected,
 } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
+import { LanguageContext } from '../../App';
+import { useContext } from 'react';
 
 export function EditDropdown({ xPos, yPos }) {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
   const index = selected.index;
@@ -54,37 +57,37 @@ export function EditDropdown({ xPos, yPos }) {
         }}
         disabled={selected.type === null}
       >
-        Cut
+        {language['cut']}
       </DropDown.Button>
       <DropDown.Button
         onClick={reducersBySelectedType.copy}
         disabled={selected.type === null}
       >
-        Copy
+        {language['copy']}
       </DropDown.Button>
       <DropDown.Button
         onClick={reducersBySelectedType.pasteBefore}
         disabled={selected.type === null}
       >
-        Paste Before
+        {language['pasteBefore']}
       </DropDown.Button>
       <DropDown.Button
         onClick={reducersBySelectedType.pasteAfter}
         disabled={selected.type === null}
       >
-        Paste After
+        {language['pasteAfter']}
       </DropDown.Button>
       <DropDown.Button
         onClick={reducersBySelectedType.duplicate}
         disabled={selected.type === null || selected.type !== 'instance'}
       >
-        Duplicate
+        {language['duplicate']}
       </DropDown.Button>
       <DropDown.Button
         onClick={reducersBySelectedType.delete}
         disabled={selected.type === null}
       >
-        Delete
+        {language['delete']}
       </DropDown.Button>
     </DropDown.Container>
   );

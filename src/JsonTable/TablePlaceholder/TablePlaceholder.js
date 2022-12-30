@@ -23,4 +23,4 @@ export function TablePlaceholder() {
       <CustomImportButton />
     </StyledTP.Container>
   );
-}
+} 
