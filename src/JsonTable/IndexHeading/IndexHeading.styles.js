@@ -9,9 +9,10 @@ export const StyledIndexHeading = {
     z-index: 100;
     width: 150px;
     height: 50px;
-    background-color: #373737;
     color: white;
     display: grid;
     place-items: center;
+    border-right: ${(props) =>
+      props.isVertical ? 'none' : '1px solid rgba(0, 0, 0, .5)'};
   `,
 };

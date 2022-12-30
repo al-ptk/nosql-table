@@ -8,6 +8,10 @@ export const StyledTable = {
     width: fit-content;
     max-width: 80vw;
     position: relative;
+
+    @media screen and (max-width: 600px) {
+      margin-left: 20px;
+    }
   `,
 
   Table: styled.table`
