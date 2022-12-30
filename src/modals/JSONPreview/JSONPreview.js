@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { Modal } from '../Modal.styles';
 import JsonFormatter from 'react-json-formatter';
 import styled from 'styled-components';
+import { LanguageContext } from '../../App';
 
 export function JSONPreview() {
   const dispatch = useDispatch();
+  const language = useContext(LanguageContext);
 
   return createPortal(
     <Modal.Backdrop>
       <Modal.Container>
-        <Modal.CloseButton onClick={() => dispatch(setModal({}))}>
+        <Modal.CloseButton
+          onClick={() => dispatch(setModal({}))}
+          aria-label={language['closeModal']}
+        >
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <StyledFormatter />

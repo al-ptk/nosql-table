@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { repeatForAll } from '../../redux/slices/tableSlice';
 import { createPortal } from 'react-dom';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { Modal } from '../Modal.styles';
+import { LanguageContext } from '../../App';
 
 export const MassInsertInput = ({ propertyIndex }) => {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   const propertyName = useSelector((state) => state.table.schema)[propertyIndex]
     .name;
@@ -22,11 +24,15 @@ export const MassInsertInput = ({ propertyIndex }) => {
   return createPortal(
     <Modal.Backdrop>
       <Modal.Container>
-        <Modal.CloseButton onClick={closeParent}>
+        <Modal.CloseButton
+          onClick={closeParent}
+          aria-label={language['closeModal']}
+        >
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <Modal.Title style={{ margin: '-40px 0 30px 0' }}>
-          Insert for <span style={{fontWeight: 'bold'}}>{propertyName}</span>
+          {language['insertFor']}{' '}
+          <span style={{ fontWeight: 'bold' }}>{propertyName}</span>
         </Modal.Title>
         <Modal.Textarea
           value={text}
@@ -44,14 +50,14 @@ export const MassInsertInput = ({ propertyIndex }) => {
               confirmChange();
             }}
           >
-            Insert values
+            {language['insertValues']}
           </Modal.Button>
           <Modal.Button
             onClick={(e) => {
               closeParent(e);
             }}
           >
-            Cancel
+            {language['cancel']}
           </Modal.Button>
         </Modal.ButtonHolder>
       </Modal.Container>

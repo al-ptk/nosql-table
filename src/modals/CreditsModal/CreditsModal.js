@@ -3,14 +3,18 @@ import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { LanguageContext } from '../../App';
 
 export function CreditsModal() {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
 
   return createPortal(
     <Modal.Backdrop>
       <Modal.Container>
         <Modal.CloseButton
+          aria-label={language['closeModal']}
           onClick={() => {
             dispatch(setModal({}));
           }}
@@ -18,7 +22,7 @@ export function CreditsModal() {
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <StyledP>
-          Font:{' '}
+          {language['creditsFont']}:{' '}
           <a
             target={'_blank'}
             href="https://fonts.google.com/noto/specimen/Noto+Sans?preview.text=File&preview.size=20&preview.text_type=custom&category=Sans+Serif,Monospace"
@@ -28,7 +32,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          Github icon by{' '}
+          {language['githubIconBy']}{' '}
           <a
             target={'_blank'}
             href="https://icons8.com/icon/12599/github"
@@ -38,7 +42,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          X circle icon by{' '}
+          {language['xCircleBy']}{' '}
           <a
             target={'_blank'}
             href="https://freeicons.io/navigation-set-arrows/cancel-circle-close-delete-icon-730#"
@@ -48,7 +52,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          Plus circle icon by{' '}
+          {language['plusCircleBY']}{' '}
           <a
             target={'_blank'}
             href="https://freeicons.io/business-and-online-icons/plus-circle-icon-icon#"
@@ -58,7 +62,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          Rotate icon by{' '}
+          {language['rotateIconBy']}{' '}
           <a
             target={'_blank'}
             href="https://freeicons.io/creatype-essential-ui-v.1-outline/update-rotate-sync-user-interface-icon-45940#"

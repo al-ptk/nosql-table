@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
 import { Modal } from '../Modal.styles';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
+import { LanguageContext } from '../../App';
 
 export function ExpandedCellModal({ accessCoordinates }) {
+  const language = useContext(LanguageContext);
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
   const { instanceIndex, propertyIndex } = accessCoordinates;
   const propertyName = useSelector((state) => state.table.schema)[propertyIndex]
@@ -22,6 +24,7 @@ export function ExpandedCellModal({ accessCoordinates }) {
     <Modal.Backdrop>
       <Modal.Container>
         <Modal.CloseButton
+          aria-label={language['closeModal']}
           onClick={(e) => {
             dispatch(setModal({}));
           }}
@@ -40,7 +43,7 @@ export function ExpandedCellModal({ accessCoordinates }) {
             }
             setText(e.target.value);
           }}
-          placeholder={'Put some text in here...'}
+          placeholder={language['placeholderText']}
         />
         <Modal.ButtonHolder>
           <Modal.Button
@@ -48,14 +51,14 @@ export function ExpandedCellModal({ accessCoordinates }) {
               confirmChange();
             }}
           >
-            Confirm
+            {language['confirm']}
           </Modal.Button>
           <Modal.Button
             onClick={(e) => {
               dispatch(setModal({}));
             }}
           >
-            Cancel
+            {language['cancel']}
           </Modal.Button>
         </Modal.ButtonHolder>
       </Modal.Container>
