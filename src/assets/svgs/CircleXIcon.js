@@ -6,8 +6,6 @@ export default function CircleXIcon(props) {
       version="1.1"
       viewBox="0 0 32 32"
       xmlns="http://www.w3.org/2000/svg"
-      width={'40px'}
-      hieght={'40px'}
     >
       <g>
         <path

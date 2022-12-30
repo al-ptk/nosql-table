@@ -10,6 +10,7 @@ export const StyledTable = {
     position: relative;
 
     @media screen and (max-width: 600px) {
+      margin-top: 20vh;
       margin-left: 20px;
     }
   `,

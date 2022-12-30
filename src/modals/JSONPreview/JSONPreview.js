@@ -29,6 +29,8 @@ export function JSONPreview() {
 
 const StyledFormatter = () => {
   const instances = useSelector((state) => state.table.instances);
+  const title = useSelector((state) => state.table.title);
+  const schema = useSelector(state => state.table.schema)
   return (
     <Div
       style={{
@@ -40,7 +42,7 @@ const StyledFormatter = () => {
       }}
     >
       <JsonFormatter
-        json={JSON.stringify(instances)}
+        json={JSON.stringify({title, schema, instances})}
         tabWith={4}
         style={{ backgroundColor: '#303030' }}
       />

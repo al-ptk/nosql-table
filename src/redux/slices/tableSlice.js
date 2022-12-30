@@ -319,9 +319,3 @@ function getAllKeys(objList) {
   }
   return result;
 }
-
-function countRepeatedName(array, name) {
-  return array.reduce(function (acc, curr) {
-    return curr === name ? acc++ : 0;
-  }, 0);
-}

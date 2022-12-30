@@ -34,10 +34,10 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
   - [x] Shell
   - [x] Modals
   - [x] Context menus
+- [x] make it mobile friendly
+  - [x] Add bigger margin at the bottom, by 200px
+  - [x] Add sideways margins for TablePlaceholder buttons
 - [ ] Create manual modal
-- [ ] make it mobile friendly
-  - [ ] Add bigger margin at the bottom, by 200px
-  - [ ] Add sideways margins for TablePlaceholder buttons
 
 - [x] Write readme (possibly, an 'Help' document also')
 - [ ] Write roadmap
@@ -52,7 +52,8 @@ Later, I will come back and add new features to this.
 
 For the next version
 
-- [ ] Reverse order
+- [ ] Clear all cells of instance/property
+- [ ] Reverse order of instances
 - [ ] Add custom scrollbars
 - [ ] Make context menu render upwards if too low
 - [ ] Allow for instance naming, because js orders numbers properly, so array feel should stay the same
