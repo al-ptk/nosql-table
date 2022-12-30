@@ -32,9 +32,10 @@
     { "type": "string", "name": "confirm" },
     { "type": "string", "name": "creditsFont" },
     { "type": "string", "name": "githubIconBy" },
-    { "type": "string", "name": "xCircleBy" },
-    { "type": "string", "name": "plusCircleBy" },
+    { "type": "string", "name": "xCircleIconBy" },
+    { "type": "string", "name": "plusCircleIconBy" },
     { "type": "string", "name": "rotateBy" },
+    { "type": "string", "name": "twitterIconBy" },
     { "type": "string", "name": "placeholderText" },
     { "type": "string", "name": "cancel" },
     { "type": "string", "name": "insertFor" },
@@ -77,10 +78,8 @@
       "exampleProperty": "property",
       "confirm": "Confirm",
       "creditsFont": "Font:",
-      "xCircleBy": "X Circle Icon by:",
       "githubIconBy": "Github icon by:",
-      "plusCircleBy": "Plus Circle Icon by:",
-      "rotateBy": "Rotate Icon by:",
+      "rotateIconBy": "Rotate Icon by:",
       "placeholderText": "Put some text here...",
       "cancel": "Cancel",
       "insertFor": "Insert for",
@@ -89,7 +88,10 @@
       "titleInstance": "Instance",
       "titleProperty": "Property",
       "addBefore": "Add before",
-      "addAfter": "Add After"
+      "addAfter": "Add After",
+      "twitterIconBy": "Twitter Icon by:",
+      "xCircleIconBy": "X Circle Icon by:",
+      "plusCircleIconBy": "Plus Circle Icon by:"
     },
     {
       "newTable": "Nova tabela",
@@ -122,10 +124,8 @@
       "exampleProperty": "propriedade",
       "confirm": "Confirmar",
       "creditsFont": "Fonte:",
-      "xCircleBy": "Ícone Círculo X por:",
       "githubIconBy": "Ícone Github por:",
-      "plusCircleBy": "Ícone Círculo Mais por:",
-      "rotateBy": "Ícone Rotacionar por:",
+      "rotateIconBy": "Ícone Rotacionar por:",
       "placeholderText": "Ponha um texto aqui...",
       "cancel": "Cancelar",
       "insertFor": "Inserir para",
@@ -134,7 +134,10 @@
       "titleInstance": "Instancia",
       "titleProperty": "Propriedade",
       "addBefore": "Adicionar antes",
-      "addAfter": "Adicionar depois"
+      "addAfter": "Adicionar depois",
+      "twitterIconBy": "Ícone Twitter por:",
+      "xCircleIconBy": "Ícone Círculo X por:",
+      "plusCircleIconBy": "Ícone Círculo Mais por:"
     }
   ]
 }

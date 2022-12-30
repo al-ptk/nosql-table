@@ -198,6 +198,7 @@ const tableSlice = createSlice({
       if (state.clipboard.type !== 'property') return;
       const { propertyIndex } = action.payload;
       const { property, propertySlice } = state.clipboard.data;
+      // @todo solve pasting properties name collisions
       state.instances.forEach((instance, instanceIndex) => {
         instance[property.name] = propertySlice[instanceIndex];
       });
@@ -208,6 +209,7 @@ const tableSlice = createSlice({
       if (state.clipboard.type !== 'property') return;
       const { propertyIndex } = action.payload;
       const { property, propertySlice } = state.clipboard.data;
+      // @todo solve pasting properties name collisions
       state.instances.forEach((instance, instanceIndex) => {
         instance[property.name] = propertySlice[instanceIndex];
       });
@@ -316,4 +318,10 @@ function getAllKeys(objList) {
     result.push(...notInResult);
   }
   return result;
+}
+
+function countRepeatedName(array, name) {
+  return array.reduce(function (acc, curr) {
+    return curr === name ? acc++ : 0;
+  }, 0);
 }

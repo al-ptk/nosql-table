@@ -42,7 +42,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          {language['xCircleBy']}{' '}
+          {language['xCircleIconBy']}{' '}
           <a
             target={'_blank'}
             href="https://freeicons.io/navigation-set-arrows/cancel-circle-close-delete-icon-730#"
@@ -52,7 +52,7 @@ export function CreditsModal() {
           </a>
         </StyledP>
         <StyledP>
-          {language['plusCircleBY']}{' '}
+          {language['plusCircleIconBy']}{' '}
           <a
             target={'_blank'}
             href="https://freeicons.io/business-and-online-icons/plus-circle-icon-icon#"
@@ -66,6 +66,16 @@ export function CreditsModal() {
           <a
             target={'_blank'}
             href="https://freeicons.io/creatype-essential-ui-v.1-outline/update-rotate-sync-user-interface-icon-45940#"
+            rel="noreferrer"
+          >
+            ColourCreatype
+          </a>
+        </StyledP>
+        <StyledP>
+          {language['twitterIconBy']}{' '}
+          <a
+            target={'_blank'}
+            href="https://freeicons.io/free-mobile-app-icons/twitter-icon-21486#"
             rel="noreferrer"
           >
             ColourCreatype

@@ -32,8 +32,12 @@ export function ExpandedCellModal({ accessCoordinates }) {
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <div style={{ margin: '-50px 0 20px 0' }}>
-          <Modal.Title>Instance {instanceIndex}</Modal.Title>
-          <Modal.Title>Property: {propertyName}</Modal.Title>
+          <Modal.Title>
+            {language['titleInstance']}: {instanceIndex}
+          </Modal.Title>
+          <Modal.Title>
+            {language['titleProperty']}: {propertyName}
+          </Modal.Title>
         </div>
         <Modal.Textarea
           value={text}

@@ -24,8 +24,8 @@ export function EditDropdown({ xPos, yPos, closeDropDown }) {
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
   const index = selected.index;
-  const isClipboardEmpty =
-    useSelector((state) => state.table.clipboard).data === null;
+  const clipboard = useSelector((state) => state.table.clipboard);
+  const isClipboardEmpty = clipboard.data === null;
 
   const clearSelected = () => {
     dispatch(setSelected({ type: null, index: null }));
@@ -143,7 +143,7 @@ export function EditDropdown({ xPos, yPos, closeDropDown }) {
   return (
     <DropDown.Container {...{ xPos, yPos }}>
       <DropDown.Button
-        disabled={selected.type === null}
+        disabled={selected.type === null || selected.type !== clipboard.type}
         onClick={reducersBySelectedType.moveBackwards}
       >
         {language['moveBackwards']}
