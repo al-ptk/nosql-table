@@ -156,13 +156,16 @@ const tableSlice = createSlice({
 
     copyProperty: (state, action) => {
       const { propertyIndex } = action.payload;
-      const propertyName = state.schema[propertyIndex].name;
+      const property = state.schema[propertyIndex];
       const propertySlice = state.instances.map(
-        (instance) => instance[propertyName]
+        (instance) => instance[property.name]
       );
       state.clipboard = {
         type: 'property',
-        data: propertySlice,
+        data: {
+          property,
+          propertySlice,
+        },
       };
     },
 
@@ -182,6 +185,16 @@ const tableSlice = createSlice({
           propertySlice,
         },
       };
+    },
+
+    replaceProperty: (state, action) => {
+      if (state.clipboard.type !== 'property') return;
+      const { propertyIndex } = action.payload;
+      const { property, propertySlice } = state.clipboard.data;
+      state.instances.forEach((instance, instanceIndex) => {
+        instance[property.name] = propertySlice[instanceIndex];
+      });
+      state.schema[propertyIndex] = property;
     },
 
     pasteProperty: (state, action) => {
@@ -265,6 +278,7 @@ export const {
   copyProperty,
   cutProperty,
   pasteProperty,
+  replaceProperty,
   repeatForAll,
 
   // Table Manager
