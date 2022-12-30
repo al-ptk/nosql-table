@@ -38,7 +38,9 @@
     { "type": "string", "name": "cancel" },
     { "type": "string", "name": "insertFor" },
     { "type": "string", "name": "insertValues" },
-    { "type": "string", "name": "closeModal" }
+    { "type": "string", "name": "closeModal" },
+    { "type": "string", "name": "titleInstance" },
+    { "type": "string", "name": "titleProperty" }
   ],
   "instances": [
     {
@@ -47,7 +49,7 @@
       "feedback": "Feedback",
       "view": "View",
       "edit": "Edit",
-      "inserir": "Insert",
+      "insert": "Insert",
       "file": "File",
       "credits": "Credits",
       "exportFile": "Export file",
@@ -79,7 +81,9 @@
       "cancel": "Cancel",
       "insertFor": "Insert for",
       "insertValues": "Insert values",
-      "closeModal": "Close modal"
+      "closeModal": "Close modal",
+      "titleInstance": "Instance",
+      "titleProperty": "Property"
     },
     {
       "newTable": "Nova tabela",
@@ -119,7 +123,9 @@
       "cancel": "Cancelar",
       "insertFor": "Inserir para",
       "insertValues": "Inserir valores",
-      "closeModal": "Fechar janela"
+      "closeModal": "Fechar janela",
+      "titleInstance": "Instancia",
+      "titleProperty": "Propriedade"
     }
   ]
 }

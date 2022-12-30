@@ -7,6 +7,7 @@
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
     - [Translation solution](#translation-solution)
+    - [Test-Driven Development](#test-driven-development)
   - [Roadmap](#roadmap)
 
 Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
@@ -92,6 +93,12 @@ The benefits? Other than an easier time importing elements, using a system that 
 ### Translation solution
 
 This one came late.
+
+### Test-Driven Development
+
+I didn't do it. "It's a small project", I thought. I was wrong. Things get out of hand fast.
+
+TDD and @ notes are both important things in order to keep the code managable for me.
 
 ## Roadmap
 
