@@ -30,17 +30,17 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] Find better fonts
 - [x] Implement new and close tables
 - [x] create tooltip for datacells with long text
-- [ ] Translate
+- [x] Translate
   - [x] Shell
-  - [ ] Modals
+  - [x] Modals
+  - [x] Context menus
+- [ ] Create manual modal
 - [ ] make it mobile friendly
-
   - [ ] Add bigger margin at the bottom, by 200px
   - [ ] Add sideways margins for TablePlaceholder buttons
 
 - [x] Write readme (possibly, an 'Help' document also')
 - [ ] Write roadmap
-- [ ] Create tutorial \ "cool features" session
 - [ ] Make shell for alanpatrick.net and link this project
 - [ ] Publish on twitter\linkedin
 
@@ -52,6 +52,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Reverse order
 - [ ] Add custom scrollbars
 - [ ] Make context menu render upwards if too low
 - [ ] Allow for instance naming, because js orders numbers properly, so array feel should stay the same
@@ -101,7 +102,7 @@ GUI stuff
   - [x] Move table to within a div
   - [ ] Add quick buttons for
     - [x] Add instance\property
-    - [ ] Delete instnace property
+    - [ ] Delete instance property
     - [x] Select menu for type of property
 - [x] Contextual Menu
   - [x] Headings (for columns and rows)

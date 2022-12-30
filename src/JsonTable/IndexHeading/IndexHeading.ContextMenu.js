@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addInstance,
@@ -8,11 +8,13 @@ import {
   cutInstance,
   pasteInstance,
   duplicateInstance,
+  replaceInstance,
 } from '../../redux/slices/tableSlice';
 import {
   ContextMenu,
   ContextMenuButton,
 } from '../../components/ContextMenu/ContextMenu';
+import { LanguageContext } from '../../App';
 
 export const IndexHeadingContextMenu = ({
   instanceIndex,
@@ -20,6 +22,7 @@ export const IndexHeadingContextMenu = ({
   xPos,
   yPos,
 }) => {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   instanceIndex = parseInt(instanceIndex);
 
@@ -29,7 +32,7 @@ export const IndexHeadingContextMenu = ({
     <div>
       <ContextMenu {...{ xPos, yPos, Reference }} closeMenu={closeMenu}>
         <ContextMenuButton
-          buttonText={'Move back'}
+          buttonText={language['moveBackwards']}
           buttonAction={() =>
             dispatch(
               swapInstances({
@@ -41,7 +44,7 @@ export const IndexHeadingContextMenu = ({
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Move forward'}
+          buttonText={language['moveForwards']}
           buttonAction={() =>
             dispatch(
               swapInstances({
@@ -53,33 +56,39 @@ export const IndexHeadingContextMenu = ({
           closeMenu={closeMenu}
         />
         <hr />
+        {/* @todo coordinate the order of actions in all menus */}
         <ContextMenuButton
-          buttonText={'Delete'}
+          buttonText={language['delete']}
           buttonAction={() => dispatch(deleteInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Cut'}
+          buttonText={language['cut']}
           buttonAction={() => dispatch(cutInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Copy'}
+          buttonText={language['copy']}
           buttonAction={() => dispatch(copyInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Duplicate'}
+          buttonText={language['duplicate']}
           buttonAction={() => dispatch(duplicateInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Paste Before'}
+          buttonText={language['pasteIn']}
+          buttonAction={() => dispatch(replaceInstance({ instanceIndex }))}
+          closeMenu={closeMenu}
+        />
+        <ContextMenuButton
+          buttonText={language['pasteBefore']}
           buttonAction={() => dispatch(pasteInstance({ instanceIndex }))}
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Paste After'}
+          buttonText={language['pasteAfter']}
           buttonAction={() =>
             dispatch(pasteInstance({ instanceIndex: instanceIndex + 1 }))
           }
@@ -87,7 +96,7 @@ export const IndexHeadingContextMenu = ({
         />
         <hr />
         <ContextMenuButton
-          buttonText={'Add Before'}
+          buttonText={language['addBefore']}
           buttonAction={() =>
             dispatch(
               addInstance({
@@ -98,7 +107,7 @@ export const IndexHeadingContextMenu = ({
           closeMenu={closeMenu}
         />
         <ContextMenuButton
-          buttonText={'Add After'}
+          buttonText={language['addAfter']}
           buttonAction={() =>
             dispatch(
               addInstance({

@@ -41,7 +41,9 @@
     { "type": "string", "name": "insertValues" },
     { "type": "string", "name": "closeModal" },
     { "type": "string", "name": "titleInstance" },
-    { "type": "string", "name": "titleProperty" }
+    { "type": "string", "name": "titleProperty" },
+    { "type": "string", "name": "addBefore" },
+    { "type": "string", "name": "addAfter" }
   ],
   "instances": [
     {
@@ -85,7 +87,9 @@
       "insertValues": "Insert values",
       "closeModal": "Close modal",
       "titleInstance": "Instance",
-      "titleProperty": "Property"
+      "titleProperty": "Property",
+      "addBefore": "Add before",
+      "addAfter": "Add After"
     },
     {
       "newTable": "Nova tabela",
@@ -128,7 +132,9 @@
       "insertValues": "Inserir valores",
       "closeModal": "Fechar janela",
       "titleInstance": "Instancia",
-      "titleProperty": "Propriedade"
+      "titleProperty": "Propriedade",
+      "addBefore": "Adicionar antes",
+      "addAfter": "Adicionar depois"
     }
   ]
 }

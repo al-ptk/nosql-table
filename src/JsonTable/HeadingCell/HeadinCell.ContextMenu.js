@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addProperty,
@@ -6,6 +6,7 @@ import {
   cutProperty,
   deleteProperty,
   pasteProperty,
+  replaceProperty,
   swapProperties,
 } from '../../redux/slices/tableSlice';
 import {
@@ -14,6 +15,7 @@ import {
 } from '../../components/ContextMenu/ContextMenu';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import MassInsertInput from '../../modals/MassInsertInput';
+import { LanguageContext } from '../../App';
 
 export const HeadinCellContextMenu = ({
   xPos,
@@ -21,6 +23,7 @@ export const HeadinCellContextMenu = ({
   closeMenu,
   propertyIndex,
 }) => {
+  const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   propertyIndex = parseInt(propertyIndex);
 
@@ -29,7 +32,7 @@ export const HeadinCellContextMenu = ({
   return (
     <ContextMenu {...{ xPos, yPos, Reference }} closeMenu={closeMenu}>
       <ContextMenuButton
-        buttonText={'Move back'}
+        buttonText={language['moveBackwards']}
         buttonAction={() => {
           dispatch(
             swapProperties({
@@ -41,7 +44,7 @@ export const HeadinCellContextMenu = ({
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Move foward'}
+        buttonText={language['moveForwards']}
         buttonAction={() => {
           dispatch(
             swapProperties({
@@ -54,37 +57,42 @@ export const HeadinCellContextMenu = ({
       />
       <hr />
       <ContextMenuButton
-        buttonText={'Cut'}
+        buttonText={language['cut']}
         buttonAction={() => {
           dispatch(cutProperty({ propertyIndex }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Copy'}
+        buttonText={language['copy']}
         buttonAction={() => {
           dispatch(copyProperty({ propertyIndex }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Paste Before'}
+        buttonText={language['pasteIn']}
         buttonAction={() => {
-          // Array.slice is used for including elements mid array
-          // so pasting in the same index pushes the old element foward
+          dispatch(replaceProperty({ propertyIndex }));
+        }}
+        closeMenu={closeMenu}
+      />
+      <ContextMenuButton
+        buttonText={language['pasteBefore']}
+        buttonAction={() => {
           dispatch(pasteProperty({ propertyIndex }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Paste After'}
+        buttonText={language['pasteAfter']}
         buttonAction={() => {
           dispatch(pasteProperty({ propertyIndex: propertyIndex + 1 }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Delete'}
+        buttonText={language['delete']}
         buttonAction={() => {
           dispatch(deleteProperty({ propertyIndex }));
         }}
@@ -92,21 +100,21 @@ export const HeadinCellContextMenu = ({
       />
       <hr />
       <ContextMenuButton
-        buttonText={'Add Before'}
+        buttonText={language['addBefore']}
         buttonAction={() => {
           dispatch(addProperty({ propertyIndex }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Add After'}
+        buttonText={language['addAfter']}
         buttonAction={() => {
           dispatch(addProperty({ propertyIndex: propertyIndex + 1 }));
         }}
         closeMenu={closeMenu}
       />
       <ContextMenuButton
-        buttonText={'Insert for all'}
+        buttonText={language['insertForAll']}
         buttonAction={() => {
           dispatch(
             setModal({
