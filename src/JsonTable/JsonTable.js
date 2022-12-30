@@ -20,7 +20,12 @@ export function JsonTable() {
 
   useEffect(() => {
     const clickToUnselect = (e) => {
-      if (e.target === document.body) {
+      const elementContainsClass = e.target.classList.contains('heading-cell');
+      const parentContainsClass =
+        e.target.parentNode.tagName === 'TH' &&
+        e.target.parentNode.classList.contains('heading-cell');
+
+      if (!(elementContainsClass || parentContainsClass)) {
         dispatch(setSelected({ type: null, index: null }));
       }
     };

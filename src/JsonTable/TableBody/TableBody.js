@@ -9,6 +9,7 @@ export function TableBody() {
   const schema = useSelector((state) => state.table.schema);
   const selected = useSelector((state) => state.table.selected);
 
+  // @dryup @cellHighlight
   const isHeadingHighlighted = (index) => {
     if (selected.type !== 'instance') return null;
     const cellHighlighted = selected.index === index;
@@ -32,7 +33,7 @@ export function TableBody() {
         <tr key={`instance-${instanceIndex}`}>
           <IndexHeading
             instanceIndex={instanceIndex}
-            className={isHeadingHighlighted(instanceIndex)}
+            className={'heading-cell ' + isHeadingHighlighted(instanceIndex)}
           />
           {schema.map((property, propertyIndex) => {
             return (

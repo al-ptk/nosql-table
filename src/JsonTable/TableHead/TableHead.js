@@ -9,6 +9,7 @@ export function TableHead() {
   const schema = useSelector((state) => state.table.schema);
   const selected = useSelector((state) => state.table.selected);
 
+  // @dryup @cellHighlight
   const isHeadingHighlighted = (index) => {
     if (selected.type !== 'property') return null;
     const cellHighlighted = index === selected.index;
@@ -24,7 +25,7 @@ export function TableHead() {
           <HeadingCell
             key={`prop-${propertyIndex}`}
             propertyIndex={propertyIndex}
-            className={isHeadingHighlighted(propertyIndex)}
+            className={'heading-cell ' + isHeadingHighlighted(propertyIndex)}
           />
         ))}
       </StyledTableHead.Row>
