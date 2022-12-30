@@ -40,7 +40,7 @@ export function InsertDropdown({ xPos, yPos }) {
         }}
         disabled={selected.index === null || selected.type !== 'property'}
       >
-        {language['insertFarAll']}
+        {language['insertForAll']}
       </DropDown.Button>
     </DropDown.Container>
   );

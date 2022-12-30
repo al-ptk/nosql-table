@@ -75,6 +75,7 @@ const verticalRows = css`
     tr {
       display: flex;
       flex-direction: column;
+      border-radius: 15px 0 0 0;
     }
   }
   tbody {
