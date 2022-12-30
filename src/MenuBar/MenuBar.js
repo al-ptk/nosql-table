@@ -31,6 +31,13 @@ export default function MenuBar() {
             dispatch(setModal({ modal: <CreditsModal /> }));
           }}
         >
+          {'Manual'}
+        </DropDownAnchor.Button>
+        <DropDownAnchor.Button
+          onClick={() => {
+            dispatch(setModal({ modal: <CreditsModal /> }));
+          }}
+        >
           {language['credits']}
         </DropDownAnchor.Button>
         <StyledMenuBar.Link
