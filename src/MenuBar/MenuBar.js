@@ -17,7 +17,7 @@ export default function MenuBar() {
   const language = useContext(LanguageContext);
 
   return (
-    <StyledMenuBar.Container>
+    <StyledMenuBar.Container id='MenuBar'>
       <StyledMenuBar.FlexWrapper>
         <FileMenuAnchor />
         <EditMenuAnchor />

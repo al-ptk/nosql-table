@@ -7,7 +7,6 @@ export const StyledMenuBar = {
     top: 0;
     width: 100vw;
     min-height: 3em;
-    flex-wrap: wrap;
     z-index: 200;
     isolation: isolate;
 
@@ -21,6 +20,17 @@ export const StyledMenuBar = {
     /* Modifiers */
     background-color: #373737;
     color: white;
+
+    @media screen and (max-width: 600px) {
+      /* External layout */
+      width: 100%;
+      height: 3em;
+
+      /* Internal layout */
+      flex-direction: column;
+      align-items: center;
+      overflow-y: clip;
+    }
   `,
   Link: styled.a`
     /* Internal Layout */
@@ -36,6 +46,14 @@ export const StyledMenuBar = {
     /* Internal Layout */
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
+
+    @media screen and (max-width: 600px) {
+      /* External layout */
+      order: 1;
+
+      /* Internal Layout */
+      flex-direction: column;
+    }
   `,
 };
