@@ -22,7 +22,7 @@ export function CreditsModal() {
           <Modal.CloseIcon />
         </Modal.CloseButton>
         <StyledP>
-          {language['creditsFont']}:{' '}
+          {language['creditsFont']}{' '}
           <a
             target={'_blank'}
             href="https://fonts.google.com/noto/specimen/Noto+Sans?preview.text=File&preview.size=20&preview.text_type=custom&category=Sans+Serif,Monospace"

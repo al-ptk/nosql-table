@@ -11,7 +11,7 @@ export const Modal = {
   `,
   Container: styled.div`
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 10vh auto;
     padding: 80px 50px;
     background-color: #373737;

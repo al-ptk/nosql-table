@@ -30,7 +30,7 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] Find better fonts
 - [x] Implement new and close tables
 - [x] create tooltip for datacells with long text
-- [ ] Translate 
+- [ ] Translate
   - [x] Shell
   - [ ] Modals
 - [ ] make it mobile friendly
@@ -52,6 +52,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Add custom scrollbars
 - [ ] Make context menu render upwards if too low
 - [ ] Allow for instance naming, because js orders numbers properly, so array feel should stay the same
 - [ ] Before creating a new table, check if there is any non-saved tables. If there are, pop a modal to confirm operation.
