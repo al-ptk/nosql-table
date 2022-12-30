@@ -87,6 +87,8 @@ The consumption is rather straightforward — simply do a `<Modal.Container>` to
 
 The benefits? Other than an easier time importing elements, using a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
 
+**Addition** I will probably not do this anymore. [Another person much smarter than me](https://www.youtube.com/watch?v=M3BM9TB-8yA) cautioned me about "cute, unnecessary things."
+
 ### Translation solution
 
 This one came late.

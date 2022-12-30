@@ -30,6 +30,9 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] Find better fonts
 - [x] Implement new and close tables
 - [x] create tooltip for datacells with long text
+- [ ] Translate 
+  - [x] Shell
+  - [ ] Modals
 - [ ] make it mobile friendly
 
   - [ ] Add bigger margin at the bottom, by 200px
