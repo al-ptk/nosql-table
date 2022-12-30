@@ -13,22 +13,24 @@ import {
   swapProperties,
   swapInstances,
   replaceProperty,
+  replaceInstance,
 } from '../../redux/slices/tableSlice';
 import { DropDown } from '../../components/DropDown.styles';
 import { LanguageContext } from '../../App';
 import { useContext } from 'react';
 
-export function EditDropdown({ xPos, yPos }) {
+export function EditDropdown({ xPos, yPos, closeDropDown }) {
   const language = useContext(LanguageContext);
   const dispatch = useDispatch();
   const selected = useSelector((state) => state.table.selected);
   const index = selected.index;
-  const isClipboardEmpty = !Boolean(
-    useSelector((state) => state.table.clipboard).data
-  );
+  const isClipboardEmpty =
+    useSelector((state) => state.table.clipboard).data === null;
 
-  const clearSelected = () =>
+  const clearSelected = () => {
     dispatch(setSelected({ type: null, index: null }));
+    closeDropDown();
+  };
 
   // Select the functions to render based on the type of entity selected
   // @dryup @tableActions centralize the list of actions. Affected: EditDropDown, InsertDropDown and context menus
@@ -105,6 +107,10 @@ export function EditDropdown({ xPos, yPos }) {
         dispatch(copyInstance({ instanceIndex: index }));
         clearSelected();
       },
+      pasteIn: () => {
+        dispatch(replaceInstance({ instanceIndex: index }));
+        clearSelected();
+      },
       pasteBefore: () => {
         dispatch(pasteInstance({ instanceIndex: index }));
         clearSelected();
@@ -162,7 +168,7 @@ export function EditDropdown({ xPos, yPos }) {
         {language['copy']}
       </DropDown.Button>
       <DropDown.Button
-        disabled={selected.type !== 'property' || isClipboardEmpty}
+        disabled={selected.type === null || isClipboardEmpty}
         onClick={reducersBySelectedType.pasteIn}
       >
         {language['pasteIn']}

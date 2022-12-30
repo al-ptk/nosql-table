@@ -98,6 +98,7 @@ const tableSlice = createSlice({
         data: state.instances[instanceIndex],
       };
     },
+
     cutInstance: (state, action) => {
       const { instanceIndex } = action.payload;
       state.clipboard = {
@@ -106,6 +107,12 @@ const tableSlice = createSlice({
       };
       state.instances.splice(instanceIndex, 1);
       console.log(state.clipboard);
+    },
+
+    replaceInstance: (state, action) => {
+      if (state.clipboard.type !== 'instance') return;
+      const { instanceIndex } = action.payload;
+      state.instances[instanceIndex] = state.clipboard.data;
     },
 
     pasteInstance: (state, action) => {
@@ -268,6 +275,7 @@ export const {
   swapInstances,
   copyInstance,
   cutInstance,
+  replaceInstance,
   pasteInstance,
   duplicateInstance,
 

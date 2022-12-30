@@ -35,6 +35,13 @@ First, some conceptual definitions:
 - `Schema`: Describes the name and `type` of each possible `property` found in the `instances`. Types can be **primitives**, like strings, date and numbers; **composed data**, like arrays and objects; or even **custom**, like user-made widgets.
 - `Instances`: An array of objects that populate the table based on the properties each instance possesses. Not all instances have all schema properties, but the `schema` properties describe all possible properties of an instance.
 
+And about @ notes:
+
+- @todo: A feature to be added or some general task to be done.
+- @dryup: I believe that the code could be simplified\abstracted, but I dare not to yet. (The reason for this postponement can be found under the [Code Repetition and Wet Code](#code-repetition-and-wet-code) section.)
+
+@todo update leiame
+
 ### Component Tree Explained
 
 The `App.js` is the main component, composed of a shell (`MenuBar.js` and `StyledFooter.js`) and the table (`JsonTable.js`).
@@ -88,7 +95,7 @@ The consumption is rather straightforward — simply do a `<Modal.Container>` to
 
 The benefits? Other than an easier time importing elements, using a system that resembles [BEM](https://getbem.com/) and making me feel clever for a silly reason, there isn't any clear benefits. But I did like this approach, so I plan to stick with it when using styled-components in future projects.
 
-**Addition** I will probably not do this anymore. [Another person much smarter than me](https://www.youtube.com/watch?v=M3BM9TB-8yA) cautioned me about "cute, unnecessary things."
+**Edit:** I will probably not do this anymore. [Another person much smarter than me](https://www.youtube.com/watch?v=M3BM9TB-8yA) cautioned me about "cute, unnecessary things." But maybe it is a good idea? We will see.
 
 ### Translation solution
 

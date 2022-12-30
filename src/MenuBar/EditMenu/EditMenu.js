@@ -16,7 +16,7 @@ export const EditMenuAnchor = () => {
     setDropdown(
       <EditDropdown
         {...{ xPos, yPos, Reference }}
-        closeMenu={() => setDropdown(null)}
+        closeDropDown={() => setDropdown(null)}
       />
     );
   };
