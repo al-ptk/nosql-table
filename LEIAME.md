@@ -8,10 +8,10 @@
     - [Styled-components](#styled-components)
     - [Test-Driven Development](#test-driven-development)
   - [Roadmap](#roadmap)
-    - [Phase 1: Backend and Testing](#phase-1-backend-and-testing)
-    - [Phase 2: Typing](#phase-2-typing)
-    - [Phase 2.5: More features](#phase-25-more-features)
-    - [Phase 3: Doctor Refactor and the Rewriting of Madness](#phase-3-doctor-refactor-and-the-rewriting-of-madness)
+    - [Fase 1: Backend e Testes](#fase-1-backend-e-testes)
+    - [Fase 2: Tipagem](#fase-2-tipagem)
+    - [Fase 2.5: Mais features](#fase-25-mais-features)
+    - [Fase 3: Doutor Refatoração e a Loucura de Reescrever](#fase-3-doutor-refatoração-e-a-loucura-de-reescrever)
 
 If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
 
@@ -103,55 +103,54 @@ Eu não fiz. "É um projeto pequeno," eu pensei. Eu estava errado. Coisas saem d
 
 ## Roadmap
 
-While part of me wants to drop this project ("it's a silly idea!" I repeat to myself), I can still see me using this in the future. AND I want to give my best and see how far I can go when perfecting a project. So, on with the madness!
+Enquanto que parte de mim quer largar este projeto ("É uma ideia boba," eu repito para mim), ainda me vejo usando isso no futuro. E eu quero dar o meu melhor e ver até onde consigo ir quando aperfeiçoando um projeto. Logo, para frente com a loucura!
 
-Here is the roadmap: (items in each phase are not ordered by priority)
+Aqui está o roadmap: (itens em cada fase **não** estão ordenados por prioridade.)
 
-### Phase 1: Backend and Testing
+### Fase 1: Backend e Testes
 
-- [ ] Create simple auth system — just something to stretch my muscles
-- [ ] Create a storage for tables:
-  - [ ] Limit of tables per user (maybe 10?)
-  - [ ] Limit of table size to some size (8mb, probably, because of localstorage)
-- [ ] Create signin, signup and landing pages
-- [ ] Create tests for everything
-- [ ] Autosave on localstorage
-- [ ] Undo\Redo
+- [ ] Criar um sistema de autenticação simples — algo apenas para aquecer os músculos
+- [ ] Criar um armazenamento de tabelas:
+  - [ ] Limite de tabelas por usuário (talvez 10?)
+  - [ ] Limite de tamanho de tabela (8mb, por cause do localstorage)
+- [ ] Criar páginas de signin, signup e landing
+- [ ] Criar testes
+- [ ] Salvamento automático no localstorage
+- [ ] Desfazer\Refazer
 
-### Phase 2: Typing
+### Fase 2: Tipagem
 
-- [ ] New Table wizard
-- [ ] Schema wizard
-- [ ] Add DataCell Types:
+- [ ] Wizard de `Nova Tabela`
+- [ ] Wizard de `Esquema`
+- [ ] Adicionar tipos de `DataCell`:
   - [ ] Strings
-  - [ ] Numbers
-  - [ ] Dates
-  - [ ] Booleans
+  - [ ] Números
+  - [ ] Datas
+  - [ ] Booleanos
   - [ ] Selects\Dropdowns
   - [ ] Arrays
   - [ ] Checkboxes
-  - [ ] Radiosets
-  - [ ] Colors
+  - [ ] Campos de botão radio
+  - [ ] Cores
 
-### Phase 2.5: More features
+### Fase 2.5: Mais features
 
-- [ ] Mass insert randomly: give it some constraints and watch the thing go!
-- [ ] Clear all cells of instance\property
-- [ ] Reverse order of instances
-- [ ] Make context menu render upwards too
-- [ ] Add custom scrollbars
-- [ ] Cells can be highlighted and have their own context menu
-- [ ] Create composite property groups by combining two or more types (limit of some kind?)
-- [ ] Add new export types:
-  - [ ] Decently rendered table as pdf
-  - [ ] Html table (with styling?)
-  - [ ] Mongoose populatedb script
-- [ ] Import json from copy-pasting it into a textbox
-- [ ] User-custom widgets (?)
+- [ ] Inserção em massa aleatória
+- [ ] Limpar todas as células duma instância\propriedade
+- [ ] Reverter a ordem das instâncias
+- [ ] Fazer o menu de context renderizar para cima também
+- [ ] Adicionar barras de rolagem customizadas
+- [ ] Células podem ser selecionadas e possuem seu próprio menu
+- [ ] Adicionar novos tipos de exportação
+  - [ ] Table decentemente renderizada como pdf
+  - [ ] Tabela html (com estilos junto?)
+  - [ ] Script de populardb para Mongoose
+- [ ] Importar json por copiar-colar numa caixa de texto
+- [ ] Widgets customizados pelos usuários (?)
 
-### Phase 3: Doctor Refactor and the Rewriting of Madness
+### Fase 3: Doutor Refatoração e a Loucura de Reescrever
 
-- [ ] Change all state-operating functions to be pure (no mutations, returns new obj)
-- [ ] Rewrite the whole thing with Typescript and React-Table
-- [ ] Allow for instance naming (swap from array to object as storage mechanism)
-- [ ] Use some Tailwind UI framework to redo the styling
+- [ ] Mudar todas as funções que operam em estado para serem puras (sem mutação, retorna novo objeto)
+- [ ] Reescrever o apptodo com Typescript e React-Table
+- [ ] Permitir a nomeação de instâncias (transicionar de arrays para objetos como mecanismo de armazenamento)
+- [ ] Usar alguma framework de Tailwind UI para refazer o design

@@ -115,24 +115,24 @@ TDD and @ notes are both important things in order to keep the code managable fo
 
 While part of me wants to drop this project ("it's a silly idea!" I repeat to myself), I can still see me using this in the future. AND I want to give my best and see how far I can go when perfecting a project. So, on with the madness!
 
-Here is the roadmap: (items in each phase are not ordered by priority)
+Here is the roadmap: (items in each phase are **not** ordered by priority)
 
 ### Phase 1: Backend and Testing
 
-- [ ] Create simple auth system — just something to stretch my muscles
+- [ ] Create simple auth system — just something to warm my muscles
 - [ ] Create a storage for tables:
   - [ ] Limit of tables per user (maybe 10?)
-  - [ ] Limit of table size to some size (8mb, probably, because of localstorage)
+  - [ ] Limit of table size (8mb, probably, because of localstorage)
 - [ ] Create signin, signup and landing pages
-- [ ] Create tests for everything
+- [ ] Create tests
 - [ ] Autosave on localstorage
 - [ ] Undo\Redo
 
 ### Phase 2: Typing
 
-- [ ] New Table wizard
-- [ ] Schema wizard
-- [ ] Add DataCell Types:
+- [ ] `New Table` wizard
+- [ ] `Schema` wizard
+- [ ] Add `DataCell` Types:
   - [ ] Strings
   - [ ] Numbers
   - [ ] Dates
@@ -145,7 +145,7 @@ Here is the roadmap: (items in each phase are not ordered by priority)
 
 ### Phase 2.5: More features
 
-- [ ] Mass insert randomly: give it some constraints and watch the thing go!
+- [ ] Mass insert randomly
 - [ ] Clear all cells of instance\property
 - [ ] Reverse order of instances
 - [ ] Make context menu render upwards too
