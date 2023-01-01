@@ -3,6 +3,7 @@
   - [Technical Decisions](#technical-decisions)
     - [Conceptual Description](#conceptual-description)
     - [Component Tree Explained](#component-tree-explained)
+    - [React Tablle](#react-tablle)
     - [Redux](#redux)
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
@@ -38,7 +39,7 @@ First, some conceptual definitions:
 And about @ notes:
 
 - @todo: A feature to be added or some general task to be done.
-- @dryup: I believe that the code could be simplified\abstracted, but I dare not to yet. (The reason for this postponement can be found under the [Code Repetition and Wet Code](#code-repetition-and-wet-code) section.)
+- @dryup: I believe that the code could be simplified\abstracted, but I dare not to yet. (The reason for this postponement can be found under the [Code Repetition and Wet Code](#code-repetition-and-wet-code) section.) (Also, [grug said so](https://grugbrain.dev/#grug-on-factring-your-code).)
 
 @todo update leiame
 
@@ -55,6 +56,10 @@ At the root html file, besides the `#root` div (common to most create-react-app 
 - ExpandedCell: It magnifies the cell, making larger texts more readable.
 - JSONPreview: It shows how the json file, which contains only `instances`, will look like.
 - MassInsert: Allows mass insertion of values to a `property`.
+
+### React Tablle
+
+Yes, I know it exists now. I wish I've known before. Major rewrite someday?
 
 ### Redux
 

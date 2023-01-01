@@ -52,6 +52,7 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Create tests — YAY!
 - [ ] Clear all cells of instance/property
 - [ ] Reverse order of instances
 - [ ] Add custom scrollbars
