@@ -7,9 +7,12 @@
     - [Redux](#redux)
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
-    - [Translation solution](#translation-solution)
     - [Test-Driven Development](#test-driven-development)
   - [Roadmap](#roadmap)
+    - [Phase 1: Backend and Testing](#phase-1-backend-and-testing)
+    - [Phase 2: Typing](#phase-2-typing)
+    - [Phase 2.5: More features](#phase-25-more-features)
+    - [Phase 3: Doctor Refactor and the Rewriting of Madness](#phase-3-doctor-refactor-and-the-rewriting-of-madness)
 
 Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
 
@@ -39,7 +42,7 @@ First, some conceptual definitions:
 And about @ notes:
 
 - @todo: A feature to be added or some general task to be done.
-- @dryup: I believe that the code could be simplified\abstracted, but I dare not to yet. (The reason for this postponement can be found under the [Code Repetition and Wet Code](#code-repetition-and-wet-code) section.) (Also, [grug said so](https://grugbrain.dev/#grug-on-factring-your-code).)
+- @dryup: This means I believe that the code could be simplified\abstracted, but I dare not to yet. (The reason for this postponement can be found under the [Code Repetition and Wet Code](#code-repetition-and-wet-code) section.) (Also, [grug said so](https://grugbrain.dev/#grug-on-factring-your-code).)
 
 @todo update leiame
 
@@ -102,10 +105,6 @@ The benefits? Other than an easier time importing elements, using a system that 
 
 **Edit:** I will probably not do this anymore. [Another person much smarter than me](https://www.youtube.com/watch?v=M3BM9TB-8yA) cautioned me about "cute, unnecessary things." But maybe it is a good idea? We will see.
 
-### Translation solution
-
-This one came late.
-
 ### Test-Driven Development
 
 I didn't do it. "It's a small project", I thought. I was wrong. Things get out of hand fast.
@@ -114,4 +113,55 @@ TDD and @ notes are both important things in order to keep the code managable fo
 
 ## Roadmap
 
-Here is the roadmap (that I may follow after doing some other projects):
+While part of me wants to drop this project ("it's a silly idea!" I repeat to myself), I can still see me using this in the future. AND I want to give my best and see how far I can go when perfecting a project. So, on with the madness!
+
+Here is the roadmap: (items in each phase are not ordered by priority)
+
+### Phase 1: Backend and Testing
+
+- [ ] Create simple auth system — just something to stretch my muscles
+- [ ] Create a storage for tables:
+  - [ ] Limit of tables per user (maybe 10?)
+  - [ ] Limit of table size to some size (8mb, probably, because of localstorage)
+- [ ] Create signin, signup and landing pages
+- [ ] Create tests for everything
+- [ ] Autosave on localstorage
+- [ ] Undo\Redo
+
+### Phase 2: Typing
+
+- [ ] New Table wizard
+- [ ] Schema wizard
+- [ ] Add DataCell Types:
+  - [ ] Strings
+  - [ ] Numbers
+  - [ ] Dates
+  - [ ] Booleans
+  - [ ] Selects\Dropdowns
+  - [ ] Arrays
+  - [ ] Checkboxes
+  - [ ] Radiosets
+  - [ ] Colors
+
+### Phase 2.5: More features
+
+- [ ] Mass insert randomly: give it some constraints and watch the thing go!
+- [ ] Clear all cells of instance\property
+- [ ] Reverse order of instances
+- [ ] Make context menu render upwards too
+- [ ] Add custom scrollbars
+- [ ] Cells can be highlighted and have their own context menu
+- [ ] Create composite property groups by combining two or more types (limit of some kind?)
+- [ ] Add new export types:
+  - [ ] Decently rendered table as pdf
+  - [ ] Html table (with styling?)
+  - [ ] Mongoose populatedb script
+- [ ] Import json from copy-pasting it into a textbox
+- [ ] User-custom widgets (?)
+
+### Phase 3: Doctor Refactor and the Rewriting of Madness
+
+- [ ] Change all state-operating functions to be pure (no mutations, returns new obj)
+- [ ] Rewrite the whole thing with Typescript and React-Table
+- [ ] Allow for instance naming (swap from array to object as storage mechanism)
+- [ ] Use some Tailwind UI framework to redo the styling

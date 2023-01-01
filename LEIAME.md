@@ -6,8 +6,12 @@
     - [Redux](#redux)
     - [Repetição de Código e Wet Code](#repetição-de-código-e-wet-code)
     - [Styled-components](#styled-components)
-    - [Translation solution](#translation-solution)
+    - [Test-Driven Development](#test-driven-development)
   - [Roadmap](#roadmap)
+    - [Phase 1: Backend and Testing](#phase-1-backend-and-testing)
+    - [Phase 2: Typing](#phase-2-typing)
+    - [Phase 2.5: More features](#phase-25-more-features)
+    - [Phase 3: Doctor Refactor and the Rewriting of Madness](#phase-3-doctor-refactor-and-the-rewriting-of-madness)
 
 If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
 
@@ -32,6 +36,11 @@ Primeiramente, uma definição de conceitos:
 - `Tabela`: Tanto um modelo mental que é composto por duas estruturas de dados, `esquema` e `instâncias`, quanto o arquivo que contém estas informções.
 - `Schema`: Descreve o nome e `tipo` de cada `propriedade` encontrada nas `instâncias`. `Tipos` podem ser **primitivas**, como números, strings ou datas; **dados compostos**, como objetos e listas; ou até mesmo **customizados**, como widgets montados por usuários.
 - `Instâncias`: Um array de objetos que popula a tabela, baseado nas `propriedades` que cada instância possui. Nem todas as instâncias possuem todas as propriedades, porém as propriedades descritas pelo `esquema` descrevem todas as propriedades possíveis à cada da instância.
+
+E sobre notas @:
+
+- @todo: Uma feature a ser adicionada ou alguma tarefa geral a ser feita.
+- @dryup: Isso significa que eu acredito que o código pode ser simplificado\abstraído, mas não ouso fazer isso ainda. (O motivo para este atraso pode ser encontrado na seção [Repetição de Código e Wet Code](#repetição-de-código-e-wet-code).) (Também, [grug said so](https://grugbrain.dev/#grug-on-factring-your-code).))
 
 ### Árvore de Componentes Explicada
 
@@ -86,10 +95,63 @@ O consumo é um tanto direto — simplesmente use um `<Modal.Container>` para ac
 
 Os benefícios? Além de uma facilidade maior em importar componentes, usar um sistema parecido com [BEM](https://getbem.com/) e me fazer sentir esperto por uma razão boba, não existem quaisquer benefícios claros. Porém, eu gostei dessa abordagem, então planejo continuar com ela em projetos futuros.
 
-### Translation solution
+**Editado:** Eu provavelment não farei mais isso. [Outra pessoa muito mais inteligente que eu](https://www.youtube.com/watch?v=M3BM9TB-8yA) me avisou de coisas "bonitinhas" que não acrescentam muita coisa. Mas talvez seja uma boa ideia? Veremos.
 
-This one came late.
+### Test-Driven Development
+
+Eu não fiz. "É um projeto pequeno," eu pensei. Eu estava errado. Coisas saem de controle rápido! TDD e notas @ são ambas importantes para manter o código mais manejável.
 
 ## Roadmap
 
-Here is the roadmap (that I may follow after doing some other projects):
+While part of me wants to drop this project ("it's a silly idea!" I repeat to myself), I can still see me using this in the future. AND I want to give my best and see how far I can go when perfecting a project. So, on with the madness!
+
+Here is the roadmap: (items in each phase are not ordered by priority)
+
+### Phase 1: Backend and Testing
+
+- [ ] Create simple auth system — just something to stretch my muscles
+- [ ] Create a storage for tables:
+  - [ ] Limit of tables per user (maybe 10?)
+  - [ ] Limit of table size to some size (8mb, probably, because of localstorage)
+- [ ] Create signin, signup and landing pages
+- [ ] Create tests for everything
+- [ ] Autosave on localstorage
+- [ ] Undo\Redo
+
+### Phase 2: Typing
+
+- [ ] New Table wizard
+- [ ] Schema wizard
+- [ ] Add DataCell Types:
+  - [ ] Strings
+  - [ ] Numbers
+  - [ ] Dates
+  - [ ] Booleans
+  - [ ] Selects\Dropdowns
+  - [ ] Arrays
+  - [ ] Checkboxes
+  - [ ] Radiosets
+  - [ ] Colors
+
+### Phase 2.5: More features
+
+- [ ] Mass insert randomly: give it some constraints and watch the thing go!
+- [ ] Clear all cells of instance\property
+- [ ] Reverse order of instances
+- [ ] Make context menu render upwards too
+- [ ] Add custom scrollbars
+- [ ] Cells can be highlighted and have their own context menu
+- [ ] Create composite property groups by combining two or more types (limit of some kind?)
+- [ ] Add new export types:
+  - [ ] Decently rendered table as pdf
+  - [ ] Html table (with styling?)
+  - [ ] Mongoose populatedb script
+- [ ] Import json from copy-pasting it into a textbox
+- [ ] User-custom widgets (?)
+
+### Phase 3: Doctor Refactor and the Rewriting of Madness
+
+- [ ] Change all state-operating functions to be pure (no mutations, returns new obj)
+- [ ] Rewrite the whole thing with Typescript and React-Table
+- [ ] Allow for instance naming (swap from array to object as storage mechanism)
+- [ ] Use some Tailwind UI framework to redo the styling

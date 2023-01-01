@@ -40,7 +40,7 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [ ] Create manual modal
 
 - [x] Write readme (possibly, an 'Help' document also')
-- [ ] Write roadmap
+- [x] Write roadmap
 - [ ] Make shell for alanpatrick.net and link this project
 - [ ] Publish on twitter\linkedin
 
@@ -76,7 +76,6 @@ For the next version
   - [ ] add Mongoose integration
   - [ ] Account management (password emails, updates, etc.)
 - [ ] tooltip for help according to session — new users ALWAYS get the tooltips, but people already registered wouldn't get it anymore.
-- [ ] Comments about the website on side-drawer menu
 - [ ] Combine two columns in one. The cell of the second column gets rendered in a row below the cell of the first
 - [ ] Use typescript. The interfaces thing seems pretty good.
 - [ ] Add different exporting options
