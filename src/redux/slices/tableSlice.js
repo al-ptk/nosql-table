@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { language } from '../../locales/language';
 
 /*
   Some conceptual definitions:
@@ -10,35 +11,61 @@ import { createSlice } from '@reduxjs/toolkit';
   Instances: An array of objects that populate the table based on the fields each instance possesses. Instance here is can be read the same as "instance of an object." Not all instances have all schema properties, but schema properties describe all possible fields of an instance.
 */
 
+const propertyNameGenerator = (function () {
+  // To reset the generator, I just need to create a new one
+  // JS garbage collection — it works like magic! (tm)
+  const genConstructor = function* (start = 0) {
+    let i = start;
+    while (true) {
+      yield i;
+      i++;
+    }
+  };
+
+  // Create generator to be wrapped
+  let gen = genConstructor(0);
+
+  return {
+    // Sets wrapped generator back to 0 or a given value
+    restartGenerator: function (start = 0) {
+      gen = genConstructor(start);
+    },
+
+    getNextProp: function () {
+      return `${language['titleProperty']} ${gen.next().value}`;
+    },
+  };
+})();
+
 const emptyTable = {
   instances: [],
   schema: [],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
   clipboard: { type: null, data: null },
-  title: 'New Table',
+  title: `${language['newTable']}`,
   selected: { type: null, index: null },
 };
 
 const exampleTable = {
   instances: [
     {
-      'property 0': '',
-      'property 1': '',
+      [`${language['titleProperty']} 0`]: '',
+      [`${language['titleProperty']} 1`]: '',
     },
     {
-      'property 0': '',
-      'property 1': '',
+      [`${language['titleProperty']} 0`]: '',
+      [`${language['titleProperty']} 1`]: '',
     },
   ],
   schema: [
-    { name: 'property 0', type: 'string' },
-    { name: 'property 1', type: 'string' },
+    { name: `${language['titleProperty']} 0`, type: 'string' },
+    { name: `${language['titleProperty']} 0`, type: 'string' },
   ],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
   clipboard: { type: null, data: null },
-  title: 'New Table',
+  title: `${language['newTable']}`,
   selected: { type: null, index: null },
 };
 
@@ -136,7 +163,7 @@ const tableSlice = createSlice({
     addProperty: (state, action) => {
       let { propertyIndex } = action?.payload;
       propertyIndex = propertyIndex || state.schema.length;
-      const propertyName = `property ${state.schema.length}`;
+      const propertyName = propertyNameGenerator.getNextProp();
       state.instances.map((instance) => (instance[propertyName] = ''));
       state.schema.splice(propertyIndex, 0, {
         type: 'string',
@@ -246,6 +273,7 @@ const tableSlice = createSlice({
       state.selected = exampleTable.selected;
       state.clipboard = exampleTable.clipboard;
       state.title = exampleTable.title;
+      propertyNameGenerator.restartGenerator(2);
     },
 
     closeTable: (state) => {
