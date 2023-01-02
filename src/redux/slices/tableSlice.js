@@ -60,7 +60,7 @@ const exampleTable = {
   ],
   schema: [
     { name: `${language['titleProperty']} 0`, type: 'string' },
-    { name: `${language['titleProperty']} 0`, type: 'string' },
+    { name: `${language['titleProperty']} 1`, type: 'string' },
   ],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
@@ -265,6 +265,9 @@ const tableSlice = createSlice({
       state.schema = newTable?.schema ?? generateSchema(newTable);
       state.title = newTable?.title ?? fileName;
       state.clipboard = { type: null, data: null };
+      propertyNameGenerator.restartGenerator(
+        newTable?.instances?.length + 2 || newTable?.length + 2 || 0
+      );
     },
 
     newTable: (state) => {
@@ -273,7 +276,7 @@ const tableSlice = createSlice({
       state.selected = exampleTable.selected;
       state.clipboard = exampleTable.clipboard;
       state.title = exampleTable.title;
-      propertyNameGenerator.restartGenerator(2);
+      propertyNameGenerator.restartGenerator(exampleTable.schema.length);
     },
 
     closeTable: (state) => {

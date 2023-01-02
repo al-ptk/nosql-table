@@ -5,6 +5,7 @@ import { StyledDataCell } from './DataCell.styles';
 import ExpandedCellModal from '../../modals/ExpandedCellModal';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import Tooltip from '../../components/Tooltip';
+import { language } from '../../locales/language';
 
 export const DataCell = ({ accessCoordinates, className }) => {
   const [cellValue, handleInput] = useCellAccessor(accessCoordinates);
@@ -31,10 +32,9 @@ export const DataCell = ({ accessCoordinates, className }) => {
           const coords = e.target.parentNode.getBoundingClientRect();
           const elem = e.target;
           if (elem.clientHeight < elem.scrollHeight) {
-            console.log(coords.top);
             setTooltip(
               <Tooltip xPos={coords.left} yPos={coords.top - 24}>
-                Double click to expand!
+                {language['tooltipExpandCell']}
               </Tooltip>
             );
           }
