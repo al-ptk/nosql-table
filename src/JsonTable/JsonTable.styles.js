@@ -40,12 +40,12 @@ export const StyledTable = {
     color: rgba(255, 255, 255, 0.65);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
     :hover > svg {
-      rotate: 90deg;
+      rotate: 180deg;
     }
   `,
   AddEntityIcon: styled(CirclePlusIcon)`
     width: 30px;
-    transition: rotate 0.25s ease-in-out;
+    transition: rotate 0.5s ease-in-out;
   `,
 };
 

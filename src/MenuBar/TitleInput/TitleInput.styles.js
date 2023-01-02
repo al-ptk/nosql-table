@@ -34,8 +34,6 @@ export const StyledTitleInput = {
     margin-left: 15px;
 
     /* Internal layout */
-    display: grid;
-    place-items: center;
     padding: 0 0 2px 2px;
 
     /* Modifiers */
