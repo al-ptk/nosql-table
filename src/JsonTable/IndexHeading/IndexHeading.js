@@ -33,7 +33,7 @@ export default function IndexHeading({ instanceIndex, className }) {
       }}
     >
       {instanceIndex}
-      <DeleteInstnace
+      <DeleteInstanceButton
         handleClick={() => dispatch(deleteInstance({ instanceIndex }))}
       />
       {contextMenu}
@@ -42,7 +42,7 @@ export default function IndexHeading({ instanceIndex, className }) {
 }
 
 // @dryup @deleteEntityButtons
-const DeleteInstnace = ({ handleClick }) => {
+const DeleteInstanceButton = ({ handleClick }) => {
   return (
     <StyledIndexHeading.DeleteButton onClick={handleClick}>
       {/* Add X icon */}X

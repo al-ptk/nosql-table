@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateHeadingCell, setSelected } from '../../redux/slices/tableSlice';
+import {
+  updateHeadingCell,
+  setSelected,
+  deleteProperty,
+} from '../../redux/slices/tableSlice';
 import { HeadinCellContextMenu } from './HeadinCell.ContextMenu';
 import { StyledHeadingCell } from './HeadingCell.styles';
 
@@ -35,6 +39,9 @@ export const HeadingCell = ({ propertyIndex, className }) => {
         );
       }}
     >
+      <DeletePropertyButton
+        handleClick={() => dispatch(deleteProperty({ propertyIndex }))}
+      />
       <StyledHeadingCell.Textarea
         onFocus={() => {
           dispatch(setSelected({ type: 'property', index: propertyIndex }));
@@ -47,5 +54,14 @@ export const HeadingCell = ({ propertyIndex, className }) => {
       ></StyledHeadingCell.Textarea>
       {contextMenu}
     </StyledHeadingCell.Container>
+  );
+};
+
+// @dryup @deleteEntityButtons
+const DeletePropertyButton = ({ handleClick }) => {
+  return (
+    <StyledHeadingCell.DeleteButton onClick={handleClick}>
+      {/* Add X icon */}X
+    </StyledHeadingCell.DeleteButton>
   );
 };
