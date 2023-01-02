@@ -37,7 +37,8 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] make it mobile friendly
   - [x] Add bigger margin at the bottom, by 200px
   - [x] Add sideways margins for TablePlaceholder buttons
-- [ ] Create manual modal
+- [ ] Remove tooltips altogether
+- [ ] Create manual modalw
 
 - [x] Write readme (possibly, an 'Help' document also')
 - [x] Write roadmap
@@ -53,7 +54,6 @@ Later, I will come back and add new features to this.
 For the next version
 
 - [ ] Create async thunk for rendering data cells faster on chromium-based. firefox is fine, weirdly enough
-- [ ] Replace tooltips for each data cell with a function that generates an overhead notification
 - [ ] Create tests — YAY!
 - [ ] Clear all cells of instance/property
 - [ ] Reverse order of instances

@@ -9,6 +9,10 @@ export const StyledRotateButton = {
     position: sticky;
     left: 0px;
     z-index: 10;
+
+    @media screen and (max-width: 600px) {
+      position: relative;
+    }
   `,
   Button: styled.button`
     background-color: transparent;

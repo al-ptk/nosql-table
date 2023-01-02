@@ -21,5 +21,9 @@ export const StyledIndexHeading = {
     color: white;
     border-right: ${(props) =>
       props.isVertical ? 'none' : '1px solid rgba(0, 0, 0, .5)'};
+
+    @media screen and (max-width: 600px) {
+      position: relative;
+    }
   `,
 };

@@ -29,6 +29,10 @@ export const StyledTable = {
       overflow: clip;
     }
 
+    @media screen and (max-width: 600px) {
+      
+    }
+
     // Scrollbar stuff
     /* width */
     ::-webkit-scrollbar {
