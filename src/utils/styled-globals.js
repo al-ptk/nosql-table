@@ -26,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Noto Sans';
     font-weight: normal;
+    font-size: 16px;
   }
 
   body {
@@ -51,5 +52,9 @@ export const GlobalStyle = createGlobalStyle`
   td.highlight-selected > textarea {
     background-color: rgba(	64, 170, 191, .65) !important;
     color: white !important;
+  }
+
+  .fade-out {
+    opacity: 0;
   }
 `;

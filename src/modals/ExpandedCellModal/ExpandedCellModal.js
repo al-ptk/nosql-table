@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCellAccessor } from '../../JsonTable/DataCell/DataCell';
+import { useCellAccessor } from '../../JsonTable/DataCell/useCellAccessor';
 import { Modal } from '../Modal.styles';
 import { setModal } from '../../redux/slices/uiKnobsSlice';
 import { LanguageContext } from '../../App';

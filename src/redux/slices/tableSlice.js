@@ -265,7 +265,6 @@ const tableSlice = createSlice({
       state.schema = newTable?.schema ?? generateSchema(newTable);
       state.title = newTable?.title ?? fileName;
       state.clipboard = { type: null, data: null };
-      console.log(newTable.instances.length);
       propertyNameGenerator.restartGenerator(newTable?.schema?.length + 2 || 0);
     },
 
