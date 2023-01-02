@@ -8,7 +8,36 @@ import { StyledIndexHeading } from './IndexHeading.styles';
 export default function IndexHeading({ instanceIndex, className }) {
   const isVertical = useSelector((state) => state.uiKnobs.isVertical);
   const [contextMenu, setContextMenu] = useState(null);
+  const [deleteButton, setDeleteButton] = useState(null);
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(setSelected({ type: 'instance', index: instanceIndex }));
+  };
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    setContextMenu(
+      <IndexHeadingContextMenu
+        xPos={e.clientX}
+        yPos={e.clientY}
+        instanceIndex={instanceIndex}
+        closeMenu={() => {
+          setContextMenu(null);
+        }}
+      />
+    );
+  };
+
+  const handleMouseOver = () => {
+    setDeleteButton(
+      <DeleteEntityButton
+        onClick={() => dispatch(deleteInstance({ instanceIndex }))}
+      >
+        {/* @todo Add X icon */}X
+      </DeleteEntityButton>
+    );
+  };
 
   return (
     <StyledIndexHeading.Container
@@ -16,29 +45,13 @@ export default function IndexHeading({ instanceIndex, className }) {
       className={className}
       tabIndex={-1}
       scope="row"
-      onClick={() => {
-        dispatch(setSelected({ type: 'instance', index: instanceIndex }));
-      }}
-      onContextMenu={(e) => {
-        e.preventDefault();
-        setContextMenu(
-          <IndexHeadingContextMenu
-            xPos={e.clientX}
-            yPos={e.clientY}
-            instanceIndex={instanceIndex}
-            closeMenu={() => {
-              setContextMenu(null);
-            }}
-          />
-        );
-      }}
+      onClick={handleClick}
+      onContextMenu={handleContextMenu}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={() => setDeleteButton(null)}
     >
+      {deleteButton}
       {instanceIndex}
-      <DeleteEntityButton
-        onClick={() => dispatch(deleteInstance({ instanceIndex }))}
-      >
-        {/* @todo Add X icon */}X
-      </DeleteEntityButton>
       {contextMenu}
     </StyledIndexHeading.Container>
   );

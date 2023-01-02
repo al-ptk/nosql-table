@@ -24,5 +24,5 @@ export const StyledHeadingCell = {
       border: 1px solid rgba(255, 255, 255, 0.7);
       box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
     }
-  `
+  `,
 };

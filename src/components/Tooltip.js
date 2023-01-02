@@ -12,7 +12,7 @@ const StyledTooltip = styled.div`
   padding: 2px;
   background-color: black !important;
   color: white;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
   opacity: 1;
 `;
 
@@ -26,7 +26,7 @@ export default function Tooltip({ xPos, yPos, children }) {
 
     const timer = setTimeout(() => {
       ref.current.classList.add('fade-out');
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [ref]);

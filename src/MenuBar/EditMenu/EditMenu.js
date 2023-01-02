@@ -6,7 +6,6 @@ import { LanguageContext } from '../../App';
 export const EditMenuAnchor = () => {
   const language = useContext(LanguageContext);
   const [dropdown, setDropdown] = useState(null);
-  const Reference = useRef(null);
   const buttonReference = useRef(null);
 
   const createMenu = () => {
@@ -15,7 +14,7 @@ export const EditMenuAnchor = () => {
     const yPos = coords.bottom;
     setDropdown(
       <EditDropdown
-        {...{ xPos, yPos, Reference }}
+        {...{ xPos, yPos }}
         closeDropDown={() => setDropdown(null)}
       />
     );

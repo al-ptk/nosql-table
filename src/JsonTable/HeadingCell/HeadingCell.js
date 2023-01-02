@@ -14,7 +14,35 @@ export const HeadingCell = ({ propertyIndex, className }) => {
   const dispatch = useDispatch();
   const schema = useSelector((state) => state.table.schema);
   const [contextMenu, setContextMenu] = useState(null);
+  const [deleteButton, setDeleteButton] = useState(null);
 
+  const handleClick = (e) => {
+    dispatch(setSelected({ type: 'property', index: propertyIndex }));
+  };
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    setContextMenu(
+      <HeadinCellContextMenu
+        xPos={e.clientX}
+        yPos={e.clientY}
+        closeMenu={() => setContextMenu(null)}
+        propertyIndex={propertyIndex}
+      />
+    );
+  };
+
+  const handleMouseOver = () => {
+    setDeleteButton(
+      <DeleteEntityButton
+        onClick={() => dispatch(deleteProperty({ propertyIndex }))}
+      >
+        {/* @todo Add X icon */}X
+      </DeleteEntityButton>
+    );
+  };
+
+  // Used on Textarea
   const handleInput = (e) => {
     e.preventDefault();
     if (e.nativeEvent.inputType === 'insertLineBreak') return; // Disable linebreaks
@@ -25,26 +53,12 @@ export const HeadingCell = ({ propertyIndex, className }) => {
     <StyledHeadingCell.Container
       className={className}
       tabIndex={-1}
-      onClick={(e) => {
-        dispatch(setSelected({ type: 'property', index: propertyIndex }));
-      }}
-      onContextMenu={(e) => {
-        e.preventDefault();
-        setContextMenu(
-          <HeadinCellContextMenu
-            xPos={e.clientX}
-            yPos={e.clientY}
-            closeMenu={() => setContextMenu(null)}
-            propertyIndex={propertyIndex}
-          />
-        );
-      }}
+      onClick={handleClick}
+      onContextMenu={handleContextMenu}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={() => setDeleteButton(null)}
     >
-      <DeleteEntityButton
-        onClick={() => dispatch(deleteProperty({ propertyIndex }))}
-      >
-        {/* @todo Add X icon */}X
-      </DeleteEntityButton>
+      {deleteButton}
       <StyledHeadingCell.Textarea
         onFocus={() => {
           dispatch(setSelected({ type: 'property', index: propertyIndex }));
@@ -54,7 +68,7 @@ export const HeadingCell = ({ propertyIndex, className }) => {
         rows="1"
         cols="20"
         maxLength="20"
-      ></StyledHeadingCell.Textarea>
+      />
       {contextMenu}
     </StyledHeadingCell.Container>
   );
