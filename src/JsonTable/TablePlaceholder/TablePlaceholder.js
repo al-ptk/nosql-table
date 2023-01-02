@@ -3,12 +3,14 @@ import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { LanguageContext } from '../../App';
 import { newTable } from '../../redux/slices/tableSlice';
-import { CustomImportButton } from './CustomImportButton';
 import { StyledTP } from './TablePlaceholder.styles';
 
 export function TablePlaceholder() {
   const dispatch = useDispatch();
   const language = useContext(LanguageContext);
+  const selectFile = () => {
+    document.getElementById('hidden-file-importer').click();
+  };
 
   return (
     <StyledTP.Container>
@@ -20,7 +22,9 @@ export function TablePlaceholder() {
         {language['newTable']}
       </StyledTP.Button>
       <StyledTP.Ruler />
-      <CustomImportButton />
+      <StyledTP.Button onClick={selectFile}>
+        {language['importFile']}
+      </StyledTP.Button>
     </StyledTP.Container>
   );
-} 
+}

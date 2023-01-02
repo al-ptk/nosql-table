@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from 'react';
 import { LanguageContext } from '../../App';
 import { DropDownAnchor } from '../../components/DropDown.styles';
 import { FileDropDown } from './FileDropDown';
+import HiddenFileImporter from './HiddenFileImporter';
 
 export const FileMenuAnchor = () => {
   const language = useContext(LanguageContext);
@@ -12,9 +13,7 @@ export const FileMenuAnchor = () => {
     const coords = buttonReference.current.getBoundingClientRect();
     const xPos = coords.left;
     const yPos = coords.bottom;
-    setDropdown(
-      <FileDropDown {...{ xPos, yPos }} closeMenu={() => setDropdown(null)} />
-    );
+    setDropdown(<FileDropDown {...{ xPos, yPos }} />);
   };
 
   return (
@@ -24,6 +23,7 @@ export const FileMenuAnchor = () => {
         setDropdown(null);
       }}
     >
+      <HiddenFileImporter />
       <DropDownAnchor.Button ref={buttonReference}>
         {language['file']}
       </DropDownAnchor.Button>

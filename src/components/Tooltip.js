@@ -20,10 +20,15 @@ export default function Tooltip({ xPos, yPos, children }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    if (!ref.current) return;
-    setTimeout(() => {
+    if (!ref.current) {
+      console.log(ref.current);
+    }
+
+    const timer = setTimeout(() => {
       ref.current.classList.add('fade-out');
     }, 1000);
+
+    return () => clearTimeout(timer);
   }, [ref]);
 
   return (
