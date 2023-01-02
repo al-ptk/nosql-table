@@ -32,7 +32,7 @@ const propertyNameGenerator = (function () {
     },
 
     getNextProp: function () {
-      return `${language['titleProperty']} ${gen.next().value}`;
+      return `Prop ${gen.next().value}`;
     },
   };
 })();
@@ -50,17 +50,17 @@ const emptyTable = {
 const exampleTable = {
   instances: [
     {
-      [`${language['titleProperty']} 0`]: '',
-      [`${language['titleProperty']} 1`]: '',
+      'Prop 0': '',
+      'Prop 1': '',
     },
     {
-      [`${language['titleProperty']} 0`]: '',
-      [`${language['titleProperty']} 1`]: '',
+      'Prop 0': '',
+      'Prop 1': '',
     },
   ],
   schema: [
-    { name: `${language['titleProperty']} 0`, type: 'string' },
-    { name: `${language['titleProperty']} 1`, type: 'string' },
+    { name: 'Prop 0', type: 'string' },
+    { name: 'Prop 1', type: 'string' },
   ],
   // The clipboard may contain: instances, properties
   // They are identified by the "type" filed
@@ -265,9 +265,8 @@ const tableSlice = createSlice({
       state.schema = newTable?.schema ?? generateSchema(newTable);
       state.title = newTable?.title ?? fileName;
       state.clipboard = { type: null, data: null };
-      propertyNameGenerator.restartGenerator(
-        newTable?.instances?.length + 2 || newTable?.length + 2 || 0
-      );
+      console.log(newTable.instances.length);
+      propertyNameGenerator.restartGenerator(newTable?.schema?.length + 2 || 0);
     },
 
     newTable: (state) => {
