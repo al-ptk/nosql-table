@@ -26,7 +26,7 @@ export default function Tooltip({ xPos, yPos, children }) {
 
     const timer = setTimeout(() => {
       ref.current.classList.add('fade-out');
-    }, 500);
+    }, 600);
 
     return () => clearTimeout(timer);
   }, [ref]);

@@ -52,6 +52,8 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+- [ ] Create async thunk for rendering data cells faster on chromium-based. firefox is fine, weirdly enough
+- [ ] Replace tooltips for each data cell with a function that generates an overhead notification
 - [ ] Create tests — YAY!
 - [ ] Clear all cells of instance/property
 - [ ] Reverse order of instances
