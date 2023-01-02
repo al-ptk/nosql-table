@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DeleteEntityButton from '../../components/DeleteEntityButton';
 import { setSelected, deleteInstance } from '../../redux/slices/tableSlice';
 import { IndexHeadingContextMenu } from './IndexHeading.ContextMenu';
 import { StyledIndexHeading } from './IndexHeading.styles';
@@ -33,19 +34,12 @@ export default function IndexHeading({ instanceIndex, className }) {
       }}
     >
       {instanceIndex}
-      <DeleteInstanceButton
-        handleClick={() => dispatch(deleteInstance({ instanceIndex }))}
-      />
+      <DeleteEntityButton
+        onClick={() => dispatch(deleteInstance({ instanceIndex }))}
+      >
+        {/* @todo Add X icon */}X
+      </DeleteEntityButton>
       {contextMenu}
     </StyledIndexHeading.Container>
   );
 }
-
-// @dryup @deleteEntityButtons
-const DeleteInstanceButton = ({ handleClick }) => {
-  return (
-    <StyledIndexHeading.DeleteButton onClick={handleClick}>
-      {/* Add X icon */}X
-    </StyledIndexHeading.DeleteButton>
-  );
-};

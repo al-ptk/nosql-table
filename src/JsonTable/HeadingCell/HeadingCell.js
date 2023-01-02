@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import DeleteEntityButton from '../../components/DeleteEntityButton';
 import {
   updateHeadingCell,
   setSelected,
@@ -39,9 +40,11 @@ export const HeadingCell = ({ propertyIndex, className }) => {
         );
       }}
     >
-      <DeletePropertyButton
-        handleClick={() => dispatch(deleteProperty({ propertyIndex }))}
-      />
+      <DeleteEntityButton
+        onClick={() => dispatch(deleteProperty({ propertyIndex }))}
+      >
+        {/* @todo Add X icon */}X
+      </DeleteEntityButton>
       <StyledHeadingCell.Textarea
         onFocus={() => {
           dispatch(setSelected({ type: 'property', index: propertyIndex }));
@@ -54,14 +57,5 @@ export const HeadingCell = ({ propertyIndex, className }) => {
       ></StyledHeadingCell.Textarea>
       {contextMenu}
     </StyledHeadingCell.Container>
-  );
-};
-
-// @dryup @deleteEntityButtons
-const DeletePropertyButton = ({ handleClick }) => {
-  return (
-    <StyledHeadingCell.DeleteButton onClick={handleClick}>
-      {/* Add X icon */}X
-    </StyledHeadingCell.DeleteButton>
   );
 };
