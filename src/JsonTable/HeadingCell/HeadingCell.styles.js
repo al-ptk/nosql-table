@@ -18,6 +18,7 @@ export const StyledHeadingCell = {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 3px;
     text-align: center;
+    overflow: hidden;
 
     :focus {
       outline: none;

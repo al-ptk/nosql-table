@@ -28,6 +28,29 @@ export const StyledTable = {
       height: fit-content;
       overflow: clip;
     }
+
+    // Scrollbar stuff
+    /* width */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   `,
 
   AddEntityButton: styled.button`
@@ -88,6 +111,7 @@ const verticalRows = css`
     tr {
       display: flex;
       flex-direction: column;
+      flex-shrink: 0;
     }
   }
 `;
