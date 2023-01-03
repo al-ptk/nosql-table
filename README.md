@@ -3,7 +3,7 @@
   - [Technical Decisions](#technical-decisions)
     - [Conceptual Description](#conceptual-description)
     - [Component Tree Explained](#component-tree-explained)
-    - [React Tablle](#react-tablle)
+    - [React Table](#react-table)
     - [Redux](#redux)
     - [Code Repetition and Wet Code](#code-repetition-and-wet-code)
     - [Styled-components](#styled-components)
@@ -60,7 +60,7 @@ At the root html file, besides the `#root` div (common to most create-react-app 
 - JSONPreview: It shows how the json file, which contains only `instances`, will look like.
 - MassInsert: Allows mass insertion of values to a `property`.
 
-### React Tablle
+### React Table
 
 Yes, I know it exists now. I wish I've known before. Major rewrite someday?
 

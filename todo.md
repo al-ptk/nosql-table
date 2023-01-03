@@ -37,8 +37,7 @@ MAJOR REFACTOR FOR RELEASE OF v1.0
 - [x] make it mobile friendly
   - [x] Add bigger margin at the bottom, by 200px
   - [x] Add sideways margins for TablePlaceholder buttons
-- [ ] Remove tooltips altogether
-- [ ] Create manual modalw
+- [x] Create manual modalw
 
 - [x] Write readme (possibly, an 'Help' document also')
 - [x] Write roadmap
@@ -54,7 +53,7 @@ Later, I will come back and add new features to this.
 For the next version
 
 @update readme roadmap section
-****
+- [ ] Remove tooltips altogether
 - [ ] New Table wizard: Ask for number of instances and the initial schema
 - [ ] Create async thunk for rendering data cells faster on chromium-based. firefox is fine, weirdly enough
 - [ ] Create tests — YAY!
