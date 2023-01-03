@@ -11,13 +11,14 @@ import { setModal } from '../redux/slices/uiKnobsSlice';
 import CreditsModal from '../modals/CreditsModal';
 import { useContext } from 'react';
 import { LanguageContext } from '../App';
+import ManualModal from '../modals/ManualModal';
 
 export default function MenuBar() {
   const dispatch = useDispatch();
   const language = useContext(LanguageContext);
 
   return (
-    <StyledMenuBar.Container id='MenuBar'>
+    <StyledMenuBar.Container id="MenuBar">
       <StyledMenuBar.FlexWrapper>
         <FileMenuAnchor />
         <EditMenuAnchor />
@@ -28,7 +29,7 @@ export default function MenuBar() {
       <StyledMenuBar.FlexWrapper>
         <DropDownAnchor.Button
           onClick={() => {
-            dispatch(setModal({ modal: <CreditsModal /> }));
+            dispatch(setModal({ modal: <ManualModal /> }));
           }}
         >
           {'Manual'}

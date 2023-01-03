@@ -78,7 +78,7 @@ export function CreditsModal() {
             href="https://freeicons.io/free-mobile-app-icons/twitter-icon-21486#"
             rel="noreferrer"
           >
-            ColourCreatype
+            Fasil
           </a>
         </StyledP>
       </Modal.Container>

@@ -76,6 +76,7 @@ export const Modal = {
     margin: ${(props) => props.margin || '0px'};
 
     /* Internal layout */
+    font-size: ${(props) => props.fontSize || 24}px;
 
     /* Modifiers */
     color: white;

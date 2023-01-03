@@ -53,6 +53,9 @@ Later, I will come back and add new features to this.
 
 For the next version
 
+@update readme roadmap section
+****
+- [ ] New Table wizard: Ask for number of instances and the initial schema
 - [ ] Create async thunk for rendering data cells faster on chromium-based. firefox is fine, weirdly enough
 - [ ] Create tests — YAY!
 - [ ] Clear all cells of instance/property
@@ -90,6 +93,8 @@ For the next version
 - [ ] Abstract all box modals into a HOC then implement behavior common to all (essentially, to render through a portal, and have some niceties)
 - [ ] Swap redux system for react-router system for rendering modals
 - [ ] Move language from context store to redux store
+- [ ] Change modals to use the `<dialog>` tag
+- [ ] Change context menus to use `menu` tag
 
 GUI stuff
 
