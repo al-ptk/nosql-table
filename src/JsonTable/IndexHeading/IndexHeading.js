@@ -24,12 +24,14 @@ export default function IndexHeading({ instanceIndex, className }) {
         instanceIndex={instanceIndex}
         closeMenu={() => {
           setContextMenu(null);
+          setDeleteButton(null);
         }}
       />
     );
   };
 
-  const handleMouseOver = () => {
+  // @dryup @deleteHeading
+  const handleMouseOver = (e) => {
     setDeleteButton(
       <DeleteEntityButton
         onClick={() => dispatch(deleteInstance({ instanceIndex }))}
@@ -48,7 +50,9 @@ export default function IndexHeading({ instanceIndex, className }) {
       onClick={handleClick}
       onContextMenu={handleContextMenu}
       onMouseOver={handleMouseOver}
-      onMouseLeave={() => setDeleteButton(null)}
+      onMouseLeave={() => {
+        setDeleteButton(null);
+      }}
     >
       {deleteButton}
       {instanceIndex}
