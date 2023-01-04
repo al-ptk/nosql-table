@@ -15,7 +15,7 @@
 
 If you want the english version, click [here](https://github.com/al-ptk/json-table-editor/blob/main/README.md).
 
-Para ir ao site, clique [>>> aqui <<<]()
+#### Para ir ao site, clique [>>> aqui <<<](https://al-ptk.github.io/json-table-editor/)
 
 # JSON Table Editor
 

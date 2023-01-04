@@ -5,6 +5,8 @@ const langEnum = {
   'pt-BR': 1,
 };
 
-export let language =
-  languages.instances[langEnum[navigator.language]] ??
-  languages.instances['en-US'];
+// language is the object found at instances[index]
+// the index is based on the navigator language and matched on langEnum
+const language = languages.instances[langEnum[navigator.language] ?? 0];
+
+export { language };
