@@ -11,13 +11,21 @@ import { useContext } from 'react';
 export const FileDropDown = ({ xPos, yPos }) => {
   const language = useContext(LanguageContext);
   const dispatch = useDispatch();
-  const isTableEmpty = !Boolean(
-    useSelector((state) => state.table.instances).length
-  );
+  const table = useSelector((state) => state.table);
+  const isTableEmpty = !Boolean(table.instances.length);
+
   return (
     <DropDown.Container {...{ xPos, yPos }}>
       <DropDown.Button onClick={() => dispatch(newTable())}>
         {language['newTable']}
+      </DropDown.Button>
+      <DropDown.HorRuler />
+      <DropDown.Button
+        onClick={() => {
+          saveTable(table);
+        }}
+      >
+        Save Table
       </DropDown.Button>
       <DropDown.HorRuler />
       <ImportButton />
@@ -40,3 +48,17 @@ export const FileDropDown = ({ xPos, yPos }) => {
     </DropDown.Container>
   );
 };
+
+function saveTable(table) {
+  const stringifiedTable = JSON.stringify(table);
+  // Important note: the protocol is http, not https.
+  // Sending the wrong protocol will result in cors error.
+  fetch('http://localhost:3000/project/123456', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Lenght': stringifiedTable.length,
+    },
+    body: stringifiedTable,
+  });
+}

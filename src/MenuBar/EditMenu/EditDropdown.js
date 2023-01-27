@@ -32,8 +32,10 @@ export function EditDropdown({ xPos, yPos, closeDropDown }) {
     closeDropDown();
   };
 
-  // Select the functions to render based on the type of entity selected
-  // @dryup @tableActions centralize the list of actions. Affected: EditDropDown, InsertDropDown and context menus
+  // Select the functions to be implemented by the buttonsbased on the
+  // type of entity selected. If property, then get property functions.
+  // Same for instances.
+  // @dryup @tableActions centralize the list of actions. Affected: EditDropDown, InsertDropDown and context menus. (Look at other reminders with @tableActions for more context)
   const reducersBySelectedType = {
     property: {
       moveBackwards: () => {
