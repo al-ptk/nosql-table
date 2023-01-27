@@ -53,7 +53,12 @@ Later, I will come back and add new features to this.
 For the next version
 
 @update readme roadmap section
-- [ ] Remove tooltips altogether
+
+- [ ] Macros: make changes with regex on type: strings
+- [ ] Press enter to go to the next instance? Arrow keys?
+- [ ] Create server failure modal
+- [ ] Remove modals from redux and create a switch that accesses each modal with
+  its own data
 - [ ] New Table wizard: Ask for number of instances and the initial schema
 - [ ] Create async thunk for rendering data cells faster on chromium-based. firefox is fine, weirdly enough
 - [ ] Create tests — YAY!
@@ -94,6 +99,7 @@ For the next version
 - [ ] Move language from context store to redux store
 - [ ] Change modals to use the `<dialog>` tag
 - [ ] Change context menus to use `menu` tag
+- [ ] Use different cursors, like "cell" or "resize" for proper stuff
 
 GUI stuff
 

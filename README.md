@@ -164,4 +164,4 @@ Here is the roadmap: (items in each phase are **not** ordered by priority)
 - [ ] Change all state-operating functions to be pure (no mutations, returns new obj)
 - [ ] Rewrite the whole thing with Typescript and React-Table
 - [ ] Allow for instance naming (swap from array to object as storage mechanism)
-- [ ] Use some Tailwind UI framework to redo the styling
+- [ ] Use some Tailwind UI framework to redo the styling, removing styled-components. (Maybe adding SASS+BEM?)

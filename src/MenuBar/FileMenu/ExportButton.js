@@ -14,7 +14,6 @@ export function ExportButton({ exportMode, ...props }) {
 
   return (
     <span>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a
         aria-hidden
         href="#"

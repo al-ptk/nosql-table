@@ -10,9 +10,17 @@ export default function IndexHeading({ instanceIndex, className }) {
   const [contextMenu, setContextMenu] = useState(null);
   const [deleteButton, setDeleteButton] = useState(null);
   const dispatch = useDispatch();
+  const selected = useSelector((state) => state.table.selected);
 
   const handleClick = () => {
     dispatch(setSelected({ type: 'instance', index: instanceIndex }));
+    setDeleteButton(
+      <DeleteEntityButton
+        onClick={() => dispatch(deleteInstance({ instanceIndex }))}
+      >
+        {/* @todo Add X icon */}X
+      </DeleteEntityButton>
+    );
   };
 
   const handleContextMenu = (e) => {
@@ -51,7 +59,11 @@ export default function IndexHeading({ instanceIndex, className }) {
       onContextMenu={handleContextMenu}
       onMouseOver={handleMouseOver}
       onMouseLeave={() => {
-        setDeleteButton(null);
+        if (
+          !(selected.type === 'instance' && selected.index === instanceIndex)
+        ) {
+          setDeleteButton(null);
+        }
       }}
     >
       {deleteButton}
