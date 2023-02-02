@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/json-table-editor/static/css/main.3ef2b1fc.css",
-    "main.js": "/json-table-editor/static/js/main.a641f119.js",
-    "static/media/NotoSans-ExtraLight.ttf": "/json-table-editor/static/media/NotoSans-ExtraLight.73c9131923338c4f3cd4.ttf",
-    "static/media/NotoSans-Medium.ttf": "/json-table-editor/static/media/NotoSans-Medium.a4c42b7a92bf0fdb8ec1.ttf",
-    "static/media/NotoSans-Light.ttf": "/json-table-editor/static/media/NotoSans-Light.2cfb54d923b32fbd5525.ttf",
-    "index.html": "/json-table-editor/index.html",
-    "main.3ef2b1fc.css.map": "/json-table-editor/static/css/main.3ef2b1fc.css.map",
-    "main.a641f119.js.map": "/json-table-editor/static/js/main.a641f119.js.map"
+    "main.css": "/static/css/main.3ef2b1fc.css",
+    "main.js": "/static/js/main.d2f4203c.js",
+    "static/media/NotoSans-ExtraLight.ttf": "/static/media/NotoSans-ExtraLight.73c9131923338c4f3cd4.ttf",
+    "static/media/NotoSans-Medium.ttf": "/static/media/NotoSans-Medium.a4c42b7a92bf0fdb8ec1.ttf",
+    "static/media/NotoSans-Light.ttf": "/static/media/NotoSans-Light.2cfb54d923b32fbd5525.ttf",
+    "index.html": "/index.html",
+    "main.3ef2b1fc.css.map": "/static/css/main.3ef2b1fc.css.map",
+    "main.d2f4203c.js.map": "/static/js/main.d2f4203c.js.map"
   },
   "entrypoints": [
     "static/css/main.3ef2b1fc.css",
-    "static/js/main.a641f119.js"
+    "static/js/main.d2f4203c.js"
   ]
 }
