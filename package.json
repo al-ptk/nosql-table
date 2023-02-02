@@ -35,7 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://al-ptk.github.io/json-table-editor",
+  "homepage": "https://jte.alanpatrick.net/",
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }
