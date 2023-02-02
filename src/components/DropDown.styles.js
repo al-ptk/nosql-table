@@ -51,5 +51,6 @@ export const DropDownAnchor = {
     color: white;
     border: none;
     font-weight: normal;
+    ${(props) => props.CSSOverride}
   `,
 };

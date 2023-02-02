@@ -1,4 +1,5 @@
-import GithubIcon from '../assets/svgs/GithubIcon';
+// @todo @delete
+// import GithubIcon from '../assets/svgs/GithubIcon';
 import { EditMenuAnchor } from './EditMenu/EditMenu';
 import { FileMenuAnchor } from './FileMenu/FileMenu';
 import { InsertMenuAnchor } from './InsertMenu/InsertMenu';
@@ -12,6 +13,7 @@ import CreditsModal from '../modals/CreditsModal';
 import { useContext } from 'react';
 import { LanguageContext } from '../App';
 import ManualModal from '../modals/ManualModal';
+import LoginArea from './LoginArea';
 
 export default function MenuBar() {
   const dispatch = useDispatch();
@@ -48,14 +50,7 @@ export default function MenuBar() {
         >
           {language['feedback']}
         </StyledMenuBar.Link>
-        <StyledMenuBar.Link
-          href="https://github.com/al-ptk/json-table-editor/"
-          target={'_blank'}
-          rel="noreferrer"
-          aria-label="Json table editor's github page"
-        >
-          <GithubIcon height={'24px'} />
-        </StyledMenuBar.Link>
+        <LoginArea />
       </StyledMenuBar.FlexWrapper>
     </StyledMenuBar.Container>
   );
