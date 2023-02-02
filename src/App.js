@@ -25,6 +25,7 @@ function App() {
 
 const RenderModal = () => {
   const modal = useSelector((state) => state.uiKnobs.modal);
+  // @todo create a switch function that uses strings to render modals, instead of storing the modals themselves on redux
   return <>{modal}</>;
 };
 
