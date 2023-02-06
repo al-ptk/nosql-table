@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isVertical: false,
   modal: null,
+  user: null,
 };
 
 const uiKnobsSlice = createSlice({
@@ -16,10 +17,13 @@ const uiKnobsSlice = createSlice({
       const newModal = action.payload.modal ?? null;
       state.modal = newModal;
     },
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+    }
   },
 });
 
-export const { togglePreview, toggleIsVertical, setModal } =
+export const { toggleIsVertical, setModal, setUser } =
   uiKnobsSlice.actions;
 
 export default uiKnobsSlice.reducer;

@@ -13,6 +13,7 @@
     - [Phase 2: Typing](#phase-2-typing)
     - [Phase 2.5: More features](#phase-25-more-features)
     - [Phase 3: Doctor Refactor and the Rewriting of Madness](#phase-3-doctor-refactor-and-the-rewriting-of-madness)
+- [Some extra lessons](#some-extra-lessons)
 
 Se quiser ver a versão em português, clique [aqui](https://github.com/al-ptk/json-table-editor/blob/main/LEIAME.md).
 
@@ -165,3 +166,8 @@ Here is the roadmap: (items in each phase are **not** ordered by priority)
 - [ ] Rewrite the whole thing with Typescript and React-Table
 - [ ] Allow for instance naming (swap from array to object as storage mechanism)
 - [ ] Use some Tailwind UI framework to redo the styling, removing styled-components. (Maybe adding SASS+BEM?)
+
+# Some extra lessons
+
+- Redux state management, React rendering and why the website had jitters: Every time a component's state updates, the component and its children all rerender. Because I have state centralized, the whole page rerenders when add something like a tooltip, or add elements dynamically.
+  - I shouldn't be adding elements like this, but I can't simply access elements in the actual dom and append children. Use state is the best answer I have — currently.

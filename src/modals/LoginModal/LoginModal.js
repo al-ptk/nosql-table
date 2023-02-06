@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { LanguageContext } from '../../App';
 import { Modal } from '../Modal.styles';
-import { setModal } from '../../redux/slices/uiKnobsSlice';
+import { setModal, setUser } from '../../redux/slices/uiKnobsSlice';
 import { FormPicker, AuthForm } from './LoginModal.styles';
 
 export function LoginModal() {
@@ -52,6 +52,7 @@ export function LoginModal() {
 function LoginForm() {
   const language = React.useContext(LanguageContext);
   const [formData, setFormData] = React.useState({});
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,7 +67,13 @@ function LoginForm() {
       method: 'POST',
     })
       .then((response) => response.json())
-      .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
+      .then((data) => {
+        const t = data.token;
+        const payload = JSON.parse(window.atob(t.split('.')[1]));
+        dispatch(setUser({ user: payload.user }));
+        dispatch(setModal({}));
+      });
+    // .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
   };
 
   return (
@@ -108,7 +115,17 @@ function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const stringifiedForm = JSON.stringify(formData);
+    fetch('https://jte-backend.glitch.me/auth/sign-up', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': stringifiedForm.length,
+      },
+      body: stringifiedForm,
+      method: 'POST',
+    }).then((response) => response.json());
+    // .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
   };
 
   return (
