@@ -56,9 +56,17 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('https://jte-backend.glitch.me')
-      .then((response) => response.text())
-      .then(console.log);
+    const stringifiedForm = JSON.stringify(formData);
+    fetch('https://jte-backend.glitch.me/auth/sign-in', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': stringifiedForm.length,
+      },
+      body: stringifiedForm,
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
   };
 
   return (
