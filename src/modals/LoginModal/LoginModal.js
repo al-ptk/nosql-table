@@ -70,10 +70,11 @@ function LoginForm() {
       .then((data) => {
         const t = data.token;
         const payload = JSON.parse(window.atob(t.split('.')[1]));
-        dispatch(setUser({ user: payload.user }));
+        dispatch(setUser({ user: { ...payload.user, token: data.token } }));
         dispatch(setModal({}));
-      });
-    // .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
+        return data.token;
+      })
+      .then((token) => sessionStorage.setItem('token', JSON.stringify(token)));
   };
 
   return (
