@@ -21,7 +21,7 @@ export const FormPicker = {
 };
 
 export const AuthForm = {
-  Container: styled.form`
+  Form: styled.form`
     background-color: rgba(30, 30, 30, 0.3);
     height: 60%;
     margin: 60px;

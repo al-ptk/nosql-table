@@ -51,40 +51,100 @@ export function LoginModal() {
 
 function LoginForm() {
   const language = React.useContext(LanguageContext);
+  const [formData, setFormData] = React.useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch('https://jte-backend.glitch.me')
+      .then((response) => response.text())
+      .then(console.log);
+  };
 
   return (
-    <AuthForm.Container>
+    <AuthForm.Form onSubmit={(e) => handleSubmit(e)}>
       <AuthForm.Label>
         Email:
-        <AuthForm.Input type="text" name='' />
+        <AuthForm.Input
+          type="text"
+          name="email"
+          value={formData.email || ''}
+          onInput={(e) =>
+            setFormData(
+              Object.assign({ ...formData }, { email: e.target.value })
+            )
+          }
+        />
       </AuthForm.Label>
       <AuthForm.Label>
         {language['password'] + ':'}
-        <AuthForm.Input type="password" />
+        <AuthForm.Input
+          type="password"
+          name="password"
+          value={formData.password || ''}
+          onInput={(e) =>
+            setFormData(
+              Object.assign({ ...formData }, { password: e.target.value })
+            )
+          }
+        />
       </AuthForm.Label>
       <AuthForm.Button type="submit">{language['confirm']}</AuthForm.Button>
-    </AuthForm.Container>
+    </AuthForm.Form>
   );
 }
 
 function SignUpForm() {
   const language = React.useContext(LanguageContext);
+  const [formData, setFormData] = React.useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return (
-    <AuthForm.Container>
+    <AuthForm.Form onSubmit={handleSubmit}>
       <AuthForm.Label>
         {language['name'] + ':'}
-        <AuthForm.Input type="text" />
+        <AuthForm.Input
+          type="text"
+          name="name"
+          value={formData.name || ''}
+          onInput={(e) =>
+            setFormData(
+              Object.assign({ ...formData }, { name: e.target.value })
+            )
+          }
+        />
       </AuthForm.Label>
       <AuthForm.Label>
         Email:
-        <AuthForm.Input type="text" />
+        <AuthForm.Input
+          type="text"
+          name="email"
+          value={formData.email || ''}
+          onInput={(e) =>
+            setFormData(
+              Object.assign({ ...formData }, { email: e.target.value })
+            )
+          }
+        />
       </AuthForm.Label>
       <AuthForm.Label>
         {language['password'] + ':'}
-        <AuthForm.Input type="password" />
+        <AuthForm.Input
+          type="password"
+          name="password"
+          value={formData.password || ''}
+          onInput={(e) =>
+            setFormData(
+              Object.assign({ ...formData }, { password: e.target.value })
+            )
+          }
+        />
       </AuthForm.Label>
       <AuthForm.Button type="submit">{language['confirm']}</AuthForm.Button>
-    </AuthForm.Container>
+    </AuthForm.Form>
   );
 }
